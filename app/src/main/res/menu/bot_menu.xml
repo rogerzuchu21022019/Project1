@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFM"
+        android:title="Home"
+        android:icon="@drawable/home"/>
+    <item
+        android:id="@+id/exploreFM"
+        android:title="Explore"
+        android:icon="@drawable/explore"/>
+    <item
+        android:id="@+id/add"
+        android:icon="@drawable/add"
+
+        android:title="" />
+    <item
+        android:id="@+id/inboxFM"
+        android:title="Inbox"
+        android:icon="@drawable/favorite"/>
+    <item
+        android:id="@+id/profileFM"
+        android:title="Profile"
+        android:icon="@drawable/profile"/>
+</menu>

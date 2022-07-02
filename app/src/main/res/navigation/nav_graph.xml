@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/emptyFM">
+
+
+
+    <fragment
+        android:id="@+id/homeFM"
+        android:name="team.tiktok.tiktokapp.fragments.home.HomeFM"
+        android:label="fragment_home_f_m"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFM_to_followingFM"
+            app:destination="@id/followingFM"
+            app:popUpTo="@id/followingFM"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeFM_to_commentBottomSheetFM"
+            app:destination="@id/commentBottomSheetFM" />
+        <action
+            android:id="@+id/action_homeFM_to_shareBottomSheetFM"
+            app:destination="@id/shareBottomSheetFM" />
+        <action
+            android:id="@+id/action_homeFM_to_detailUserFM"
+            app:destination="@id/detailUserFM"
+            app:popUpTo="@id/detailUserFM"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFM"
+        android:name="team.tiktok.tiktokapp.fragments.profile.ProfileFM"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFM_to_editProfileFM"
+            app:destination="@id/editProfileFM"
+            app:popUpTo="@id/editProfileFM"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_profileFM_to_profileBottomSheetFM"
+            app:destination="@id/profileBottomSheetFM"
+            app:popUpTo="@id/profileBottomSheetFM"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/inboxFM"
+        android:name="team.tiktok.tiktokapp.fragments.inbox.InboxFM"
+        android:label="fragment_inbox"
+        tools:layout="@layout/fragment_inbox" />
+    <fragment
+        android:id="@+id/exploreFM"
+        android:name="team.tiktok.tiktokapp.fragments.explore.ExploreFM"
+        android:label="fragment_explore"
+        tools:layout="@layout/fragment_explore" />
+    <fragment
+        android:id="@+id/editProfileFM"
+        tools:layout="@layout/fragment_edit_profile"
+        android:name="team.tiktok.tiktokapp.fragments.profile.EditProfileFM"
+        android:label="EditProfileFM" >
+        <action
+            android:id="@+id/action_editProfileFM_to_profileFM"
+            app:destination="@id/profileFM"
+            app:popUpTo="@id/profileFM"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <dialog
+        tools:layout="@layout/fragment_profile_bottom_sheet"
+        android:id="@+id/profileBottomSheetFM"
+        android:name="team.tiktok.tiktokapp.fragments.profile.ProfileBottomSheetFM"
+        android:label="ProfileBottomSheetFM" >
+        <action
+            android:id="@+id/action_profileBottomSheetFM_to_settingAndPrivacyFM"
+            app:destination="@id/settingAndPrivacyFM"
+            app:popUpTo="@id/settingAndPrivacyFM"
+            app:popUpToInclusive="true" />
+    </dialog>
+    <fragment
+        tools:layout="@layout/fragment_setting_and_privacy"
+        android:id="@+id/settingAndPrivacyFM"
+        android:name="team.tiktok.tiktokapp.fragments.setting.SettingAndPrivacyFM"
+        android:label="SettingAndPrivacyFM" >
+        <action
+            android:id="@+id/action_settingAndPrivacyFM_to_profileFM"
+            app:destination="@id/profileFM"
+            app:popUpTo="@id/profileFM"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_settingAndPrivacyFM_to_manageAccountFM"
+            app:destination="@id/manageAccountFM"
+            app:popUpTo="@id/manageAccountFM"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_settingAndPrivacyFM_to_homeFM"
+            app:destination="@id/homeFM"
+            app:popUpTo="@id/homeFM"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        tools:layout="@layout/fragment_manage_account"
+        android:id="@+id/manageAccountFM"
+        android:name="team.tiktok.tiktokapp.fragments.profile.ManageAccountFM"
+        android:label="ManageAccountFM" >
+        <action
+            android:id="@+id/action_manageAccountFM_to_settingAndPrivacyFM"
+            app:destination="@id/settingAndPrivacyFM"
+            app:popUpTo="@id/settingAndPrivacyFM"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/followingFM"
+        tools:layout="@layout/fragment_following"
+        android:name="team.tiktok.tiktokapp.fragments.following.FollowingFM"
+        android:label="FollowingFM" >
+        <action
+            android:id="@+id/action_followingFM_to_homeFM"
+            app:destination="@id/homeFM"
+            app:popUpTo="@id/homeFM"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_followingFM_to_commentBottomSheetFM"
+            app:destination="@id/commentBottomSheetFM" />
+        <action
+            android:id="@+id/action_followingFM_to_shareBottomSheetFM"
+            app:destination="@id/shareBottomSheetFM" />
+        <action
+            android:id="@+id/action_followingFM_to_detailUserFM"
+            app:destination="@id/detailUserFM"
+            app:popUpTo="@id/detailUserFM"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/emptyFM"
+        tools:layout="@layout/fragment_empty"
+        android:name="team.tiktok.tiktokapp.fragments.home.EmptyFM"
+        android:label="EmptyFM" >
+        <action
+            android:id="@+id/action_emptyFM_to_homeFM"
+            app:destination="@id/homeFM" />
+        <action
+            android:id="@+id/action_emptyFM_to_followingFM"
+            app:destination="@id/followingFM" />
+    </fragment>
+    <dialog
+        android:id="@+id/commentBottomSheetFM"
+        tools:layout="@layout/fragment_comment_bottom_sheet"
+        android:name="team.tiktok.tiktokapp.fragments.features.comment.CommentBottomSheetFM"
+        android:label="CommentBottomSheetFM" >
+        <action
+            android:id="@+id/action_commentBottomSheetFM_to_homeFM"
+            app:destination="@id/homeFM" />
+        <action
+            android:id="@+id/action_commentBottomSheetFM_to_followingFM"
+            app:destination="@id/followingFM" />
+    </dialog>
+    <dialog
+        android:id="@+id/shareBottomSheetFM"
+        tools:layout="@layout/fragment_share_bottom_sheet"
+        android:name="team.tiktok.tiktokapp.fragments.features.share.ShareBottomSheetFM"
+        android:label="ShareBottomSheetFM" >
+        <action
+            android:id="@+id/action_shareBottomSheetFM_to_followingFM"
+            app:destination="@id/followingFM" />
+        <action
+            android:id="@+id/action_shareBottomSheetFM_to_homeFM"
+            app:destination="@id/homeFM" />
+    </dialog>
+    <fragment
+        android:id="@+id/detailUserFM"
+        tools:layout="@layout/fragment_detail_user"
+        android:name="team.tiktok.tiktokapp.fragments.user.DetailUserFM"
+        android:label="DetailUserFM" >
+        <action
+            android:id="@+id/action_detailUserFM_to_homeFM"
+            app:destination="@id/homeFM"
+            app:popUpTo="@id/homeFM"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_detailUserFM_to_followingFM"
+            app:destination="@id/followingFM"
+            app:popUpTo="@id/followingFM"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

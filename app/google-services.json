@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "360918666614",
+    "firebase_url": "https://project1-4fa7e-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "project1-4fa7e",
+    "storage_bucket": "project1-4fa7e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360918666614:android:02ac69e264ed8efaa7fe57",
+        "android_client_info": {
+          "package_name": "team.tiktok.tiktokapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "360918666614-761ntldtbsf2vfdvbc9h25sftqcggag3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "team.tiktok.tiktokapp",
+            "certificate_hash": "d90b179091ffc9d8e9f40adbe1fb9b921d767c5c"
+          }
+        },
+        {
+          "client_id": "360918666614-0kgmo1s1tcf27hdc3hu73pj11shp9pkp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0pz-wO1HSceOujsGcIRQAxs2lxYd3zrg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "360918666614-0kgmo1s1tcf27hdc3hu73pj11shp9pkp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
