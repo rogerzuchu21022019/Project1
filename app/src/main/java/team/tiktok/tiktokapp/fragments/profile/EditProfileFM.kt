@@ -47,9 +47,26 @@ class EditProfileFM : Fragment() {
     private fun clickImage() {
         binding.civAvatar.apply {
             setOnClickListener {
-                selectImage()
+                requestPermission()
                 Toast.makeText(requireActivity(), "OK", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+    private fun requestPermission() {
+        if (ContextCompat.checkSelfPermission(
+                requireActivity(),
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            )
+            == PackageManager.PERMISSION_GRANTED
+        ) {
+            selectImage()
+
+        } else {
+            ActivityCompat.requestPermissions(
+                requireActivity(), arrayOf(
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ), IMAGE_REQ
+            )
         }
     }
 

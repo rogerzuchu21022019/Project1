@@ -26,8 +26,10 @@
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/fragment_profile_bottom_sheet.xml" value="0.3378099173553719" />
         <entry key="app/src/main/res/layout/fragment_recommend.xml" value="0.1703125" />
+        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/fragment_setting_and_privacy.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/fragment_share_bottom_sheet.xml" value="0.18125" />
+        <entry key="app/src/main/res/layout/fragment_sign_up_main.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/fragment_upload.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/item_rv_comment.xml" value="0.2776268115942029" />
