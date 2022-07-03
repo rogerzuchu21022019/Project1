@@ -64,16 +64,16 @@ class HomeFM : Fragment() ,VideoAdapter.OnClickItemInRecyclerView{
     }
 
 
-    override fun onItemClick(itemVideoBinding: ItemVideoBinding, view: View) {
+    override fun onItemClick(position:Int, view: View) {
         val id = view.id
+        if (id==R.id.ivSearch){
+            findNavController().navigate(R.id.action_homeFM_to_searchFM)
+        }
         if (id==R.id.civUser){
             findNavController().navigate(R.id.action_homeFM_to_detailUserFM)
         }
         if (id==R.id.tvFollowing){
             findNavController().navigate(R.id.action_homeFM_to_followingFM)
-            itemVideoBinding.tvFollowing.setTextColor(ContextCompat.getColor(view.context,R.color.white))
-
-
         }
         if (id==R.id.ivComment){
             findNavController().navigate(R.id.action_homeFM_to_commentBottomSheetFM)

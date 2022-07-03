@@ -63,8 +63,13 @@ class FollowingFM : Fragment(),FollowingVideoAdapter.OnClickItemInRecyclerView {
         adapter.stopListening()
     }
 
-    override fun onItemClick(itemVideoBinding: ItemVideoBinding, view: View) {
+
+
+    override fun onItemClick(position: Int, view: View) {
         val id = view.id
+        if (id==R.id.ivSearch){
+            findNavController().navigate(R.id.action_followingFM_to_searchFM)
+        }
         if (id==R.id.civUser){
 
             findNavController().navigate(R.id.action_followingFM_to_detailUserFM)
