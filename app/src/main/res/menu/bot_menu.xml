@@ -9,7 +9,7 @@
         android:title="Explore"
         android:icon="@drawable/explore"/>
     <item
-        android:id="@+id/add"
+        android:id="@+id/addFM"
         android:icon="@drawable/add"
 
         android:title="" />
