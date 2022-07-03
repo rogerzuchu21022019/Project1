@@ -20,14 +20,14 @@ import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.ItemVideoBinding
 
 //class VideoAdapter(options: FirebaseRecyclerOptions<Video?>,private val clickItem:ClickItemListener):FirebaseRecyclerAdapter<Video, VideoAdapter.VideoViewHolder>(options) {
-class VideoAdapter(options: FirebaseRecyclerOptions<Video?>):FirebaseRecyclerAdapter<Video, VideoAdapter.VideoViewHolder>(options) {
+class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>):FirebaseRecyclerAdapter<Video, FollowingVideoAdapter.VideoViewHolder>(options) {
     lateinit var itemVideoBinding: ItemVideoBinding
     lateinit var onClickItemInRecyclerView: OnClickItemInRecyclerView
     class VideoViewHolder(val itemVideoBinding: ItemVideoBinding
     , onClickItemInRecyclerView: OnClickItemInRecyclerView) :RecyclerView.ViewHolder(itemVideoBinding.root){
         var isFav = false
         var isSave = false
-        private var isShare = false
+        var isShare = false
 
         ///init Click
         init {
@@ -80,7 +80,7 @@ class VideoAdapter(options: FirebaseRecyclerOptions<Video?>):FirebaseRecyclerAda
             /// Click Icon Save Clip
             itemVideoBinding.ivSave.apply {
                 setOnClickListener {
-                    if (isSave){
+                    if (!isSave){
                         itemVideoBinding.ivSave.setImageResource(R.drawable.fill_favorite)
                         isSave = true
                     }else{
@@ -93,7 +93,7 @@ class VideoAdapter(options: FirebaseRecyclerOptions<Video?>):FirebaseRecyclerAda
             /// Click Icon Share
             itemVideoBinding.ivShare.apply {
                 setOnClickListener {
-                    if (isShare){
+                    if (!isShare){
                         itemVideoBinding.ivShare.setImageResource(R.drawable.share)
                         itemVideoBinding.ivShare.setColorFilter(it.resources.getColor(R.color.white))
                         isShare = true
@@ -106,7 +106,9 @@ class VideoAdapter(options: FirebaseRecyclerOptions<Video?>):FirebaseRecyclerAda
                     onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition,it)
                 }
             }
+
             onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition,itemVideoBinding.root)
+
         }
         fun setData(video:Video){
             val mediaController =  MediaController(this.itemVideoBinding.root.context)
@@ -138,11 +140,9 @@ class VideoAdapter(options: FirebaseRecyclerOptions<Video?>):FirebaseRecyclerAda
         this.onClickItemInRecyclerView = onClickItemInRecyclerView
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         itemVideoBinding = ItemVideoBinding.inflate(layoutInflater,parent,false)
-
         return VideoViewHolder(itemVideoBinding = itemVideoBinding,onClickItemInRecyclerView)
     }
 

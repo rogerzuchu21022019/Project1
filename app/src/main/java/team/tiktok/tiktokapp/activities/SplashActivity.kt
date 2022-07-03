@@ -21,7 +21,7 @@ class SplashActivity : AppCompatActivity() {
             binding = FragmentSplashScreenBinding.inflate(layoutInflater)
             setContentView(binding.root)
 
-            var handler : Handler = Handler(Looper.myLooper()!!)
+            var handler = Handler(Looper.myLooper()!!)
             handler.postDelayed(Runnable {
                val intent=Intent(this@SplashActivity,MainActivity::class.java)
                 startActivity(intent)

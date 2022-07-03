@@ -37,9 +37,7 @@
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_profileFM_to_editProfileFM"
-            app:destination="@id/editProfileFM"
-            app:popUpTo="@id/editProfileFM"
-            app:popUpToInclusive="true" />
+            app:destination="@id/editProfileFM" />
         <action
             android:id="@+id/action_profileFM_to_profileBottomSheetFM"
             app:destination="@id/profileBottomSheetFM"
@@ -75,8 +73,7 @@
         <action
             android:id="@+id/action_profileBottomSheetFM_to_settingAndPrivacyFM"
             app:destination="@id/settingAndPrivacyFM"
-            app:popUpTo="@id/settingAndPrivacyFM"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </dialog>
     <fragment
         tools:layout="@layout/fragment_setting_and_privacy"
@@ -87,17 +84,15 @@
             android:id="@+id/action_settingAndPrivacyFM_to_profileFM"
             app:destination="@id/profileFM"
             app:popUpTo="@id/profileFM"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_settingAndPrivacyFM_to_manageAccountFM"
             app:destination="@id/manageAccountFM"
             app:popUpTo="@id/manageAccountFM"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_settingAndPrivacyFM_to_homeFM"
-            app:destination="@id/homeFM"
-            app:popUpTo="@id/homeFM"
-            app:popUpToInclusive="true" />
+            app:destination="@id/homeFM" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_manage_account"
@@ -184,4 +179,9 @@
             app:popUpTo="@id/followingFM"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/addFM"
+        tools:layout="@layout/fragment_add"
+        android:name="team.tiktok.tiktokapp.fragments.add.AddFM"
+        android:label="AddFM" />
 </navigation>

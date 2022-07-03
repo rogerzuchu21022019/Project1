@@ -34,11 +34,11 @@ class SettingAndPrivacyFM : Fragment() {
                 findNavController().navigate(R.id.action_settingAndPrivacyFM_to_manageAccountFM)
             }
         }
-        binding.tvSignOut.apply {
-            setOnClickListener {
-                findNavController().navigate(R.id.action_settingAndPrivacyFM_to_homeFM)
-            }
-        }
+//        binding.tvSignOut.apply {
+//            setOnClickListener {
+//                findNavController().navigate(R.id.action_settingAndPrivacyFM_to_homeFM)
+//            }
+//        }
     }
 
     private fun checkComeIn(isComeIn:Boolean){
@@ -56,4 +56,5 @@ class SettingAndPrivacyFM : Fragment() {
         binding == null
         checkComeIn(false)
     }
+
 }

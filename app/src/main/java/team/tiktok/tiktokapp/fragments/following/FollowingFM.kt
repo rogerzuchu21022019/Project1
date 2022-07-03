@@ -17,14 +17,16 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import team.tiktok.tiktokapp.R
+import team.tiktok.tiktokapp.adapter.FollowingVideoAdapter
 import team.tiktok.tiktokapp.adapter.VideoAdapter
 import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.FragmentHomeBinding
+import team.tiktok.tiktokapp.databinding.ItemVideoBinding
 
 
-class FollowingFM : Fragment(),VideoAdapter.OnClickItemInRecyclerView {
+class FollowingFM : Fragment(),FollowingVideoAdapter.OnClickItemInRecyclerView {
    lateinit var binding:FragmentHomeBinding
-    private lateinit var adapter :VideoAdapter
+    private lateinit var adapter :FollowingVideoAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,24 +34,17 @@ class FollowingFM : Fragment(),VideoAdapter.OnClickItemInRecyclerView {
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
         loadData()
-        clickButton()
         return binding.root
     }
 
-    private fun clickButton() {
-        binding.tvFollowing.apply {
-            setOnClickListener {
-                findNavController().navigate(R.id.action_followingFM_to_homeFM)
-            }
-        }
-    }
+
 
     private fun loadData() {
         val mDataBase = Firebase.database.getReference("videos")
         val options = FirebaseRecyclerOptions.Builder<Video>()
             .setQuery(mDataBase,Video::class.java)
             .build()
-        adapter = VideoAdapter(options)
+        adapter = FollowingVideoAdapter(options)
         binding.vpHome.adapter = adapter
         adapter.setOnClickItem(this)
     }
@@ -68,9 +63,10 @@ class FollowingFM : Fragment(),VideoAdapter.OnClickItemInRecyclerView {
         adapter.stopListening()
     }
 
-    override fun onItemClick(position: Int, view: View) {
+    override fun onItemClick(itemVideoBinding: ItemVideoBinding, view: View) {
         val id = view.id
         if (id==R.id.civUser){
+
             findNavController().navigate(R.id.action_followingFM_to_detailUserFM)
         }
         if (id==R.id.tvForU){
