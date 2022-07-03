@@ -31,7 +31,15 @@ class VideoAdapter(options: FirebaseRecyclerOptions<Video?>):FirebaseRecyclerAda
 
         ///init Click
         init {
-            itemVideoBinding.tvFollowing.setTextColor(ContextCompat.getColor(this.itemVideoBinding.root.context,R.color.white))
+            itemVideoBinding.tvForU.setTextColor(ContextCompat.getColor(this.itemVideoBinding.root.context,R.color.white))
+
+            /// Click Icon Search
+            itemVideoBinding.ivSearch.apply {
+                setOnClickListener {
+                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition,it)
+                }
+            }
+
             /// Click on Screen
             itemVideoBinding.root.apply {
                 setOnClickListener {

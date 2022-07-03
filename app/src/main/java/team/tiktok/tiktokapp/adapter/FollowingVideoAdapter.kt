@@ -32,6 +32,13 @@ class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>):FirebaseRe
         ///init Click
         init {
             itemVideoBinding.tvFollowing.setTextColor(ContextCompat.getColor(this.itemVideoBinding.root.context,R.color.white))
+
+            itemVideoBinding.ivSearch.apply {
+                setOnClickListener {
+                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition,it)
+                }
+            }
+
             /// Click on Screen
             itemVideoBinding.root.apply {
                 setOnClickListener {
@@ -111,9 +118,7 @@ class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>):FirebaseRe
 
         }
         fun setData(video:Video){
-            val mediaController =  MediaController(this.itemVideoBinding.root.context)
             itemVideoBinding.video = video
-            mediaController
             itemVideoBinding.videoView.apply {
                 setVideoPath(video.url)
                 setOnPreparedListener { mediaplayer->
