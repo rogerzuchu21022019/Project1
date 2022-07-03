@@ -99,6 +99,9 @@ class FollowingFM : Fragment(),FollowingVideoAdapter.OnClickItemInRecyclerView {
 
         }
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding == null
+    }
 
 }

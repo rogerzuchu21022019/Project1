@@ -10,13 +10,15 @@
         android:icon="@drawable/explore"/>
     <item
         android:id="@+id/addFM"
+        android:iconTint="@null"
+
         android:icon="@drawable/add"
 
         android:title="" />
     <item
         android:id="@+id/inboxFM"
         android:title="Inbox"
-        android:icon="@drawable/favorite"/>
+        android:icon="@drawable/inbox"/>
     <item
         android:id="@+id/profileFM"
         android:title="Profile"

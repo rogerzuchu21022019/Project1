@@ -38,6 +38,10 @@ class DetailUserFM : Fragment() {
         }
 
     }
+    override fun onDestroyView() {
+        super.onDestroyView()
 
+        binding == null
+    }
 
 }

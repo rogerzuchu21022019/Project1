@@ -90,6 +90,9 @@ class HomeFM : Fragment() ,VideoAdapter.OnClickItemInRecyclerView{
             findNavController().navigate(R.id.action_homeFM_to_shareBottomSheetFM)
         }
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding == null
+    }
 
 }
