@@ -25,13 +25,15 @@ import team.tiktok.tiktokapp.databinding.FragmentSettingAndPrivacyBinding
 class AddFM : Fragment() {
    lateinit var binding:FragmentAddBinding
     private val IMAGE_REQ = 1
+    private val RECORD_REQ = 2
     private var imagePath: Uri? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAddBinding.inflate(layoutInflater)
-        requestPermissionCamera()
+//        requestPermissionCamera()
+        requestPermissionRecord()
         clickButton()
         return binding.root
     }
@@ -49,6 +51,8 @@ class AddFM : Fragment() {
 
             }
         }
+
+
     }
 
 
@@ -69,27 +73,68 @@ class AddFM : Fragment() {
             )
         }
     }
+    private fun requestPermissionRecord() {
+        if (ContextCompat.checkSelfPermission(
+                requireActivity(),
+                Manifest.permission.CAMERA
+            ) + ContextCompat.checkSelfPermission(
+                requireActivity(),
+                Manifest.permission.RECORD_AUDIO
+            ) + ContextCompat.checkSelfPermission(
+                requireActivity(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+            == PackageManager.PERMISSION_GRANTED
+        ) {
+            accessCamera()
+            selectVideo()
+        } else {
+            ActivityCompat.requestPermissions(
+                requireActivity(), arrayOf(
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.RECORD_AUDIO,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    ), RECORD_REQ
+            )
+        }
+    }
+
+
     private fun accessCamera() {
         val intent = Intent()
 //        intent.type = "image/*" // if you want to you can use pdf/gif/video
         intent.action = android.provider.MediaStore.ACTION_IMAGE_CAPTURE
+        intent.action = android.provider.MediaStore.ACTION_VIDEO_CAPTURE
+
         someActivityResultLauncher.launch(intent)
     }
+
+    private fun selectVideo() {
+        val intent = Intent()
+        intent.type = "video/*" // if you want to you can use pdf/gif/video
+        intent.action = Intent.ACTION_GET_CONTENT
+        someActivityResultLauncher.launch(intent)
+    }
+
 
 
     private var someActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             val data = result.data
+
             imagePath = data!!.data
+            binding.videoView.setVideoURI(imagePath)
+            binding.videoView.start()
 //            Picasso.get().load(imagePath).into(binding.civAvatar)
         }
+
+
 
     }
 
 
-
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         binding == null
     }
 }

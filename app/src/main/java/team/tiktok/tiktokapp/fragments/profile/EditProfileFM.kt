@@ -86,6 +86,9 @@ class EditProfileFM : Fragment() {
         }
 
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding == null
+    }
 
 }

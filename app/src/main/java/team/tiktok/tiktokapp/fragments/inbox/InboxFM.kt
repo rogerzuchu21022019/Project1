@@ -30,5 +30,8 @@ class InboxFM : Fragment() {
     }
 
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding == null
+    }
 }

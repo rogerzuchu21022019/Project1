@@ -29,5 +29,8 @@ class ExploreFM : Fragment() {
     }
 
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding == null
+    }
 }
