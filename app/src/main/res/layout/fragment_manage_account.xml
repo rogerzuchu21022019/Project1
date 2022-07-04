@@ -17,8 +17,171 @@
             android:src="@drawable/back"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
-            tools:ignore="MissingConstraints" />
+            android:layout_marginTop="@dimen/_13sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+             />
 
+        <TextView
+            android:id="@+id/tvManageAccount"
+            android:text="Quản lý tài khoản"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_13sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <View
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.08"
+            android:background="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"/>
+
+        <View
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.43"
+            android:background="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"/>
+
+        <TextView
+            android:id="@+id/tvAccountInfor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivBack"
+            android:text="thông tin tài khoản"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:lineHeight="17sp"
+            android:textColor="#BDBDBD"
+            android:layout_marginTop="@dimen/_32sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/titlePhone"
+            android:text="Số điện thoại"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:lineHeight="18sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/tvAccountInfor"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvPhone"
+            android:text="+84****167"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="#BDBDBD"
+            app:layout_constraintStart_toEndOf="@id/titlePhone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAccountInfor"
+            app:layout_constraintBaseline_toBaselineOf="@id/titlePhone"
+            android:layout_marginLeft="@dimen/_60sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        
+        <TextView
+            android:id="@+id/titleEmail"
+            android:text="Email"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/titlePhone"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_17sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/titleDoB"
+            android:text="Ngày sinh"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/titleEmail"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_22sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvDoB"
+            android:text="Thêm"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="#BDBDBD"
+            app:layout_constraintTop_toBottomOf="@id/titleEmail"
+            app:layout_constraintStart_toEndOf="@id/titleDoB"
+            app:layout_constraintBaseline_toBaselineOf="@id/titleDoB"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/_90sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvPassword"
+            android:text="Mật khẩu"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/titleDoB"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_22sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvAccountControl"
+            android:text="Kiểm soát tài khoản"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="#BDBDBD"
+            app:layout_constraintTop_toBottomOf="@id/tvPassword"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_42sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvSwitchAccount"
+            android:text="Chuyển sang Tài khoản Doanh Nghiệp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/tvAccountControl"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvDeleteAccount"
+            android:text="Xóa Tài khoản"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/tvSwitchAccount"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
