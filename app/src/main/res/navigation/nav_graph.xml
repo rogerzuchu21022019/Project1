@@ -215,4 +215,19 @@
             android:id="@+id/action_uploadFM_to_addFM"
             app:destination="@id/addFM" />
     </fragment>
+    <dialog
+        android:id="@+id/chooseEmailOrPhoneBottomSheetFM"
+        tools:layout="@layout/fragment_choose_phone_email_bottom_sheet"
+        android:name="team.tiktok.tiktokapp.fragments.forgotpass.ChooseEmailOrPhoneBottomSheetFM"
+        android:label="ChooseEmailOrPhoneBottomSheetFM" />
+    <fragment
+        android:id="@+id/signUpBirthFM"
+        tools:layout="@layout/fragment_signup_birth"
+        android:name="team.tiktok.tiktokapp.fragments.signup.SignUpBirthFM"
+        android:label="SignUpBirthFM" />
+    <dialog
+        android:id="@+id/signUpBottomSheetFM"
+        tools:layout="@layout/fragment_sign_up_main"
+        android:name="team.tiktok.tiktokapp.fragments.signup.SignUpMainBottomSheetFM"
+        android:label="SignUpBottomSheetFM" />
 </navigation>

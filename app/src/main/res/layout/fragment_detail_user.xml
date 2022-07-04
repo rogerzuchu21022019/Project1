@@ -45,7 +45,7 @@
            android:id="@+id/rvListVideo"
            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
            app:spanCount="3"
-           tools:listitem="@layout/item_video"
+           tools:listitem="@layout/item_video_home"
            android:layout_width="match_parent"
            android:layout_height="match_parent"/>
 
