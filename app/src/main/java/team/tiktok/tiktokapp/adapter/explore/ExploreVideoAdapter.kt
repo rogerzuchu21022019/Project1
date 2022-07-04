@@ -1,43 +1,31 @@
-package team.tiktok.tiktokapp.adapter
+package team.tiktok.tiktokapp.adapter.explore
 
-import android.content.Intent
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.MediaController
-import android.widget.Toast
-import android.widget.VideoView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import team.tiktok.tiktokapp.R
-import team.tiktok.tiktokapp.R.color.white
-import team.tiktok.tiktokapp.activities.MainActivity
 import team.tiktok.tiktokapp.data.Video
-import team.tiktok.tiktokapp.databinding.ItemVideoBinding
+import team.tiktok.tiktokapp.databinding.ItemVideoExploreBinding
+import team.tiktok.tiktokapp.databinding.ItemVideoFollowingBinding
 
 //class VideoAdapter(options: FirebaseRecyclerOptions<Video?>,private val clickItem:ClickItemListener):FirebaseRecyclerAdapter<Video, VideoAdapter.VideoViewHolder>(options) {
-class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>):FirebaseRecyclerAdapter<Video, FollowingVideoAdapter.VideoViewHolder>(options) {
-    lateinit var itemVideoBinding: ItemVideoBinding
+class ExploreVideoAdapter(options: FirebaseRecyclerOptions<Video?>):FirebaseRecyclerAdapter<Video, ExploreVideoAdapter.VideoViewHolder>(options) {
+    lateinit var itemVideoBinding: ItemVideoExploreBinding
     lateinit var onClickItemInRecyclerView: OnClickItemInRecyclerView
-    class VideoViewHolder(val itemVideoBinding: ItemVideoBinding
-    , onClickItemInRecyclerView: OnClickItemInRecyclerView) :RecyclerView.ViewHolder(itemVideoBinding.root){
+    class VideoViewHolder(val itemVideoBinding: ItemVideoExploreBinding
+    , onClickItemInRecyclerView: OnClickItemInRecyclerView
+    ) :RecyclerView.ViewHolder(itemVideoBinding.root){
         var isFav = false
         var isSave = false
         var isShare = false
 
         ///init Click
         init {
-            itemVideoBinding.tvFollowing.setTextColor(ContextCompat.getColor(this.itemVideoBinding.root.context,R.color.white))
 
-            itemVideoBinding.ivSearch.apply {
-                setOnClickListener {
-                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition,it)
-                }
-            }
 
             /// Click on Screen
             itemVideoBinding.root.apply {
@@ -51,17 +39,8 @@ class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>):FirebaseRe
                 }
             }
 
-            /// Click Following | For you
-            itemVideoBinding.tvForU.apply {
-                setOnClickListener {
-                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition,it)
-                }
-            }
-            itemVideoBinding.tvFollowing.apply {
-                setOnClickListener {
-                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition,it)
-                }
-            }
+
+
 
             /// Click Icon Favorite
             itemVideoBinding.ivFavorite.apply {
@@ -147,7 +126,7 @@ class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>):FirebaseRe
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        itemVideoBinding = ItemVideoBinding.inflate(layoutInflater,parent,false)
+        itemVideoBinding =  ItemVideoExploreBinding.inflate(layoutInflater,parent,false)
         return VideoViewHolder(itemVideoBinding = itemVideoBinding,onClickItemInRecyclerView)
     }
 

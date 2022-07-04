@@ -59,7 +59,7 @@ class UploadFM : Fragment() {
         }
     }
     private fun selectVideo() {
-        val intent = Intent()
+        val intent = Intent(Intent.ACTION_PICK)
         intent.type = "video/*" // if you want to you can use pdf/gif/video
         intent.action = Intent.ACTION_GET_CONTENT
         someActivityResultLauncher.launch(intent)
