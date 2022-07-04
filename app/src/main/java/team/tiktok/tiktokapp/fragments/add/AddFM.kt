@@ -133,8 +133,8 @@ class AddFM : Fragment() {
     }
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding == null
-    }
+        override fun onDestroyView() {
+            super.onDestroyView()
+            binding == null
+        }
 }
