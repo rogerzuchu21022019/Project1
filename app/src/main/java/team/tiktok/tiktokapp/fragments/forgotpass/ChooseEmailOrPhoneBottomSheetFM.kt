@@ -49,6 +49,10 @@ class ChooseEmailOrPhoneBottomSheetFM : BottomSheetDialogFragment(), View.OnClic
             }
         }
     }
+    override fun onDestroyView() {
+        super.onDestroyView()
 
+        binding == null
+    }
 
 }

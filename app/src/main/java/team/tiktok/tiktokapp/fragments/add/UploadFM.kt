@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.databinding.FragmentAddBinding
 import team.tiktok.tiktokapp.databinding.FragmentUploadBinding
 
@@ -32,7 +34,11 @@ class UploadFM : Fragment() {
     }
 
     private fun clickButton() {
-
+        binding.ivBack.apply {
+            setOnClickListener {
+                findNavController().navigate(R.id.action_uploadFM_to_addFM)
+            }
+        }
         binding.videoView.apply {
             setOnClickListener {
                 requestPermissionVideo()
@@ -70,16 +76,17 @@ class UploadFM : Fragment() {
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             val data = result.data
             imagePath = data!!.data
-            binding.videoView.setVideoPath(imagePath.toString())
+            binding.videoView.setVideoURI(imagePath)
+            binding.videoView.start()
+            binding.videoView.fitsSystemWindows = true
 //            Picasso.get().load(imagePath).into(binding.civAvatar)
         }
 
     }
 
 
-
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         binding == null
     }
 }

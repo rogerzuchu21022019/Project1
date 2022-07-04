@@ -51,10 +51,10 @@ class SettingAndPrivacyFM : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        binding == null
+    override fun onDestroyView() {
+        super.onDestroyView()
         checkComeIn(false)
-    }
 
+        binding == null
+    }
 }

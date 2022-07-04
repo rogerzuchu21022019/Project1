@@ -37,6 +37,8 @@ class ExploreFM : Fragment(), ExploreAdapter.OnClickItemInRecyclerView {
         adapter.setOnClickItem(this)
     }
 
+<<<<<<< HEAD
+=======
     override fun onItemClick(position: Int, view: View) {
         val id = view.id
         when (id) {
@@ -46,10 +48,13 @@ class ExploreFM : Fragment(), ExploreAdapter.OnClickItemInRecyclerView {
         }
     }
 
+>>>>>>> Nam
     override fun onDestroyView() {
         super.onDestroyView()
         binding == null
     }
+<<<<<<< HEAD
+=======
 
     override fun onStart() {
         super.onStart()
@@ -60,4 +65,5 @@ class ExploreFM : Fragment(), ExploreAdapter.OnClickItemInRecyclerView {
         super.onStop()
         adapter.stopListening()
     }
+>>>>>>> Nam
 }

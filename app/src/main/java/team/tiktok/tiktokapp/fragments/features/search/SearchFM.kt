@@ -29,5 +29,8 @@ class SearchFM : Fragment() {
         }
     }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding == null
+    }
 }
