@@ -1,4 +1,4 @@
-package team.tiktok.tiktokapp.fragments.user
+package team.tiktok.tiktokapp.fragments.features.search
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,16 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import team.tiktok.tiktokapp.R
-import team.tiktok.tiktokapp.databinding.FragmentDetailUserBinding
+import team.tiktok.tiktokapp.databinding.FragmentSearchBinding
 
 
-class DetailUserFM : Fragment() {
-   lateinit var binding:FragmentDetailUserBinding
+class SearchFM : Fragment() {
+   lateinit var binding:FragmentSearchBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentDetailUserBinding.inflate(layoutInflater)
+        binding = FragmentSearchBinding.inflate(layoutInflater)
         clickButton()
         return binding.root
     }
@@ -24,10 +24,9 @@ class DetailUserFM : Fragment() {
     private fun clickButton() {
         binding.ivBack.apply {
             setOnClickListener {
-                findNavController().navigate(R.id.action_detailUserFM_to_homeFM)
+                findNavController().navigate(R.id.action_searchFM_to_homeFM)
             }
         }
-
     }
 
 

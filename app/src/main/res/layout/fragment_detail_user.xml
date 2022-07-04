@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -11,27 +12,43 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".ProfileFM">
+
         <ImageView
             android:id="@+id/ivBack"
-            android:src="@drawable/back"
             android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"/>
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/back" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civAvatar"
-            android:src="@drawable/ic_launcher_background"
             android:layout_width="@dimen/_120sdp"
-            android:layout_height="@dimen/_120sdp" />
+            android:layout_height="@dimen/_120sdp"
+            android:src="@drawable/ic_launcher_background" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnEditProfile"
-            android:text="Edit Profile"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="Edit Profile" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hello_blank_fragment" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize" />
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/rvListVideo"
+           app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+           app:spanCount="3"
+           tools:listitem="@layout/item_video_home"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"/>
+
 
     </LinearLayout>
 </layout>

@@ -28,6 +28,9 @@
             app:destination="@id/detailUserFM"
             app:popUpTo="@id/detailUserFM"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_homeFM_to_searchFM"
+            app:destination="@id/searchFM" />
     </fragment>
 
     <fragment
@@ -126,6 +129,9 @@
             app:destination="@id/detailUserFM"
             app:popUpTo="@id/detailUserFM"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_followingFM_to_searchFM"
+            app:destination="@id/searchFM" />
     </fragment>
     <fragment
         android:id="@+id/emptyFM"
@@ -183,5 +189,45 @@
         android:id="@+id/addFM"
         tools:layout="@layout/fragment_add"
         android:name="team.tiktok.tiktokapp.fragments.add.AddFM"
-        android:label="AddFM" />
+        android:label="AddFM" >
+        <action
+            android:id="@+id/action_addFM_to_uploadFM"
+            app:destination="@id/uploadFM" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFM"
+        tools:layout="@layout/fragment_search"
+        android:name="team.tiktok.tiktokapp.fragments.features.search.SearchFM"
+        android:label="SearchFM" >
+        <action
+            android:id="@+id/action_searchFM_to_homeFM"
+            app:destination="@id/homeFM" />
+        <action
+            android:id="@+id/action_searchFM_to_followingFM"
+            app:destination="@id/followingFM" />
+    </fragment>
+    <fragment
+        android:id="@+id/uploadFM"
+        tools:layout="@layout/fragment_upload"
+        android:name="team.tiktok.tiktokapp.fragments.add.UploadFM"
+        android:label="UploadFM" >
+        <action
+            android:id="@+id/action_uploadFM_to_addFM"
+            app:destination="@id/addFM" />
+    </fragment>
+    <dialog
+        android:id="@+id/chooseEmailOrPhoneBottomSheetFM"
+        tools:layout="@layout/fragment_choose_phone_email_bottom_sheet"
+        android:name="team.tiktok.tiktokapp.fragments.forgotpass.ChooseEmailOrPhoneBottomSheetFM"
+        android:label="ChooseEmailOrPhoneBottomSheetFM" />
+    <fragment
+        android:id="@+id/signUpBirthFM"
+        tools:layout="@layout/fragment_signup_birth"
+        android:name="team.tiktok.tiktokapp.fragments.signup.SignUpBirthFM"
+        android:label="SignUpBirthFM" />
+    <dialog
+        android:id="@+id/signUpBottomSheetFM"
+        tools:layout="@layout/fragment_sign_up_main"
+        android:name="team.tiktok.tiktokapp.fragments.signup.SignUpMainBottomSheetFM"
+        android:label="SignUpBottomSheetFM" />
 </navigation>

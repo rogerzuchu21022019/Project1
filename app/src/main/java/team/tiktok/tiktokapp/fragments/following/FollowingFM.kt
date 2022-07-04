@@ -8,25 +8,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import team.tiktok.tiktokapp.R
-import team.tiktok.tiktokapp.adapter.FollowingVideoAdapter
-import team.tiktok.tiktokapp.adapter.VideoAdapter
+import team.tiktok.tiktokapp.adapter.following.FollowingVideoAdapter
 import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.FragmentHomeBinding
-import team.tiktok.tiktokapp.databinding.ItemVideoBinding
 
 
-class FollowingFM : Fragment(),FollowingVideoAdapter.OnClickItemInRecyclerView {
+class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView {
    lateinit var binding:FragmentHomeBinding
-    private lateinit var adapter :FollowingVideoAdapter
+    private lateinit var adapter : FollowingVideoAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,8 +58,13 @@ class FollowingFM : Fragment(),FollowingVideoAdapter.OnClickItemInRecyclerView {
         adapter.stopListening()
     }
 
-    override fun onItemClick(itemVideoBinding: ItemVideoBinding, view: View) {
+
+
+    override fun onItemClick(position: Int, view: View) {
         val id = view.id
+        if (id==R.id.ivSearch){
+            findNavController().navigate(R.id.action_followingFM_to_searchFM)
+        }
         if (id==R.id.civUser){
 
             findNavController().navigate(R.id.action_followingFM_to_detailUserFM)

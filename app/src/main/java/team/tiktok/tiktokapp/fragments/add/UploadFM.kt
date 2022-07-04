@@ -14,58 +14,54 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.squareup.picasso.Picasso
-import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.databinding.FragmentAddBinding
-import team.tiktok.tiktokapp.databinding.FragmentSettingAndPrivacyBinding
+import team.tiktok.tiktokapp.databinding.FragmentUploadBinding
 
 
 class UploadFM : Fragment() {
-   lateinit var binding:FragmentAddBinding
+   lateinit var binding:FragmentUploadBinding
     private val IMAGE_REQ = 1
     private var imagePath: Uri? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAddBinding.inflate(layoutInflater)
-        requestPermissionCamera()
+        binding = FragmentUploadBinding.inflate(layoutInflater)
         clickButton()
         return binding.root
     }
 
     private fun clickButton() {
-        binding.btnSound.apply {
+
+        binding.videoView.apply {
             setOnClickListener {
-                Toast.makeText(requireContext(),"Sound",Toast.LENGTH_SHORT).show()
+                requestPermissionVideo()
             }
         }
     }
 
 
-    private fun requestPermissionCamera() {
+    private fun requestPermissionVideo() {
         if (ContextCompat.checkSelfPermission(
                 requireActivity(),
-                Manifest.permission.CAMERA
+                Manifest.permission.READ_EXTERNAL_STORAGE
             )
             == PackageManager.PERMISSION_GRANTED
         ) {
-            accessCamera()
+            selectVideo()
 
         } else {
             ActivityCompat.requestPermissions(
                 requireActivity(), arrayOf(
-                    Manifest.permission.CAMERA
+                    Manifest.permission.READ_EXTERNAL_STORAGE
                 ), IMAGE_REQ
             )
         }
     }
-    private fun accessCamera() {
-        val intent = Intent()
-//        intent.type = "image/*" // if you want to you can use pdf/gif/video
-        intent.action = android.provider.MediaStore.ACTION_IMAGE_CAPTURE
+    private fun selectVideo() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "video/*" // if you want to you can use pdf/gif/video
+        intent.action = Intent.ACTION_GET_CONTENT
         someActivityResultLauncher.launch(intent)
     }
 
@@ -74,6 +70,7 @@ class UploadFM : Fragment() {
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             val data = result.data
             imagePath = data!!.data
+            binding.videoView.setVideoPath(imagePath.toString())
 //            Picasso.get().load(imagePath).into(binding.civAvatar)
         }
 

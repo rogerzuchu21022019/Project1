@@ -42,6 +42,13 @@ class AddFM : Fragment() {
                 Toast.makeText(requireContext(),"Sound",Toast.LENGTH_SHORT).show()
             }
         }
+        binding.btnNext.apply {
+            setOnClickListener {
+                findNavController().navigate(R.id.action_addFM_to_uploadFM)
+                Toast.makeText(requireContext(),"Next",Toast.LENGTH_SHORT).show()
+
+            }
+        }
     }
 
 
