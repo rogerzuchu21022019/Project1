@@ -16,7 +16,7 @@ import team.tiktok.tiktokapp.databinding.FragmentChoosePhoneEmailBottomSheetBind
 import team.tiktok.tiktokapp.databinding.FragmentProfileBottomSheetBinding
 import team.tiktok.tiktokapp.databinding.FragmentSignUpMainBinding
 
-class ChooseEmailOrPhoneBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListener  {
+class ChooseEmailOrPhoneBottomSheetFM : BottomSheetDialogFragment() ,View.OnClickListener {
     lateinit var binding: FragmentChoosePhoneEmailBottomSheetBinding
     lateinit var navController: NavController
     override fun onCreateView(
@@ -25,8 +25,30 @@ class ChooseEmailOrPhoneBottomSheetFM : BottomSheetDialogFragment(), View.OnClic
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentChoosePhoneEmailBottomSheetBinding.inflate(layoutInflater)
-//        clickButton()
+        clickButton()
         return binding!!.root
+    }
+
+    private fun clickButton() {
+        binding.tvPhone.setOnClickListener(this)
+        binding.tvEmail.setOnClickListener(this)
+        binding.tvCancel.setOnClickListener(this)
+
+//        binding.tvPhone.apply {
+//            setOnClickListener {
+//                val action = ChooseEmailOrPhoneBottomSheetFMDirections.actionChooseEmailOrPhoneBottomSheetFMToForgotWithPhoneFM()
+//                findNavController().navigate(action)
+//            }
+//        }
+//        binding.tvEmail.apply {
+//            setOnClickListener {
+//                val action = ChooseEmailOrPhoneBottomSheetFMDirections.actionChooseEmailOrPhoneBottomSheetFMToForgotWithEmailFM()
+//                findNavController().navigate(action)
+//            }
+//        }
+//        binding.tvCancel.setOnClickListener {
+//            this.dismiss()
+//        }
     }
 
     override fun getTheme(): Int {
@@ -34,25 +56,28 @@ class ChooseEmailOrPhoneBottomSheetFM : BottomSheetDialogFragment(), View.OnClic
     }
 
 
-    override fun onClick(view: View?) {
-        val id = view?.id
-        when (id){
-            R.id.tvSignIn -> {
-                findNavController().navigate(R.id.action_profileBottomSheetFM_to_settingAndPrivacyFM)
-            }
-            R.id.ivClose ->{
-                this.dismiss()
-            }
-            R.id.tvPhoneMailTiktok ->{
 
-
-            }
-        }
-    }
     override fun onDestroyView() {
         super.onDestroyView()
 
         binding == null
+    }
+
+    override fun onClick(p0: View?) {
+        val id = p0!!.id
+        when(id){
+            R.id.tvEmail -> {
+                val action = ChooseEmailOrPhoneBottomSheetFMDirections.actionChooseEmailOrPhoneBottomSheetFMToForgotWithEmailFM()
+                findNavController().navigate(action)
+            }
+            R.id.tvPhone -> {
+                val action = ChooseEmailOrPhoneBottomSheetFMDirections.actionChooseEmailOrPhoneBottomSheetFMToForgotWithPhoneFM()
+                findNavController().navigate(action)
+            }
+            R.id.tvCancel -> {
+                this.dismiss()
+            }
+        }
     }
 
 }
