@@ -10,8 +10,6 @@
         android:icon="@drawable/explore"/>
     <item
         android:id="@+id/addFM"
-        android:iconTint="@null"
-
         android:icon="@drawable/add"
 
         android:title="" />
