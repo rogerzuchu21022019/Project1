@@ -51,7 +51,7 @@ class SignInContainerFM : Fragment() {
             if (position == 0) {
                 tab.text = "Phone"
             } else if (position == 1) {
-                tab.text = "Email"
+                tab.text = "Email/TopTop ID"
             }
         }.attach()
     }

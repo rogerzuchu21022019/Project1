@@ -218,8 +218,8 @@
             android:id="@+id/action_uploadFM_to_addFM"
             app:destination="@id/addFM" />
         <action
-            android:id="@+id/action_uploadFM_to_signInContainerFM"
-            app:destination="@id/signInContainerFM" />
+            android:id="@+id/action_uploadFM_to_signUpBottomSheetFM"
+            app:destination="@id/signUpBottomSheetFM" />
     </fragment>
     <dialog
         android:id="@+id/chooseEmailOrPhoneBottomSheetFM"
@@ -237,12 +237,34 @@
         android:id="@+id/signUpBirthFM"
         tools:layout="@layout/fragment_signup_birth"
         android:name="team.tiktok.tiktokapp.fragments.signup.SignUpBirthFM"
-        android:label="SignUpBirthFM" />
+        android:label="SignUpBirthFM" >
+        <action
+            android:id="@+id/action_signUpBirthFM_to_signUpBottomSheetFM"
+            app:destination="@id/signUpBottomSheetFM" />
+        <action
+            android:id="@+id/action_signUpBirthFM_to_signUpContainerFM"
+            app:destination="@id/signUpContainerFM" />
+    </fragment>
     <dialog
         android:id="@+id/signUpBottomSheetFM"
         tools:layout="@layout/fragment_sign_up_main"
         android:name="team.tiktok.tiktokapp.fragments.signup.SignUpMainBottomSheetFM"
-        android:label="SignUpBottomSheetFM" />
+        android:label="SignUpBottomSheetFM" >
+        <action
+            android:id="@+id/action_signUpBottomSheetFM_to_signInContainerFM"
+            app:destination="@id/signInContainerFM"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_signUpBottomSheetFM_to_signUpBirthFM"
+            app:destination="@id/signUpBirthFM"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </dialog>
     <fragment
         android:id="@+id/signUpEmailFM"
         tools:layout="@layout/fragment_signup_email"
@@ -277,7 +299,16 @@
             app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_signInContainerFM_to_addFM"
-            app:destination="@id/addFM" />
+            app:destination="@id/addFM"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/addFM"
+            app:popUpToInclusive="true"
+            app:popEnterAnim="@animator/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_signInContainerFM_to_signUpBottomSheetFM"
+            app:destination="@id/signUpBottomSheetFM" />
     </fragment>
     <fragment
         android:id="@+id/signInEmailFM"
@@ -293,7 +324,20 @@
         android:id="@+id/signUpContainerFM"
         tools:layout="@layout/fragment_sign_up_container"
         android:name="team.tiktok.tiktokapp.fragments.signup.SignUpContainerFM"
-        android:label="SignUpContainerFM" />
+        android:label="SignUpContainerFM" >
+        <action
+            android:id="@+id/action_signUpContainerFM_to_signUpBirthFM"
+            app:destination="@id/signUpBirthFM" />
+        <action
+            android:id="@+id/action_signUpContainerFM_to_addFM"
+            app:destination="@id/addFM"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/addFM"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/forgotWithEmailFM"
         tools:layout="@layout/fragment_forgot_pasword_email"

@@ -34,9 +34,16 @@ class SignUpBirthFM : Fragment() {
     }
 
     private fun clickButton() {
+        binding.ivBack.apply {
+            setOnClickListener {
+                val action = SignUpBirthFMDirections.actionSignUpBirthFMToSignUpBottomSheetFM()
+                findNavController().navigate(action)
+            }
+        }
         binding.btnNext.apply {
             setOnClickListener {
-
+                val action = SignUpBirthFMDirections.actionSignUpBirthFMToSignUpContainerFM()
+                findNavController().navigate(action)
             }
         }
     }
