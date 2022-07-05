@@ -36,7 +36,8 @@ class SignUpBirthFM : Fragment() {
     private fun clickButton() {
         binding.btnNext.apply {
             setOnClickListener {
-
+                val action = SignUpBirthFMDirections.actionSignUpBirthFMToSignUpContainerFM()
+                findNavController().navigate(action)
             }
         }
     }
