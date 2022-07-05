@@ -40,8 +40,6 @@ class ExploreVideoAdapter(options: FirebaseRecyclerOptions<Video?>):FirebaseRecy
             }
 
 
-
-
             /// Click Icon Favorite
             itemVideoBinding.ivFavorite.apply {
                 setOnClickListener {

@@ -42,6 +42,9 @@ class SignUpMainBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListene
             }
         }
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding == null
+    }
 
 }
