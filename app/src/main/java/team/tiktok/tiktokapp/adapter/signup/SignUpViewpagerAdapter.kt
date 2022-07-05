@@ -2,6 +2,8 @@ package team.tiktok.tiktokapp.adapter.signup
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import team.tiktok.tiktokapp.fragments.signup.SignUpCreatePassFM
+import team.tiktok.tiktokapp.fragments.signup.SignUpCreateTopTopIDFM
 import team.tiktok.tiktokapp.fragments.signup.SignUpEmailFM
 import team.tiktok.tiktokapp.fragments.signup.SignUpPhoneFM
 
