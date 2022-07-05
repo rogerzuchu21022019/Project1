@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -11,8 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="?attr/actionBarSize">
-
-
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
@@ -129,9 +127,9 @@
 
 
                     <TextView
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:text="|" />
 
                     <TextView
@@ -146,9 +144,9 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:text="|" />
 
                     <TextView
@@ -223,7 +221,6 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
 
-
                     <TextView
                         android:id="@+id/tvAddBio"
                         android:layout_width="wrap_content"
@@ -236,133 +233,94 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <LinearLayout
+
+                <!--                <LinearLayout-->
+                <!--                    android:id="@+id/linear"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:orientation="vertical">-->
+
+                <!--                    <TextView-->
+                <!--                        android:id="@+id/tvFirstVideo"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_gravity="center"-->
+                <!--                        android:layout_marginTop="@dimen/_10sdp"-->
+                <!--                        android:text="Chia sẻ video đầu tiên của bạn"-->
+                <!--                        android:textSize="@dimen/_12sdp"-->
+                <!--                        android:textStyle="bold" />-->
+
+                <!--                    <TextView-->
+                <!--                        android:id="@+id/tvDiscription1"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_gravity="center"-->
+                <!--                        android:layout_marginTop="@dimen/_5sdp"-->
+                <!--                        android:text="Quay hoặc tải lên video có hiệu ứng âm thanh,v.v. Các video" />-->
+
+                <!--                    <TextView-->
+                <!--                        android:id="@+id/tvDiscription2"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_gravity="center"-->
+                <!--                        android:text="sẽ xuất hiện trên hồ sơ của bạn." />-->
+
+                <!--                    <TextView-->
+                <!--                        android:id="@+id/tvCreateVideo"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_gravity="center"-->
+                <!--                        android:layout_marginTop="@dimen/_5sdp"-->
+                <!--                        android:text="Tạo video"-->
+                <!--                        android:textColor="#E91E63"-->
+                <!--                        android:textSize="@dimen/_14sdp"-->
+                <!--                        android:textStyle="bold" />-->
+
+                <!--                    <ImageView-->
+                <!--                        android:id="@+id/ivFinishProfile"-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginTop="@dimen/_10sdp"-->
+                <!--                        android:scaleType="center"-->
+                <!--                        android:src="@drawable/imgadd"-->
+                <!--                        />-->
+                <!--                </LinearLayout>-->
+
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="4">
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_constraintTop_toBottomOf="@id/linear"
+                    tools:ignore="MissingConstraints" />
 
-                    <ImageView
-                        android:id="@+id/ivUserVideos"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_15sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_weight="1"
-                        android:src="@drawable/list" />
-
-                    <ImageView
-                        android:id="@+id/ivPrivate"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_15sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_weight="1"
-                        android:src="@drawable/resource_private" />
-
-                    <ImageView
-                        android:id="@+id/ivHeart"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_15sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_weight="1"
-                        android:src="@drawable/heart" />
-
-                    <ImageView
-                        android:id="@+id/ivFavorite"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_17sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_weight="1"
-                        android:src="@drawable/favourite" />
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/linear"
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vpDetail"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tab"
+                    tools:ignore="MissingConstraints">
 
-                    <TextView
-                        android:id="@+id/tvFirstVideo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:text="Chia sẻ video đầu tiên của bạn"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvDiscription1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:text="Quay hoặc tải lên video có hiệu ứng âm thanh,v.v. Các video" />
-
-                    <TextView
-                        android:id="@+id/tvDiscription2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="sẽ xuất hiện trên hồ sơ của bạn." />
-
-                    <TextView
-                        android:id="@+id/tvCreateVideo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:text="Tạo video"
-                        android:textColor="#E91E63"
-                        android:textSize="@dimen/_14sdp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/ivFinishProfile"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:scaleType="center"
-                        android:src="@drawable/imgadd"
-                        />
-                </LinearLayout>
-
-
-
+                </androidx.viewpager2.widget.ViewPager2>
             </LinearLayout>
 
         </LinearLayout>
 
+
         <View
-            android:background="@color/gray"
-            app:layout_constraintVertical_bias="0.515"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
+            android:background="@color/gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <View
-            android:background="@color/gray"
-            app:layout_constraintVertical_bias="0.684"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <View
-            android:background="@color/gray"
-            app:layout_constraintVertical_bias="0.996"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.996" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
