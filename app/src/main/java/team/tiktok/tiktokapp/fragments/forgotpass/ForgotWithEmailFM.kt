@@ -1,47 +1,46 @@
-package team.tiktok.tiktokapp.fragments.setting
+package team.tiktok.tiktokapp.fragments.forgotpass
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import me.ibrahimsn.lib.SmoothBottomBar
 import team.tiktok.tiktokapp.R
-import team.tiktok.tiktokapp.databinding.FragmentSettingAndPrivacyBinding
+import team.tiktok.tiktokapp.databinding.FragmentForgotPaswordEmailBinding
+import team.tiktok.tiktokapp.databinding.FragmentSigninEmailBinding
 
 
-class SettingAndPrivacyFM : Fragment() {
-   lateinit var binding:FragmentSettingAndPrivacyBinding
+class ForgotWithEmailFM : Fragment() {
+   lateinit var binding: FragmentForgotPaswordEmailBinding
+   lateinit var navController: NavController
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSettingAndPrivacyBinding.inflate(layoutInflater)
+        binding = FragmentForgotPaswordEmailBinding.inflate(layoutInflater)
         clickButton()
-        checkComeIn(true)
+        navController = findNavController()
         return binding.root
     }
 
     private fun clickButton() {
         binding.ivBack.apply {
             setOnClickListener {
-                findNavController().navigate(R.id.action_settingAndPrivacyFM_to_profileFM)
+                findNavController().navigate(R.id.action_forgotWithEmailFM_to_signInContainerFM2)
+
             }
         }
-        binding.tvManageAccount.apply {
+        binding.btnSend.apply {
             setOnClickListener {
-                findNavController().navigate(R.id.action_settingAndPrivacyFM_to_manageAccountFM)
-            }
-        }
-        binding.tvSignOut.apply {
-            setOnClickListener {
-                findNavController().navigate(R.id.action_settingAndPrivacyFM_to_profileFM)
+                findNavController().navigate(R.id.action_forgotWithEmailFM_to_signInContainerFM2)
             }
         }
     }
-
     private fun checkComeIn(isComeIn:Boolean){
         if (isComeIn){
             val navBot = requireActivity()!!.findViewById<SmoothBottomBar>(R.id.navBot)
@@ -52,10 +51,10 @@ class SettingAndPrivacyFM : Fragment() {
         }
     }
 
+
+
     override fun onDestroyView() {
         super.onDestroyView()
-        checkComeIn(false)
-
         binding == null
     }
 }

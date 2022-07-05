@@ -11,21 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
-        <EditText
-            android:id="@+id/edtEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Địa chỉ email"
-            tools:ignore="MissingConstraints" />
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnSignUp"
-            android:text="Sign Up"
-            android:textAllCaps="false"
-            app:layout_constraintTop_toBottomOf="@id/edtEmail"
+        <TextView
+            android:text="Liked video"
+            android:textSize="@dimen/_50sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:ignore="MissingConstraints" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
