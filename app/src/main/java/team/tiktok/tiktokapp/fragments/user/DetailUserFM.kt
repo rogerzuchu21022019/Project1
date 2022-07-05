@@ -9,30 +9,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.withContext
+import com.google.android.material.tabs.TabLayoutMediator
+import me.ibrahimsn.lib.SmoothBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.adapter.detail.DetailAdapter
-import team.tiktok.tiktokapp.adapter.following.FollowingVideoAdapter
-import team.tiktok.tiktokapp.data.Video
+import team.tiktok.tiktokapp.adapter.detail.DetailViewpagerAdapter
 import team.tiktok.tiktokapp.databinding.FragmentDetailUserBinding
 
 
 class DetailUserFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
     lateinit var binding: FragmentDetailUserBinding
-    lateinit var adapter: DetailAdapter
+    lateinit var adapter: DetailViewpagerAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDetailUserBinding.inflate(layoutInflater)
+        checkComeIn(true)
         clickButton()
-        initRecyclerView()
+        initViewPager()
         return binding.root
     }
 
@@ -43,47 +38,55 @@ class DetailUserFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
             }
         }
     }
+    private fun initTabLayout() {
+        TabLayoutMediator(
+            binding.tab,
+            binding.vpDetail
+        ) { tab, position ->
+            when (position){
+                0->{
+                    tab.setIcon(R.drawable.list)
+                }
+                1->{
+                    tab.setIcon(R.drawable.resource_private)
 
-    fun initRecyclerView() {
-        val mainDB = Firebase.database.getReference("videos")
-        val options = FirebaseRecyclerOptions.Builder<Video>()
-            .setQuery(mainDB, Video::class.java)
-            .build()
-        adapter = DetailAdapter(options = options)
-//        binding.rvListVideo.adapter = adapter
-//        binding.rvListVideo.apply {
-//            setHasFixedSize(true)
-//            addItemDecoration(
-//                DividerItemDecoration(
-//                    requireContext(),
-//                    DividerItemDecoration.HORIZONTAL
-//                )
-//            )
-//            addItemDecoration(
-//                DividerItemDecoration(
-//                    requireContext(),
-//                    DividerItemDecoration.VERTICAL
-//                )
-//            )
-//        }
-        adapter.setOnClickItem(this)
+                }
+                2->{
+                    tab.setIcon(R.drawable.heart)
+
+                }
+                3->{
+                    tab.setIcon(R.drawable.favourite)
+
+                }
+            }
+        }.attach()
     }
+
+    private fun initViewPager() {
+        adapter = DetailViewpagerAdapter(this)
+        binding.vpDetail.adapter = adapter
+        initTabLayout()
+    }
+
+    private fun checkComeIn(isComeIn:Boolean){
+        if (isComeIn){
+            val navBot = requireActivity()!!.findViewById<SmoothBottomBar>(R.id.navBot)
+            navBot.visibility = View.GONE
+        }else{
+            val navBot = requireActivity()!!.findViewById<SmoothBottomBar>(R.id.navBot)
+            navBot.visibility = View.VISIBLE
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
 
         binding == null
+        checkComeIn(false)
     }
-
-    override fun onStart() {
-        super.onStart()
-        adapter.startListening()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        adapter.stopListening()
-    }
+//
 
     override fun onItemClick(position: Int, view: View) {
         val id = view.id
