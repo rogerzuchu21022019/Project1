@@ -14,27 +14,28 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import team.tiktok.tiktokapp.R
+import team.tiktok.tiktokapp.databinding.FragmentSignUpCreatePassBinding
 import team.tiktok.tiktokapp.databinding.FragmentSignupBirthBinding
 import team.tiktok.tiktokapp.databinding.FragmentSignupEmailBinding
 import java.util.*
 
 
-class SignUpEmailFM : Fragment() {
-   lateinit var binding: FragmentSignupEmailBinding
+class SignUpCreatePassFM : Fragment() {
+   lateinit var binding: FragmentSignUpCreatePassBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSignupEmailBinding.inflate(layoutInflater)
+        binding = FragmentSignUpCreatePassBinding.inflate(layoutInflater)
         clickButton()
         return binding.root
     }
 
     private fun clickButton() {
-        binding.btnSignUp.apply {
+        binding.btnNext.apply {
             setOnClickListener {
-                val action = SignUpContainerFMDirections.actionSignUpContainerFMToSignUpCreatePassFM()
+                val action = SignUpCreatePassFMDirections.actionSignUpCreatePassFMToSignUpCreateTopTopIDFM()
                 findNavController().navigate(action)
             }
         }
