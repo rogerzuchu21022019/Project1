@@ -19,8 +19,14 @@ class SignUpMainBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListene
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSignUpMainBinding.inflate(layoutInflater)
-//        clickButton()
+        clickButton()
         return binding!!.root
+    }
+
+    private fun clickButton() {
+        binding.tvPhoneMailTiktok.setOnClickListener(this)
+        binding.ivClose.setOnClickListener(this)
+        binding.tvSignIn.setOnClickListener(this)
     }
 
     override fun getTheme(): Int {
@@ -32,13 +38,14 @@ class SignUpMainBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListene
         val id = view?.id
         when (id) {
             R.id.tvPhoneMailTiktok -> {
-                findNavController().navigate(R.id.action_profileBottomSheetFM_to_settingAndPrivacyFM)
+                findNavController().navigate(R.id.action_signUpBottomSheetFM_to_signUpBirthFM)
             }
-            R.id.tvEmail -> {
-
-            }
-            R.id.tvCancel -> {
+            R.id.ivClose -> {
                 this.dismiss()
+            }
+            R.id.tvSignIn->{
+                val action = SignUpMainBottomSheetFMDirections.actionSignUpBottomSheetFMToSignInContainerFM()
+                findNavController().navigate(action)
             }
         }
     }

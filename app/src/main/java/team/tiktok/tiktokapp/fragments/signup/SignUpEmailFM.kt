@@ -34,7 +34,8 @@ class SignUpEmailFM : Fragment() {
     private fun clickButton() {
         binding.btnSignUp.apply {
             setOnClickListener {
-
+                val action = SignUpContainerFMDirections.actionSignUpContainerFMToAddFM()
+                findNavController().navigate(action)
             }
         }
     }
