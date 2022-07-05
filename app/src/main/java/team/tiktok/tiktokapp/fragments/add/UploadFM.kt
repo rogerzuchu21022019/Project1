@@ -41,7 +41,7 @@ class UploadFM : Fragment() {
         }
         binding.btnNext.apply {
             setOnClickListener {
-                findNavController().navigate(R.id.action_uploadFM_to_signInContainerFM)
+                findNavController().navigate(R.id.action_uploadFM_to_signUpBottomSheetFM)
             }
         }
         binding.videoView.apply {

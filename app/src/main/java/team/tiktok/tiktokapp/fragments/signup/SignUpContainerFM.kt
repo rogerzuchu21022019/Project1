@@ -32,13 +32,18 @@ class SignUpContainerFM : Fragment() {
     ): View? {
         checkComeIn(true)
         binding = FragmentSignUpContainerBinding.inflate(layoutInflater)
-
+        initViewPager()
         clickButton()
         return binding.root
     }
 
     private fun clickButton() {
-
+        binding.ivBack.apply {
+            setOnClickListener {
+                val action = SignUpContainerFMDirections.actionSignUpContainerFMToSignUpBirthFM()
+                findNavController().navigate(action)
+            }
+        }
     }
     private fun initTabLayout() {
         TabLayoutMediator(
