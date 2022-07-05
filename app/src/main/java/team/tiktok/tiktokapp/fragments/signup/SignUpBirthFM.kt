@@ -64,5 +64,8 @@ class SignUpBirthFM : Fragment() {
         pickerDialog.show()
     }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding == null
+    }
 }

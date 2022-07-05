@@ -39,6 +39,11 @@ class UploadFM : Fragment() {
                 findNavController().navigate(R.id.action_uploadFM_to_addFM)
             }
         }
+        binding.btnNext.apply {
+            setOnClickListener {
+                findNavController().navigate(R.id.action_uploadFM_to_signInContainerFM)
+            }
+        }
         binding.videoView.apply {
             setOnClickListener {
                 requestPermissionVideo()
