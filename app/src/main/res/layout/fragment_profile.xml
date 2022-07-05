@@ -32,8 +32,8 @@
                     android:layout_width="@dimen/_25sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
                     android:src="@drawable/add_friend"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,11 +41,11 @@
                     android:id="@+id/tvFullName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_25sdp"
                     android:gravity="center"
                     android:text="Hoàng Quốc Hưng"
                     android:textSize="@dimen/_14sdp"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/ivList"
                     app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
@@ -56,8 +56,8 @@
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
                     android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_25sdp"
                     android:src="@drawable/list1"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tvFullName"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,9 +65,9 @@
                     android:id="@+id/tvEye"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_25sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:src="@drawable/eye"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/ivList"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -75,9 +75,9 @@
                     android:id="@+id/ivList"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_25sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:src="@drawable/list"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
@@ -125,13 +125,6 @@
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:text="|" />
-
                     <TextView
                         android:id="@+id/tvFollower"
                         android:layout_width="0dp"
@@ -142,12 +135,6 @@
                         android:text="999"
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:text="|" />
 
                     <TextView
                         android:id="@+id/tvLike"
@@ -216,7 +203,6 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         android:text="Sửa hồ sơ"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.407"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -286,7 +272,6 @@
                 <!--                        />-->
                 <!--                </LinearLayout>-->
 
-
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab"
                     android:layout_width="match_parent"
@@ -309,7 +294,6 @@
 
         </LinearLayout>
 
-
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
@@ -319,6 +303,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.996" />
+
+        <View
+            android:layout_width="@dimen/_1sdp"
+            android:layout_height="@dimen/_13sdp"
+            android:background="@color/gray"
+            app:layout_constraintHorizontal_bias="0.376"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.36"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="@dimen/_1sdp"
+            android:layout_height="@dimen/_13sdp"
+            android:background="@color/gray"
+            app:layout_constraintHorizontal_bias="0.625"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.36"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
