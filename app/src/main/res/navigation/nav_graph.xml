@@ -329,14 +329,8 @@
             android:id="@+id/action_signUpContainerFM_to_signUpBirthFM"
             app:destination="@id/signUpBirthFM" />
         <action
-            android:id="@+id/action_signUpContainerFM_to_addFM"
-            app:destination="@id/addFM"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@id/addFM"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_signUpContainerFM_to_signUpCreatePassFM"
+            app:destination="@id/signUpCreatePassFM" />
     </fragment>
     <fragment
         android:id="@+id/forgotWithEmailFM"
@@ -355,5 +349,25 @@
         <action
             android:id="@+id/action_forgotWithPhoneFM_to_signInContainerFM2"
             app:destination="@id/signInContainerFM" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpCreateTopTopIDFM"
+        tools:layout="@layout/fragment_sign_up_create_toptop_id"
+        android:name="team.tiktok.tiktokapp.fragments.signup.SignUpCreateTopTopIDFM"
+        android:label="SignUpCreateTopTopIDFM" >
+        <action
+            android:id="@+id/action_signUpCreateTopTopIDFM_to_addFM"
+            app:destination="@id/addFM"
+            app:popUpTo="@id/addFM"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpCreatePassFM"
+        tools:layout="@layout/fragment_sign_up_create_pass"
+        android:name="team.tiktok.tiktokapp.fragments.signup.SignUpCreatePassFM"
+        android:label="SignUpCreatePassFM" >
+        <action
+            android:id="@+id/action_signUpCreatePassFM_to_signUpCreateTopTopIDFM"
+            app:destination="@id/signUpCreateTopTopIDFM" />
     </fragment>
 </navigation>
