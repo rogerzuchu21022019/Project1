@@ -10,7 +10,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15625" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.2776268115942029" />
-        <entry key="app/src/main/res/layout/fragment_choose_phone_email_bottom_sheet.xml" value="0.16489361702127658" />
+        <entry key="app/src/main/res/layout/fragment_choose_phone_email_bottom_sheet.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_comment_bottom_sheet.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/fragment_detail_user.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_edit_profile.xml" value="0.1703125" />
@@ -20,8 +20,8 @@
         <entry key="app/src/main/res/layout/fragment_for_u.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/fragment_for_u1.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/fragment_for_u_click.xml" value="0.2776268115942029" />
-        <entry key="app/src/main/res/layout/fragment_forgot_pasword_email.xml" value="0.16489361702127658" />
-        <entry key="app/src/main/res/layout/fragment_forgot_pasword_phone.xml" value="0.16489361702127658" />
+        <entry key="app/src/main/res/layout/fragment_forgot_pasword_email.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_forgot_pasword_phone.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/fragment_home_f_m.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/fragment_inbox.xml" value="0.2776268115942029" />
@@ -35,7 +35,7 @@
         <entry key="app/src/main/res/layout/fragment_recommend.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/fragment_saved_videos.xml" value="0.23505434782608695" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.2776268115942029" />
-        <entry key="app/src/main/res/layout/fragment_setting_and_privacy.xml" value="0.2776268115942029" />
+        <entry key="app/src/main/res/layout/fragment_setting_and_privacy.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_share_bottom_sheet.xml" value="0.18125" />
         <entry key="app/src/main/res/layout/fragment_sign_in_container.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/fragment_sign_up_container.xml" value="0.25625" />
