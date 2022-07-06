@@ -48,11 +48,8 @@ class AddFM : Fragment() {
             setOnClickListener {
                 findNavController().navigate(R.id.action_addFM_to_uploadFM)
                 Toast.makeText(requireContext(),"Next",Toast.LENGTH_SHORT).show()
-
             }
         }
-
-
     }
 
 

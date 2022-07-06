@@ -25,7 +25,6 @@ class ShareBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListener  {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentShareBottomSheetBinding.inflate(layoutInflater)
-//        clickButton()
         initClick()
         return binding!!.root
     }
@@ -34,7 +33,6 @@ class ShareBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListener  {
         binding.ivCloseShare.setOnClickListener(this)
     }
 
-    //
     override fun getTheme(): Int {
         return R.style.AppBottomSheetDialogTheme1
     }
