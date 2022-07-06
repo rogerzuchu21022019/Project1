@@ -3,6 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/TikTok_Project1/Project1/app/src/main/res/layout/activity_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/TikTok_Project1/Project1/app/src/main/res/layout/fragment_comment_bottom_sheet.xml" value="0.11302083333333333" />
+        <entry key="..\:/TikTok_Project1/Project1/app/src/main/res/layout/fragment_private_videos.xml" value="0.25416666666666665" />
+        <entry key="..\:/TikTok_Project1/Project1/app/src/main/res/layout/fragment_search.xml" value="0.25416666666666665" />
+        <entry key="..\:/TikTok_Project1/Project1/app/src/main/res/layout/fragment_signin_email.xml" value="0.20520833333333333" />
+        <entry key="..\:/TikTok_Project1/Project1/app/src/main/res/layout/fragment_signin_phone.xml" value="0.20520833333333333" />
+        <entry key="..\:/TikTok_Project1/Project1/app/src/main/res/layout/fragment_signup_birth.xml" value="0.20520833333333333" />
+        <entry key="..\:/TikTok_Project1/Project1/app/src/main/res/layout/fragment_signup_email.xml" value="0.20520833333333333" />
+        <entry key="..\:/TikTok_Project1/Project1/app/src/main/res/layout/fragment_signup_phone.xml" value="0.20520833333333333" />
+        <entry key="..\:/TikTok_Project1/Project1/app/src/main/res/layout/item_rv_comment.xml" value="0.20520833333333333" />
         <entry key="app/src/main/res/drawable/bottom_sheet_custom.xml" value="0.1625" />
         <entry key="app/src/main/res/drawable/close.xml" value="0.296" />
         <entry key="app/src/main/res/drawable/fill_favorite.xml" value="0.2805" />

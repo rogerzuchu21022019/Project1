@@ -11,6 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            />
 
 
         <EditText
@@ -18,14 +28,46 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Địa chỉ email"
-            tools:ignore="MissingConstraints" />
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnSignUp"
-            android:text="Sign Up"
-            android:textAllCaps="false"
+            android:layout_marginTop="@dimen/_90sdp"
+            android:layout_marginHorizontal="@dimen/_30sdp"
+            app:layout_constraintTop_toBottomOf="@id/ivBack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <CheckBox
+            android:id="@+id/chkSignUp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edtEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints" />
+            android:text="Nhận nội dung thịnh hành, bản tin, khuyến mại, đề
+xuất và thông tin cập nhật tài khoản gửi đến email
+của bạn"
+            android:textColor="@color/black"
+            android:paddingTop="@dimen/_20sdp"
+            android:layout_marginHorizontal="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvLisence"
+            android:text="Bằng cách tiếp tục, bạn đồng ý với Điều khoàn Dịch vụ của TikTok và xác nhận rằng bạn đã đọc hiểu Chính sách Quyền Riêng tư của TikTok"
+            app:layout_constraintTop_toBottomOf="@id/chkSignUp"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginHorizontal="@dimen/_30sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnContinue"
+            android:text="Tiếp"
+            app:layout_constraintTop_toBottomOf="@id/tvLisence"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginHorizontal="@dimen/_30sdp"
+            android:textColor="@color/white"
+            android:background="#99000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
