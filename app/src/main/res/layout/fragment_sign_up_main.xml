@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,73 +10,336 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clTop"
-            android:layout_width="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/clBottom"
-            android:layout_height="@dimen/_120sdp"
-            tools:ignore="MissingConstraints">
-            <ImageView
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintVertical_bias="0"
-                android:id="@+id/ivClose"
-                android:src="@drawable/close"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                tools:ignore="MissingConstraints" />
 
-            <TextView
-                android:id="@+id/tvPhoneMailTiktok"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:drawableLeft="@drawable/add"
-                android:text="Số điện thoại / Email / Tiktok ID"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivClose"
-                app:layout_constraintVertical_bias="0.1"
-                tools:ignore="MissingConstraints" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clBottom"
-            app:layout_constraintTop_toBottomOf="@id/clTop"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="@dimen/_13sdp"
+            android:layout_height="@dimen/_13sdp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/close"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_width="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            tools:ignore="MissingConstraints" />
 
-            android:layout_height="?attr/actionBarSize">
+        <ImageView
+            android:id="@+id/ivHelpAndResources"
+            android:layout_width="@dimen/_17sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/help_and_resources"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            tools:ignore="MissingConstraints" />
+
+
+        <TextView
+            android:id="@+id/tvRegisterTopTok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="@string/ResiterTopTop"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvCreate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
+            android:gravity="center"
+            android:text="@string/Create"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@id/tvRegisterTopTok" />
+
+
+        <TextView
+            android:id="@+id/tvPhoneMailTiktok"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/boder_signup"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/PhoneMailTiktok"
+            android:drawableLeft="@drawable/profile16"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/tvCreate"
+            app:layout_constraintStart_toStartOf="@id/tvCreate"
+            app:layout_constraintTop_toBottomOf="@id/tvCreate"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="25dp" />
+
+        <TextView
+            android:id="@+id/tvFacebook"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/boder_signup"
+            app:layout_constraintEnd_toEndOf="@id/tvPhoneMailTiktok"
+            app:layout_constraintStart_toStartOf="@id/tvCreate"
+            app:layout_constraintTop_toBottomOf="@id/tvPhoneMailTiktok"
+            android:drawableStart="@drawable/facebook16"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/Facebook"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvApple"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/boder_signup"
+            app:layout_constraintEnd_toEndOf="@id/tvPhoneMailTiktok"
+            app:layout_constraintStart_toStartOf="@id/tvCreate"
+            app:layout_constraintTop_toBottomOf="@id/tvFacebook"
+            android:drawableStart="@drawable/apple16"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/Apple"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tvGoogle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/boder_signup"
+            android:drawableStart="@drawable/google16"
+            app:layout_constraintEnd_toEndOf="@id/tvApple"
+            app:layout_constraintStart_toStartOf="@id/tvCreate"
+            app:layout_constraintTop_toBottomOf="@id/tvApple"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/Google"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvTwitter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/boder_signup"
+            android:drawableStart="@drawable/twitter16"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/Twitter"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/tvPhoneMailTiktok"
+            app:layout_constraintStart_toStartOf="@id/tvCreate"
+            app:layout_constraintTop_toBottomOf="@id/tvGoogle" />
+
+        <TextView
+            android:id="@+id/tvLine"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/boder_signup"
+            android:drawableStart="@drawable/line16"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/LINE"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/tvPhoneMailTiktok"
+            app:layout_constraintStart_toStartOf="@id/tvCreate"
+            app:layout_constraintTop_toBottomOf="@id/tvTwitter" />
+
+        <TextView
+            android:id="@+id/tvKakao"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/boder_signup"
+            android:drawableStart="@drawable/kakao16"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/KakaoTalk"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/tvLine"
+            app:layout_constraintStart_toStartOf="@id/tvCreate"
+            app:layout_constraintTop_toBottomOf="@id/tvLine" />
+
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvKakao"
+            tools:ignore="MissingConstraints">
 
             <TextView
-                android:id="@+id/tvMessage"
-                android:text="Bạn đã có tài khoản? "
-                app:layout_constraintHorizontal_bias="0.4"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvDoan1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:gravity="center"
+                android:text="@string/doan1"
+                android:textSize="12sp" />
 
-                android:layout_height="?attr/actionBarSize"
-                tools:ignore="MissingConstraints" />
+            <TextView
+                android:id="@+id/tvDoan2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:gravity="center"
+                android:text="@string/doan2"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvDoan3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/doan3"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvKakao"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/tvDoan4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/doan4"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tvDoan5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:gravity="center"
+                android:text="@string/doan5"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvDoan6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/doan6"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvDoan7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-23dp"
+            android:gravity="center"
+            android:text="@string/doan7"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear2"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tvDoan8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:gravity="center"
+            android:text="@string/doan8"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDoan7"
+            tools:ignore="MissingConstraints" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_30sdp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDoan8"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/tvHaveAcount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:gravity="center"
+                android:text="@string/daCoTk"
+                android:textSize="12sp" />
+
             <TextView
                 android:id="@+id/tvSignIn"
-                android:text="Đăng nhập"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:gravity="center"
+                android:text="@string/signIn"
                 android:textColor="@color/red"
-                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
-                app:layout_constraintStart_toEndOf="@id/tvMessage"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                tools:ignore="MissingConstraints" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

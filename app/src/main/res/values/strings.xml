@@ -3,4 +3,24 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ok">ok</string>
+
+    <string name="ResiterTopTop">Đăng ký TopTop</string>
+    <string name="Create">Tạo hồ sơ, theo dõi các tài khoản khác, quay video của chính bạn, v.v...</string>
+    <string name="PhoneMailTiktok">Sử dụng số điện thoại hoặc email</string>
+    <string name="Facebook">Tiếp tục với Facebook</string>
+    <string name="Apple">Tiếp tục với Apple</string>
+    <string name="Google">Tiếp tục với Google</string>
+    <string name="Twitter">Tiếp tục với Twitter</string>
+    <string name="LINE">Tiếp tục với LINE</string>
+    <string name="KakaoTalk">Tiếp tục với KakaoTalk</string>
+    <string name="doan1">Bằng cách tiếp tục bạn đồng ý với</string>
+    <string name="doan2"> Điều khoản Dịch vụ</string>
+    <string name="doan3"> của chúng</string>
+    <string name="doan4">tôi và thừa nhận rằng bạn đã đọc</string>
+    <string name="doan5"> Chính sách Quyền riêng tư</string>
+    <string name="doan6"> để</string>
+    <string name="doan7">tìm hiểu cách chúng tôi thu nhập, sử dụng và chia sẻ dữ liệu của</string>
+    <string name="doan8">bạn.</string>
+    <string name="daCoTk">Bạn đã có tài khoản ?</string>
+    <string name="signIn"> Đăng nhập</string>
 </resources>
