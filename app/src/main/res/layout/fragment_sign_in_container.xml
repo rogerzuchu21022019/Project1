@@ -12,8 +12,11 @@
         android:layout_height="match_parent">
         <ImageView
             android:id="@+id/ivBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
+            app:layout_constraintTop_toTopOf="@id/tvSignIn"
+            app:layout_constraintBottom_toBottomOf="@id/tvSignIn"
+            app:layout_constraintStart_toStartOf="parent"
             android:src="@drawable/back"
             tools:ignore="MissingConstraints" />
 
@@ -32,7 +35,7 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab"
-            app:layout_constraintTop_toBottomOf="@id/ivBack"
+            app:layout_constraintTop_toBottomOf="@id/tvSignIn"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             tools:ignore="MissingConstraints" />
