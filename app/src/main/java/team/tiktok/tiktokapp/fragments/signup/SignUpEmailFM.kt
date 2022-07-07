@@ -32,6 +32,7 @@ class SignUpEmailFM : Fragment() {
     }
 
     private fun clickButton() {
+        binding.chkSignUp.isChecked = true
         binding.btnSignUp.apply {
             setOnClickListener {
                 val action = SignUpContainerFMDirections.actionSignUpContainerFMToSignUpCreatePassFM()

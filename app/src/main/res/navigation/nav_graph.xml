@@ -244,6 +244,12 @@
         <action
             android:id="@+id/action_signUpBirthFM_to_signUpContainerFM"
             app:destination="@id/signUpContainerFM" />
+        <action
+            android:id="@+id/action_signUpBirthFM_self"
+            app:destination="@id/signUpBirthFM" />
+        <action
+            android:id="@+id/action_signUpBirthFM_to_addFM"
+            app:destination="@id/addFM" />
     </fragment>
     <dialog
         android:id="@+id/signUpBottomSheetFM"
