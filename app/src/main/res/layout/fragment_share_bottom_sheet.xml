@@ -6,41 +6,44 @@
         android:layout_width="match_parent"
 
         android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="vertical"
+        <LinearLayout
+            android:orientation="vertical"
 
-        android:id="@+id/design_bottom_sheet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/ivCloseShare"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_gravity="end"
-            android:src="@drawable/close"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/tvToolForAuthor"
+            android:id="@+id/design_bottom_sheet"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Sign out"
-            android:textSize="@dimen/_40sdp"
-            tools:ignore="MissingConstraints" />
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/ivCloseShare"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="end"
+                android:src="@drawable/close"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="MissingConstraints" />
 
-        <TextView
-            android:id="@+id/tvToolPrivate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Cài đặt và quyền riêng tư"
-            android:textSize="@dimen/_40sdp"
-            tools:ignore="MissingConstraints" />
+            <TextView
+                android:drawableStart="@drawable/profile"
+                android:id="@+id/tvToolForAuthor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Công cụ dành cho tác giả"
+                android:textSize="@dimen/_20sdp"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:layout_marginTop="@dimen/_10sdp"
+                android:drawableStart="@drawable/settings"
+                android:id="@+id/tvToolPrivate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Cài đặt và quyền riêng tư"
+                android:textSize="@dimen/_20sdp"
+                tools:ignore="MissingConstraints" />
 
 
-    </LinearLayout>
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
 </layout>
