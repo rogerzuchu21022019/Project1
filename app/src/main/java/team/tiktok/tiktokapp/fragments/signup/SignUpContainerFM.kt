@@ -70,7 +70,6 @@ class SignUpContainerFM : Fragment() {
             binding.tab,
             binding.vpSignUp
         ) { tab, position ->
-
             if (position == 0) {
                 tab.text = "Phone"
             } else if (position == 1) {
@@ -83,6 +82,7 @@ class SignUpContainerFM : Fragment() {
         adapter = SignUpViewpagerAdapter(this)
         binding.vpSignUp.adapter = adapter
         initTabLayout()
+        ///click each fragment in viewpager
         binding.vpSignUp.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageScrolled(
                 position: Int,
@@ -93,12 +93,15 @@ class SignUpContainerFM : Fragment() {
                 if (position == 1) {
                     mFragmentCurrent = FRAGMENT_EMAIL
                     if (binding.vpSignUp.currentItem == FRAGMENT_EMAIL) {
-
+                        ///assign btn and edt from email
                         var btnSignUp: View = view!!.findViewById(R.id.btnSignUp)
                         var edtEmail: EditText = view!!.findViewById(R.id.edtEmail)
-                        val signUp = SignUpEmailFM()
 
                         btnSignUp.setOnClickListener {
+                            if(TextUtils.isEmpty(edtEmail.text.toString())){
+                                Toast.makeText(requireContext(),"Please Fill Information",Toast.LENGTH_SHORT).show()
+                                return@setOnClickListener
+                            }
                             val email = edtEmail.text.toString().trim()
                             val arrSignUp = mutableListOf(getBirth())
                             arrSignUp.add(1,email)

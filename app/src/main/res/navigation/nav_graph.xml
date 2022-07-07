@@ -239,9 +239,6 @@
         android:name="team.tiktok.tiktokapp.fragments.signup.SignUpBirthFM"
         android:label="SignUpBirthFM" >
         <action
-            android:id="@+id/action_signUpBirthFM_to_signUpBottomSheetFM"
-            app:destination="@id/signUpBottomSheetFM" />
-        <action
             android:id="@+id/action_signUpBirthFM_to_signUpContainerFM"
             app:destination="@id/signUpContainerFM" />
         <action
@@ -368,14 +365,12 @@
         tools:layout="@layout/fragment_sign_up_create_toptop_id"
         android:name="team.tiktok.tiktokapp.fragments.signup.SignUpCreateTopTopIDFM"
         android:label="SignUpCreateTopTopIDFM" >
-        <action
-            android:id="@+id/action_signUpCreateTopTopIDFM_to_addFM"
-            app:destination="@id/addFM"
-            app:popUpTo="@id/addFM"
-            app:popUpToInclusive="true" />
         <argument
             android:name="arrSignUp"
             app:argType="string[]" />
+        <action
+            android:id="@+id/action_signUpCreateTopTopIDFM_to_signInContainerFM"
+            app:destination="@id/signInContainerFM" />
     </fragment>
     <fragment
         android:id="@+id/signUpCreatePassFM"

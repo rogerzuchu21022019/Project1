@@ -42,6 +42,10 @@ class SignUpBirthFM : Fragment() {
         }
         binding.btnNext.apply {
             setOnClickListener {
+                if(TextUtils.isEmpty(binding.edtBirth.text.toString())){
+                    Toast.makeText(requireContext(),"Please Fill Information",Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
                 val birth = binding.edtBirth.text.toString().trim()
                 val action = SignUpBirthFMDirections.actionSignUpBirthFMToSignUpContainerFM(birth = birth)
                 findNavController().navigate(action)
