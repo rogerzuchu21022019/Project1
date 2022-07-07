@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.databinding.FragmentSignupBirthBinding
 import team.tiktok.tiktokapp.databinding.FragmentSignupEmailBinding
@@ -21,26 +22,14 @@ import java.util.*
 
 class SignUpEmailFM : Fragment() {
    lateinit var binding: FragmentSignupEmailBinding
-
+    val navArg:SignUpEmailFMArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSignupEmailBinding.inflate(layoutInflater)
-        clickButton()
         return binding.root
     }
-
-    private fun clickButton() {
-        binding.chkSignUp.isChecked = true
-        binding.btnSignUp.apply {
-            setOnClickListener {
-                val action = SignUpContainerFMDirections.actionSignUpContainerFMToSignUpCreatePassFM()
-                findNavController().navigate(action)
-            }
-        }
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         binding == null
