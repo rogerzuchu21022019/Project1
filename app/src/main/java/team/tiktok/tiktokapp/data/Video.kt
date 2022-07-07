@@ -1,5 +1,9 @@
 package team.tiktok.tiktokapp.data
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class User (
     ///basic info
     var email: String? = "",
@@ -20,10 +24,9 @@ data class User (
     var video:Video,
     var urlFollower:String?="",
     var urlFollowing:String?=""
-)
+) : Parcelable
 
-
-
+@Parcelize
 data class Comment(
     val idComment: String,
     val message: String,
@@ -33,28 +36,34 @@ data class Comment(
     val countComments: Double,
     val hearts: Heart,
 
-    )
+    ) : Parcelable
+
+@Parcelize
 data class Video(
     var title:String?="",
     var description:String?="",
     var url:String?="",
     val createAt: String?="",
     val updateAt: String?="",
-)
+) : Parcelable
+
+@Parcelize
 data class Heart(
     var id:Int =0,
     var countHearts:Int?=0,
     val createAt: String?="",
     val updateAt: String?=""
 
-)
+) : Parcelable
+
+@Parcelize
 data class Follower(
     var id:Int?=0,
     var countFollowers:Int?=0,
+    ) : Parcelable
 
-
-    )
+@Parcelize
 data class Following(
     var id:Int?=0,
     var countFollowings:Int?=0,
-)
+):Parcelable

@@ -14,12 +14,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import team.tiktok.tiktokapp.R
+import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.databinding.FragmentSignupBirthBinding
 import java.util.*
 
 
 class SignUpBirthFM : Fragment() {
-   lateinit var binding: FragmentSignupBirthBinding
+    lateinit var binding: FragmentSignupBirthBinding
     var calendar = Calendar.getInstance()
 
     override fun onCreateView(
@@ -28,7 +29,7 @@ class SignUpBirthFM : Fragment() {
     ): View? {
         binding = FragmentSignupBirthBinding.inflate(layoutInflater)
 
-        initDatePicker()
+
         clickButton()
         return binding.root
     }
@@ -42,7 +43,21 @@ class SignUpBirthFM : Fragment() {
         }
         binding.btnNext.apply {
             setOnClickListener {
-                val action = SignUpBirthFMDirections.actionSignUpBirthFMToSignUpContainerFM()
+                val birth = binding.edtBirth.text.toString().trim()
+
+                val user = User(
+                    email = "",
+                    fullName = "",
+                    topTopID = "",
+                    birthDay = birth,
+                    uuid = "",
+                    follower = ,
+                    fullName = "",
+                    fullName = "",
+                    fullName = "",
+                    fullName = "",
+                )
+                val action = SignUpBirthFMDirections.actionSignUpBirthFMToSignUpContainerFM(user =)
                 findNavController().navigate(action)
             }
         }

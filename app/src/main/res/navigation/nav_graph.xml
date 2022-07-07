@@ -337,6 +337,12 @@
         <action
             android:id="@+id/action_signUpContainerFM_to_signUpCreatePassFM"
             app:destination="@id/signUpCreatePassFM" />
+        <argument
+            android:name="birth"
+            app:argType="string" />
+        <argument
+            android:name="user"
+            app:argType="team.tiktok.tiktokapp.data.User" />
     </fragment>
     <fragment
         android:id="@+id/forgotWithEmailFM"
