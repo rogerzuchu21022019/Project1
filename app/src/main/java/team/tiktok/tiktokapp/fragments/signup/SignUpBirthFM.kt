@@ -36,7 +36,7 @@ class SignUpBirthFM : Fragment() {
     private fun clickButton() {
         binding.ivBack.apply {
             setOnClickListener {
-                val action = SignUpBirthFMDirections.actionSignUpBirthFMToSignUpBottomSheetFM()
+                val action = SignUpBirthFMDirections.actionSignUpBirthFMToAddFM()
                 findNavController().navigate(action)
             }
         }

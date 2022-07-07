@@ -12,6 +12,7 @@
         android:layout_height="match_parent">
 
 
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPhone"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -26,7 +27,8 @@
             app:helperTextEnabled="true"
             app:helperTextTextColor="@color/red"
             app:passwordToggleTint="@color/white"
-            app:prefixText="+84"
+            app:prefixText="VN +84"
+            android:layout_marginTop="@dimen/_90sdp"
             tools:ignore="MissingConstraints">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -40,12 +42,28 @@
                 app:textInputLayoutFocusedRectEnabled="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:id="@+id/tvLisence"
+            android:text="Chúng tôi sẽ sử dụng số điện thoại của bạn để cải
+thiện trải nghiệm TikTok cho bạn, bao gồm kết nối
+bạn với những người có thể bạn biết, cá nhân hóa
+trải nghiệm quảng cáo của bạn, v.v. Nếu bạn đăng
+ký bằng SMS, bạn có thể phải trả phí SMS. Tìm hiểu thêm"
+            android:textAlignment="textStart"
+            app:layout_constraintTop_toBottomOf="@+id/tilPhone"
+            android:layout_marginHorizontal="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSendCode"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Send"
-            app:layout_constraintTop_toBottomOf="@id/tilPhone"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toBottomOf="@id/tvLisence"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginHorizontal="@dimen/_40sdp"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
