@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_sign_up_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_splash_screen.xml" value="0.22826086956521738" />
         <entry key="app/src/main/res/drawable/bottom_sheet_custom.xml" value="0.1625" />
         <entry key="app/src/main/res/drawable/close.xml" value="0.296" />
         <entry key="app/src/main/res/drawable/fill_favorite.xml" value="0.2805" />
