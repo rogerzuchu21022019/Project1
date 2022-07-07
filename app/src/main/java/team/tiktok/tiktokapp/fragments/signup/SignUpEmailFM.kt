@@ -22,32 +22,14 @@ import java.util.*
 
 class SignUpEmailFM : Fragment() {
    lateinit var binding: FragmentSignupEmailBinding
-    val navArgs :SignUpContainerFMArgs by navArgs()
+    val navArg:SignUpEmailFMArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSignupEmailBinding.inflate(layoutInflater)
-        clickButton()
-        getBirth()
         return binding.root
     }
-
-    private fun getBirth():String {
-        return  navArgs.birth
-    }
-
-
-    private fun clickButton() {
-        binding.chkSignUp.isChecked = true
-        binding.btnSignUp.apply {
-            setOnClickListener {
-                val action = SignUpContainerFMDirections.actionSignUpContainerFMToSignUpCreatePassFM()
-                findNavController().navigate(action)
-            }
-        }
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         binding == null

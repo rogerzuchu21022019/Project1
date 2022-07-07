@@ -44,20 +44,7 @@ class SignUpBirthFM : Fragment() {
         binding.btnNext.apply {
             setOnClickListener {
                 val birth = binding.edtBirth.text.toString().trim()
-
-                val user = User(
-                    email = "",
-                    fullName = "",
-                    topTopID = "",
-                    birthDay = birth,
-                    uuid = "",
-                    follower = ,
-                    fullName = "",
-                    fullName = "",
-                    fullName = "",
-                    fullName = "",
-                )
-                val action = SignUpBirthFMDirections.actionSignUpBirthFMToSignUpContainerFM(user =)
+                val action = SignUpBirthFMDirections.actionSignUpBirthFMToSignUpContainerFM(birth = birth)
                 findNavController().navigate(action)
             }
         }

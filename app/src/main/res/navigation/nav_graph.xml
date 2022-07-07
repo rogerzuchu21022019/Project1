@@ -275,7 +275,11 @@
         android:id="@+id/signUpEmailFM"
         tools:layout="@layout/fragment_signup_email"
         android:name="team.tiktok.tiktokapp.fragments.signup.SignUpEmailFM"
-        android:label="SignUpEmailFM" />
+        android:label="SignUpEmailFM" >
+        <argument
+            android:name="arrSignUp"
+            app:argType="string[]" />
+    </fragment>
     <fragment
         android:id="@+id/signUpPhoneFM"
         tools:layout="@layout/fragment_signup_phone"
@@ -340,9 +344,6 @@
         <argument
             android:name="birth"
             app:argType="string" />
-        <argument
-            android:name="user"
-            app:argType="team.tiktok.tiktokapp.data.User" />
     </fragment>
     <fragment
         android:id="@+id/forgotWithEmailFM"
@@ -372,6 +373,9 @@
             app:destination="@id/addFM"
             app:popUpTo="@id/addFM"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="arrSignUp"
+            app:argType="string[]" />
     </fragment>
     <fragment
         android:id="@+id/signUpCreatePassFM"
@@ -381,5 +385,8 @@
         <action
             android:id="@+id/action_signUpCreatePassFM_to_signUpCreateTopTopIDFM"
             app:destination="@id/signUpCreateTopTopIDFM" />
+        <argument
+            android:name="arrSignUp"
+            app:argType="string[]" />
     </fragment>
 </navigation>

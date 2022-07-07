@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.tabs.TabLayoutMediator
 import me.ibrahimsn.lib.SmoothBottomBar
 import team.tiktok.tiktokapp.R
@@ -15,9 +18,16 @@ import team.tiktok.tiktokapp.databinding.FragmentSignUpContainerBinding
 
 
 class SignUpContainerFM : Fragment() {
-   lateinit var binding: FragmentSignUpContainerBinding
-    lateinit var adapter:SignUpViewpagerAdapter
-    val navFMArgs:SignUpContainerFMArgs by navArgs()
+    lateinit var binding: FragmentSignUpContainerBinding
+    lateinit var adapter: SignUpViewpagerAdapter
+    val navArg: SignUpContainerFMArgs by navArgs()
+
+    companion object {
+        val FRAGMENT_PHONE: Int = 0
+        val FRAGMENT_EMAIL: Int = 1
+
+        var mFragmentCurrent = FRAGMENT_PHONE
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +37,14 @@ class SignUpContainerFM : Fragment() {
         binding = FragmentSignUpContainerBinding.inflate(layoutInflater)
         initViewPager()
         clickButton()
+        getBirth()
         return binding.root
+    }
+
+
+    private fun getBirth(): String {
+        Toast.makeText(requireContext(), "${navArg.birth}", Toast.LENGTH_SHORT).show()
+        return navArg.birth
     }
 
     private fun clickButton() {
@@ -38,6 +55,7 @@ class SignUpContainerFM : Fragment() {
             }
         }
     }
+
     private fun initTabLayout() {
         TabLayoutMediator(
             binding.tab,
@@ -56,18 +74,48 @@ class SignUpContainerFM : Fragment() {
         adapter = SignUpViewpagerAdapter(this)
         binding.vpSignUp.adapter = adapter
         initTabLayout()
+        binding.vpSignUp.registerOnPageChangeCallback(object : OnPageChangeCallback() {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                if (position == 1) {
+                    mFragmentCurrent = FRAGMENT_EMAIL
+                    if (binding.vpSignUp.currentItem == FRAGMENT_EMAIL) {
+
+                        var btnSignUp: View = view!!.findViewById(R.id.btnSignUp)
+                        var edtEmail: EditText = view!!.findViewById(R.id.edtEmail)
+                        val signUp = SignUpEmailFM()
+
+                        btnSignUp.setOnClickListener {
+                            val email = edtEmail.text.toString().trim()
+                            val arrSignUp = mutableListOf(getBirth())
+                            arrSignUp.add(1,email)
+                            var action =
+                                SignUpContainerFMDirections.actionSignUpContainerFMToSignUpCreatePassFM(
+                                    arrSignUp.toTypedArray()
+                                )
+                            findNavController().navigate(action)
+                            Toast.makeText(requireContext(), "$arrSignUp", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
+                }
+            }
+        })
     }
 
-    private fun checkComeIn(isComeIn:Boolean){
-        if (isComeIn){
+    private fun checkComeIn(isComeIn: Boolean) {
+        if (isComeIn) {
             val navBot = requireActivity()!!.findViewById<SmoothBottomBar>(R.id.navBot)
             navBot.visibility = View.GONE
-        }else{
+        } else {
             val navBot = requireActivity()!!.findViewById<SmoothBottomBar>(R.id.navBot)
             navBot.visibility = View.VISIBLE
         }
     }
-
 
 
     override fun onDestroyView() {
