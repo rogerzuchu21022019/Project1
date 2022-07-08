@@ -50,7 +50,7 @@ class ProfileFM : Fragment() {
     ): View? {
         binding = FragmentProfileBinding.inflate(layoutInflater)
         clickImage()
-        initViewPager()
+
         clickButton()
         isLogIn()
         return binding.root
@@ -66,13 +66,36 @@ class ProfileFM : Fragment() {
         auth = Firebase.auth
         if (auth.currentUser!=null){
             checkExist(auth.currentUser!!.uid)
+            initViewPager()
             Toast.makeText(
                 requireContext(),
                 "ai do login",
                 Toast.LENGTH_SHORT
             ).show()
+            binding.layoutSecond.visibility = View.GONE
+            binding.layoutMain.visibility = View.VISIBLE
         }else{
             navSignUp()
+            binding.layoutSecond.visibility = View.VISIBLE
+            binding.layoutMain.visibility = View.GONE
+            binding.ivList1.apply {
+                setOnClickListener {
+                    val action = ProfileFMDirections.actionProfileFMToSettingAndPrivacyFM()
+                    findNavController().navigate(action)
+                }
+            }
+            binding.linearMid.apply {
+                setOnClickListener {
+                    val action = ProfileFMDirections.actionProfileFMToSettingAndPrivacyFM()
+                    findNavController().navigate(action)
+                }
+            }
+            binding.linearBot.apply {
+                setOnClickListener {
+                    val action = ProfileFMDirections.actionProfileFMToSettingAndPrivacyFM()
+                    findNavController().navigate(action)
+                }
+            }
         }
     }
 
