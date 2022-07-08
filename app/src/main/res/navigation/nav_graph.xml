@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_profileFM_to_signUpBottomSheetFM"
             app:destination="@id/signUpBottomSheetFM" />
+        <action
+            android:id="@+id/action_profileFM_to_settingAndPrivacyFM"
+            app:destination="@id/settingAndPrivacyFM" />
     </fragment>
     <fragment
         android:id="@+id/inboxFM"
