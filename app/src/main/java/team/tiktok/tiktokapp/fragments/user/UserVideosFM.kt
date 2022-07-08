@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import me.ibrahimsn.lib.SmoothBottomBar
+//import me.ibrahimsn.lib.SmoothBottomBar
+import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.adapter.detail.DetailAdapter
 import team.tiktok.tiktokapp.data.Video
@@ -60,10 +61,10 @@ class UserVideosFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
 
     private fun checkComeIn(isComeIn: Boolean) {
         if (isComeIn) {
-            val navBot = requireActivity()!!.findViewById<SmoothBottomBar>(R.id.navBot)
+            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
             navBot.visibility = View.GONE
         } else {
-            val navBot = requireActivity()!!.findViewById<SmoothBottomBar>(R.id.navBot)
+            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
             navBot.visibility = View.VISIBLE
         }
     }

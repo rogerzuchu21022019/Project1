@@ -17,13 +17,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
+import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.databinding.FragmentAddBinding
 import team.tiktok.tiktokapp.databinding.FragmentSettingAndPrivacyBinding
 
 
 class AddFM : Fragment() {
-   lateinit var binding:FragmentAddBinding
+    lateinit var binding: FragmentAddBinding
     private val IMAGE_REQ = 1
     private val RECORD_REQ = 2
     private var imagePath: Uri? = null
@@ -35,19 +36,20 @@ class AddFM : Fragment() {
 //        requestPermissionCamera()
         requestPermissionRecord()
         clickButton()
+
         return binding.root
     }
 
     private fun clickButton() {
         binding.btnSound.apply {
             setOnClickListener {
-                Toast.makeText(requireContext(),"Sound",Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Sound", Toast.LENGTH_SHORT).show()
             }
         }
         binding.btnNext.apply {
             setOnClickListener {
                 findNavController().navigate(R.id.action_addFM_to_uploadFM)
-                Toast.makeText(requireContext(),"Next",Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Next", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -70,6 +72,7 @@ class AddFM : Fragment() {
             )
         }
     }
+
     private fun requestPermissionRecord() {
         if (ContextCompat.checkSelfPermission(
                 requireActivity(),
@@ -91,7 +94,7 @@ class AddFM : Fragment() {
                     Manifest.permission.CAMERA,
                     Manifest.permission.RECORD_AUDIO,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE
-                    ), RECORD_REQ
+                ), RECORD_REQ
             )
         }
     }
@@ -114,24 +117,24 @@ class AddFM : Fragment() {
     }
 
 
+    private var someActivityResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == AppCompatActivity.RESULT_OK) {
+                val data = result.data
 
-    private var someActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == AppCompatActivity.RESULT_OK) {
-            val data = result.data
-
-            imagePath = data!!.data
-            binding.videoView.setVideoURI(imagePath)
-            binding.videoView.start()
+                imagePath = data!!.data
+                binding.videoView.setVideoURI(imagePath)
+                binding.videoView.start()
 //            Picasso.get().load(imagePath).into(binding.civAvatar)
+            }
+
+
         }
 
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding == null
     }
 
-
-        override fun onDestroyView() {
-            super.onDestroyView()
-            binding == null
-        }
 }

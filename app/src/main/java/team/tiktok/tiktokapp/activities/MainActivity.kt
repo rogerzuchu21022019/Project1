@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         navController = findNavController(R.id.fmNavHostGraph)
         setupSmoothBottomMenu()
-        binding.navBot.itemIconTint
+
 
 //        title and icon settings are displayed together
 

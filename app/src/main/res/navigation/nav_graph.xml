@@ -46,12 +46,19 @@
             app:destination="@id/profileBottomSheetFM"
             app:popUpTo="@id/profileBottomSheetFM"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_profileFM_to_signUpBottomSheetFM"
+            app:destination="@id/signUpBottomSheetFM" />
     </fragment>
     <fragment
         android:id="@+id/inboxFM"
         android:name="team.tiktok.tiktokapp.fragments.inbox.InboxFM"
         android:label="fragment_inbox"
-        tools:layout="@layout/fragment_inbox" />
+        tools:layout="@layout/fragment_inbox" >
+        <action
+            android:id="@+id/action_inboxFM_to_signUpBottomSheetFM"
+            app:destination="@id/signUpBottomSheetFM" />
+    </fragment>
     <fragment
         android:id="@+id/exploreFM"
         android:name="team.tiktok.tiktokapp.fragments.explore.ExploreFM"
@@ -99,6 +106,9 @@
         <action
             android:id="@+id/action_settingAndPrivacyFM_to_profileFM2"
             app:destination="@id/profileFM" />
+        <action
+            android:id="@+id/action_settingAndPrivacyFM_to_signUpBottomSheetFM"
+            app:destination="@id/signUpBottomSheetFM" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_manage_account"
@@ -217,9 +227,6 @@
         <action
             android:id="@+id/action_uploadFM_to_addFM"
             app:destination="@id/addFM" />
-        <action
-            android:id="@+id/action_uploadFM_to_signUpBottomSheetFM"
-            app:destination="@id/signUpBottomSheetFM" />
     </fragment>
     <dialog
         android:id="@+id/chooseEmailOrPhoneBottomSheetFM"
@@ -244,9 +251,6 @@
         <action
             android:id="@+id/action_signUpBirthFM_self"
             app:destination="@id/signUpBirthFM" />
-        <action
-            android:id="@+id/action_signUpBirthFM_to_addFM"
-            app:destination="@id/addFM" />
     </fragment>
     <dialog
         android:id="@+id/signUpBottomSheetFM"
@@ -288,9 +292,6 @@
         android:name="team.tiktok.tiktokapp.fragments.signin.SignInContainerFM"
         android:label="SignInContainerFM" >
         <action
-            android:id="@+id/action_signInContainerFM_to_uploadFM"
-            app:destination="@id/uploadFM" />
-        <action
             android:id="@+id/action_signInContainerFM_to_chooseEmailOrPhoneBottomSheetFM"
             app:destination="@id/chooseEmailOrPhoneBottomSheetFM" />
         <action
@@ -305,17 +306,17 @@
             app:launchSingleTop="false"
             app:popUpToInclusive="false" />
         <action
-            android:id="@+id/action_signInContainerFM_to_addFM"
-            app:destination="@id/addFM"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popUpTo="@id/addFM"
-            app:popUpToInclusive="true"
-            app:popEnterAnim="@animator/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
             android:id="@+id/action_signInContainerFM_to_signUpBottomSheetFM"
             app:destination="@id/signUpBottomSheetFM" />
+        <action
+            android:id="@+id/action_signInContainerFM_to_profileFM"
+            app:destination="@id/profileFM" />
+        <action
+            android:id="@+id/action_signInContainerFM_to_profileFM2"
+            app:destination="@id/profileFM" />
+        <action
+            android:id="@+id/action_signInContainerFM_to_inboxFM"
+            app:destination="@id/inboxFM" />
     </fragment>
     <fragment
         android:id="@+id/signInEmailFM"

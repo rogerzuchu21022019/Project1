@@ -11,6 +11,7 @@
         android:id="@+id/drawerlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -25,25 +26,44 @@
                 android:layout_height="match_parent"
                 app:defaultNavHost="true"
                 app:navGraph="@navigation/nav_graph" />
-            <me.ibrahimsn.lib.SmoothBottomBar
+            <!--            <me.ibrahimsn.lib.SmoothBottomBar-->
+            <!--                android:id="@+id/navBot"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="?attr/actionBarSize"-->
+            <!--                app:backgroundColor="@color/black"-->
+            <!--                app:textColor="@color/white"-->
+            <!--                android:textAlignment="center"-->
+            <!--                app:textSize="14sp"-->
+            <!--                app:iconSize="24dp"-->
+            <!--                app:indicatorColor="#2DFFFFFF"-->
+            <!--                app:indicatorRadius="16dp"-->
+            <!--                app:sideMargins="10dp"-->
+            <!--                app:itemPadding="10dp"-->
+            <!--                app:iconTint="#C8FFFFFF"-->
+            <!--                app:iconTintActive="#FFFFFF"-->
+            <!--                app:cornerRadius="16dp"-->
+            <!--                app:corners="top_left|top_right"-->
+            <!--                app:menu="@menu/bot_menu"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"/>-->
+
+            <nl.joery.animatedbottombar.AnimatedBottomBar
                 android:id="@+id/navBot"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:backgroundColor="@color/black"
-                app:textColor="@color/white"
-                android:textAlignment="center"
-                app:textSize="14sp"
-                app:iconSize="24dp"
-                app:indicatorColor="#2DFFFFFF"
-                app:indicatorRadius="16dp"
-                app:sideMargins="10dp"
-                app:itemPadding="10dp"
-                app:iconTint="#C8FFFFFF"
-                app:iconTintActive="#FFFFFF"
-                app:cornerRadius="16dp"
-                app:corners="top_left|top_right"
-                app:menu="@menu/bot_menu"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_nav_bot"
+                app:abb_badgeTextColor="@color/gray"
+                app:abb_indicatorAppearance="round"
+                app:abb_indicatorColor="@color/gray"
+                app:abb_indicatorHeight="4dp"
+                app:abb_indicatorMargin="16dp"
+                app:abb_selectedIndex="0"
+                app:abb_selectedTabType="text"
+                app:abb_tabColor="@color/gray"
+                app:abb_tabColorSelected="@color/black"
+                app:abb_textStyle="bold"
+                app:abb_tabs="@menu/bot_menu"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
             <com.google.android.material.navigation.NavigationView
                 android:id="@+id/navView"
                 android:layout_width="0dp"

@@ -63,11 +63,11 @@ class SignUpCreateTopTopIDFM : Fragment() {
 
     private fun createUserData(email: String, password: String, topTopID: String, birth: String) {
         database = Firebase.database.getReference("users")
-        val uuid = auth.currentUser!!.uid
-        val follower = Follower(null, null)
-        val following = Following(null, null)
+        val uuid = auth.currentUser?.uid
+        val follower = Follower(uid = "" , 0)
+        val following = Following(uid = "", 0)
         val heart = Heart(null, null, "", "")
-        val comment = Comment(null, null, "", user = null, "", null)
+        val comment = Comment(null, null, user = null, fullName = "", updateAt = "", countComments = 0, hearts = 0)
         val video = Video(title = null, description = "", url = "", createAt = "", updateAt = "")
         val user = User(
             email = email,
@@ -75,7 +75,7 @@ class SignUpCreateTopTopIDFM : Fragment() {
             topTopID = topTopID,
             fullName = topTopID,
             birthDay = birth,
-            uuid = uuid,
+            uuid = uuid!!,
             phone = "",
             follower = follower,
             imgUrl = "",

@@ -12,24 +12,38 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.contract.ActivityResultContracts.GetContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.adapter.detail.DetailViewpagerAdapter
+import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.databinding.FragmentProfileBinding
+import team.tiktok.tiktokapp.fragments.signup.SignUpMainBottomSheetFM
 
 
 class ProfileFM : Fragment() {
     private val IMAGE_REQ = 1
     private var imagePath: Uri? = null
     lateinit var binding: FragmentProfileBinding
-    lateinit var adapter:DetailViewpagerAdapter
+    lateinit var auth :FirebaseAuth
+    lateinit var database: DatabaseReference
+    lateinit var adapter: DetailViewpagerAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,8 +52,58 @@ class ProfileFM : Fragment() {
         clickImage()
         initViewPager()
         clickButton()
+        isLogIn()
         return binding.root
     }
+
+
+    fun navSignUp() {
+        val action = ProfileFMDirections.actionProfileFMToSignUpBottomSheetFM()
+        findNavController().navigate(action)
+    }
+
+    private fun isLogIn() {
+        auth = Firebase.auth
+        if (auth.currentUser!=null){
+            checkExist(auth.currentUser!!.uid)
+            Toast.makeText(
+                requireContext(),
+                "ai do login",
+                Toast.LENGTH_SHORT
+            ).show()
+        }else{
+            navSignUp()
+        }
+    }
+
+    private fun checkExist(uid: String) {
+        database = Firebase.database.getReference("users")
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (element in snapshot.children){
+                        var user = element.getValue(User::class.java)
+                        if (uid == user!!.uuid) {
+                            updateUI(user)
+                            Toast.makeText(
+                                requireContext(),
+                                "ok ${user.topTopID}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+    }
+
+    private fun updateUI(user:User) {
+        binding.user = user
+    }
+
 
     private fun clickButton() {
         binding.btnEditProfile.apply {
@@ -59,19 +123,19 @@ class ProfileFM : Fragment() {
             binding.tab,
             binding.vpDetail
         ) { tab, position ->
-            when (position){
-                0->{
+            when (position) {
+                0 -> {
                     tab.setIcon(R.drawable.list)
                 }
-                1->{
+                1 -> {
                     tab.setIcon(R.drawable.resource_private)
 
                 }
-                2->{
+                2 -> {
                     tab.setIcon(R.drawable.heart)
 
                 }
-                3->{
+                3 -> {
                     tab.setIcon(R.drawable.favourite)
 
                 }
@@ -119,22 +183,22 @@ class ProfileFM : Fragment() {
     }
 
 
+    private var someActivityResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == AppCompatActivity.RESULT_OK) {
+                val data = result.data
+                imagePath = data!!.data
+                val handle = Handler(Looper.myLooper()!!)
+                handle.postDelayed({
+                    Picasso.get().load(imagePath).into(binding.civAvatar)
+                }, 800)
+            }
 
-
-    private var someActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == AppCompatActivity.RESULT_OK) {
-            val data = result.data
-            imagePath = data!!.data
-            val handle = Handler(Looper.myLooper()!!)
-            handle.postDelayed({
-                Picasso.get().load(imagePath).into(binding.civAvatar)
-            },800)
         }
-
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
         binding == null
     }
+
 }

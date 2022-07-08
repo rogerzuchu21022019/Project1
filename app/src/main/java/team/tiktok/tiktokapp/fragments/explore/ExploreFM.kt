@@ -1,5 +1,6 @@
 package team.tiktok.tiktokapp.fragments.explore
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.adapter.explore.ExploreAdapter
 import team.tiktok.tiktokapp.data.Video
@@ -74,4 +76,5 @@ class ExploreFM : Fragment(), ExploreAdapter.OnClickItemInRecyclerView {
         super.onStop()
         adapter.stopListening()
     }
+
 }

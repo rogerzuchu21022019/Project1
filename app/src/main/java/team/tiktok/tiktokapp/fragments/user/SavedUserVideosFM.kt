@@ -8,7 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import me.ibrahimsn.lib.SmoothBottomBar
+//import me.ibrahimsn.lib.SmoothBottomBar
+import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.databinding.FragmentLikedVideosBinding
 import team.tiktok.tiktokapp.databinding.FragmentPrivateVideosBinding
@@ -33,10 +34,10 @@ class SavedUserVideosFM : Fragment() {
     }
     private fun checkComeIn(isComeIn:Boolean){
         if (isComeIn){
-            val navBot = requireActivity()!!.findViewById<SmoothBottomBar>(R.id.navBot)
+            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
             navBot.visibility = View.GONE
         }else{
-            val navBot = requireActivity()!!.findViewById<SmoothBottomBar>(R.id.navBot)
+            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
             navBot.visibility = View.VISIBLE
         }
     }

@@ -11,7 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayoutMediator
-import me.ibrahimsn.lib.SmoothBottomBar
+//import me.ibrahimsn.lib.SmoothBottomBar
+import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.adapter.signin.SignInViewpagerAdapter
 import team.tiktok.tiktokapp.databinding.FragmentSignInContainerBinding
@@ -37,7 +38,7 @@ class SignInContainerFM : Fragment() {
 
         binding.ivBack.apply {
             setOnClickListener {
-                findNavController().navigate(R.id.action_signInContainerFM_to_uploadFM)
+
             }
         }
     }
@@ -64,10 +65,10 @@ class SignInContainerFM : Fragment() {
 
     private fun checkComeIn(isComeIn:Boolean){
         if (isComeIn){
-            val navBot = requireActivity()!!.findViewById<SmoothBottomBar>(R.id.navBot)
+            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
             navBot.visibility = View.GONE
         }else{
-            val navBot = requireActivity()!!.findViewById<SmoothBottomBar>(R.id.navBot)
+            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
             navBot.visibility = View.VISIBLE
         }
     }

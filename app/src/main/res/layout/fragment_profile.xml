@@ -4,7 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="user"
+            type="team.tiktok.tiktokapp.data.User" />
+        <variable
+            name="heart"
+            type="team.tiktok.tiktokapp.data.Heart" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,7 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Hoàng Quốc Hưng"
+                    android:text="@{user.fullName}"
                     android:textSize="@dimen/_14sdp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -102,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:text="petthungg"
+                    android:text="@{user.topTopID}"
                     android:textSize="@dimen/_12sdp" />
 
                 <LinearLayout
@@ -120,7 +125,7 @@
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="999"
+                        android:text="@{String.valueOf(user.following),default =0}"
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
@@ -128,10 +133,10 @@
                         android:id="@+id/tvFollower"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(user.follower),default =0}"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="999"
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
@@ -140,10 +145,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
+                        android:text="@{String.valueOf(user.hearts),default =0}"
                         android:layout_marginEnd="@dimen/_40sdp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="999"
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 

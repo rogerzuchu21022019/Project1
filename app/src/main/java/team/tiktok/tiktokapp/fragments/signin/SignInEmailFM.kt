@@ -7,14 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import me.ibrahimsn.lib.SmoothBottomBar
+//import me.ibrahimsn.lib.SmoothBottomBar
+import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.databinding.FragmentSigninEmailBinding
+import team.tiktok.tiktokapp.fragments.inbox.InboxFM
+import team.tiktok.tiktokapp.fragments.profile.ProfileFM
 
 
 class SignInEmailFM : Fragment() {
@@ -44,8 +50,18 @@ class SignInEmailFM : Fragment() {
                 auth.signInWithEmailAndPassword(email,password)
                     .addOnCompleteListener {
                         Toast.makeText(requireContext(),"SignIn OK", Toast.LENGTH_SHORT).show()
-                        val action  = SignInContainerFMDirections.actionSignInContainerFMToAddFM()
-                        findNavController().navigate(action)
+                        if (auth.currentUser!=null){
+                             val id = findNavController().previousBackStackEntry!!.destination.id
+                            if(id==R.id.inboxFM){
+                                val action  = SignInContainerFMDirections.actionSignInContainerFMToInboxFM()
+                                findNavController().navigate(action)
+                            }else if(id==R.id.profileFM){
+                                val action  = SignInContainerFMDirections.actionSignInContainerFMToProfileFM()
+                                findNavController().navigate(action)
+                            }
+
+
+                        }
                     }
                     .addOnFailureListener {
                         Toast.makeText(requireContext(),"SignIn Fail", Toast.LENGTH_SHORT).show()
@@ -64,10 +80,10 @@ class SignInEmailFM : Fragment() {
     }
     private fun checkComeIn(isComeIn:Boolean){
         if (isComeIn){
-            val navBot = requireActivity()!!.findViewById<SmoothBottomBar>(R.id.navBot)
+            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
             navBot.visibility = View.GONE
         }else{
-            val navBot = requireActivity()!!.findViewById<SmoothBottomBar>(R.id.navBot)
+            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
             navBot.visibility = View.VISIBLE
         }
     }

@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.databinding.FragmentSignupBirthBinding
 import java.util.*
@@ -27,7 +28,7 @@ class SignUpBirthFM : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSignupBirthBinding.inflate(layoutInflater)
-
+        checkComeIn(true)
         initDatePicker()
         clickButton()
         return binding.root
@@ -36,8 +37,8 @@ class SignUpBirthFM : Fragment() {
     private fun clickButton() {
         binding.ivBack.apply {
             setOnClickListener {
-                val action = SignUpBirthFMDirections.actionSignUpBirthFMToAddFM()
-                findNavController().navigate(action)
+//                val action = SignUpBirthFMDirections.actionSignUpBirthFMToAddFM()
+//                findNavController().navigate(action)
             }
         }
         binding.btnNext.apply {
@@ -79,5 +80,18 @@ class SignUpBirthFM : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding == null
+        checkComeIn(false)
+    }
+    private fun checkComeIn(isComeIn:Boolean){
+        if (isComeIn){
+            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
+            navBot.visibility = View.GONE
+        }else{
+            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
+            navBot.visibility = View.VISIBLE
+
+
+
+        }
     }
 }

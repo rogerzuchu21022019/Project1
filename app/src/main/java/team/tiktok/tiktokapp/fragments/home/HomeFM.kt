@@ -1,5 +1,6 @@
 package team.tiktok.tiktokapp.fragments.home
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -10,10 +11,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.MediaController
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.adapter.home.HomeVideoAdapter
 import team.tiktok.tiktokapp.data.Video
@@ -30,6 +33,7 @@ class HomeFM : Fragment() , HomeVideoAdapter.OnClickItemInRecyclerView{
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         loadData()
+        checkComeIn(true)
         return binding.root
     }
 
@@ -89,6 +93,21 @@ class HomeFM : Fragment() , HomeVideoAdapter.OnClickItemInRecyclerView{
     override fun onDestroyView() {
         super.onDestroyView()
         binding == null
+        checkComeIn(false)
+    }
+    private fun checkComeIn(isComeIn:Boolean){
+        if (isComeIn){
+            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
+            navBot.setBackgroundResource(R.color.black)
+            navBot.tabColorSelected = ContextCompat.getColor(requireContext(),R.color.white)
+
+        }else{
+            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
+            navBot.setBackgroundResource(R.drawable.border_nav_bot)
+            navBot.tabColorSelected = ContextCompat.getColor(requireContext(),R.color.black)
+
+
+        }
     }
 
 }
