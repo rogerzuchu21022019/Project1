@@ -25,12 +25,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
+
         <ImageView
             android:id="@+id/ivSearch"
+            android:src="@drawable/search16"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
-            android:background="@drawable/search"
-            android:backgroundTint="@color/white"
+            android:layout_marginStart="@dimen/_120sdp"
+            android:layout_marginBottom="@dimen/_300sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.9"
@@ -64,6 +66,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_300sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +79,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/_5sdp"
-                android:text="Đang Theo dõi"
+                android:text="Đang Fllow"
+                android:textSize="@dimen/_14sdp"
                 android:textColor="@color/gray"
                 android:textStyle="bold" />
 
@@ -93,6 +97,7 @@
                 android:layout_height="wrap_content"
                 android:text="Dành cho bạn"
                 android:textStyle="bold"
+                android:textSize="@dimen/_14sdp"
                 android:textColor="@color/gray" />
         </LinearLayout>
 
@@ -116,9 +121,11 @@
             android:layout_height="wrap_content"
             android:text="@{video.title}"
             android:textColor="@color/white"
+            android:layout_marginTop="@dimen/_150sdp"
+            android:layout_marginStart="@dimen/_7sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintHorizontal_bias="0.01"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.8"
@@ -135,67 +142,156 @@
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintHorizontal_bias="0.01"
             app:layout_constraintStart_toStartOf="@id/tvTitle"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             app:layout_constraintVertical_bias="0.1"
             tools:ignore="MissingConstraints" />
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civUser"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/cricle32"
             android:layout_width="@dimen/_40sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
             android:layout_height="@dimen/_40sdp"
-            app:layout_constraintStart_toStartOf="@id/ivFavorite"
+            android:layout_marginTop="@dimen/_190sdp"
+            app:layout_constraintTop_toTopOf="@id/ivSearch"
+            app:layout_constraintStart_toStartOf="@id/ivSearch"
             app:layout_constraintBottom_toTopOf="@id/ivFavorite"
-            app:layout_constraintEnd_toEndOf="@id/ivFavorite"
+            app:layout_constraintEnd_toEndOf="@id/ivSearch"
+            tools:ignore="MissingConstraints" />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAddFllow"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            app:layout_constraintTop_toBottomOf="@+id/civUser"
+            app:layout_constraintStart_toStartOf="@id/civUser"
+            app:layout_constraintEnd_toEndOf="@id/civUser"
+            app:layout_constraintBottom_toTopOf="@id/ivFavorite"
+            android:layout_marginBottom="@dimen/_31sdp"
+            android:src="@drawable/plus16"
+            app:backgroundTint="#F40000"
             tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/ivFavorite"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:background="@drawable/heart_white"
+            android:backgroundTint="@color/white"
+            android:layout_marginTop="@dimen/_30sdp"
+            app:layout_constraintTop_toBottomOf="@id/civUser"
+            app:layout_constraintEnd_toEndOf="@id/civUser"
+            app:layout_constraintStart_toStartOf="@id/civUser"
+            app:layout_constraintBottom_toTopOf="@id/tvFavorite"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tvFavorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/heart"
-            android:backgroundTint="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.65"
+            android:layout_marginBottom="@dimen/_2sdp"
+            app:layout_constraintTop_toBottomOf="@+id/ivFavorite"
+            app:layout_constraintStart_toStartOf="@id/ivFavorite"
+            app:layout_constraintEnd_toEndOf="@id/ivFavorite"
+            app:layout_constraintBottom_toTopOf="@id/ivComment"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_8sdp"
+            android:textStyle="bold"
+            android:text="200.6k"
             tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/ivComment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:background="@drawable/comment"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_3sdp"
+            android:src="@drawable/comment32"
             android:backgroundTint="@color/white"
-            app:layout_constraintStart_toStartOf="@id/ivFavorite"
-            app:layout_constraintTop_toBottomOf="@id/ivFavorite"
+            app:layout_constraintStart_toStartOf="@id/tvFavorite"
+            app:layout_constraintEnd_toEndOf="@id/tvFavorite"
+            app:layout_constraintTop_toBottomOf="@id/tvFavorite"
+            app:layout_constraintBottom_toTopOf="@id/tvComment"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tvComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_3sdp"
+            app:layout_constraintTop_toBottomOf="@+id/ivComment"
+            app:layout_constraintStart_toStartOf="@id/ivComment"
+            app:layout_constraintEnd_toEndOf="@id/ivComment"
+            app:layout_constraintBottom_toTopOf="@id/ivSave"
+            android:textColor="@color/white"
+            android:text="3456"
             tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/ivSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:background="@drawable/favorite"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_3sdp"
+            android:src="@drawable/save32"
             android:backgroundTint="@color/white"
-            app:layout_constraintStart_toStartOf="@id/ivComment"
-            app:layout_constraintTop_toBottomOf="@id/ivComment"
+            app:layout_constraintTop_toBottomOf="@id/tvComment"
+            app:layout_constraintStart_toStartOf="@id/tvComment"
+            app:layout_constraintEnd_toEndOf="@id/tvComment"
+            app:layout_constraintBottom_toTopOf="@id/tvSave"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tvSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_3sdp"
+            app:layout_constraintTop_toBottomOf="@+id/ivSave"
+            app:layout_constraintStart_toStartOf="@id/ivSave"
+            app:layout_constraintEnd_toEndOf="@id/ivSave"
+            app:layout_constraintBottom_toTopOf="@id/ivShare"
+            android:textColor="@color/white"
+            android:text="123"
             tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/ivShare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:src="@drawable/share"
-            app:layout_constraintStart_toStartOf="@id/ivSave"
-            app:layout_constraintTop_toBottomOf="@id/ivSave"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_3sdp"
+            android:src="@drawable/share32"
+            app:layout_constraintTop_toBottomOf="@id/tvSave"
+            app:layout_constraintStart_toStartOf="@id/tvSave"
+            app:layout_constraintEnd_toEndOf="@id/tvSave"
+            app:layout_constraintBottom_toTopOf="@id/tvShare"
             app:tint="@color/white"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tvShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_5sdp"
+            app:layout_constraintTop_toBottomOf="@+id/ivShare"
+            app:layout_constraintStart_toStartOf="@id/ivShare"
+            app:layout_constraintEnd_toEndOf="@id/ivShare"
+            android:textColor="@color/white"
+            android:text="3456"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/ivDisc"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:src="@drawable/disc32"
+            app:layout_constraintTop_toBottomOf="@id/tvShare"
+            app:layout_constraintStart_toStartOf="@id/tvShare"
+            app:layout_constraintEnd_toEndOf="@id/tvShare"
+            app:tint="@color/black"
             tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
