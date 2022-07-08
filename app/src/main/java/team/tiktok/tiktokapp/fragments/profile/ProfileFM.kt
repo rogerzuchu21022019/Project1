@@ -30,9 +30,14 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.adapter.detail.DetailViewpagerAdapter
 import team.tiktok.tiktokapp.data.User
+import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.FragmentProfileBinding
 import team.tiktok.tiktokapp.fragments.signup.SignUpMainBottomSheetFM
 
@@ -41,7 +46,7 @@ class ProfileFM : Fragment() {
     private val IMAGE_REQ = 1
     private var imagePath: Uri? = null
     lateinit var binding: FragmentProfileBinding
-    lateinit var auth :FirebaseAuth
+    lateinit var auth: FirebaseAuth
     lateinit var database: DatabaseReference
     lateinit var adapter: DetailViewpagerAdapter
     override fun onCreateView(
@@ -50,6 +55,7 @@ class ProfileFM : Fragment() {
     ): View? {
         binding = FragmentProfileBinding.inflate(layoutInflater)
         clickImage()
+        initViewPager()
 
         clickButton()
         isLogIn()
@@ -65,34 +71,33 @@ class ProfileFM : Fragment() {
     ///check loged in or not yet
     private fun isLogIn() {
         auth = Firebase.auth
-        if (auth.currentUser!=null){
-            checkExist(auth.currentUser!!.uid)
-            val handle = Handler(Looper.myLooper()!!)
-            handle.postDelayed({
-                initViewPager()
-            },1000)
+        if (auth.currentUser != null) {
+
+//            checkExist(auth.currentUser!!.uid)
             binding.layoutSecond.visibility = View.GONE
             binding.layoutMain.visibility = View.VISIBLE
-        }else{
-            navSignUp()
-            binding.layoutSecond.visibility = View.VISIBLE
-            binding.layoutMain.visibility = View.GONE
-            binding.ivList1.apply {
-                setOnClickListener {
-                    val action = ProfileFMDirections.actionProfileFMToSettingAndPrivacyFM()
-                    findNavController().navigate(action)
+        } else {
+            CoroutineScope(Dispatchers.Main).launch {
+                navSignUp()
+                binding.layoutSecond.visibility = View.VISIBLE
+                binding.layoutMain.visibility = View.GONE
+                binding.ivList1.apply {
+                    setOnClickListener {
+                        val action = ProfileFMDirections.actionProfileFMToSettingAndPrivacyFM()
+                        findNavController().navigate(action)
+                    }
                 }
-            }
-            binding.linearMid.apply {
-                setOnClickListener {
-                    val action = ProfileFMDirections.actionProfileFMToSignUpBottomSheetFM()
-                    findNavController().navigate(action)
+                binding.linearMid.apply {
+                    setOnClickListener {
+                        val action = ProfileFMDirections.actionProfileFMToSignUpBottomSheetFM()
+                        findNavController().navigate(action)
+                    }
                 }
-            }
-            binding.linearBot.apply {
-                setOnClickListener {
-                    val action = ProfileFMDirections.actionProfileFMToSignUpBottomSheetFM()
-                    findNavController().navigate(action)
+                binding.linearBot.apply {
+                    setOnClickListener {
+                        val action = ProfileFMDirections.actionProfileFMToSignUpBottomSheetFM()
+                        findNavController().navigate(action)
+                    }
                 }
             }
         }
@@ -103,9 +108,9 @@ class ProfileFM : Fragment() {
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    for (element in snapshot.children){
-                        var user = element.getValue(User::class.java)
-                        if (uid == user!!.uuid) {
+                    snapshot.children.forEach {
+                        var user: User = it.getValue(User::class.java)!!
+                        if (uid == user.uuid) {
                             updateUI(user)
                             Toast.makeText(
                                 requireContext(),
@@ -113,16 +118,44 @@ class ProfileFM : Fragment() {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
+
+
                     }
+
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
             }
+
         })
+        database.child("videos")
+            .addValueEventListener(object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (element in snapshot.children){
+                            var video = element.getValue(Video::class.java)
+
+                            Toast.makeText(
+                                requireContext(),
+                                "ok ${video!!.url}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+
+
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+            })
+
     }
 
-    private fun updateUI(user:User) {
+    private fun updateUI(user: User) {
         binding.user = user
     }
 
@@ -166,6 +199,7 @@ class ProfileFM : Fragment() {
         adapter = DetailViewpagerAdapter(this)
         binding.vpDetail.adapter = adapter
         initTabLayout()
+
     }
 
     private fun clickImage() {
@@ -196,8 +230,8 @@ class ProfileFM : Fragment() {
 
     private fun selectImage() {
         val intent = Intent()
-        intent.type = "image/*" // if you want to you can use pdf/gif/video
         intent.action = Intent.ACTION_GET_CONTENT
+        intent.type = "image/*" // if you want to you can use pdf/gif/video
         someActivityResultLauncher.launch(intent)
     }
 

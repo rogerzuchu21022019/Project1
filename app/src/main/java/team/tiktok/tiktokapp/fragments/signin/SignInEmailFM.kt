@@ -58,9 +58,6 @@ class SignInEmailFM : Fragment() {
                             }else if(id==R.id.profileFM){
                                 val action  = SignInContainerFMDirections.actionSignInContainerFMToProfileFM()
                                 findNavController().navigate(action)
-                            }else if(id==R.id.settingAndPrivacyFM){
-                                val action  = SignInContainerFMDirections.actionSignInContainerFMToProfileFM()
-                                findNavController().navigate(action)
                             }
 
 

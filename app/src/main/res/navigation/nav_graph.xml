@@ -376,6 +376,12 @@
         <action
             android:id="@+id/action_signUpCreateTopTopIDFM_to_signInContainerFM"
             app:destination="@id/signInContainerFM" />
+        <action
+            android:id="@+id/action_signUpCreateTopTopIDFM_to_profileFM"
+            app:destination="@id/profileFM" />
+        <action
+            android:id="@+id/action_signUpCreateTopTopIDFM_to_inboxFM"
+            app:destination="@id/inboxFM" />
     </fragment>
     <fragment
         android:id="@+id/signUpCreatePassFM"

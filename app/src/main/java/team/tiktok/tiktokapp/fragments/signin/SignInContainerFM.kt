@@ -22,7 +22,6 @@ class SignInContainerFM : Fragment() {
     lateinit var binding: FragmentSignInContainerBinding
     lateinit var adapter: SignInViewpagerAdapter
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

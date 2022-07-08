@@ -18,6 +18,7 @@ import com.google.firebase.ktx.Firebase
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.data.User
+import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.FragmentInboxBinding
 import team.tiktok.tiktokapp.fragments.profile.ProfileFMDirections
 
@@ -54,12 +55,14 @@ class InboxFM : Fragment() {
     }
     private fun checkExist(uid: String) {
         database = Firebase.database.getReference("users")
+
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (element in snapshot.children){
-                        var user = element.getValue(User::class.java)
-                        if (uid == user!!.uuid) {
+
+                        var user = element.getValue(User::class.java)!!
+                        if (uid == user.uuid) {
                             Toast.makeText(
                                 requireContext(),
                                 "ok ${user.topTopID}",
@@ -73,6 +76,29 @@ class InboxFM : Fragment() {
             override fun onCancelled(error: DatabaseError) {
             }
         })
+        database.child("videos")
+            .addValueEventListener(object :ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        for (element in snapshot.children){
+                            var video = element.getValue(Video::class.java)
+
+                            Toast.makeText(
+                                requireContext(),
+                                "ok ${video!!.url}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            }
+                        }
+                    }
+
+
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
     }
 
 

@@ -51,6 +51,7 @@ class SignUpCreatePassFM : Fragment() {
                 findNavController().navigate(action)
             }
         }
+
     }
 
     override fun onDestroyView() {

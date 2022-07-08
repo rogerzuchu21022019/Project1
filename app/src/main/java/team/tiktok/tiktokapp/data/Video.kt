@@ -10,36 +10,39 @@ data class User(
     var fullName: String? = "",
     var topTopID: String? = "",
     var password: String? = "",
-    var uuid: String?="" ,
-    var follower: Follower?=null,
-    var following: Following?=null,
-    var hearts: Heart? = null,
+    var uuid: String = "",
+    var follower: Follower?,
+    var following: Following?,
+    var hearts: Heart?,
     var favorites: Int? = 0,
     var imgUrl: String? = "",
     var birthDay: String? = "",
     ///update
     var phone: String? = "",
     var profileUrl: String? = "",
-    var comment: Comment?=null,
-    var video: Video?=null,
+    var comment: List<Comment>?,
+    var videos: Video?,
     var urlFollower: String? = "",
     var urlFollowing: String? = ""
 ) : Parcelable
 
+
+
+
 @Parcelize
 data class Comment(
-    val idComment: String?="",
-    val message: String?="",
-    val fullName: String?="",
-    val user: User?=null,
-    val updateAt: String?="",
-    val countComments: Int?=0,
-    val hearts: Int?=0,
-
-    ) : Parcelable
+    val uidComment: String? = "",
+    val message: String? = "",
+    val fullName: String? = "",
+    val user: User? = null,
+    val updateAt: String? = "",
+    val countComments: Int? = 0,
+    val hearts: Int? = 0,
+) : Parcelable
 
 @Parcelize
 data class Video(
+    var uidVideo:String?="",
     var title: String? = "",
     var description: String? = "",
     var url: String? = "",
@@ -59,16 +62,15 @@ data class Heart(
 
 @Parcelize
 data class Follower(
-    var uid: String?="",
+    var uid: String? = "",
     var countFollowers: Int? = 0,
 ) : Parcelable
 
 @Parcelize
 data class Following(
-    var uid: String?="",
+    var uid: String? = "",
     var countFollowings: Int? = 0,
 ) : Parcelable
-
 
 
 //@Parcelize
