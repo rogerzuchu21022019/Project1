@@ -62,16 +62,15 @@ class ProfileFM : Fragment() {
         findNavController().navigate(action)
     }
 
+    ///check loged in or not yet
     private fun isLogIn() {
         auth = Firebase.auth
         if (auth.currentUser!=null){
             checkExist(auth.currentUser!!.uid)
-            initViewPager()
-            Toast.makeText(
-                requireContext(),
-                "ai do login",
-                Toast.LENGTH_SHORT
-            ).show()
+            val handle = Handler(Looper.myLooper()!!)
+            handle.postDelayed({
+                initViewPager()
+            },1000)
             binding.layoutSecond.visibility = View.GONE
             binding.layoutMain.visibility = View.VISIBLE
         }else{
@@ -86,13 +85,13 @@ class ProfileFM : Fragment() {
             }
             binding.linearMid.apply {
                 setOnClickListener {
-                    val action = ProfileFMDirections.actionProfileFMToSettingAndPrivacyFM()
+                    val action = ProfileFMDirections.actionProfileFMToSignUpBottomSheetFM()
                     findNavController().navigate(action)
                 }
             }
             binding.linearBot.apply {
                 setOnClickListener {
-                    val action = ProfileFMDirections.actionProfileFMToSettingAndPrivacyFM()
+                    val action = ProfileFMDirections.actionProfileFMToSignUpBottomSheetFM()
                     findNavController().navigate(action)
                 }
             }
@@ -152,15 +151,12 @@ class ProfileFM : Fragment() {
                 }
                 1 -> {
                     tab.setIcon(R.drawable.resource_private)
-
                 }
                 2 -> {
                     tab.setIcon(R.drawable.heart)
-
                 }
                 3 -> {
                     tab.setIcon(R.drawable.favourite)
-
                 }
             }
         }.attach()
@@ -211,10 +207,8 @@ class ProfileFM : Fragment() {
             if (result.resultCode == AppCompatActivity.RESULT_OK) {
                 val data = result.data
                 imagePath = data!!.data
-                val handle = Handler(Looper.myLooper()!!)
-                handle.postDelayed({
-                    Picasso.get().load(imagePath).into(binding.civAvatar)
-                }, 800)
+                Picasso.get().load(imagePath).into(binding.civAvatar)
+
             }
 
         }

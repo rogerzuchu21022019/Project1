@@ -386,7 +386,8 @@
                            <de.hdodenhof.circleimageview.CircleImageView
                                android:layout_width="@dimen/_70sdp"
                                android:layout_height="@dimen/_70sdp"
-                               android:src="@drawable/ic_launcher_background"/>
+                               android:scaleType="centerCrop"
+                               android:src="@drawable/img_avatar"/>
 
                            <TextView
                                android:layout_width="match_parent"

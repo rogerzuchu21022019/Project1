@@ -18,7 +18,7 @@ import team.tiktok.tiktokapp.databinding.FragmentSettingAndPrivacyBinding
 
 
 class SettingAndPrivacyFM : Fragment() {
-   lateinit var binding:FragmentSettingAndPrivacyBinding
+   lateinit var binding: FragmentSettingAndPrivacyBinding
    lateinit var auth :FirebaseAuth
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -258,6 +258,7 @@
     <dialog
         android:id="@+id/signUpBottomSheetFM"
         tools:layout="@layout/fragment_sign_up_main"
+
         android:name="team.tiktok.tiktokapp.fragments.signup.SignUpMainBottomSheetFM"
         android:label="SignUpBottomSheetFM" >
         <action
