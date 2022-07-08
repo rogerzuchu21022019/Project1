@@ -7,7 +7,6 @@
 
     </data>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -16,42 +15,190 @@
             android:id="@+id/videoView"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="match_parent"
-
             android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:ignore="MissingConstraints" />
+
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/music"
+            android:drawablePadding="@dimen/_5sdp"
+            android:textSize="@dimen/_12sdp"
+            android:background="@color/gray"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/_15sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:text="Thêm âm thanh"
             tools:ignore="MissingConstraints" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnNext"
-            android:layout_marginBottom="?attr/actionBarSize"
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:src="@drawable/close"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btnSound" />
+
+        <ImageView
+            android:id="@+id/ivReverse"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:src="@drawable/reverse_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvReverse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/music"
-            android:text="Tiếp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="MissingConstraints" />
+            android:text="Reverse"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@+id/ivReverse"
+            app:layout_constraintStart_toStartOf="@+id/ivReverse"
+            app:layout_constraintTop_toBottomOf="@+id/ivReverse" />
+
+        <ImageView
+            android:id="@+id/ivSpeed"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:src="@drawable/speed_16"
+            app:layout_constraintEnd_toEndOf="@+id/ivReverse"
+            app:layout_constraintStart_toStartOf="@+id/ivReverse"
+            app:layout_constraintTop_toBottomOf="@+id/tvReverse" />
+
+        <TextView
+            android:id="@+id/tvSpeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Speed"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@+id/ivReverse"
+            app:layout_constraintStart_toStartOf="@+id/ivReverse"
+            app:layout_constraintTop_toBottomOf="@+id/ivSpeed" />
+
+        <ImageView
+            android:id="@+id/ivFillter"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:src="@drawable/fillter_16"
+            app:layout_constraintEnd_toEndOf="@+id/ivReverse"
+            app:layout_constraintStart_toStartOf="@+id/ivReverse"
+            app:layout_constraintTop_toBottomOf="@+id/tvSpeed" />
+
+        <TextView
+            android:id="@+id/tvFillter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fillter"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@+id/ivReverse"
+            app:layout_constraintStart_toStartOf="@+id/ivReverse"
+            app:layout_constraintTop_toBottomOf="@+id/ivFillter" />
+
+        <ImageView
+            android:id="@+id/ivBeautify"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:src="@drawable/beautify_16"
+            app:layout_constraintEnd_toEndOf="@+id/ivReverse"
+            app:layout_constraintStart_toStartOf="@+id/ivReverse"
+            app:layout_constraintTop_toBottomOf="@+id/tvFillter" />
+
+        <TextView
+            android:id="@+id/tvBeautify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="beautify"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@+id/ivReverse"
+            app:layout_constraintStart_toStartOf="@+id/ivReverse"
+            app:layout_constraintTop_toBottomOf="@+id/ivBeautify" />
+
+        <ImageView
+            android:id="@+id/ivTimer"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:src="@drawable/timer_16"
+            app:layout_constraintEnd_toEndOf="@+id/ivReverse"
+            app:layout_constraintStart_toStartOf="@+id/ivReverse"
+            app:layout_constraintTop_toBottomOf="@+id/tvBeautify" />
+
+        <TextView
+            android:id="@+id/tvTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Timer"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@+id/ivReverse"
+            app:layout_constraintStart_toStartOf="@+id/ivReverse"
+            app:layout_constraintTop_toBottomOf="@+id/ivTimer" />
+
+        <ImageView
+            android:id="@+id/ivFlash"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:src="@drawable/flash_16"
+            app:layout_constraintEnd_toEndOf="@+id/ivReverse"
+            app:layout_constraintStart_toStartOf="@+id/ivReverse"
+            app:layout_constraintTop_toBottomOf="@+id/tvTimer" />
+
+        <TextView
+            android:id="@+id/tvFlash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Flash"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@+id/ivReverse"
+            app:layout_constraintStart_toStartOf="@+id/ivReverse"
+            app:layout_constraintTop_toBottomOf="@+id/ivFlash" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:layout_marginBottom="?attr/actionBarSize"
             android:id="@+id/btnUpTo"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_145sdp"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/music"
             android:text="Đăng lên nhật ký"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:background="@color/white"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnNext"
+            android:layout_marginBottom="?attr/actionBarSize"
+            android:layout_width="@dimen/_145sdp"
+            android:layout_height="wrap_content"
+            android:text="Tiếp"
+            android:background="@color/red"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

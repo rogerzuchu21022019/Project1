@@ -14,8 +14,8 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/ivCloseShare"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
                 android:layout_gravity="end"
                 android:src="@drawable/close"
                 app:layout_constraintEnd_toEndOf="parent"

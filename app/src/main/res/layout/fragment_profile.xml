@@ -34,8 +34,8 @@
 
                 <ImageView
                     android:id="@+id/ivAddFriend"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:src="@drawable/add_friend"
                     app:layout_constraintBottom_toBottomOf="parent"

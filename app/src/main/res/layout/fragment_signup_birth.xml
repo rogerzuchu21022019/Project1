@@ -11,13 +11,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ImageView
             android:id="@+id/ivBack"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
             android:src="@drawable/back1"
-            android:layout_marginTop="@dimen/_20sdp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="@+id/tvSignIn"
+            app:layout_constraintStart_toStartOf="parent"
             tools:ignore="MissingConstraints" />
 
         <TextView
