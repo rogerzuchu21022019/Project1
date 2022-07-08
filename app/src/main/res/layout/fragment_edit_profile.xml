@@ -33,8 +33,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="@dimen/_12sdp"
             android:layout_marginStart="@dimen/_5sdp"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"/>
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civAvatar"
