@@ -29,8 +29,8 @@
         <ImageView
             android:id="@+id/ivSearch"
             android:src="@drawable/search16"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
             android:layout_marginStart="@dimen/_120sdp"
             android:layout_marginBottom="@dimen/_300sdp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/_5sdp"
                 android:text="Đang Follow"
-                android:textSize="@dimen/_14sdp"
+                android:textSize="@dimen/_12sdp"
                 android:textColor="@color/gray"
                 android:textStyle="bold" />
 
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:text="Dành cho bạn"
                 android:textStyle="bold"
-                android:textSize="@dimen/_14sdp"
+                android:textSize="@dimen/_12sdp"
                 android:textColor="@color/gray" />
         </LinearLayout>
 
