@@ -110,8 +110,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.1"
             tools:ignore="MissingConstraints">
-
-
         </LinearLayout>
 
 
@@ -121,8 +119,8 @@
             android:layout_height="wrap_content"
             android:text="@{video.title}"
             android:textColor="@color/white"
-            android:layout_marginTop="@dimen/_150sdp"
-            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_8sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.01"
@@ -204,8 +202,8 @@
 
         <ImageView
             android:id="@+id/ivComment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_3sdp"
             android:src="@drawable/comment32"
@@ -226,13 +224,15 @@
             app:layout_constraintEnd_toEndOf="@id/ivComment"
             app:layout_constraintBottom_toTopOf="@id/ivSave"
             android:textColor="@color/white"
+            android:textSize="@dimen/_8sdp"
+            android:textStyle="bold"
             android:text="3456"
             tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/ivSave"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_3sdp"
             android:src="@drawable/save32"
@@ -253,13 +253,15 @@
             app:layout_constraintEnd_toEndOf="@id/ivSave"
             app:layout_constraintBottom_toTopOf="@id/ivShare"
             android:textColor="@color/white"
+            android:textSize="@dimen/_8sdp"
+            android:textStyle="bold"
             android:text="123"
             tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/ivShare"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_3sdp"
             android:src="@drawable/share32"
@@ -279,13 +281,15 @@
             app:layout_constraintStart_toStartOf="@id/ivShare"
             app:layout_constraintEnd_toEndOf="@id/ivShare"
             android:textColor="@color/white"
+            android:textSize="@dimen/_8sdp"
+            android:textStyle="bold"
             android:text="3456"
             tools:ignore="MissingConstraints" />
 
         <ImageView
             android:id="@+id/ivDisc"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:src="@drawable/disc32"
             app:layout_constraintTop_toBottomOf="@id/tvShare"

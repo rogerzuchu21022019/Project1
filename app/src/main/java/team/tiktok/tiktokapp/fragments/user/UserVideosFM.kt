@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.*
 //import me.ibrahimsn.lib.SmoothBottomBar
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
@@ -35,28 +36,29 @@ class UserVideosFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
     }
 
     fun initRecyclerView() {
-        val mainDB = Firebase.database.getReference("videos")
-        val options = FirebaseRecyclerOptions.Builder<Video>()
-            .setQuery(mainDB, Video::class.java)
-            .build()
-        adapter = DetailAdapter(options = options)
-        binding.rvListVideo.adapter = adapter
-        binding.rvListVideo.apply {
-            setHasFixedSize(true)
-            addItemDecoration(
-                DividerItemDecoration(
-                    requireContext(),
-                    DividerItemDecoration.HORIZONTAL
-                )
-            )
-            addItemDecoration(
-                DividerItemDecoration(
-                    requireContext(),
-                    DividerItemDecoration.VERTICAL
-                )
-            )
-        }
-        adapter.setOnClickItem(this)
+            val mainDB = Firebase.database.getReference("videos")
+                val options = FirebaseRecyclerOptions.Builder<Video>()
+                    .setQuery(mainDB, Video::class.java)
+                    .build()
+
+                adapter = DetailAdapter(options = options)
+                binding.rvListVideo.adapter = adapter
+                binding.rvListVideo.apply {
+                    setHasFixedSize(true)
+                    addItemDecoration(
+                        DividerItemDecoration(
+                            requireContext(),
+                            DividerItemDecoration.HORIZONTAL
+                        )
+                    )
+                    addItemDecoration(
+                        DividerItemDecoration(
+                            requireContext(),
+                            DividerItemDecoration.VERTICAL
+                        )
+                    )
+                }
+                adapter.setOnClickItem(this@UserVideosFM)
     }
 
     private fun checkComeIn(isComeIn: Boolean) {

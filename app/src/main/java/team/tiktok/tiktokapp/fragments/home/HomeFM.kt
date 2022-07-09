@@ -16,8 +16,13 @@ import androidx.navigation.fragment.findNavController
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
+import team.tiktok.tiktokapp.adapter.following.FollowingVideoAdapter
 import team.tiktok.tiktokapp.adapter.home.HomeVideoAdapter
 import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.FragmentHomeBinding
@@ -39,14 +44,19 @@ class HomeFM : Fragment() , HomeVideoAdapter.OnClickItemInRecyclerView{
 
 
     private fun loadData() {
-        val mDataBase = Firebase.database.getReference("videos")
-        val options = FirebaseRecyclerOptions.Builder<Video>()
-            .setQuery(mDataBase,Video::class.java)
-            .build()
-//        adapter = VideoAdapter(options, VideoAdapter.ClickItemListener {})
-        adapter = HomeVideoAdapter(options)
-        binding.vpHome.adapter = adapter
-        adapter.setOnClickItem(this)
+        CoroutineScope(Dispatchers.IO).launch {
+            val mDataBase = Firebase.database.getReference("videos")
+            val options = FirebaseRecyclerOptions.Builder<Video>()
+                .setQuery(mDataBase,Video::class.java)
+                .build()
+            withContext(Dispatchers.Main){
+                adapter = HomeVideoAdapter(options)
+                binding.vpHome.adapter = adapter
+                adapter.setOnClickItem(this@HomeFM)
+            }
+        }
+
+
     }
 
     override fun onStart() {
