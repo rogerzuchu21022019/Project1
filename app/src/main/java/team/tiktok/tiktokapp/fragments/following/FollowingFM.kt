@@ -13,6 +13,10 @@ import androidx.navigation.fragment.findNavController
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.adapter.following.FollowingVideoAdapter
 import team.tiktok.tiktokapp.data.Video
@@ -35,13 +39,19 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
 
 
     private fun loadData() {
-        val mDataBase = Firebase.database.getReference("videos")
-        val options = FirebaseRecyclerOptions.Builder<Video>()
-            .setQuery(mDataBase,Video::class.java)
-            .build()
-        adapter = FollowingVideoAdapter(options)
-        binding.vpHome.adapter = adapter
-        adapter.setOnClickItem(this)
+        CoroutineScope(Dispatchers.IO).launch {
+            val mDataBase = Firebase.database.getReference("videos")
+            val options = FirebaseRecyclerOptions.Builder<Video>()
+                .setQuery(mDataBase,Video::class.java)
+                .build()
+            withContext(Dispatchers.Main){
+                adapter = FollowingVideoAdapter(options)
+                binding.vpHome.adapter = adapter
+                adapter.setOnClickItem(this@FollowingFM)
+            }
+        }
+
+
     }
 
     override fun onStart() {

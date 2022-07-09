@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/boder_signup.xml" value="0.2585" />
+        <entry key="app/src/main/res/drawable/border_nav_bot.xml" value="0.2585" />
         <entry key="app/src/main/res/drawable/bottom_sheet_custom.xml" value="0.1625" />
         <entry key="app/src/main/res/drawable/close.xml" value="0.296" />
         <entry key="app/src/main/res/drawable/fill_favorite.xml" value="0.2805" />
         <entry key="app/src/main/res/drawable/save.xml" value="0.288" />
+        <entry key="app/src/main/res/drawable/setting.xml" value="0.215" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15625" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.2776268115942029" />
@@ -57,7 +60,7 @@
         <entry key="app/src/main/res/layout/item_video.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/item_video_explore.xml" value="0.26875" />
         <entry key="app/src/main/res/layout/item_video_following.xml" value="0.26875" />
-        <entry key="app/src/main/res/layout/item_video_home.xml" value="0.26875" />
+        <entry key="app/src/main/res/layout/item_video_home.xml" value="0.3419761737911703" />
         <entry key="app/src/main/res/menu/bot_menu.xml" value="0.29739583333333336" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.296" />
       </map>

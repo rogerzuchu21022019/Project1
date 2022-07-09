@@ -15,13 +15,13 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
-import team.tiktok.tiktokapp.databinding.FragmentAddBinding
 import team.tiktok.tiktokapp.databinding.FragmentUploadBinding
 
 
 class UploadFM : Fragment() {
-   lateinit var binding:FragmentUploadBinding
+   lateinit var binding: FragmentUploadBinding
     private val IMAGE_REQ = 1
     private var imagePath: Uri? = null
     override fun onCreateView(
@@ -41,7 +41,6 @@ class UploadFM : Fragment() {
         }
         binding.btnNext.apply {
             setOnClickListener {
-                findNavController().navigate(R.id.action_uploadFM_to_signUpBottomSheetFM)
             }
         }
         binding.videoView.apply {

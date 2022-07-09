@@ -38,7 +38,8 @@ class SignUpMainBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListene
         val id = view?.id
         when (id) {
             R.id.tvPhoneMailTiktok -> {
-                findNavController().navigate(R.id.action_signUpBottomSheetFM_to_signUpBirthFM)
+                val action = SignUpMainBottomSheetFMDirections.actionSignUpBottomSheetFMToSignUpBirthFM()
+                findNavController().navigate(action)
             }
             R.id.ivClose -> {
                 this.dismiss()

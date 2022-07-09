@@ -1,5 +1,7 @@
 package team.tiktok.tiktokapp.adapter.detail
 
+import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
@@ -11,34 +13,42 @@ import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.ItemDetailVideoUserBinding
 
 //class VideoAdapter(options: FirebaseRecyclerOptions<Video?>,private val clickItem:ClickItemListener):FirebaseRecyclerAdapter<Video, VideoAdapter.VideoViewHolder>(options) {
-class DetailAdapter(options: FirebaseRecyclerOptions<Video>):FirebaseRecyclerAdapter<Video, DetailAdapter.VideoViewHolder>(options) {
+class DetailAdapter(options: FirebaseRecyclerOptions<Video>) :
+    FirebaseRecyclerAdapter<Video, DetailAdapter.VideoViewHolder>(options) {
     lateinit var itemDetailVideoUserBinding: ItemDetailVideoUserBinding
     lateinit var onClickItemInRecyclerView: OnClickItemInRecyclerView
-    class VideoViewHolder(val itemDetailVideoUserBinding: ItemDetailVideoUserBinding
-    , onClickItemInRecyclerView: OnClickItemInRecyclerView
-    ) :RecyclerView.ViewHolder(itemDetailVideoUserBinding.root){
+
+    class VideoViewHolder(
+        val itemDetailVideoUserBinding: ItemDetailVideoUserBinding,
+        onClickItemInRecyclerView: OnClickItemInRecyclerView
+    ) : RecyclerView.ViewHolder(itemDetailVideoUserBinding.root) {
         ///init Click
         init {
             /// Click on Screen
             itemDetailVideoUserBinding.root.apply {
                 setOnClickListener {
-                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition,it)
+                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
                 }
             }
             itemDetailVideoUserBinding.videoView.apply {
                 setOnClickListener {
-                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition,it)
+                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
                 }
             }
-            onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition,itemDetailVideoUserBinding.root)
+            onClickItemInRecyclerView.onItemClick(
+                absoluteAdapterPosition,
+                itemDetailVideoUserBinding.root
+            )
         }
-        fun setData(video:Video){
+
+        fun setData(video: Video) {
             itemDetailVideoUserBinding.video = video
             itemDetailVideoUserBinding.videoView.apply {
                 setVideoPath(video.url)
-                setOnPreparedListener { mediaplayer->
+                setOnPreparedListener { mediaplayer ->
                     mediaplayer.start()
-                    mediaplayer.setVolume(0f,0f)
+                    mediaplayer.setVolume(0f, 0f)
+                    mediaplayer.pause()
                 }
             }
         }
@@ -50,15 +60,20 @@ class DetailAdapter(options: FirebaseRecyclerOptions<Video>):FirebaseRecyclerAda
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        itemDetailVideoUserBinding =  ItemDetailVideoUserBinding.inflate(layoutInflater,parent,false)
-        return VideoViewHolder(itemDetailVideoUserBinding = itemDetailVideoUserBinding,onClickItemInRecyclerView)
+        itemDetailVideoUserBinding =
+            ItemDetailVideoUserBinding.inflate(layoutInflater, parent, false)
+        return VideoViewHolder(
+            itemDetailVideoUserBinding = itemDetailVideoUserBinding,
+            onClickItemInRecyclerView
+        )
     }
 
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int, video: Video) {
         holder.setData(video)
     }
+
     open interface OnClickItemInRecyclerView {
-        fun onItemClick(position: Int,view:View)
+        fun onItemClick(position: Int, view: View)
     }
 
 }

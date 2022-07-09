@@ -4,328 +4,539 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="user"
+            type="team.tiktok.tiktokapp.data.User" />
+        <variable
+            name="heart"
+            type="team.tiktok.tiktokapp.data.Heart" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="?attr/actionBarSize">
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints">
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:orientation="vertical"
+       android:layout_height="match_parent">
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:id="@+id/layoutMain"
+           android:visibility="gone"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_marginBottom="?attr/actionBarSize">
+           <LinearLayout
+               android:id="@+id/linearLayout"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="vertical"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               tools:ignore="MissingConstraints">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_50sdp"
-                tools:context=".ProfileFM">
+               <androidx.constraintlayout.widget.ConstraintLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="@dimen/_50sdp"
+                   tools:context=".ProfileFM">
 
                 <ImageView
                     android:id="@+id/ivAddFriend"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:src="@drawable/add_friend"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tvFullName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Hoàng Quốc Hưng"
-                    android:textSize="@dimen/_14sdp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                   <TextView
+                       android:id="@+id/tvFullName"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:gravity="center"
+                       android:text="@{user.fullName}"
+                       android:textSize="@dimen/_14sdp"
+                       android:textStyle="bold"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintStart_toStartOf="parent"
+                       app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/tvList1"
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:src="@drawable/list1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/tvFullName"
-                    app:layout_constraintTop_toTopOf="parent" />
+                   <ImageView
+                       android:id="@+id/tvList1"
+                       android:layout_width="@dimen/_20sdp"
+                       android:layout_height="@dimen/_20sdp"
+                       android:layout_marginStart="@dimen/_5sdp"
+                       android:src="@drawable/list1"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintStart_toEndOf="@+id/tvFullName"
+                       app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/tvEye"
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:src="@drawable/eye"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/ivList"
-                    app:layout_constraintTop_toTopOf="parent" />
+                   <ImageView
+                       android:id="@+id/tvEye"
+                       android:layout_width="@dimen/_20sdp"
+                       android:layout_height="@dimen/_20sdp"
+                       android:layout_marginEnd="@dimen/_10sdp"
+                       android:src="@drawable/eye"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toStartOf="@+id/ivList"
+                       app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/ivList"
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:src="@drawable/list"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                   <ImageView
+                       android:id="@+id/ivList"
+                       android:layout_width="@dimen/_20sdp"
+                       android:layout_height="@dimen/_20sdp"
+                       android:layout_marginEnd="@dimen/_10sdp"
+                       android:src="@drawable/list"
+                       app:layout_constraintBottom_toBottomOf="parent"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       app:layout_constraintTop_toTopOf="parent"
+                       tools:ignore="MissingConstraints" />
+               </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                tools:context=".ProfileFM">
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical"
+                   tools:context=".ProfileFM">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/civAvatar"
-                    android:layout_width="@dimen/_70sdp"
-                    android:layout_height="@dimen/_70sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:src="@drawable/ic_launcher_background" />
+                   <de.hdodenhof.circleimageview.CircleImageView
+                       android:id="@+id/civAvatar"
+                       android:layout_width="@dimen/_70sdp"
+                       android:layout_height="@dimen/_70sdp"
+                       android:layout_gravity="center"
+                       android:layout_marginTop="@dimen/_20sdp"
+                       android:src="@drawable/ic_launcher_background" />
 
-                <TextView
-                    android:id="@+id/topTopId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:text="petthungg"
-                    android:textSize="@dimen/_12sdp" />
+                   <TextView
+                       android:id="@+id/topTopId"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:layout_marginTop="@dimen/_5sdp"
+                       android:text="@{user.topTopID}"
+                       android:textSize="@dimen/_12sdp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-
-                    <TextView
-                        android:id="@+id/tvFollowing"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_40sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="999"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvFollower"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="999"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvLike"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_40sdp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="999"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:id="@+id/titleFollowing"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_40sdp"
-                        android:layout_marginTop="@dimen/_3sdp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Đang Follow"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/titleFollower"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_3sdp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Follower"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/titleLike"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_3sdp"
-                        android:layout_marginEnd="@dimen/_40sdp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="Thích"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnEditProfile"
-                        android:layout_width="@dimen/_150sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:text="Sửa hồ sơ"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:orientation="horizontal"
+                       android:weightSum="3">
 
 
-                    <TextView
-                        android:id="@+id/tvAddBio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:text="Nhấn để thêm tiểu sử"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/btnEditProfile" />
+                       <TextView
+                           android:id="@+id/tvFollowing"
+                           android:layout_width="0dp"
+                           android:layout_height="wrap_content"
+                           android:layout_marginStart="@dimen/_40sdp"
+                           android:layout_marginTop="@dimen/_10sdp"
+                           android:layout_weight="1"
+                           android:gravity="center"
+                           android:text="@{String.valueOf(user.following),default =0}"
+                           android:textSize="@dimen/_12sdp"
+                           android:textStyle="bold" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                       <TextView
+                           android:id="@+id/tvFollower"
+                           android:layout_width="0dp"
+                           android:layout_height="wrap_content"
+                           android:text="@{String.valueOf(user.follower),default =0}"
+                           android:layout_marginTop="@dimen/_10sdp"
+                           android:layout_weight="1"
+                           android:gravity="center"
+                           android:textSize="@dimen/_12sdp"
+                           android:textStyle="bold" />
 
+                       <TextView
+                           android:id="@+id/tvLike"
+                           android:layout_width="0dp"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="@dimen/_10sdp"
+                           android:text="@{String.valueOf(user.hearts),default =0}"
+                           android:layout_marginEnd="@dimen/_40sdp"
+                           android:layout_weight="1"
+                           android:gravity="center"
+                           android:textSize="@dimen/_12sdp"
+                           android:textStyle="bold" />
 
-                <!--                <LinearLayout-->
-                <!--                    android:id="@+id/linear"-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:orientation="vertical">-->
+                   </LinearLayout>
 
-                <!--                    <TextView-->
-                <!--                        android:id="@+id/tvFirstVideo"-->
-                <!--                        android:layout_width="wrap_content"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:layout_gravity="center"-->
-                <!--                        android:layout_marginTop="@dimen/_10sdp"-->
-                <!--                        android:text="Chia sẻ video đầu tiên của bạn"-->
-                <!--                        android:textSize="@dimen/_12sdp"-->
-                <!--                        android:textStyle="bold" />-->
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:orientation="horizontal"
+                       android:weightSum="3">
 
-                <!--                    <TextView-->
-                <!--                        android:id="@+id/tvDiscription1"-->
-                <!--                        android:layout_width="wrap_content"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:layout_gravity="center"-->
-                <!--                        android:layout_marginTop="@dimen/_5sdp"-->
-                <!--                        android:text="Quay hoặc tải lên video có hiệu ứng âm thanh,v.v. Các video" />-->
+                       <TextView
+                           android:id="@+id/titleFollowing"
+                           android:layout_width="0dp"
+                           android:layout_height="wrap_content"
+                           android:layout_marginStart="@dimen/_40sdp"
+                           android:layout_marginTop="@dimen/_3sdp"
+                           android:layout_weight="1"
+                           android:gravity="center"
+                           android:text="Đang Follow"
+                           android:textSize="@dimen/_12sdp"
+                           android:textStyle="bold" />
 
-                <!--                    <TextView-->
-                <!--                        android:id="@+id/tvDiscription2"-->
-                <!--                        android:layout_width="wrap_content"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:layout_gravity="center"-->
-                <!--                        android:text="sẽ xuất hiện trên hồ sơ của bạn." />-->
+                       <TextView
+                           android:id="@+id/titleFollower"
+                           android:layout_width="0dp"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="@dimen/_3sdp"
+                           android:layout_weight="1"
+                           android:gravity="center"
+                           android:text="Follower"
+                           android:textSize="@dimen/_12sdp"
+                           android:textStyle="bold" />
 
-                <!--                    <TextView-->
-                <!--                        android:id="@+id/tvCreateVideo"-->
-                <!--                        android:layout_width="wrap_content"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:layout_gravity="center"-->
-                <!--                        android:layout_marginTop="@dimen/_5sdp"-->
-                <!--                        android:text="Tạo video"-->
-                <!--                        android:textColor="#E91E63"-->
-                <!--                        android:textSize="@dimen/_14sdp"-->
-                <!--                        android:textStyle="bold" />-->
+                       <TextView
+                           android:id="@+id/titleLike"
+                           android:layout_width="0dp"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="@dimen/_3sdp"
+                           android:layout_marginEnd="@dimen/_40sdp"
+                           android:layout_weight="1"
+                           android:gravity="center"
+                           android:text="Thích"
+                           android:textSize="@dimen/_12sdp"
+                           android:textStyle="bold" />
+                   </LinearLayout>
 
-                <!--                    <ImageView-->
-                <!--                        android:id="@+id/ivFinishProfile"-->
-                <!--                        android:layout_width="match_parent"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:layout_marginTop="@dimen/_10sdp"-->
-                <!--                        android:scaleType="center"-->
-                <!--                        android:src="@drawable/imgadd"-->
-                <!--                        />-->
-                <!--                </LinearLayout>-->
+                   <androidx.constraintlayout.widget.ConstraintLayout
+                       android:id="@+id/constrainMid"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content">
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tab"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_constraintTop_toBottomOf="@id/linear"
-                    tools:ignore="MissingConstraints" />
-
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/vpDetail"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tab"
-                    tools:ignore="MissingConstraints">
-
-                </androidx.viewpager2.widget.ViewPager2>
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@color/gray"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.996" />
-
-        <View
-            android:layout_width="@dimen/_1sdp"
-            android:layout_height="@dimen/_13sdp"
-            android:background="@color/gray"
-            app:layout_constraintHorizontal_bias="0.376"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.36"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:layout_width="@dimen/_1sdp"
-            android:layout_height="@dimen/_13sdp"
-            android:background="@color/gray"
-            app:layout_constraintHorizontal_bias="0.625"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="0.36"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                       <androidx.appcompat.widget.AppCompatButton
+                           android:id="@+id/btnEditProfile"
+                           android:layout_width="@dimen/_150sdp"
+                           android:layout_height="@dimen/_40sdp"
+                           android:layout_marginTop="@dimen/_10sdp"
+                           android:text="Sửa hồ sơ"
+                           app:layout_constraintEnd_toEndOf="parent"
+                           app:layout_constraintStart_toStartOf="parent"
+                           app:layout_constraintTop_toTopOf="parent" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                       <TextView
+                           android:id="@+id/tvAddBio"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="@dimen/_10sdp"
+                           android:text="Nhấn để thêm tiểu sử"
+                           app:layout_constraintEnd_toEndOf="parent"
+                           app:layout_constraintStart_toStartOf="parent"
+                           app:layout_constraintTop_toBottomOf="@+id/btnEditProfile" />
+
+                   </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                   <!--                <LinearLayout-->
+                   <!--                    android:id="@+id/linear"-->
+                   <!--                    android:layout_width="match_parent"-->
+                   <!--                    android:layout_height="wrap_content"-->
+                   <!--                    android:orientation="vertical">-->
+
+                   <!--                    <TextView-->
+                   <!--                        android:id="@+id/tvFirstVideo"-->
+                   <!--                        android:layout_width="wrap_content"-->
+                   <!--                        android:layout_height="wrap_content"-->
+                   <!--                        android:layout_gravity="center"-->
+                   <!--                        android:layout_marginTop="@dimen/_10sdp"-->
+                   <!--                        android:text="Chia sẻ video đầu tiên của bạn"-->
+                   <!--                        android:textSize="@dimen/_12sdp"-->
+                   <!--                        android:textStyle="bold" />-->
+
+                   <!--                    <TextView-->
+                   <!--                        android:id="@+id/tvDiscription1"-->
+                   <!--                        android:layout_width="wrap_content"-->
+                   <!--                        android:layout_height="wrap_content"-->
+                   <!--                        android:layout_gravity="center"-->
+                   <!--                        android:layout_marginTop="@dimen/_5sdp"-->
+                   <!--                        android:text="Quay hoặc tải lên video có hiệu ứng âm thanh,v.v. Các video" />-->
+
+                   <!--                    <TextView-->
+                   <!--                        android:id="@+id/tvDiscription2"-->
+                   <!--                        android:layout_width="wrap_content"-->
+                   <!--                        android:layout_height="wrap_content"-->
+                   <!--                        android:layout_gravity="center"-->
+                   <!--                        android:text="sẽ xuất hiện trên hồ sơ của bạn." />-->
+
+                   <!--                    <TextView-->
+                   <!--                        android:id="@+id/tvCreateVideo"-->
+                   <!--                        android:layout_width="wrap_content"-->
+                   <!--                        android:layout_height="wrap_content"-->
+                   <!--                        android:layout_gravity="center"-->
+                   <!--                        android:layout_marginTop="@dimen/_5sdp"-->
+                   <!--                        android:text="Tạo video"-->
+                   <!--                        android:textColor="#E91E63"-->
+                   <!--                        android:textSize="@dimen/_14sdp"-->
+                   <!--                        android:textStyle="bold" />-->
+
+                   <!--                    <ImageView-->
+                   <!--                        android:id="@+id/ivFinishProfile"-->
+                   <!--                        android:layout_width="match_parent"-->
+                   <!--                        android:layout_height="wrap_content"-->
+                   <!--                        android:layout_marginTop="@dimen/_10sdp"-->
+                   <!--                        android:scaleType="center"-->
+                   <!--                        android:src="@drawable/imgadd"-->
+                   <!--                        />-->
+                   <!--                </LinearLayout>-->
+
+                   <androidx.constraintlayout.widget.ConstraintLayout
+                       android:id="@+id/constrainBot"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       tools:ignore="MissingConstraints">
+                       <com.google.android.material.tabs.TabLayout
+                           android:id="@+id/tab"
+                           android:layout_width="match_parent"
+                           android:layout_height="?attr/actionBarSize"
+                           app:layout_constraintTop_toTopOf="parent"
+                           app:layout_constraintBottom_toTopOf="@id/vpDetail"
+                           tools:ignore="MissingConstraints" />
+
+                       <androidx.viewpager2.widget.ViewPager2
+                           android:id="@+id/vpDetail"
+                           android:layout_width="match_parent"
+                           android:layout_height="0dp"
+                           app:layout_constraintBottom_toBottomOf="parent"
+                           app:layout_constraintEnd_toEndOf="parent"
+                           app:layout_constraintStart_toStartOf="parent"
+                           app:layout_constraintTop_toBottomOf="@id/tab"
+                           tools:ignore="MissingConstraints">
+
+                       </androidx.viewpager2.widget.ViewPager2>
+                   </androidx.constraintlayout.widget.ConstraintLayout>
+
+               </LinearLayout>
+
+
+           </LinearLayout>
+
+
+
+
+       </androidx.constraintlayout.widget.ConstraintLayout>
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:id="@+id/layoutSecond"
+           android:visibility="visible"
+           android:layout_marginBottom="?attr/actionBarSize"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+
+           <androidx.core.widget.NestedScrollView
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintTop_toTopOf="parent">
+
+
+               <LinearLayout
+                   android:orientation="vertical"
+                   android:id="@+id/design_bottom_sheet"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent">
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:orientation="horizontal"
+                       android:weightSum="4"
+                       android:layout_marginTop="@dimen/_30sdp">
+
+                       <TextView
+                           android:layout_weight="3.5"
+                           android:paddingStart="@dimen/_50sdp"
+                           android:layout_width="0dp"
+                           android:layout_height="wrap_content"
+                           android:text="Hồ sơ"
+                           android:textColor="@color/black"
+                           android:gravity="center"
+                           android:textSize="@dimen/_20sdp"/>
+
+                       <ImageView
+                           android:id="@+id/ivList1"
+                           android:layout_weight="0.25"
+                           android:layout_width="0dp"
+                           android:layout_marginEnd="10dp"
+                           android:layout_height="@dimen/_20sdp"
+                           android:background="@drawable/list"/>
+
+                   </LinearLayout>
+
+
+                   <RelativeLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:gravity="center"
+                       android:id="@+id/linearMid"
+                       android:layout_gravity="center"
+                       android:layout_marginTop="@dimen/_40sdp">
+
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:orientation="vertical"
+                           android:gravity="center">
+
+                           <de.hdodenhof.circleimageview.CircleImageView
+                               android:layout_width="@dimen/_70sdp"
+                               android:layout_height="@dimen/_70sdp"
+                               android:scaleType="centerCrop"
+                               android:src="@drawable/img_avatar"/>
+
+                           <TextView
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:gravity="center"
+                               android:layout_marginTop="@dimen/_5sdp"
+                               android:textColor="@color/black"
+                               android:textSize="@dimen/_20sdp"
+                               android:text="Username"/>
+
+
+                           <LinearLayout
+                               android:layout_marginTop="@dimen/_10sdp"
+                               android:weightSum="3"
+                               android:gravity="center"
+                               android:layout_marginStart="@dimen/_30sdp"
+                               android:layout_marginEnd="@dimen/_30sdp"
+                               android:layout_gravity="center"
+                               android:layout_width="match_parent"
+
+                               android:layout_height="wrap_content">
+
+                               <TextView
+                                   android:layout_width="0dp"
+                                   android:layout_weight="1"
+                                   android:layout_height="match_parent"
+                                   android:text="0"
+                                   android:gravity="center"
+                                   android:textColor="@color/black"
+                                   android:textSize="@dimen/_20sdp"/>
+
+                               <TextView
+                                   android:layout_width="0dp"
+                                   android:layout_weight="1"
+                                   android:layout_height="wrap_content"
+                                   android:text="0"
+                                   android:gravity="center"
+                                   android:textColor="@color/black"
+                                   android:textSize="@dimen/_20sdp"/>
+
+                               <TextView
+                                   android:layout_width="0dp"
+                                   android:layout_weight="1"
+                                   android:layout_height="wrap_content"
+                                   android:text="0"
+                                   android:paddingEnd="@dimen/_40sdp"
+                                   android:textAlignment="center"
+                                   android:textColor="@color/black"
+                                   android:textSize="@dimen/_20sdp"/>
+
+
+                           </LinearLayout>
+                           <LinearLayout
+                               android:layout_marginStart="@dimen/_30sdp"
+                               android:layout_marginEnd="@dimen/_30sdp"
+                               android:layout_marginTop="@dimen/_10sdp"
+                               android:weightSum="3"
+                               android:gravity="center"
+                               android:layout_gravity="center"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content">
+
+                               <TextView
+                                   android:layout_width="0dp"
+                                   android:layout_weight="1"
+                                   android:layout_height="match_parent"
+                                   android:text="Đang Follow"
+                                   android:gravity="center"
+                                   android:textColor="@color/black"
+                                   android:textSize="@dimen/_15sdp"/>
+
+                               <TextView
+                                   android:layout_width="0dp"
+                                   android:layout_weight="1"
+                                   android:layout_height="wrap_content"
+                           android:text="Follower"
+                                   android:gravity="center"
+                                   android:textColor="@color/black"
+                                   android:textSize="@dimen/_15sdp"/>
+
+                               <TextView
+                                   android:layout_width="0dp"
+                                   android:layout_weight="1"
+                                   android:layout_height="wrap_content"
+                                   android:text="Thích"
+                                   android:textAlignment="center"
+                                   android:textColor="@color/black"
+                                   android:textSize="@dimen/_15sdp"/>
+
+
+                           </LinearLayout>
+
+                       </LinearLayout>
+
+                   </RelativeLayout>
+
+
+                   <LinearLayout
+                       android:layout_marginTop="@dimen/_40sdp"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:orientation="vertical"
+                       android:id="@+id/linearBot"
+                       android:layout_gravity="center"
+                       android:gravity="center">
+
+                       <TextView
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:text="Trở thành Nhà sáng tạo"
+                           android:textColor="@color/black"
+                           android:textSize="@dimen/_15sdp"
+                           android:gravity="center"
+                           android:textStyle="bold"/>
+
+                       <TextView
+                           android:layout_marginTop="@dimen/_5sdp"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:text="Xem lại cái video đã thích"
+                           android:textColor="@color/gray"
+                           android:textSize="@dimen/_15sdp"
+                           android:gravity="center"
+                           android:textStyle="bold"/>
+
+                       <TextView
+                           android:id="@+id/tvSignInOrSignUp"
+                           android:layout_marginTop="@dimen/_5sdp"
+                           android:layout_width="match_parent"
+                           android:layout_height="@dimen/_40sdp"
+                           android:text="Đăng nhập hoặc đăng kí"
+                           android:textColor="@color/white"
+                           android:textSize="@dimen/_15sdp"
+                           android:layout_marginStart="@dimen/_40sdp"
+                           android:layout_marginEnd="@dimen/_40sdp"
+                           android:background="@color/red"
+                           android:gravity="center"
+                           android:textStyle="bold"/>
+
+                   </LinearLayout>
+
+
+
+               </LinearLayout>
+
+           </androidx.core.widget.NestedScrollView>
+
+       </androidx.constraintlayout.widget.ConstraintLayout>
+   </LinearLayout>
+
 
 </layout>

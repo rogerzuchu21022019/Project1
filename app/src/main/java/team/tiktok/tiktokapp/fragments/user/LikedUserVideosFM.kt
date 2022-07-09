@@ -5,7 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import me.ibrahimsn.lib.SmoothBottomBar
+//import me.ibrahimsn.lib.SmoothBottomBar
+import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.databinding.FragmentLikedVideosBinding
 
@@ -27,10 +28,10 @@ class LikedUserVideosFM : Fragment() {
     }
     private fun checkComeIn(isComeIn:Boolean){
         if (isComeIn){
-            val navBot = requireActivity()!!.findViewById<SmoothBottomBar>(R.id.navBot)
+            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
             navBot.visibility = View.GONE
         }else{
-            val navBot = requireActivity()!!.findViewById<SmoothBottomBar>(R.id.navBot)
+            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
             navBot.visibility = View.VISIBLE
         }
     }

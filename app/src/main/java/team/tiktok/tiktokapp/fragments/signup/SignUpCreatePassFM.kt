@@ -38,15 +38,20 @@ class SignUpCreatePassFM : Fragment() {
 
     private fun clickButton() {
         binding.btnNext.apply {
-            val password = binding.edtPassword.text.toString().trim()
-            val list =getArrSignUp().toMutableList()
-            list.add(2,password)
-            setOnClickListener {
 
+            setOnClickListener {
+                if(TextUtils.isEmpty(binding.edtPassword.text.toString())){
+                    Toast.makeText(requireContext(),"Please Fill Information",Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+                val password = binding.edtPassword.text.toString().trim()
+                val list =getArrSignUp().toMutableList()
+                list.add(2,password)
                 val action = SignUpCreatePassFMDirections.actionSignUpCreatePassFMToSignUpCreateTopTopIDFM(list.toTypedArray())
                 findNavController().navigate(action)
             }
         }
+
     }
 
     override fun onDestroyView() {

@@ -22,7 +22,6 @@ import java.util.*
 
 class SignUpEmailFM : Fragment() {
    lateinit var binding: FragmentSignupEmailBinding
-    val navArg:SignUpEmailFMArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
