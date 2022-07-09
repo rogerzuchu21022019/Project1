@@ -101,8 +101,7 @@ class SignUpCreateTopTopIDFM : Fragment() {
                         countComments = 0,
                         hearts = 0
                     )
-                    val video = Video(uidVideo = null,title ="HahaVideo", description =null, url = null, createAt = null, updateAt = null)
-                    val listVideo = mutableSetOf(video)
+                    val video = Video(uidVideo = "HahaVideo",title ="", description ="Husky Ngu nguc", url = null, createAt = null, updateAt = null)
                     var user = User(
                         email = email,
                         uuid = userUID,
@@ -122,7 +121,8 @@ class SignUpCreateTopTopIDFM : Fragment() {
                         urlFollower = "",
                         urlFollowing = ""
                     )
-                    
+
+
                     val toptopid = topTopID
                     ///upload user from local to firebase realtimedatabase
                     database.child(toptopid). setValue(user)
@@ -134,7 +134,9 @@ class SignUpCreateTopTopIDFM : Fragment() {
 
                         }
                     ///upload video to internal user object
-                    database.child(toptopid).child("videos").setValue(video)
+                    val refVideoChild = Firebase.database.getReference("users/videos")
+
+                    refVideoChild.child(video.uidVideo!!).setValue(video)
                         .addOnCompleteListener {
                             Toast.makeText(requireContext(), "create video success", Toast.LENGTH_SHORT).show()
                         }
@@ -143,7 +145,7 @@ class SignUpCreateTopTopIDFM : Fragment() {
 
                         }
 
-                    databaseVideos.child(video.title!!).setValue(video)
+                    databaseVideos.child(video.uidVideo!!).setValue(video)
                         .addOnCompleteListener {
                             Toast.makeText(requireContext(), "create video success", Toast.LENGTH_SHORT).show()
                         }
