@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#F4437C"/>
+        </shape>
+    </item>
+
+
+    <item android:drawable="@drawable/baseline_favorite_24"
+            android:top="@dimen/_5sdp"
+            android:bottom="@dimen/_5sdp"
+            android:start="@dimen/_5sdp"
+            android:end="@dimen/_5sdp">
+
+    </item>
+
+</layer-list>

@@ -80,6 +80,8 @@ class UploadFM : Fragment() {
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             val data = result.data
             imagePath = data!!.data
+
+
             binding.videoView.setVideoURI(imagePath)
             binding.videoView.start()
             binding.videoView.fitsSystemWindows = true

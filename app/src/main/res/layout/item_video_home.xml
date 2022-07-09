@@ -8,6 +8,9 @@
         <variable
             name="video"
             type="team.tiktok.tiktokapp.data.Video" />
+        <variable
+            name="user"
+            type="team.tiktok.tiktokapp.data.User" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -302,7 +305,6 @@
             android:id="@+id/civAvatar"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
-            android:src="@drawable/girl"
             app:layout_constraintTop_toTopOf="@id/gif"
             app:layout_constraintBottom_toBottomOf="@id/gif"
             app:layout_constraintStart_toStartOf="@id/gif"

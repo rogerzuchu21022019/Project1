@@ -4,28 +4,29 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class User(
+data class User (
     ///basic info
-    var email: String? = "",
-    var fullName: String? = "",
-    var topTopID: String? = "",
-    var password: String? = "",
-    var uuid: String = "",
-    var follower: Int? =0,
-    var following: Following?,
-    var hearts: Int? = 0,
-    var favorites: Int? = 0,
-    var imgUrl: String? = "",
-    var birthDay: String? = "",
-    ///update
-    var phone: String? = "",
-    var profileUrl: String? = "",
-    var comment: List<Comment>?,
-    var videos: List<Video>?,
-    var urlFollower: String? = "",
-    var urlFollowing: String? = ""
-) : Parcelable
+        var email: String = "",
+        var fullName: String = "",
+        var topTopID: String = "",
+        var password: String = "",
+        var uuid: String = "",
+        var follower: Int = 0,
+        var following: Following? = null,
+        var hearts: Int = 0,
+        var favorites: Int = 0,
+        var imgUrl: String = "",
+        var birthDay: String = "",
 
+        ///update
+        var phone: String = "",
+        var profileUrl: String = "",
+        var comment: List<Comment>? = null,
+        var videos: List<Video>? = null,
+        var urlFollower: String = "",
+        var urlFollowing: String = ""
+
+) : Parcelable
 
 
 
@@ -42,7 +43,7 @@ data class Comment(
 
 @Parcelize
 data class Video(
-    var uidVideo:String?="",
+    var uidVideo: String? = "",
     var title: String? = "",
     var description: String? = "",
     var url: String? = "",

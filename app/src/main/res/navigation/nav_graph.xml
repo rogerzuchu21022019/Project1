@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_homeFM_to_searchFM"
             app:destination="@id/searchFM" />
+        <action
+            android:id="@+id/action_homeFM_to_signUpBottomSheetFM"
+            app:destination="@id/signUpBottomSheetFM" />
     </fragment>
 
     <fragment
@@ -48,10 +51,14 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_profileFM_to_signUpBottomSheetFM"
-            app:destination="@id/signUpBottomSheetFM" />
+            app:destination="@id/signUpBottomSheetFM"
+            app:popUpTo="@id/signUpBottomSheetFM" />
         <action
             android:id="@+id/action_profileFM_to_settingAndPrivacyFM"
             app:destination="@id/settingAndPrivacyFM" />
+        <argument
+            android:name="user"
+            app:argType="team.tiktok.tiktokapp.data.User" />
     </fragment>
     <fragment
         android:id="@+id/inboxFM"
@@ -60,7 +67,8 @@
         tools:layout="@layout/fragment_inbox" >
         <action
             android:id="@+id/action_inboxFM_to_signUpBottomSheetFM"
-            app:destination="@id/signUpBottomSheetFM" />
+            app:destination="@id/signUpBottomSheetFM"
+            app:popUpTo="@id/signUpBottomSheetFM" />
     </fragment>
     <fragment
         android:id="@+id/friendFM"
@@ -148,6 +156,9 @@
         <action
             android:id="@+id/action_followingFM_to_searchFM"
             app:destination="@id/searchFM" />
+        <action
+            android:id="@+id/action_followingFM_to_signUpBottomSheetFM"
+            app:destination="@id/signUpBottomSheetFM" />
     </fragment>
     <fragment
         android:id="@+id/emptyFM"
@@ -250,7 +261,9 @@
         android:label="SignUpBirthFM" >
         <action
             android:id="@+id/action_signUpBirthFM_to_signUpContainerFM"
-            app:destination="@id/signUpContainerFM" />
+            app:destination="@id/signUpContainerFM"
+            app:popUpTo="@id/signUpContainerFM"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_signUpBirthFM_self"
             app:destination="@id/signUpBirthFM" />
@@ -342,7 +355,9 @@
             app:destination="@id/signUpBirthFM" />
         <action
             android:id="@+id/action_signUpContainerFM_to_signUpCreatePassFM"
-            app:destination="@id/signUpCreatePassFM" />
+            app:destination="@id/signUpCreatePassFM"
+            app:popUpTo="@id/signUpCreatePassFM"
+            app:popUpToInclusive="true" />
         <argument
             android:name="birth"
             app:argType="string" />
@@ -390,7 +405,9 @@
         android:label="SignUpCreatePassFM" >
         <action
             android:id="@+id/action_signUpCreatePassFM_to_signUpCreateTopTopIDFM"
-            app:destination="@id/signUpCreateTopTopIDFM" />
+            app:destination="@id/signUpCreateTopTopIDFM"
+            app:popUpTo="@id/signUpCreateTopTopIDFM"
+            app:popUpToInclusive="true" />
         <argument
             android:name="arrSignUp"
             app:argType="string[]" />

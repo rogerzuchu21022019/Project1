@@ -9,30 +9,37 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.adapter.following.FollowingVideoAdapter
 import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.FragmentHomeBinding
+import team.tiktok.tiktokapp.fragments.home.HomeFMDirections
 
 
 class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView {
    lateinit var binding:FragmentHomeBinding
     private lateinit var adapter : FollowingVideoAdapter
+    lateinit var auth: FirebaseAuth
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
-
         loadData()
+        auth = Firebase.auth
+        checkComeIn(true)
         return binding.root
     }
 
@@ -81,24 +88,16 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
         }
         if (id==R.id.tvForU){
             findNavController().navigate(R.id.action_followingFM_to_homeFM)
-            Log.e("Following","failure")
-            Log.d("Following","success")
 
         }
         if (id==R.id.ivComment){
-            Log.e("Following","failure")
-            Log.d("Following","success")
-            findNavController().navigate(R.id.action_followingFM_to_commentBottomSheetFM)
+            isLogIn()
             Toast.makeText(requireContext(),"comment",Toast.LENGTH_SHORT).show()
         }
         if (id==R.id.ivSave){
-            Log.e("Following","failure")
-            Log.d("Following","success")
             Toast.makeText(requireContext(),"save",Toast.LENGTH_SHORT).show()
         }
         if (id==R.id.ivShare){
-            Log.e("Following","failure")
-            Log.d("Following","success")
             Toast.makeText(requireContext(),"share",Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_followingFM_to_shareBottomSheetFM)
 
@@ -106,7 +105,33 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
     }
     override fun onDestroyView() {
         super.onDestroyView()
+        checkComeIn(false)
         binding == null
+    }
+    private fun checkComeIn(isComeIn:Boolean){
+        if (isComeIn){
+            val navBot = requireActivity().findViewById<AnimatedBottomBar>(R.id.navBot)
+            navBot.setBackgroundResource(R.color.black)
+            navBot.tabColorSelected = ContextCompat.getColor(requireContext(),R.color.white)
+
+        }
+    }
+    fun navSignUp() {
+        val action = FollowingFMDirections.actionFollowingFMToSignUpBottomSheetFM()
+        findNavController().navigate(action)
+    }
+
+    private fun isLogIn() {
+        auth = Firebase.auth
+        if (auth.currentUser != null) {
+            val action = FollowingFMDirections.actionFollowingFMToCommentBottomSheetFM()
+            findNavController().navigate(action)
+//            checkExist(auth.currentUser!!.uid)
+
+        } else {
+            navSignUp()
+
+        }
     }
 
 }

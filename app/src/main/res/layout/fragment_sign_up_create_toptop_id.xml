@@ -25,12 +25,12 @@
                 android:layout_height="@dimen/_50sdp"
                 tools:ignore="MissingConstraints">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ImageView
+                    android:id="@+id/ivBack"
+                    android:layout_width="15dp"
+                    android:layout_height="16dp"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:text="Bỏ qua"
-                    android:textSize="@dimen/_14sdp"
+                    android:src="@drawable/back"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
