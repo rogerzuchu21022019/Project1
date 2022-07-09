@@ -63,10 +63,10 @@
             app:destination="@id/signUpBottomSheetFM" />
     </fragment>
     <fragment
-        android:id="@+id/exploreFM"
-        android:name="team.tiktok.tiktokapp.fragments.explore.ExploreFM"
+        android:id="@+id/friendFM"
+        android:name="team.tiktok.tiktokapp.fragments.friend.FriendFM"
         android:label="fragment_explore"
-        tools:layout="@layout/fragment_explore" />
+        tools:layout="@layout/fragment_friend" />
     <fragment
         android:id="@+id/editProfileFM"
         tools:layout="@layout/fragment_edit_profile"

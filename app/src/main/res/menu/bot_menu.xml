@@ -5,8 +5,8 @@
         android:title="Home"
         android:icon="@drawable/home"/>
     <item
-        android:id="@+id/exploreFM"
-        android:title="Explore"
+        android:id="@+id/friendFM"
+        android:title="Friend"
 
         android:icon="@drawable/explore"/>
     <item
