@@ -6,18 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.data.*
 import team.tiktok.tiktokapp.databinding.FragmentSignUpCreateToptopIdBinding
 
@@ -36,7 +38,7 @@ class SignUpCreateTopTopIDFM : Fragment() {
         binding = FragmentSignUpCreateToptopIdBinding.inflate(layoutInflater)
 
         auth = Firebase.auth
-        CoroutineScope(IO).launch {
+        CoroutineScope(SupervisorJob()).launch(Dispatchers.IO) {
             clickButton()
         }
 
@@ -48,6 +50,16 @@ class SignUpCreateTopTopIDFM : Fragment() {
     }
 
     private fun clickButton() {
+
+
+        binding.ivBack.apply {
+            setOnClickListener {
+
+
+
+
+            }
+        }
         binding.btnCreate.apply {
             setOnClickListener {
                 val topTopID = binding.edtTopTopID.text.toString().trim()
@@ -58,13 +70,28 @@ class SignUpCreateTopTopIDFM : Fragment() {
                 val password = list[2].trim()
                 val topTopId = list[3].trim()
 
-                createUserAuth(email, password,birth,topTopId)
+                createUserAuth(email, password, birth, topTopId)
 
             }
         }
+
     }
 
-    private fun createUserData(email: String, password: String, topTopID: String, birth: String,uuid:String) {
+    private fun isChecking(isInbox:Boolean) {
+        if (isInbox){
+            findNavController().popBackStack(R.id.homeFM,false)
+        }else{
+            findNavController().popBackStack(R.id.inboxFM,false)
+        }
+    }
+
+    private fun createUserData(
+        email: String,
+        password: String,
+        topTopID: String,
+        birth: String,
+        uuid: String
+    ) {
 
 
 //        database.child(video.uidVideo!!).push()
@@ -79,15 +106,13 @@ class SignUpCreateTopTopIDFM : Fragment() {
     }
 
 
-    private fun createUserAuth(email: String, password: String,birth: String,topTopID: String) {
+    private fun createUserAuth(email: String, password: String, birth: String, topTopID: String) {
         database = Firebase.database.getReference("users")
         databaseVideos = Firebase.database.getReference("videos")
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if (it.isComplete) {
-                    Toast.makeText(requireContext(), "ok", Toast.LENGTH_SHORT).show()
                     var userUID = auth.currentUser!!.uid
-                    Toast.makeText(requireContext(), "ok $userUID", Toast.LENGTH_SHORT).show()
 
                     val follower = Follower(uid = "", 0)
                     val following = Following(uid = "", 0)
@@ -101,62 +126,55 @@ class SignUpCreateTopTopIDFM : Fragment() {
                         countComments = 0,
                         hearts = 0
                     )
-                    val video = Video(uidVideo = "HahaVideo",title ="", description ="Husky Ngu nguc", url = null, createAt = null, updateAt = null)
-                    var user = User(
+                    val video = Video(
+                        uidVideo = "HahaVideo",
+                        title = "",
+                        description = "Husky Ngu nguc",
+                        url = "",
+                        createAt = null,
+                        updateAt = null
+                    )
+
+                    val user = User(
                         email = email,
-                        uuid = userUID,
-                        password = password,
-                        topTopID = topTopID,
                         fullName = topTopID,
+                        topTopID = topTopID,
+                        password = password,
                         birthDay = birth,
-                        phone = "",
-                        follower = 0,
-                        imgUrl = "",
-                        favorites = 0,
-                        hearts = 0,
-                        following = following,
-                        profileUrl = "",
-                        comment = null,
-                        videos = null,
-                        urlFollower = "",
-                        urlFollowing = ""
                     )
 
 
-                    val toptopid = topTopID
                     ///upload user from local to firebase realtimedatabase
-                    database.child(toptopid). setValue(user)
+                    database.child(user.topTopID).setValue(user)
                         .addOnCompleteListener {
-                            Toast.makeText(requireContext(), "create succesfullt", Toast.LENGTH_SHORT).show()
+
                         }
                         .addOnFailureListener {
-                            Toast.makeText(requireContext(), "failure", Toast.LENGTH_SHORT).show()
-
                         }
                     ///upload video to internal user object
-                    val refVideoChild = Firebase.database.getReference("users/videos")
+                    val refVideoChild = Firebase.database.getReference("users")
 
-                    refVideoChild.child(video.uidVideo!!).setValue(video)
+                    refVideoChild.child(user.topTopID).child("videos").child(video.uidVideo!!)
+                        .setValue(video)
                         .addOnCompleteListener {
-                            Toast.makeText(requireContext(), "create video success", Toast.LENGTH_SHORT).show()
+
                         }
                         .addOnFailureListener {
-                            Toast.makeText(requireContext(), "failure", Toast.LENGTH_SHORT).show()
 
                         }
 
                     databaseVideos.child(video.uidVideo!!).setValue(video)
                         .addOnCompleteListener {
-                            Toast.makeText(requireContext(), "create video success", Toast.LENGTH_SHORT).show()
-                        }
-                        .addOnFailureListener {
-                            Toast.makeText(requireContext(), "failure", Toast.LENGTH_SHORT).show()
 
                         }
+                        .addOnFailureListener {
+
+
+                        }
+                    isChecking(true)
                 }
             }
             .addOnFailureListener {
-                Toast.makeText(requireContext(), "failure", Toast.LENGTH_SHORT).show()
             }
     }
 

@@ -30,10 +30,8 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
+import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.adapter.detail.DetailViewpagerAdapter
 import team.tiktok.tiktokapp.data.User
@@ -54,16 +52,17 @@ class ProfileFM : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentProfileBinding.inflate(layoutInflater)
+        checkComeIn(true)
         clickImage()
         initViewPager()
-
+        setBackStackStartDestinationID()
         clickButton()
         isLogIn()
         return binding.root
     }
 
 
-    fun navSignUp() {
+    private fun navSignUp() {
         val action = ProfileFMDirections.actionProfileFMToSignUpBottomSheetFM()
         findNavController().navigate(action)
     }
@@ -72,12 +71,11 @@ class ProfileFM : Fragment() {
     private fun isLogIn() {
         auth = Firebase.auth
         if (auth.currentUser != null) {
-
 //            checkExist(auth.currentUser!!.uid)
             binding.layoutSecond.visibility = View.GONE
             binding.layoutMain.visibility = View.VISIBLE
         } else {
-            CoroutineScope(Dispatchers.Main).launch {
+            CoroutineScope(SupervisorJob()).launch(Dispatchers.Main) {
                 navSignUp()
                 binding.layoutSecond.visibility = View.VISIBLE
                 binding.layoutMain.visibility = View.GONE
@@ -89,14 +87,12 @@ class ProfileFM : Fragment() {
                 }
                 binding.linearMid.apply {
                     setOnClickListener {
-                        val action = ProfileFMDirections.actionProfileFMToSignUpBottomSheetFM()
-                        findNavController().navigate(action)
+                        navSignUp()
                     }
                 }
                 binding.linearBot.apply {
                     setOnClickListener {
-                        val action = ProfileFMDirections.actionProfileFMToSignUpBottomSheetFM()
-                        findNavController().navigate(action)
+                        navSignUp()
                     }
                 }
             }
@@ -105,7 +101,7 @@ class ProfileFM : Fragment() {
 
     private fun checkExist(uid: String) {
         database = Firebase.database.getReference("users")
-        
+
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
@@ -131,10 +127,10 @@ class ProfileFM : Fragment() {
 
         })
         database.child("videos")
-            .addValueEventListener(object :ValueEventListener{
+            .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
-                        for (element in snapshot.children){
+                        for (element in snapshot.children) {
                             var video = element.getValue(Video::class.java)
 
                             Toast.makeText(
@@ -147,7 +143,6 @@ class ProfileFM : Fragment() {
                 }
 
 
-
                 override fun onCancelled(error: DatabaseError) {
 
                 }
@@ -158,6 +153,10 @@ class ProfileFM : Fragment() {
 
     private fun updateUI(user: User) {
         binding.user = user
+    }
+
+    private fun setBackStackStartDestinationID() {
+        findNavController().graph.setStartDestination(R.id.inboxFM)
     }
 
 
@@ -252,5 +251,23 @@ class ProfileFM : Fragment() {
         super.onDestroyView()
         binding == null
     }
+
+    private fun checkComeIn(isComeIn: Boolean) {
+        if (isComeIn) {
+            val navBot = requireActivity().findViewById<AnimatedBottomBar>(R.id.navBot)
+            navBot.setBackgroundResource(R.drawable.border_nav_bot)
+            navBot.tabColorSelected = ContextCompat.getColor(requireContext(), R.color.black)
+            navBot.badgeTextColor = ContextCompat.getColor(requireContext(), R.color.white)
+
+        }
+//        else{
+//            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
+//            navBot.setBackgroundResource(R.drawable.border_nav_bot)
+//            navBot.tabColorSelected = ContextCompat.getColor(requireContext(),R.color.black)
+//
+//
+//        }
+    }
+
 
 }

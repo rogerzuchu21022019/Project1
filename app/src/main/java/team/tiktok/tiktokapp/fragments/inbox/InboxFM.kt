@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -27,15 +28,18 @@ class InboxFM : Fragment() {
    lateinit var binding:FragmentInboxBinding
    lateinit var auth: FirebaseAuth
    lateinit var database:DatabaseReference
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentInboxBinding.inflate(layoutInflater)
+//        setBackStackStartDestinationID()
         isLogIn()
+        checkComeIn(true)
         return binding.root
     }
-    fun navSignUp() {
+    private fun navSignUp() {
         val action = InboxFMDirections.actionInboxFMToSignUpBottomSheetFM()
         findNavController().navigate(action)
     }
@@ -43,16 +47,26 @@ class InboxFM : Fragment() {
     private fun isLogIn() {
         auth = Firebase.auth
         if (auth.currentUser!=null){
-            checkExist(auth.currentUser!!.uid)
-            Toast.makeText(
-                requireContext(),
-                "ai do login",
-                Toast.LENGTH_SHORT
-            ).show()
+//            checkExist(auth.currentUser!!.uid)
+
         }else{
             navSignUp()
+            binding.linearIv.apply {
+                setOnClickListener {
+                    navSignUp()
+                }
+            }
+            binding.linearSignIn.apply {
+                setOnClickListener {
+                    navSignUp()
+                }
+            }
         }
     }
+//    private fun setBackStackStartDestinationID() {
+//        findNavController().graph.setStartDestination(R.id.inboxFM)
+//    }
+
     private fun checkExist(uid: String) {
         database = Firebase.database.getReference("users")
 
@@ -95,7 +109,6 @@ class InboxFM : Fragment() {
 
 
                 override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
                 }
 
             })
@@ -106,5 +119,22 @@ class InboxFM : Fragment() {
         super.onDestroyView()
         binding == null
     }
+    private fun checkComeIn(isComeIn:Boolean){
+        if (isComeIn){
+            val navBot = requireActivity().findViewById<AnimatedBottomBar>(R.id.navBot)
+            navBot.setBackgroundResource(R.drawable.border_nav_bot)
+            navBot.tabColorSelected = ContextCompat.getColor(requireContext(),R.color.black)
+            navBot.badgeTextColor = ContextCompat.getColor(requireContext(),R.color.white)
+
+        }
+//        else{
+//            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
+//            navBot.setBackgroundResource(R.drawable.border_nav_bot)
+//            navBot.tabColorSelected = ContextCompat.getColor(requireContext(),R.color.black)
+//
+//
+//        }
+    }
+
 
 }

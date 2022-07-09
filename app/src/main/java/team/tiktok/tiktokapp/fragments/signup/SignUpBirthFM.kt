@@ -15,12 +15,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
+import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.databinding.FragmentSignupBirthBinding
 import java.util.*
 
 
 class SignUpBirthFM : Fragment() {
-   lateinit var binding: FragmentSignupBirthBinding
+    lateinit var binding: FragmentSignupBirthBinding
     var calendar = Calendar.getInstance()
 
     override fun onCreateView(

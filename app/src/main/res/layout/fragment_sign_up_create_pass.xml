@@ -22,8 +22,8 @@
 
             <ImageView
                 android:id="@+id/ivBack"
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
+                android:layout_width="15dp"
+                android:layout_height="16dp"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:src="@drawable/back"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -87,8 +87,8 @@
                 android:layout_marginEnd="@dimen/_25sdp"
                 app:layout_constraintTop_toBottomOf="@id/tvCreateID"
                 tools:ignore="MissingConstraints"
-                android:inputType="textPassword"
-                android:drawableEnd="@drawable/fill_eye"/>
+
+                android:inputType="textPassword"/>
 
             <TextView
                 android:id="@+id/tvDescribe"
