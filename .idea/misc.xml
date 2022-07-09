@@ -3,7 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/drawable-v24/boder.xml" value="0.2025" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/drawable-v24/boder_background_aqu.xml" value="0.2025" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/drawable-v24/boder_background_brown.xml" value="0.2025" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/drawable-v24/boder_background_white.xml" value="0.2025" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/drawable/boder.xml" value="0.2025" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/drawable/boder_background_red.xml" value="0.2025" />
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/drawable/ic_add.xml" value="0.2025" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_friend.xml" value="0.4" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_share_bottom_sheet.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_sign_up_container.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_sign_up_create_pass.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_sign_up_create_toptop_id.xml" value="0.4" />
@@ -19,9 +27,9 @@
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/item_detail_video_user.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/item_explore.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/item_rv_comment.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/item_video_explore.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/item_video_explore.xml" value="0.152" />
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/item_video_following.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/item_video_home.xml" value="0.6" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/item_video_home.xml" value="0.41702867072111205" />
         <entry key="app/src/main/res/drawable/bottom_sheet_custom.xml" value="0.1625" />
         <entry key="app/src/main/res/drawable/close.xml" value="0.296" />
         <entry key="app/src/main/res/drawable/fill_favorite.xml" value="0.2805" />
