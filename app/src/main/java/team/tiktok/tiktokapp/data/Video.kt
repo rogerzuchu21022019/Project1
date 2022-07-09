@@ -11,9 +11,9 @@ data class User(
     var topTopID: String? = "",
     var password: String? = "",
     var uuid: String = "",
-    var follower: Follower?,
+    var follower: Int? =0,
     var following: Following?,
-    var hearts: Heart?,
+    var hearts: Int? = 0,
     var favorites: Int? = 0,
     var imgUrl: String? = "",
     var birthDay: String? = "",
@@ -21,7 +21,7 @@ data class User(
     var phone: String? = "",
     var profileUrl: String? = "",
     var comment: List<Comment>?,
-    var videos: Video?,
+    var videos: List<Video>?,
     var urlFollower: String? = "",
     var urlFollowing: String? = ""
 ) : Parcelable

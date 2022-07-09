@@ -110,14 +110,14 @@ class SignUpCreateTopTopIDFM : Fragment() {
                         fullName = topTopID,
                         birthDay = birth,
                         phone = "",
-                        follower = follower,
+                        follower = 0,
                         imgUrl = "",
                         favorites = 0,
-                        hearts = heart,
+                        hearts = 0,
                         following = following,
                         profileUrl = "",
                         comment = null,
-                        videos = video,
+                        videos = null,
                         urlFollower = "",
                         urlFollowing = ""
                     )

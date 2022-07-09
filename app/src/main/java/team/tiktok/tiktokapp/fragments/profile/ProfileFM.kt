@@ -105,6 +105,7 @@ class ProfileFM : Fragment() {
 
     private fun checkExist(uid: String) {
         database = Firebase.database.getReference("users")
+        
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {

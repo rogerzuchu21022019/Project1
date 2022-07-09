@@ -287,19 +287,27 @@
             android:text="3456"
             tools:ignore="MissingConstraints" />
 
+
         <ImageView
-            android:id="@+id/ivDisc"
-            android:layout_width="@dimen/_33sdp"
-            android:layout_height="@dimen/_33sdp"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:src="@drawable/disc32"
+            android:id="@+id/gif"
+            android:layout_marginTop="@dimen/_20sdp"
             app:layout_constraintTop_toBottomOf="@id/tvShare"
             app:layout_constraintStart_toStartOf="@id/tvShare"
             app:layout_constraintEnd_toEndOf="@id/tvShare"
-            app:tint="@color/black"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:src="@drawable/disc"
             tools:ignore="MissingConstraints" />
-
-
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civAvatar"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/girl"
+            app:layout_constraintTop_toTopOf="@id/gif"
+            app:layout_constraintBottom_toBottomOf="@id/gif"
+            app:layout_constraintStart_toStartOf="@id/gif"
+            app:layout_constraintEnd_toEndOf="@id/gif"
+            tools:ignore="MissingConstraints" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
