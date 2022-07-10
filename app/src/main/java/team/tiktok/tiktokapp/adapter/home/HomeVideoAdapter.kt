@@ -2,7 +2,6 @@ package team.tiktok.tiktokapp.adapter.home
 
 import android.graphics.ImageDecoder
 import android.graphics.drawable.AnimatedImageDrawable
-import android.media.MediaPlayer
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -17,11 +16,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import pl.droidsonroids.gif.GifImageButton
+import team.tiktok.tiktokapp.BR
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.ItemVideoHomeBinding
 
-//class VideoAdapter(options: FirebaseRecyclerOptions<Video?>,private val clickItem:ClickItemListener):FirebaseRecyclerAdapter<Video, VideoAdapter.VideoViewHolder>(options) {
 class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
     FirebaseRecyclerAdapter<Video, HomeVideoAdapter.VideoViewHolder>(options) {
     lateinit var itemVideoBinding: ItemVideoHomeBinding
@@ -145,7 +144,7 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
                     (drawable as? AnimatedImageDrawable)?.start()
                 }
 
-                itemVideoBinding.video = video
+                itemVideoBinding.setVariable(BR.user,video)
                 itemVideoBinding.videoView.apply {
                     setVideoPath(video.url)
                     setOnPreparedListener { mediaplayer ->

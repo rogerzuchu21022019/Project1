@@ -1,36 +1,25 @@
 package team.tiktok.tiktokapp.fragments.home
 
-import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.MediaController
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.navigation.findNavController
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
-import team.tiktok.tiktokapp.adapter.following.FollowingVideoAdapter
 import team.tiktok.tiktokapp.adapter.home.HomeVideoAdapter
 import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.FragmentHomeBinding
-import team.tiktok.tiktokapp.fragments.following.FollowingFMDirections
-import team.tiktok.tiktokapp.fragments.profile.ProfileFMDirections
 
 
 class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
@@ -51,7 +40,7 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
 
     private fun loadData() {
 
-        val mDataBase = Firebase.database.getReference("videos")
+        val mDataBase = Firebase.database.getReference("users").child("videos")
         val options = FirebaseRecyclerOptions.Builder<Video>()
             .setQuery(mDataBase, Video::class.java)
             .build()
