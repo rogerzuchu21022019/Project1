@@ -35,7 +35,7 @@
                 tools:ignore="MissingConstraints" />
         </LinearLayout>
 
-        
+
     </androidx.core.widget.NestedScrollView>
 
 </layout>

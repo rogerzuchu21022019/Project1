@@ -161,11 +161,11 @@
             app:layout_constraintEnd_toEndOf="@id/ivSearch"
             tools:ignore="MissingConstraints" />
 
-        <ImageView
-            android:id="@+id/ivUser"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civUser"
             android:src="@drawable/avata"
-            android:layout_width="@dimen/_37sdp"
-            android:layout_height="@dimen/_37sdp"
+            android:layout_width="@dimen/_33sdp"
+            android:layout_height="@dimen/_33sdp"
             app:layout_constraintTop_toTopOf="@id/civFrame"
             app:layout_constraintStart_toStartOf="@id/civFrame"
             app:layout_constraintEnd_toEndOf="@id/civFrame"
