@@ -58,7 +58,7 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
                     onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
                 }
             }
-            itemVideoBinding.civUser.apply {
+            itemVideoBinding.ivUser.apply {
                 setOnClickListener {
                     onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
                 }

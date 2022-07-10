@@ -11,7 +11,10 @@
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/drawable/boder_background_red.xml" value="0.2025" />
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/drawable/ic_add.xml" value="0.2025" />
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_friend.xml" value="0.46647230320699706" />
-        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_share_bottom_sheet.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_profile.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_profile_bottom_sheet.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_profile_not_sign_up.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_share_bottom_sheet.xml" value="0.264" />
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_sign_up_container.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_sign_up_create_pass.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_sign_up_create_toptop_id.xml" value="0.4" />
@@ -32,9 +35,7 @@
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/item_video_home.xml" value="0.264" />
         <entry key="app/src/main/res/drawable/bottom_sheet_custom.xml" value="0.1625" />
         <entry key="app/src/main/res/drawable/close.xml" value="0.296" />
-        <entry key="app/src/main/res/drawable/favorites_icon.xml" value="0.2265" />
         <entry key="app/src/main/res/drawable/fill_favorite.xml" value="0.2805" />
-        <entry key="app/src/main/res/drawable/people_ic.xml" value="0.2265" />
         <entry key="app/src/main/res/drawable/save.xml" value="0.288" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15625" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.2776268115942029" />
@@ -51,7 +52,6 @@
         <entry key="app/src/main/res/layout/fragment_for_u_click.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/fragment_forgot_pasword_email.xml" value="0.16489361702127658" />
         <entry key="app/src/main/res/layout/fragment_forgot_pasword_phone.xml" value="0.16489361702127658" />
-        <entry key="app/src/main/res/layout/fragment_friend.xml" value="0.19753086419753085" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/fragment_home_f_m.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/fragment_inbox.xml" value="0.2776268115942029" />

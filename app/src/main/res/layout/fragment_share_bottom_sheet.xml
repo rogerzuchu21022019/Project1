@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-
         android:layout_height="match_parent">
+
         <LinearLayout
             android:orientation="vertical"
 
@@ -14,38 +14,28 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/ivCloseShare"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="@dimen/_13sdp"
+                android:layout_height="@dimen/_13sdp"
                 android:layout_gravity="end"
                 android:src="@drawable/close"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:ignore="MissingConstraints" />
 
             <TextView
-                android:drawableStart="@drawable/profile"
                 android:id="@+id/tvToolForAuthor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Công cụ dành cho tác giả"
-                android:textSize="@dimen/_20sdp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="@dimen/_12sdp"
+                android:text="Chia sẻ lên"
                 tools:ignore="MissingConstraints" />
-
-            <TextView
-                android:layout_marginTop="@dimen/_10sdp"
-                android:drawableStart="@drawable/settings"
-                android:id="@+id/tvToolPrivate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Cài đặt và quyền riêng tư"
-                android:textSize="@dimen/_20sdp"
-                tools:ignore="MissingConstraints" />
-
-
         </LinearLayout>
+
+        
     </androidx.core.widget.NestedScrollView>
 
 </layout>
