@@ -150,7 +150,7 @@
             tools:ignore="MissingConstraints" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/civUser"
+            android:id="@+id/civFrame"
             android:src="@drawable/cricle32"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
@@ -161,6 +161,17 @@
             app:layout_constraintEnd_toEndOf="@id/ivSearch"
             tools:ignore="MissingConstraints" />
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civUser"
+            android:src="@drawable/avata"
+            android:layout_width="@dimen/_33sdp"
+            android:layout_height="@dimen/_33sdp"
+            app:layout_constraintTop_toTopOf="@id/civFrame"
+            app:layout_constraintStart_toStartOf="@id/civFrame"
+            app:layout_constraintEnd_toEndOf="@id/civFrame"
+            app:layout_constraintBottom_toBottomOf="@id/civFrame"
+            tools:ignore="MissingConstraints" />
+
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civAddFollow"
@@ -169,10 +180,10 @@
             android:layout_width="@dimen/_15sdp"
             android:layout_height="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_30sdp"
-            app:layout_constraintTop_toBottomOf="@id/civUser"
+            app:layout_constraintTop_toBottomOf="@id/civFrame"
             app:layout_constraintBottom_toTopOf="@id/ivFavorite"
-            app:layout_constraintStart_toStartOf="@id/civUser"
-            app:layout_constraintEnd_toEndOf="@id/civUser"
+            app:layout_constraintStart_toStartOf="@id/civFrame"
+            app:layout_constraintEnd_toEndOf="@id/civFrame"
             tools:ignore="MissingConstraints" />
 
 
@@ -183,9 +194,9 @@
             android:background="@drawable/heart_white"
             android:backgroundTint="@color/white"
             android:layout_marginTop="@dimen/_30sdp"
-            app:layout_constraintTop_toBottomOf="@id/civUser"
-            app:layout_constraintEnd_toEndOf="@id/civUser"
-            app:layout_constraintStart_toStartOf="@id/civUser"
+            app:layout_constraintTop_toBottomOf="@id/civFrame"
+            app:layout_constraintEnd_toEndOf="@id/civFrame"
+            app:layout_constraintStart_toStartOf="@id/civFrame"
             app:layout_constraintBottom_toTopOf="@id/tvFavorite"
             tools:ignore="MissingConstraints" />
 
