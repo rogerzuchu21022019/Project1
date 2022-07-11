@@ -1,160 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:visibility="visible">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintMain"
-        android:visibility="visible"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".InboxFM">
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-            <LinearLayout
-                android:orientation="vertical"
-                android:id="@+id/design_bottom_sheet"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="@dimen/_30sdp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Hộp thư"
-                        android:textColor="@color/black"
-                        android:gravity="center"
-                        android:textSize="@dimen/_20sdp"/>
-                </LinearLayout>
+        <!-- TODO: Update blank fragment layout -->
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_40sdp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="left">
-
-                        <LinearLayout
-                            android:id="@+id/linearIv"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_gravity="left"
-                            android:gravity="left"
-                            android:layout_marginEnd="@dimen/_40sdp"
-                            android:layout_marginStart="@dimen/_40sdp">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                android:weightSum="4">
-
-                                <ImageView
-                                    android:layout_width="@dimen/_30sdp"
-                                    android:layout_height="@dimen/_30sdp"
-                                    android:layout_weight="1"
-                                    android:src="@drawable/comment_ic"/>
-                                <ImageView
-                                    android:layout_marginTop="@dimen/_15sdp"
-                                    android:layout_weight="1"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/favorites_icon"/>
-                                <ImageView
-                                    android:layout_weight="1"
-                                    android:layout_marginTop="@dimen/_15sdp"
-                                    android:layout_width="@dimen/_30sdp"
-                                    android:layout_height="@dimen/_30sdp"
-                                    android:src="@drawable/people_ic"/>
-                                <ImageView
-                                    android:layout_weight="1"
-                                    android:layout_marginTop="@dimen/_15sdp"
-                                    android:layout_width="@dimen/_30sdp"
-                                    android:layout_height="@dimen/_30sdp"
-                                    android:src="@drawable/send_ic"/>
-
-                            </LinearLayout>
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/inbox_not_sign_in" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:id="@+id/linearSignIn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_gravity="center"
-                    android:gravity="center">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Kết nối với cộng đồng"
-                        android:textColor="@color/gray"
-                        android:textSize="@dimen/_18sdp"
-                        android:gravity="center"
-                        android:textStyle="bold"/>
-                    <TextView
-                        android:layout_marginTop="@dimen/_1sdp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Xem thông báo"
-                        android:textColor="@color/gray"
-                        android:textSize="@dimen/_18sdp"
-                        android:gravity="center"
-                        android:textStyle="bold"/>
-                    <TextView
-                        android:layout_marginTop="@dimen/_8sdp"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_40sdp"
-                        android:text="Đăng nhập hoặc đăng kí"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_15sdp"
-                        android:layout_marginStart="@dimen/_40sdp"
-                        android:layout_marginEnd="@dimen/_40sdp"
-                        android:background="#E91E1E"
-                        android:gravity="center"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-            </LinearLayout>
-
-        </androidx.core.widget.NestedScrollView>
-
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/tvInbox"
+            android:text="Hộp thư"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:labelVisibilityMode="labeled"
-            app:itemTextColor="@color/black"
-            app:menu="@menu/bot_menu"/>
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/ivMail"
+            android:src="@drawable/inbox"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvInbox"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"/>
+
+        <View
+            android:id="@+id/line1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvInbox"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"/>
+
+        <TextView
+            android:id="@+id/tvActivity"
+            android:text="Hoạt động"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line1"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/ivNext1"
+            android:src="@drawable/next"
+            app:layout_constraintTop_toTopOf="@id/tvActivity"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_width="@dimen/_17sdp"
+            android:layout_height="@dimen/_17sdp"/>
+
+        <ImageView
+            android:id="@+id/ivHourglass"
+            android:src="@drawable/hourglass"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvActivity"
+            android:layout_marginStart="@dimen/_23sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"/>
+
+        <TextView
+            android:id="@+id/tvUsedTime"
+            android:text="Thời gian sử dụng màn hình: Bảng thông tin về thời gian sử dụng màn
+hình và nghĩ giải lao sau thời gian sử dụng màn hình"
+            android:textSize="18sp"
+            app:layout_constraintTop_toTopOf="@id/ivHourglass"
+            app:layout_constraintStart_toEndOf="@id/ivHourglass"
+            app:layout_constraintEnd_toStartOf="@id/ivNext2"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/ivNext2"
+            android:src="@drawable/next"
+            app:layout_constraintTop_toTopOf="@id/tvUsedTime"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/_15sdp"
+            app:layout_constraintBottom_toBottomOf="@id/tvUsedTime"
+            android:layout_width="@dimen/_17sdp"
+            android:layout_height="@dimen/_17sdp"/>
+
+        <ImageView
+            android:id="@+id/ivTikTok"
+            android:src="@drawable/tiktok"
+            app:layout_constraintTop_toBottomOf="@id/tvUsedTime"
+            app:layout_constraintStart_toStartOf="@id/ivHourglass"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"/>
+
+        <TextView
+            android:id="@+id/tvTikTok"
+            android:text="TikTok : Lượn sóng  1 giờ"
+            app:layout_constraintTop_toTopOf="@id/ivTikTok"
+            app:layout_constraintBottom_toBottomOf="@id/ivTikTok"
+            app:layout_constraintStart_toEndOf="@id/ivTikTok"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/ivNext3"
+            android:src="@drawable/next"
+            app:layout_constraintTop_toTopOf="@id/tvTikTok"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/_15sdp"
+            app:layout_constraintBottom_toBottomOf="@id/tvTikTok"
+            android:layout_width="@dimen/_17sdp"
+            android:layout_height="@dimen/_17sdp"/>
+
+        <View
+            android:id="@+id/line2"
+            android:background="@color/gray"
+            app:layout_constraintTop_toBottomOf="@id/ivTikTok"
+            app:layout_constraintStart_toStartOf="@id/tvTikTok"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_1sdp"/>
+
+        <TextView
+            android:id="@+id/tvMessage"
+            android:text="Tin nhắn"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/line2"
+            app:layout_constraintStart_toStartOf="@id/tvActivity"
+            android:layout_marginTop="@dimen/_22sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/ivFollower"
+            android:src="@drawable/followers"
+            app:layout_constraintTop_toBottomOf="@id/tvMessage"
+            app:layout_constraintStart_toStartOf="@id/ivHourglass"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"/>
+
+        <TextView
+            android:id="@+id/tvFollower1"
+            android:text="Những follower mới : "
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@id/ivFollower"
+            app:layout_constraintStart_toStartOf="@id/tvTikTok"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvFollower2"
+            android:text="An Trần bắt đầu follow bạn"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/tvFollower1"
+            app:layout_constraintStart_toStartOf="@id/tvFollower1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/ivNext4"
+            android:src="@drawable/next"
+            app:layout_constraintTop_toTopOf="@id/ivFollower"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/_15sdp"
+            app:layout_constraintBottom_toBottomOf="@id/ivFollower"
+            android:layout_width="@dimen/_17sdp"
+            android:layout_height="@dimen/_17sdp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 </layout>

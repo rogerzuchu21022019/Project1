@@ -27,7 +27,8 @@ data class User(
     var urlFollowing: String = "",
     var createAt: String? = ""
 
-) : Parcelable
+) : Parcelable {
+}
 
 
 @Parcelize

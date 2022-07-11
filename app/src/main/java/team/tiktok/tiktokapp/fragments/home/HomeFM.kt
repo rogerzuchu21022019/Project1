@@ -38,7 +38,8 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         checkComeIn(true)
         auth = Firebase.auth
-        loadData()
+        loadDataUser()
+//        loadData()
         return binding.root
     }
 
@@ -53,25 +54,65 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
         binding.vpHome.adapter = adapter
         adapter.setOnClickItem(this@HomeFM)
 
+
         val refUserInMDatabase = mDataBase.child("HahaVideo")
-        val a = object :ValueEventListener{
+
+        val a = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
-                    snapshot.children.forEach {
-                        val user = it.getValue(User::class.java)
+                        val user = snapshot.child("user").getValue(User::class.java)
                         if (user==null){
+                            Log.d("UserLog","$")
+
                             return
                         }else{
 
+                            Log.d("UserLog","${user}")
+
                         }
-                    }
                 }
             }
-
+//
             override fun onCancelled(error: DatabaseError) {
             }
         }
+//
+        refUserInMDatabase.addValueEventListener(a)
 
+    }
+    private fun loadDataUser() {
+
+        val mDataBaseVideos = Firebase.database.getReference("users").child("namvt").child("videos")
+        val options = FirebaseRecyclerOptions.Builder<Video>()
+            .setQuery(mDataBaseVideos, Video::class.java)
+            .build()
+        adapter = HomeVideoAdapter(options)
+        binding.vpHome.adapter = adapter
+        adapter.setOnClickItem(this@HomeFM)
+
+
+        val refUserInMDatabase = mDataBaseVideos.child("HahaVideo")
+
+        val a = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()){
+                        val user = snapshot.child("user").getValue(User::class.java)
+                        if (user==null){
+                            Log.d("UserLog","$")
+
+                            return
+                        }else{
+
+                            Log.d("UserLog","${user}")
+
+                        }
+                }
+            }
+//
+            override fun onCancelled(error: DatabaseError) {
+            }
+        }
+//
         refUserInMDatabase.addValueEventListener(a)
 
     }
