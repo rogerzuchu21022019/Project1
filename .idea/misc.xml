@@ -10,6 +10,7 @@
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/drawable/boder.xml" value="0.2025" />
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/drawable/boder_background_red.xml" value="0.2025" />
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/drawable/ic_add.xml" value="0.2025" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_friend.xml" value="0.46647230320699706" />
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_profile.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_profile_bottom_sheet.xml" value="0.22826086956521738" />
@@ -33,6 +34,7 @@
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/item_video_explore.xml" value="0.152" />
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/item_video_following.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/item_video_home.xml" value="0.3473227206946454" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/menu/bot_menu.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/bottom_sheet_custom.xml" value="0.1625" />
         <entry key="app/src/main/res/drawable/close.xml" value="0.296" />
         <entry key="app/src/main/res/drawable/fill_favorite.xml" value="0.2805" />
