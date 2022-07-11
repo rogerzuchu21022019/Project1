@@ -3,6 +3,7 @@ package team.tiktok.tiktokapp.fragments.home
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,11 +14,15 @@ import androidx.navigation.fragment.findNavController
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.adapter.home.HomeVideoAdapter
+import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.FragmentHomeBinding
 
@@ -40,7 +45,7 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
 
     private fun loadData() {
 
-        val mDataBase = Firebase.database.getReference("users").child("videos")
+        val mDataBase = Firebase.database.getReference("videos")
         val options = FirebaseRecyclerOptions.Builder<Video>()
             .setQuery(mDataBase, Video::class.java)
             .build()
@@ -48,6 +53,26 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
         binding.vpHome.adapter = adapter
         adapter.setOnClickItem(this@HomeFM)
 
+        val refUserInMDatabase = mDataBase.child("HahaVideo")
+        val a = object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()){
+                    snapshot.children.forEach {
+                        val user = it.getValue(User::class.java)
+                        if (user==null){
+                            return
+                        }else{
+
+                        }
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        }
+
+        refUserInMDatabase.addValueEventListener(a)
 
     }
 

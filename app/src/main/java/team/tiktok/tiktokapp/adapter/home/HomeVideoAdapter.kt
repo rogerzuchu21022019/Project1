@@ -144,7 +144,7 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
                     (drawable as? AnimatedImageDrawable)?.start()
                 }
 
-                itemVideoBinding.setVariable(BR.user,video)
+                itemVideoBinding.setVariable(BR.video,video)
                 itemVideoBinding.videoView.apply {
                     setVideoPath(video.url)
                     setOnPreparedListener { mediaplayer ->

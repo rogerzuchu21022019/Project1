@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.auth.FirebaseAuth
@@ -16,7 +14,6 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import team.tiktok.tiktokapp.R
@@ -114,13 +111,12 @@ class SignUpCreateTopTopIDFM : Fragment() {
                 if (it.isComplete) {
                     var userUID = auth.currentUser!!.uid
 
-                    val follower = Follower(uid = "", 0)
-                    val following = Following(uid = "", 0)
-                    val heart = Heart(id = 0, 0, "", "")
+                    val follower = Follower(uid = "", subscribe = false, countFollowers = 0, users = emptyList())
+                    val following = Following(uid = "", 0, users = emptyList())
                     val comment = Comment(
                         uidComment = "",
                         message = "",
-                        user = null,
+                        users = null,
                         fullName = "",
                         updateAt = "",
                         countComments = 0,
@@ -141,6 +137,7 @@ class SignUpCreateTopTopIDFM : Fragment() {
                         topTopID = topTopID,
                         password = password,
                         birthDay = birth,
+                        uuid = userUID
                     )
 
 
