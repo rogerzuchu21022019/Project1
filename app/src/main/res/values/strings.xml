@@ -23,4 +23,5 @@
     <string name="doan8">bạn.</string>
     <string name="daCoTk">Bạn đã có tài khoản ?</string>
     <string name="signIn"> Đăng nhập</string>
+    <string name="log_out">Log out</string>
 </resources>
