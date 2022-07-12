@@ -15,64 +15,413 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            app:layout_constraintTop_toBottomOf="@id/ivBack"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/constraint">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/back1"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đăng"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@drawable/border_nav_bot"
+            android:id="@+id/constraint2"
+            app:layout_constraintTop_toBottomOf="@id/constraint"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_120sdp"
+            android:layout_height="@dimen/_140sdp"
             tools:ignore="MissingConstraints">
+
             <VideoView
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:id="@+id/videoView"
-                android:layout_width="@dimen/_120sdp"
-                android:layout_height="0dp"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_margin="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/edtDescription"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints" />
 
             <androidx.appcompat.widget.AppCompatEditText
+                android:background="@null"
                 android:id="@+id/edtDescription"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:hint="Description"
+                android:gravity="top"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:hint="Hãy mô tả bài đăng, thêm hashtag hoặc nhắc đến những nhà sáng tạo đã truyền cảm hứng cho bạn."
                 android:inputType="textMultiLine"
-                app:layout_constraintBottom_toBottomOf="@id/videoView"
+                android:textSize="@dimen/_12sdp"
+                android:layout_marginStart="@dimen/_10sdp"
                 app:layout_constraintEnd_toStartOf="@id/videoView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/videoView"
                 tools:ignore="MissingConstraints" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnHashtag"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_25sdp"
+                android:text="#Hashtag"
+                android:textAllCaps="false"
+                android:background="@color/white"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/videoView" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCall"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_25sdp"
+                android:text=" @ Nhắc đến"
+                android:textAllCaps="false"
+                android:background="@color/white"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:layout_constraintStart_toEndOf="@id/btnHashtag"
+                app:layout_constraintTop_toBottomOf="@+id/videoView" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_25sdp"
+                android:text="Video"
+                android:textAllCaps="false"
+                android:background="@color/white"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:layout_constraintStart_toEndOf="@id/btnCall"
+                app:layout_constraintTop_toBottomOf="@+id/videoView" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ImageView
-            android:id="@+id/ivBack"
-            android:layout_width="@dimen/_15sdp"
-            android:layout_height="@dimen/_15sdp"
-            android:src="@drawable/back"
-            tools:ignore="MissingConstraints" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnNext"
-            android:layout_marginBottom="?attr/actionBarSize"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/music"
-            android:text="Tiếp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="MissingConstraints" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnUpTo"
-            android:layout_marginBottom="?attr/actionBarSize"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/music"
-            android:text="Đăng lên nhật ký"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toBottomOf="@+id/constraint2">
+
+            <ImageView
+                android:id="@+id/ivProfile"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:src="@drawable/profile_16px"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="Gắn thẻ mọi người"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/ivProfile"
+                app:layout_constraintStart_toEndOf="@id/ivProfile"
+                app:layout_constraintTop_toTopOf="@+id/ivProfile" />
+
+            <ImageView
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:src="@drawable/next"
+                app:layout_constraintBottom_toBottomOf="@+id/tvProfile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvProfile" />
+
+            <ImageView
+                android:id="@+id/ivLocation"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:src="@drawable/location"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivProfile" />
+
+            <TextView
+                android:id="@+id/tvLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="Vị trí"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/ivLocation"
+                app:layout_constraintStart_toEndOf="@id/ivLocation"
+                app:layout_constraintTop_toTopOf="@+id/ivLocation" />
+
+            <ImageView
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:src="@drawable/next"
+                app:layout_constraintBottom_toBottomOf="@+id/tvLocation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvLocation" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnHaNoi"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@color/white"
+                android:text="Hà Nội"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivLocation" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnHoChiMinh"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:background="@color/white"
+                android:text="Hồ Chí Minh"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@id/btnHaNoi"
+                app:layout_constraintTop_toTopOf="@id/btnHaNoi" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDaNang"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:background="@color/white"
+                android:text="Đà Nẵng"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@id/btnHoChiMinh"
+                app:layout_constraintTop_toTopOf="@id/btnHaNoi" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnHaiPhong"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:background="@color/white"
+                android:text="Hải Phòng"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@id/btnDaNang"
+                app:layout_constraintTop_toTopOf="@id/btnHaNoi" />
+
+
+            <ImageView
+                android:id="@+id/ivPrivate"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:src="@drawable/resource_private"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnHaNoi" />
+
+            <TextView
+                android:id="@+id/tvPrivate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="Ai có thể xem video này"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/ivPrivate"
+                app:layout_constraintStart_toEndOf="@id/ivPrivate"
+                app:layout_constraintTop_toTopOf="@+id/ivPrivate" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:src="@drawable/next"
+                app:layout_constraintBottom_toBottomOf="@+id/tvPrivate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvPrivate" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:text="Mọi người"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+            <ImageView
+                android:id="@+id/ivComment"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:src="@drawable/comment"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivPrivate" />
+
+            <TextView
+                android:id="@+id/tvComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="Cho phép bình luận"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/ivComment"
+                app:layout_constraintStart_toEndOf="@id/ivComment"
+                app:layout_constraintTop_toTopOf="@+id/ivComment" />
+
+            <ImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:src="@drawable/private_1"
+                app:layout_constraintBottom_toBottomOf="@+id/tvComment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvComment" />
+
+            <ImageView
+                android:id="@+id/ivDuet"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:src="@drawable/rectangle_16px"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivComment" />
+
+            <TextView
+                android:id="@+id/tvDuet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="Cho phép Stitch"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/ivDuet"
+                app:layout_constraintStart_toEndOf="@id/ivDuet"
+                app:layout_constraintTop_toTopOf="@+id/ivDuet" />
+
+            <ImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:src="@drawable/private_1"
+                app:layout_constraintBottom_toBottomOf="@+id/tvDuet"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvDuet" />
+
+            <TextView
+                android:id="@+id/titleAuto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tự động chia sẻ vơi:"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivDuet"/>
+
+            <ImageView
+                android:id="@+id/ivZalo"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:src="@drawable/zalo"
+                android:layout_marginStart="@dimen/_10sdp"
+                app:layout_constraintBottom_toTopOf="@+id/btnUpTo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/titleAuto" />
+
+            <ImageView
+                android:id="@+id/ivMess"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:src="@drawable/mess"
+                android:layout_marginStart="@dimen/_15sdp"
+                app:layout_constraintBottom_toTopOf="@+id/btnUpTo"
+                app:layout_constraintStart_toEndOf="@id/ivZalo"
+                app:layout_constraintTop_toBottomOf="@id/titleAuto" />
+
+            <ImageView
+                android:id="@+id/ivFacebook"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:src="@drawable/facebook"
+                android:layout_marginStart="@dimen/_15sdp"
+                app:layout_constraintBottom_toTopOf="@+id/btnUpTo"
+                app:layout_constraintStart_toEndOf="@id/ivMess"
+                app:layout_constraintTop_toBottomOf="@id/titleAuto" />
+
+            <ImageView
+                android:id="@+id/ivChat_32"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:src="@drawable/chat_32"
+                android:layout_marginStart="@dimen/_15sdp"
+                app:layout_constraintBottom_toTopOf="@+id/btnUpTo"
+                app:layout_constraintStart_toEndOf="@id/ivFacebook"
+                app:layout_constraintTop_toBottomOf="@id/titleAuto" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNext"
+                android:layout_width="@dimen/_145sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="?attr/actionBarSize"
+                android:background="@color/red"
+                android:text="Đăng"
+                android:drawableStart="@drawable/upload"
+                android:paddingEnd="@dimen/_45sdp"
+                android:paddingStart="@dimen/_45sdp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnUpTo"
+                android:layout_width="@dimen/_145sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginBottom="?attr/actionBarSize"
+                android:background="@drawable/border_nav_bot"
+                android:text="Nháp"
+                android:drawableStart="@drawable/draft"
+                android:paddingEnd="@dimen/_45sdp"
+                android:paddingStart="@dimen/_45sdp"
+                android:gravity="center"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,12 +1,12 @@
 package team.tiktok.tiktokapp.fragments.inbox
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -21,7 +21,6 @@ import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.FragmentInboxBinding
-import team.tiktok.tiktokapp.fragments.profile.ProfileFMDirections
 
 
 class InboxFM : Fragment() {
@@ -51,16 +50,16 @@ class InboxFM : Fragment() {
 
         }else{
             navSignUp()
-            binding.linearIv.apply {
-                setOnClickListener {
-                    navSignUp()
-                }
-            }
-            binding.linearSignIn.apply {
-                setOnClickListener {
-                    navSignUp()
-                }
-            }
+//            binding.linearIv.apply {
+//                setOnClickListener {
+//                    navSignUp()
+//                }
+//            }
+//            binding.linearSignIn.apply {
+//                setOnClickListener {
+//                    navSignUp()
+//                }
+//            }
         }
     }
 //    private fun setBackStackStartDestinationID() {
