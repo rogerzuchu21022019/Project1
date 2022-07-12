@@ -37,6 +37,7 @@ import team.tiktok.tiktokapp.adapter.detail.DetailViewpagerAdapter
 import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.FragmentProfileBinding
+
 import team.tiktok.tiktokapp.fragments.signup.SignUpMainBottomSheetFM
 
 
@@ -85,12 +86,12 @@ class ProfileFM : Fragment() {
                         findNavController().navigate(action)
                     }
                 }
-                binding.linearMid.apply {
+                binding.layoutMain.apply {
                     setOnClickListener {
                         navSignUp()
                     }
                 }
-                binding.linearBot.apply {
+                binding.layoutSecond.apply {
                     setOnClickListener {
                         navSignUp()
                     }
