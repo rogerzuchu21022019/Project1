@@ -82,7 +82,7 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
     }
     private fun loadDataUser() {
 
-        val mDataBaseVideos = Firebase.database.getReference("users").child("namvt").child("videos")
+        val mDataBaseVideos = Firebase.database.getReference("users").child("namvv").child("videos")
         val options = FirebaseRecyclerOptions.Builder<Video>()
             .setQuery(mDataBaseVideos, Video::class.java)
             .build()
