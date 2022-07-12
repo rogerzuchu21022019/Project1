@@ -4,9 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-            <variable
-                name="user"
-                type="team.tiktok.tiktokapp.data.User" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@{user.fullName}"
+                    android:text="NamDơVeLóc"
                     android:textSize="@dimen/_14sdp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -72,7 +70,6 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/civAvatar"
-                    app:loadImage="@{user.imgUrl}"
                     android:layout_width="@dimen/_70sdp"
                     android:layout_height="@dimen/_70sdp"
                     android:layout_marginTop="@dimen/_20sdp"
@@ -89,8 +86,9 @@
                     android:text=" @namdoveloc"
                     android:textSize="@dimen/_12sdp"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:text="@{user.topTopID}"
-                    android:textSize="@dimen/_12sdp" />
+                    app:layout_constraintEnd_toEndOf="@+id/civAvatar"
+                    app:layout_constraintStart_toStartOf="@+id/civAvatar"
+                    app:layout_constraintTop_toBottomOf="@+id/civAvatar" />
 
                 <TextView
                     android:id="@+id/tvFollowing"
@@ -105,46 +103,9 @@
                     app:layout_constraintEnd_toStartOf="@+id/tvFollower"
                     app:layout_constraintTop_toTopOf="@+id/tvFollower" />
 
-
-                    <TextView
-                        android:id="@+id/tvFollowing"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_40sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="999"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvFollower"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="999"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvLike"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_40sdp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@{String.valueOf(user.hearts)}"
-                        android:textSize="@dimen/_12sdp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tvFollower"
+                    android:layout_width="@dimen/_70sdp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:gravity="center"
