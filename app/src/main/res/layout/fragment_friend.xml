@@ -157,7 +157,7 @@
         <TextView
             android:id="@+id/tvConnectWithFb"
             android:gravity="center"
-            android:layout_width="@dimen/_276sdp"
+            android:layout_width="@dimen/_272sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:textColor="@color/white"
