@@ -211,6 +211,9 @@
             app:destination="@id/followingFM"
             app:popUpTo="@id/followingFM"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="user"
+            app:argType="team.tiktok.tiktokapp.data.User" />
     </fragment>
     <fragment
         android:id="@+id/addFM"

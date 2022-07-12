@@ -1,16 +1,19 @@
 package team.tiktok.tiktokapp.fragments.user
 
+//import me.ibrahimsn.lib.SmoothBottomBar
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
-//import me.ibrahimsn.lib.SmoothBottomBar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.adapter.detail.DetailAdapter
@@ -21,12 +24,14 @@ import team.tiktok.tiktokapp.databinding.FragmentDetailUserBinding
 class DetailUserFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
     lateinit var binding: FragmentDetailUserBinding
     lateinit var adapter: DetailViewpagerAdapter
+    val navArgs:DetailUserFMArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDetailUserBinding.inflate(layoutInflater)
         checkComeIn(true)
+        getUser()
         clickButton()
         initViewPager()
         return binding.root
@@ -62,6 +67,12 @@ class DetailUserFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
                 }
             }
         }.attach()
+    }
+
+    fun getUser(){
+        CoroutineScope(SupervisorJob()).launch(Dispatchers.IO){
+            binding.user = navArgs.user
+        }
     }
 
     private fun initViewPager() {
