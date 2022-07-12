@@ -151,7 +151,7 @@
                             android:layout_marginStart="@dimen/_10sdp"
                             android:layout_marginTop="@dimen/_20sdp"
                             android:layout_marginBottom="@dimen/_10sdp"
-                            android:text="NỘI DUNNG VÀ HOẠT ĐỘNG"
+                            android:text="NỘI DUNG VÀ HOẠT ĐỘNG"
                             android:textSize="@dimen/_12sdp"
                             android:textStyle="bold" />
 
