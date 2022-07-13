@@ -5,6 +5,8 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,14 +17,18 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import nl.joery.animatedbottombar.AnimatedBottomBar
+import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.databinding.FragmentUploadBinding
 
 
 class UploadFM : Fragment() {
-   lateinit var binding: FragmentUploadBinding
+    lateinit var binding: FragmentUploadBinding
     private val IMAGE_REQ = 1
+    lateinit var auth: FirebaseAuth
     private var imagePath: Uri? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,11 +47,13 @@ class UploadFM : Fragment() {
         }
         binding.btnNext.apply {
             setOnClickListener {
+                isLogIn()
+                Toast.makeText(requireContext(), "clicked", Toast.LENGTH_SHORT).show()
             }
         }
         binding.videoView.apply {
             setOnClickListener {
-                requestPermissionVideo()
+
             }
         }
     }
@@ -68,6 +76,7 @@ class UploadFM : Fragment() {
             )
         }
     }
+
     private fun selectVideo() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "video/*" // if you want to you can use pdf/gif/video
@@ -76,17 +85,57 @@ class UploadFM : Fragment() {
     }
 
 
-    private var someActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == AppCompatActivity.RESULT_OK) {
-            val data = result.data
-            imagePath = data!!.data
+    private var someActivityResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == AppCompatActivity.RESULT_OK) {
+                val data = result.data
+                imagePath = data!!.data
 
-            binding.videoView.setVideoURI(imagePath)
-            binding.videoView.start()
-            binding.videoView.fitsSystemWindows = true
+                binding.videoView.setVideoURI(imagePath)
+                binding.videoView.start()
+                binding.videoView.fitsSystemWindows = true
 //            Picasso.get().load(imagePath).into(binding.civAvatar)
+            }
+
         }
 
+    private fun isLogIn() {
+        auth = Firebase.auth
+        if (auth.currentUser != null) {
+            navSignUp()
+        } else {
+            findNavController().popBackStack(R.id.signUpBottomSheetFM, false, true)
+            val action = UploadFMDirections.actionUploadFMToSignUpBottomSheetFM()
+            findNavController().navigate(action)
+
+        }
+    }
+
+    fun navSignUp() {
+        if (findNavController().currentDestination?.id == R.id.uploadFM
+            && findNavController().previousBackStackEntry!!.destination.id == R.id.addFM
+        ) {
+            val action = UploadFMDirections.actionUploadFMToEmptyFM()
+            findNavController().navigate(action)
+        } else if (findNavController().currentDestination?.id == R.id.uploadFM
+            && findNavController().previousBackStackEntry!!.destination.id == R.id.signInContainerFM
+        ) {
+            handleShowProgressBar()
+            val action = UploadFMDirections.actionUploadFMToEmptyFM()
+            findNavController().navigate(action)
+            handleHideProgressBar()
+        }
+    }
+
+    fun handleShowProgressBar() {
+        val handle = Handler(Looper.myLooper()!!)
+        handle.postDelayed({
+            binding.progressbar.visibility = View.VISIBLE
+        }, 3000)
+    }
+
+    fun handleHideProgressBar(){
+        binding.progressbar.visibility = View.GONE
     }
 
 

@@ -4,16 +4,20 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
@@ -22,38 +26,70 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
-import team.tiktok.tiktokapp.adapter.following.FollowingVideoAdapter
+import team.tiktok.tiktokapp.adapter.home.FollowingVideoAdapter
+import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.data.Video
-import team.tiktok.tiktokapp.databinding.FragmentHomeBinding
-import team.tiktok.tiktokapp.fragments.home.HomeFMDirections
+import team.tiktok.tiktokapp.databinding.FragmentFollowingBinding
 
 
 class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView {
-   lateinit var binding:FragmentHomeBinding
+   lateinit var binding:FragmentFollowingBinding
     private lateinit var adapter : FollowingVideoAdapter
     lateinit var auth: FirebaseAuth
+    lateinit var mDataBase : DatabaseReference
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(layoutInflater)
+        binding = FragmentFollowingBinding.inflate(layoutInflater)
         loadData()
         auth = Firebase.auth
         checkComeIn(true)
         return binding.root
     }
+    private fun transferData(){
+
+        val listener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()){
+                    snapshot.children.forEach {
+                        val video = it.getValue(Video::class.java)
+                        if (video == null){
+                            return
+                        }else{
+                            val user = it.child("user").getValue(User::class.java)
+                            if (user==null){
+                                Log.d("UserLog","$")
+                                return
+                            }else{
+                                navDicretion(user=user)
+                                Log.d("UserLog","${user}")
+                            }
+                        }
+                    }
+
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        }
+        mDataBase.addValueEventListener(listener)
+
+    }
+
 
 
 
     private fun loadData() {
         CoroutineScope(Dispatchers.IO).launch {
-            val mDataBase = Firebase.database.getReference("videos")
+            mDataBase = Firebase.database.getReference("videos")
             val options = FirebaseRecyclerOptions.Builder<Video>()
                 .setQuery(mDataBase,Video::class.java)
                 .build()
             withContext(Dispatchers.Main){
                 adapter = FollowingVideoAdapter(options)
-                binding.vpHome.adapter = adapter
+                binding.vpFollowing.adapter = adapter
                 adapter.setOnClickItem(this@FollowingFM)
             }
         }
@@ -83,8 +119,7 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
             findNavController().navigate(R.id.action_followingFM_to_searchFM)
         }
         if (id==R.id.civUser){
-
-            findNavController().navigate(R.id.action_followingFM_to_detailUserFM)
+            transferData()
         }
         if (id==R.id.tvForU){
             findNavController().navigate(R.id.action_followingFM_to_homeFM)
@@ -92,7 +127,6 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
         }
         if (id==R.id.ivComment){
             isLogIn()
-            Toast.makeText(requireContext(),"comment",Toast.LENGTH_SHORT).show()
         }
         if (id==R.id.ivSave){
             Toast.makeText(requireContext(),"save",Toast.LENGTH_SHORT).show()
@@ -116,9 +150,11 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
 
         }
     }
-    fun navSignUp() {
-        val action = FollowingFMDirections.actionFollowingFMToSignUpBottomSheetFM()
-        findNavController().navigate(action)
+    fun navDicretion(user:User) {
+        if (findNavController().currentDestination?.id == R.id.followingFM) {
+            val action = FollowingFMDirections.actionFollowingFMToDetailUserFM(user)
+            findNavController().navigate(action)
+        }
     }
 
     private fun isLogIn() {
@@ -126,10 +162,9 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
         if (auth.currentUser != null) {
             val action = FollowingFMDirections.actionFollowingFMToCommentBottomSheetFM()
             findNavController().navigate(action)
-//            checkExist(auth.currentUser!!.uid)
-
         } else {
-            navSignUp()
+            val action = FollowingFMDirections.actionFollowingFMToSignUpBottomSheetFM()
+            findNavController().navigate(action)
 
         }
     }

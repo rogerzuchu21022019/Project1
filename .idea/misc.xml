@@ -27,10 +27,10 @@
         <entry key="app/src/main/res/layout/fragment_for_u_click.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/fragment_forgot_pasword_email.xml" value="0.16489361702127658" />
         <entry key="app/src/main/res/layout/fragment_forgot_pasword_phone.xml" value="0.16489361702127658" />
-        <entry key="app/src/main/res/layout/fragment_friend.xml" value="0.19753086419753085" />
+        <entry key="app/src/main/res/layout/fragment_friend.xml" value="0.3832599118942731" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/fragment_home_f_m.xml" value="0.1703125" />
-        <entry key="app/src/main/res/layout/fragment_inbox.xml" value="0.2776268115942029" />
+        <entry key="app/src/main/res/layout/fragment_inbox.xml" value="0.23645833333333333" />
         <entry key="app/src/main/res/layout/fragment_inbox_not_sign_up.xml" value="0.3252670288085938" />
         <entry key="app/src/main/res/layout/fragment_liked_videos.xml" value="0.23505434782608695" />
         <entry key="app/src/main/res/layout/fragment_manage_account.xml" value="0.2776268115942029" />
@@ -56,9 +56,11 @@
         <entry key="app/src/main/res/layout/fragment_signup_phone.xml" value="0.16489361702127658" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/fragment_upload.xml" value="0.35213395270748404" />
+        <entry key="app/src/main/res/layout/fragment_user_detail_videos.xml" value="0.13177083333333334" />
         <entry key="app/src/main/res/layout/fragment_user_videos.xml" value="0.23505434782608695" />
         <entry key="app/src/main/res/layout/item_detail_video_user.xml" value="0.23505434782608695" />
         <entry key="app/src/main/res/layout/item_explore.xml" value="0.26875" />
+        <entry key="app/src/main/res/layout/item_profile_video_user.xml" value="0.2667572463768116" />
         <entry key="app/src/main/res/layout/item_rv_comment.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/item_video.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/item_video_explore.xml" value="0.26875" />

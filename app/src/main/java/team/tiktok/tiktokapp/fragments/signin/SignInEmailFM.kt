@@ -1,6 +1,9 @@
 package team.tiktok.tiktokapp.fragments.signin
 
+//import me.ibrahimsn.lib.SmoothBottomBar
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,23 +11,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-//import me.ibrahimsn.lib.SmoothBottomBar
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
-import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.databinding.FragmentSigninEmailBinding
-import team.tiktok.tiktokapp.fragments.inbox.InboxFM
-import team.tiktok.tiktokapp.fragments.profile.ProfileFM
 
 
 class SignInEmailFM : Fragment() {
@@ -79,10 +78,15 @@ class SignInEmailFM : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     snapshot.children.forEach {
-                        val user = it.getValue(User::class.java)!!
-                        if (email == user.email && password == user.password){
-                            navDirection()
-                            Log.d("CHECKUser","$email,$password")
+                        val email1 = it.child("email").getValue(String::class.java)
+                        if (email == email1){
+                            Toast.makeText(requireContext(),"equal email = $email1",Toast.LENGTH_SHORT).show()
+                            val handle = Handler(Looper.myLooper()!!)
+                            handle.postDelayed({
+                                binding.progressbar.visibility = View.VISIBLE
+                                navDirection()
+                            },1000)
+                            binding.progressbar.visibility = View.GONE
                         }
                     }
                 }
@@ -96,21 +100,27 @@ class SignInEmailFM : Fragment() {
     }
 
     private fun navDirection() {
-            val id1 = findNavController().previousBackStackEntry!!.destination.id
-            val id2 = findNavController().previousBackStackEntry!!.destination.id
-            val id3 = findNavController().previousBackStackEntry!!.destination.id
-
-//            if(id1 == R.id.inboxFM ){
-//                val action  = SignInContainerFMDirections.actionSignInContainerFMToInboxFM()
-//                findNavController().navigate(action)
-//            }else if(id==R.id.profileFM){
-//                val action  = SignInContainerFMDirections.actionSignInContainerFMToProfileFM()
-//                findNavController().navigate(action)
-//            }
-
-
-        val action = SignInContainerFMDirections.actionSignInContainerFMToInboxFM()
-        findNavController().navigate(action)
+        if (findNavController().currentDestination?.id == R.id.signInContainerFM
+            && findNavController().previousBackStackEntry!!.destination.id == R.id.profileFM){
+            val action = SignInContainerFMDirections.actionSignInContainerFMToHomeFM()
+            findNavController().navigate(action)
+        }else if(findNavController().currentDestination?.id == R.id.signInContainerFM
+            && findNavController().previousBackStackEntry!!.destination.id == R.id.inboxFM){
+            val action = SignInContainerFMDirections.actionSignInContainerFMToInboxFM()
+            findNavController().navigate(action)
+        }else if(findNavController().currentDestination?.id == R.id.signInContainerFM
+            && findNavController().previousBackStackEntry!!.destination.id == R.id.settingAndPrivacyFM){
+            val action = SignInContainerFMDirections.actionSignInContainerFMToHomeFM()
+            findNavController().navigate(action)
+        }else if(findNavController().currentDestination?.id == R.id.signInContainerFM
+            && findNavController().previousBackStackEntry!!.destination.id == R.id.homeFM){
+            val action = SignInContainerFMDirections.actionSignInContainerFMToHomeFM()
+            findNavController().navigate(action)
+        }else if(findNavController().currentDestination?.id == R.id.signInContainerFM
+            && findNavController().previousBackStackEntry!!.destination.id == R.id.uploadFM){
+            val action = SignInContainerFMDirections.actionSignInContainerFMToUploadFM()
+            findNavController().navigate(action)
+        }
     }
     private fun checkComeIn(isComeIn:Boolean){
         if (isComeIn){

@@ -47,24 +47,20 @@ class InboxFM : Fragment() {
         auth = Firebase.auth
         if (auth.currentUser!=null){
 //            checkExist(auth.currentUser!!.uid)
+            binding.constraintSecond.visibility = View.GONE
+            binding.constraintMain.visibility = View.VISIBLE
 
         }else{
+            binding.constraintMain.visibility = View.GONE
+            binding.constraintSecond.visibility = View.VISIBLE
             navSignUp()
-//            binding.linearIv.apply {
-//                setOnClickListener {
-//                    navSignUp()
-//                }
-//            }
-//            binding.linearSignIn.apply {
-//                setOnClickListener {
-//                    navSignUp()
-//                }
-//            }
+            binding.constraintSecond.apply {
+                setOnClickListener{
+                    navSignUp()
+                }
+            }
         }
     }
-//    private fun setBackStackStartDestinationID() {
-//        findNavController().graph.setStartDestination(R.id.inboxFM)
-//    }
 
     private fun checkExist(uid: String) {
         database = Firebase.database.getReference("users")

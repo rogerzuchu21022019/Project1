@@ -120,7 +120,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{video.title}"
+            android:text="@{user.topTopID}"
             android:textColor="@color/white"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginStart="@dimen/_8sdp"
@@ -163,7 +163,7 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civUser"
-            android:src="@drawable/avata"
+            app:loadImage="@{user.imgUrl}"
             android:layout_width="@dimen/_33sdp"
             android:layout_height="@dimen/_33sdp"
             app:layout_constraintTop_toTopOf="@id/civFrame"
@@ -212,7 +212,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_8sdp"
             android:textStyle="bold"
-            android:text="200.6k"
+            android:text="@{String.valueOf(user.hearts)}"
             tools:ignore="MissingConstraints" />
 
         <ImageView
@@ -270,7 +270,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_8sdp"
             android:textStyle="bold"
-            android:text="123"
+            android:text="@{String.valueOf(user.password)}"
             tools:ignore="MissingConstraints" />
 
         <ImageView
@@ -314,6 +314,7 @@
             tools:ignore="MissingConstraints" />
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civAvatar"
+            app:loadImage="@{user.imgUrl}"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             app:layout_constraintTop_toTopOf="@id/gif"

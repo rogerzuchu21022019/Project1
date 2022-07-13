@@ -22,7 +22,7 @@ data class User(
     var phone: String = "",
     var profileUrl: String = "",
     var comments: List<Comment>? = mutableListOf(),
-    var videos: List<Video>? = mutableListOf(),
+    var videos: MutableList<Video> = mutableListOf(),
     var urlFollower: String = "",
     var urlFollowing: String = "",
     var createAt: String? = ""

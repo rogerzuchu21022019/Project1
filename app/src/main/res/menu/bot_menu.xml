@@ -8,7 +8,7 @@
         android:id="@+id/friendFM"
         android:title="Friend"
 
-        android:icon="@drawable/ic_friend"/>
+        android:icon="@drawable/friends"/>
     <item
         android:id="@+id/addFM"
         android:iconTint="@null"
