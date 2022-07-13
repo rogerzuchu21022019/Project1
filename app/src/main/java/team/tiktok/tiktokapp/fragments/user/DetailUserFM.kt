@@ -1,32 +1,33 @@
 package team.tiktok.tiktokapp.fragments.user
 
+//import me.ibrahimsn.lib.SmoothBottomBar
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
-//import me.ibrahimsn.lib.SmoothBottomBar
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.adapter.detail.DetailAdapter
-import team.tiktok.tiktokapp.adapter.detail.DetailViewpagerAdapter
+import team.tiktok.tiktokapp.adapter.detail.UserDetailVideosViewpagerAdapter
 import team.tiktok.tiktokapp.databinding.FragmentDetailUserBinding
 
 
 class DetailUserFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
     lateinit var binding: FragmentDetailUserBinding
-    lateinit var adapter: DetailViewpagerAdapter
+    lateinit var adapter: UserDetailVideosViewpagerAdapter
+    val navArgs:DetailUserFMArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDetailUserBinding.inflate(layoutInflater)
         checkComeIn(true)
+        getData()
         clickButton()
         initViewPager()
         return binding.root
@@ -46,26 +47,25 @@ class DetailUserFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
         ) { tab, position ->
             when (position){
                 0->{
-                    tab.setIcon(R.drawable.list)
+                    tab.setIcon(R.drawable.list_16px)
                 }
                 1->{
-                    tab.setIcon(R.drawable.resource_private)
+                    tab.setIcon(R.drawable.private_16px)
 
                 }
                 2->{
-                    tab.setIcon(R.drawable.heart)
-
-                }
-                3->{
-                    tab.setIcon(R.drawable.favourite)
+                    tab.setIcon(R.drawable.heart_16px)
 
                 }
             }
         }.attach()
     }
+    fun getData(){
+        binding.user = navArgs.user
+    }
 
     private fun initViewPager() {
-        adapter = DetailViewpagerAdapter(this)
+        adapter = UserDetailVideosViewpagerAdapter(this)
         binding.vpDetail.adapter = adapter
         initTabLayout()
     }

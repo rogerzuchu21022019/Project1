@@ -7,9 +7,6 @@
         <variable
             name="user"
             type="team.tiktok.tiktokapp.data.User" />
-        <variable
-            name="heart"
-            type="team.tiktok.tiktokapp.data.Heart" />
     </data>
 
    <LinearLayout

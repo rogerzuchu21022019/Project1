@@ -22,6 +22,15 @@
             tools:ignore="MissingConstraints" />
 
 
+        <ImageView
+            android:id="@+id/ivGallery"
+            app:layout_constraintBottom_toTopOf="@id/btnUpTo"
+            app:layout_constraintStart_toStartOf="@id/btnUpTo"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:src="@drawable/gallery"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            tools:ignore="MissingConstraints" />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSound"
             android:layout_width="wrap_content"

@@ -15,7 +15,6 @@ import team.tiktok.tiktokapp.databinding.FragmentLikedVideosBinding
 import team.tiktok.tiktokapp.databinding.FragmentPrivateVideosBinding
 import team.tiktok.tiktokapp.databinding.FragmentSavedVideosBinding
 import team.tiktok.tiktokapp.databinding.FragmentSigninEmailBinding
-import team.tiktok.tiktokapp.databinding.FragmentUserVideosBinding
 
 
 class SavedUserVideosFM : Fragment() {

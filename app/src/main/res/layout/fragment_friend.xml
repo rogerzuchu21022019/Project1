@@ -120,6 +120,7 @@
 
         <TextView
             android:gravity="center"
+            android:id="@+id/tvBorderLeft"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_marginStart="@dimen/_15sdp"
@@ -131,6 +132,7 @@
 
         <TextView
             android:gravity="center"
+            android:id="@+id/tvBorderRight"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_marginEnd="@dimen/_15sdp"
@@ -157,13 +159,13 @@
         <TextView
             android:id="@+id/tvConnectWithFb"
             android:gravity="center"
-            android:layout_width="@dimen/_276sdp"
+            android:layout_width="0dp"
             android:layout_height="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@id/tvConnectToContacts"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvBorderLeft"
+            app:layout_constraintEnd_toEndOf="@id/tvBorderRight"
             android:background="@drawable/boder_background_brown"
             android:textStyle="bold"
             android:text="Kết nối với bạn bè trên Facebook"

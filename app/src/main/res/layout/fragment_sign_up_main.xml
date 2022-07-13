@@ -79,7 +79,7 @@
             android:text="@string/PhoneMailTiktok"
             android:drawableLeft="@drawable/profile16"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/_11sdp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/tvCreate"
             app:layout_constraintStart_toStartOf="@id/tvCreate"
@@ -101,7 +101,7 @@
             android:padding="10dp"
             android:text="@string/Facebook"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/_11sdp"
             android:textStyle="bold"/>
 
         <TextView
@@ -118,7 +118,7 @@
             android:padding="10dp"
             android:text="@string/Apple"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/_11sdp"
             android:textStyle="bold"
             tools:ignore="MissingConstraints" />
 
@@ -136,7 +136,7 @@
             android:padding="10dp"
             android:text="@string/Google"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/_11sdp"
             android:textStyle="bold" />
 
         <TextView
@@ -150,7 +150,7 @@
             android:padding="10dp"
             android:text="@string/Twitter"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/_11sdp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/tvPhoneMailTiktok"
             app:layout_constraintStart_toStartOf="@id/tvCreate"
@@ -167,7 +167,7 @@
             android:padding="10dp"
             android:text="@string/LINE"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/_11sdp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/tvPhoneMailTiktok"
             app:layout_constraintStart_toStartOf="@id/tvCreate"
@@ -184,7 +184,7 @@
             android:padding="10dp"
             android:text="@string/KakaoTalk"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/_11sdp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/tvLine"
             app:layout_constraintStart_toStartOf="@id/tvCreate"

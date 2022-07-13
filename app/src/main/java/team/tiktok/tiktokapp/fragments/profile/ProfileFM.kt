@@ -5,8 +5,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,11 +16,9 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -30,15 +26,16 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
-import team.tiktok.tiktokapp.adapter.detail.DetailViewpagerAdapter
+import team.tiktok.tiktokapp.adapter.detail.DetailUserViewpagerAdapter
 import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.FragmentProfileBinding
-
-import team.tiktok.tiktokapp.fragments.signup.SignUpMainBottomSheetFM
 
 
 class ProfileFM : Fragment() {
@@ -47,7 +44,7 @@ class ProfileFM : Fragment() {
     lateinit var binding: FragmentProfileBinding
     lateinit var auth: FirebaseAuth
     lateinit var database: DatabaseReference
-    lateinit var adapter: DetailViewpagerAdapter
+    lateinit var adapter: DetailUserViewpagerAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -181,23 +178,23 @@ class ProfileFM : Fragment() {
         ) { tab, position ->
             when (position) {
                 0 -> {
-                    tab.setIcon(R.drawable.list)
+                    tab.setIcon(R.drawable.list_16px)
                 }
                 1 -> {
-                    tab.setIcon(R.drawable.resource_private)
+                    tab.setIcon(R.drawable.private_16px)
                 }
                 2 -> {
-                    tab.setIcon(R.drawable.heart)
+                    tab.setIcon(R.drawable.heart_16px)
                 }
                 3 -> {
-                    tab.setIcon(R.drawable.favourite)
+                    tab.setIcon(R.drawable.favorite_16x)
                 }
             }
         }.attach()
     }
 
     private fun initViewPager() {
-        adapter = DetailViewpagerAdapter(this)
+        adapter = DetailUserViewpagerAdapter(this)
         binding.vpDetail.adapter = adapter
         initTabLayout()
 

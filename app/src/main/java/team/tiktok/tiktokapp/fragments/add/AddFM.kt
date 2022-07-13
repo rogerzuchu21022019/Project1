@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,12 +16,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.squareup.picasso.Picasso
-import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.databinding.FragmentAddBinding
-import team.tiktok.tiktokapp.databinding.FragmentSettingAndPrivacyBinding
 
 
 class AddFM : Fragment() {
@@ -50,6 +47,11 @@ class AddFM : Fragment() {
             setOnClickListener {
                 findNavController().navigate(R.id.action_addFM_to_uploadFM)
                 Toast.makeText(requireContext(), "Next", Toast.LENGTH_SHORT).show()
+            }
+        }
+        binding.ivGallery.apply {
+            setOnClickListener {
+                selectVideo()
             }
         }
     }
@@ -87,7 +89,6 @@ class AddFM : Fragment() {
             == PackageManager.PERMISSION_GRANTED
         ) {
             accessCamera()
-            selectVideo()
         } else {
             ActivityCompat.requestPermissions(
                 requireActivity(), arrayOf(
@@ -97,6 +98,7 @@ class AddFM : Fragment() {
                 ), RECORD_REQ
             )
         }
+
     }
 
 
@@ -105,7 +107,6 @@ class AddFM : Fragment() {
 //        intent.type = "image/*" // if you want to you can use pdf/gif/video
         intent.action = android.provider.MediaStore.ACTION_IMAGE_CAPTURE
         intent.action = android.provider.MediaStore.ACTION_VIDEO_CAPTURE
-
         someActivityResultLauncher.launch(intent)
     }
 
@@ -124,6 +125,7 @@ class AddFM : Fragment() {
 
                 imagePath = data!!.data
                 binding.videoView.setVideoURI(imagePath)
+                Log.d("AddFM","imagePath $imagePath")
                 binding.videoView.start()
 //            Picasso.get().load(imagePath).into(binding.civAvatar)
             }

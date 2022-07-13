@@ -11,10 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import pl.droidsonroids.gif.GifImageButton
 import team.tiktok.tiktokapp.BR
 import team.tiktok.tiktokapp.R
@@ -25,6 +22,7 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
     FirebaseRecyclerAdapter<Video, HomeVideoAdapter.VideoViewHolder>(options) {
     lateinit var itemVideoBinding: ItemVideoHomeBinding
     lateinit var onClickItemInRecyclerView: OnClickItemInRecyclerView
+
 
     @RequiresApi(Build.VERSION_CODES.P)
     class VideoViewHolder(
@@ -79,10 +77,10 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
             itemVideoBinding.ivFavorite.apply {
                 setOnClickListener {
                     if (!isFav) {
-                        itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart)
+                        itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_white)
                         isFav = true
                     } else {
-                        itemVideoBinding.ivFavorite.setImageResource(R.drawable.fill_heart)
+                        itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_red)
                         isFav = false
                     }
                 }
@@ -113,13 +111,10 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
             itemVideoBinding.ivShare.apply {
                 setOnClickListener {
                     if (isShare) {
-                        itemVideoBinding.ivShare.setImageResource(R.drawable.share)
-                        itemVideoBinding.ivShare.setColorFilter(it.resources.getColor(R.color.white))
+                        itemVideoBinding.ivShare.setImageResource(R.drawable.share32)
                         isShare = true
                     } else {
-                        itemVideoBinding.ivShare.setImageResource(R.drawable.share)
-                        itemVideoBinding.ivShare.setColorFilter(it.resources.getColor(R.color.white))
-
+                        itemVideoBinding.ivShare.setImageResource(R.drawable.share32)
                         isShare = false
                     }
                     onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
@@ -127,7 +122,6 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
             }
             val btnGif = GifImageButton(this.itemVideoBinding.root.context)
             btnGif.setImageResource(R.drawable.disc)
-
             onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, itemVideoBinding.root)
         }
 
@@ -144,33 +138,38 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
                     (drawable as? AnimatedImageDrawable)?.start()
                 }
 
-                itemVideoBinding.setVariable(BR.user,video)
-                itemVideoBinding.videoView.apply {
-                    setVideoPath(video.url)
-                    setOnPreparedListener { mediaplayer ->
-                        mediaplayer.start()
-                        mediaplayer.isLooping = true
-//
-                        itemVideoBinding.root.apply {
-                            setOnClickListener {
-                                if (mediaplayer.isPlaying) {
-                                    mediaplayer.pause()
-                                    if ((drawable as? AnimatedImageDrawable)?.isRunning() == true) {
-                                        itemVideoBinding.gif.setImageDrawable(drawable)
-                                        (drawable as? AnimatedImageDrawable)?.stop()
-                                    }
-                                    itemVideoBinding.ivPlay.visibility = View.VISIBLE
+                itemVideoBinding.setVariable(BR.video,video)
+                itemVideoBinding.setVariable(BR.user,video.user)
 
-                                } else {
-                                    mediaplayer.start()
-                                    if ((drawable as? AnimatedImageDrawable)?.isRunning() == false) {
-                                        itemVideoBinding.gif.setImageDrawable(drawable)
-                                        (drawable as? AnimatedImageDrawable)?.start()
+                itemVideoBinding.videoView.apply {
+                    withContext(Dispatchers.Main){
+                        setVideoPath(video.url)
+                        setOnPreparedListener { mediaplayer ->
+                            mediaplayer.start()
+                            mediaplayer.isLooping = true
+//
+                            itemVideoBinding.root.apply {
+                                setOnClickListener {
+                                    if (mediaplayer.isPlaying) {
+                                        mediaplayer.pause()
+                                        if ((drawable as? AnimatedImageDrawable)?.isRunning() == true) {
+                                            itemVideoBinding.gif.setImageDrawable(drawable)
+                                            (drawable as? AnimatedImageDrawable)?.stop()
+                                        }
+                                        itemVideoBinding.ivPlay.visibility = View.VISIBLE
+
+                                    } else {
+                                        mediaplayer.start()
+                                        if ((drawable as? AnimatedImageDrawable)?.isRunning() == false) {
+                                            itemVideoBinding.gif.setImageDrawable(drawable)
+                                            (drawable as? AnimatedImageDrawable)?.start()
+                                        }
+                                        itemVideoBinding.ivPlay.visibility = View.GONE
                                     }
-                                    itemVideoBinding.ivPlay.visibility = View.GONE
                                 }
                             }
                         }
+
                     }
                 }
             }
@@ -188,7 +187,7 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
         val layoutInflater = LayoutInflater.from(parent.context)
         itemVideoBinding = ItemVideoHomeBinding.inflate(layoutInflater, parent, false)
 
-        return VideoViewHolder(itemVideoBinding = itemVideoBinding, onClickItemInRecyclerView)
+        return VideoViewHolder(itemVideoBinding = itemVideoBinding,onClickItemInRecyclerView= onClickItemInRecyclerView)
     }
 
     @RequiresApi(Build.VERSION_CODES.P)

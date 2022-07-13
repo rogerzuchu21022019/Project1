@@ -3,60 +3,71 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/boder_signup.xml" value="0.2585" />
+        <entry key="app/src/main/res/drawable/border_nav_bot.xml" value="0.2585" />
         <entry key="app/src/main/res/drawable/bottom_sheet_custom.xml" value="0.1625" />
         <entry key="app/src/main/res/drawable/close.xml" value="0.296" />
+        <entry key="app/src/main/res/drawable/favorites_icon.xml" value="0.2265" />
         <entry key="app/src/main/res/drawable/fill_favorite.xml" value="0.2805" />
+        <entry key="app/src/main/res/drawable/people_ic.xml" value="0.2265" />
         <entry key="app/src/main/res/drawable/save.xml" value="0.288" />
+        <entry key="app/src/main/res/drawable/setting.xml" value="0.215" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15625" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.2776268115942029" />
-        <entry key="app/src/main/res/layout/fragment_add.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/fragment_choose_phone_email_bottom_sheet.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_add.xml" value="0.2776268115942029" />
+        <entry key="app/src/main/res/layout/fragment_choose_phone_email_bottom_sheet.xml" value="0.16489361702127658" />
         <entry key="app/src/main/res/layout/fragment_comment_bottom_sheet.xml" value="0.2776268115942029" />
-        <entry key="app/src/main/res/layout/fragment_detail_user.xml" value="0.311178247734139" />
-        <entry key="app/src/main/res/layout/fragment_edit_profile.xml" value="0.1703125" />
+        <entry key="app/src/main/res/layout/fragment_detail_user.xml" value="0.18125" />
+        <entry key="app/src/main/res/layout/fragment_edit_profile.xml" value="0.26893920898437496" />
         <entry key="app/src/main/res/layout/fragment_empty.xml" value="0.23385416666666667" />
         <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/fragment_following.xml" value="0.18125" />
         <entry key="app/src/main/res/layout/fragment_for_u.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/fragment_for_u1.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/fragment_for_u_click.xml" value="0.2776268115942029" />
-        <entry key="app/src/main/res/layout/fragment_forgot_pasword_email.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/fragment_forgot_pasword_phone.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_forgot_pasword_email.xml" value="0.16489361702127658" />
+        <entry key="app/src/main/res/layout/fragment_forgot_pasword_phone.xml" value="0.16489361702127658" />
+        <entry key="app/src/main/res/layout/fragment_friend.xml" value="0.3832599118942731" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/fragment_home_f_m.xml" value="0.1703125" />
-        <entry key="app/src/main/res/layout/fragment_inbox.xml" value="0.2776268115942029" />
+        <entry key="app/src/main/res/layout/fragment_inbox.xml" value="0.23645833333333333" />
+        <entry key="app/src/main/res/layout/fragment_inbox_not_sign_up.xml" value="0.3252670288085938" />
         <entry key="app/src/main/res/layout/fragment_liked_videos.xml" value="0.23505434782608695" />
         <entry key="app/src/main/res/layout/fragment_manage_account.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/fragment_private_videos.xml" value="0.23505434782608695" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/fragment_profile2.xml" value="0.21739130434782608" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1998687744140625" />
         <entry key="app/src/main/res/layout/fragment_profile_bottom_sheet.xml" value="0.3378099173553719" />
-        <entry key="app/src/main/res/layout/fragment_profile_not_sign_up.xml" value="0.17447916666666666" />
+        <entry key="app/src/main/res/layout/fragment_profile_not_sign_up.xml" value="0.23766784667968746" />
         <entry key="app/src/main/res/layout/fragment_recommend.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/fragment_saved_videos.xml" value="0.23505434782608695" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.2776268115942029" />
-        <entry key="app/src/main/res/layout/fragment_setting_and_privacy.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/fragment_share_bottom_sheet.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_setting_and_privacy.xml" value="0.2776268115942029" />
+        <entry key="app/src/main/res/layout/fragment_share_bottom_sheet.xml" value="0.48341217041015627" />
         <entry key="app/src/main/res/layout/fragment_sign_in_container.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/fragment_sign_up_container.xml" value="0.25625" />
-        <entry key="app/src/main/res/layout/fragment_sign_up_create_pass.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_sign_up_create_toptop_id.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_sign_up_create_.xml" value="0.264945652173913" />
+        <entry key="app/src/main/res/layout/fragment_sign_up_create_pass.xml" value="0.264945652173913" />
+        <entry key="app/src/main/res/layout/fragment_sign_up_create_toptop_id.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/fragment_sign_up_main.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/fragment_signin_email.xml" value="0.16489361702127658" />
         <entry key="app/src/main/res/layout/fragment_signin_phone.xml" value="0.16489361702127658" />
-        <entry key="app/src/main/res/layout/fragment_signup_birth.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_signup_birth.xml" value="0.16489361702127658" />
         <entry key="app/src/main/res/layout/fragment_signup_email.xml" value="0.16489361702127658" />
         <entry key="app/src/main/res/layout/fragment_signup_phone.xml" value="0.16489361702127658" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.1703125" />
-        <entry key="app/src/main/res/layout/fragment_upload.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_upload.xml" value="0.35213395270748404" />
+        <entry key="app/src/main/res/layout/fragment_user_detail_videos.xml" value="0.13177083333333334" />
         <entry key="app/src/main/res/layout/fragment_user_videos.xml" value="0.23505434782608695" />
         <entry key="app/src/main/res/layout/item_detail_video_user.xml" value="0.23505434782608695" />
         <entry key="app/src/main/res/layout/item_explore.xml" value="0.26875" />
+        <entry key="app/src/main/res/layout/item_profile_video_user.xml" value="0.2667572463768116" />
         <entry key="app/src/main/res/layout/item_rv_comment.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/item_video.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/item_video_explore.xml" value="0.26875" />
         <entry key="app/src/main/res/layout/item_video_following.xml" value="0.26875" />
-        <entry key="app/src/main/res/layout/item_video_home.xml" value="0.26875" />
+        <entry key="app/src/main/res/layout/item_video_home.xml" value="0.3058823529411765" />
+        <entry key="app/src/main/res/layout/item_video_home_practice.xml" value="0.2552083333333333" />
+        <entry key="app/src/main/res/layout/item_video_home_user.xml" value="0.2552083333333333" />
         <entry key="app/src/main/res/menu/bot_menu.xml" value="0.29739583333333336" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.296" />
       </map>
