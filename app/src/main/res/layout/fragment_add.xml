@@ -31,21 +31,30 @@
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
             tools:ignore="MissingConstraints" />
+        <ImageView
+            android:id="@+id/ivCamera"
+            app:layout_constraintBottom_toTopOf="@id/btnUpTo"
+            app:layout_constraintEnd_toEndOf="@id/btnNext"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:src="@drawable/recording"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            tools:ignore="MissingConstraints" />
         <TextView
             app:layout_constraintTop_toBottomOf="@id/ivGallery"
             app:layout_constraintStart_toStartOf="@id/ivGallery"
             app:layout_constraintEnd_toEndOf="@id/ivGallery"
             android:text="Tải lên"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-        <androidx.appcompat.widget.AppCompatButton
+        <TextView
             android:id="@+id/btnSound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/music"
             android:drawablePadding="@dimen/_5sdp"
             android:textSize="@dimen/_12sdp"
-            android:background="@color/gray"
             android:textColor="@color/white"
             android:layout_marginTop="@dimen/_15sdp"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,6 +66,7 @@
 
         <ImageView
             android:id="@+id/ivClose"
+
             android:layout_width="@dimen/_15sdp"
             android:layout_height="@dimen/_15sdp"
             android:layout_marginStart="@dimen/_10sdp"
@@ -70,13 +80,15 @@
             android:layout_height="@dimen/_25sdp"
             android:layout_marginTop="@dimen/_40sdp"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:src="@drawable/reverse_16"
+            android:src="@drawable/reverse"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvReverse"
             android:layout_width="wrap_content"
+            android:textColor="@color/white"
+
             android:layout_height="wrap_content"
             android:text="Reverse"
             android:layout_marginTop="@dimen/_2sdp"
@@ -90,7 +102,7 @@
             android:layout_width="@dimen/_25sdp"
             android:layout_height="@dimen/_25sdp"
             android:layout_marginTop="@dimen/_15sdp"
-            android:src="@drawable/speed_16"
+            android:src="@drawable/speed"
             app:layout_constraintEnd_toEndOf="@+id/ivReverse"
             app:layout_constraintStart_toStartOf="@+id/ivReverse"
             app:layout_constraintTop_toBottomOf="@+id/tvReverse" />
@@ -100,6 +112,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Speed"
+            android:textColor="@color/white"
+
             android:layout_marginTop="@dimen/_2sdp"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintEnd_toEndOf="@+id/ivReverse"
@@ -111,7 +125,7 @@
             android:layout_width="@dimen/_25sdp"
             android:layout_height="@dimen/_25sdp"
             android:layout_marginTop="@dimen/_15sdp"
-            android:src="@drawable/fillter_16"
+            android:src="@drawable/filter"
             app:layout_constraintEnd_toEndOf="@+id/ivReverse"
             app:layout_constraintStart_toStartOf="@+id/ivReverse"
             app:layout_constraintTop_toBottomOf="@+id/tvSpeed" />
@@ -123,6 +137,8 @@
             android:text="Fillter"
             android:layout_marginTop="@dimen/_2sdp"
             android:textSize="@dimen/_12sdp"
+            android:textColor="@color/white"
+
             app:layout_constraintEnd_toEndOf="@+id/ivReverse"
             app:layout_constraintStart_toStartOf="@+id/ivReverse"
             app:layout_constraintTop_toBottomOf="@+id/ivFillter" />
@@ -132,7 +148,7 @@
             android:layout_width="@dimen/_25sdp"
             android:layout_height="@dimen/_25sdp"
             android:layout_marginTop="@dimen/_15sdp"
-            android:src="@drawable/beautify_16"
+            android:src="@drawable/beautifull"
             app:layout_constraintEnd_toEndOf="@+id/ivReverse"
             app:layout_constraintStart_toStartOf="@+id/ivReverse"
             app:layout_constraintTop_toBottomOf="@+id/tvFillter" />
@@ -144,6 +160,8 @@
             android:text="beautify"
             android:layout_marginTop="@dimen/_2sdp"
             android:textSize="@dimen/_12sdp"
+            android:textColor="@color/white"
+
             app:layout_constraintEnd_toEndOf="@+id/ivReverse"
             app:layout_constraintStart_toStartOf="@+id/ivReverse"
             app:layout_constraintTop_toBottomOf="@+id/ivBeautify" />
@@ -153,7 +171,7 @@
             android:layout_width="@dimen/_25sdp"
             android:layout_height="@dimen/_25sdp"
             android:layout_marginTop="@dimen/_15sdp"
-            android:src="@drawable/timer_16"
+            android:src="@drawable/timer"
             app:layout_constraintEnd_toEndOf="@+id/ivReverse"
             app:layout_constraintStart_toStartOf="@+id/ivReverse"
             app:layout_constraintTop_toBottomOf="@+id/tvBeautify" />
@@ -165,6 +183,8 @@
             android:text="Timer"
             android:layout_marginTop="@dimen/_2sdp"
             android:textSize="@dimen/_12sdp"
+            android:textColor="@color/white"
+
             app:layout_constraintEnd_toEndOf="@+id/ivReverse"
             app:layout_constraintStart_toStartOf="@+id/ivReverse"
             app:layout_constraintTop_toBottomOf="@+id/ivTimer" />
@@ -174,7 +194,7 @@
             android:layout_width="@dimen/_25sdp"
             android:layout_height="@dimen/_25sdp"
             android:layout_marginTop="@dimen/_15sdp"
-            android:src="@drawable/flash_16"
+            android:src="@drawable/flash"
             app:layout_constraintEnd_toEndOf="@+id/ivReverse"
             app:layout_constraintStart_toStartOf="@+id/ivReverse"
             app:layout_constraintTop_toBottomOf="@+id/tvTimer" />
@@ -186,6 +206,8 @@
             android:text="Flash"
             android:layout_marginTop="@dimen/_2sdp"
             android:textSize="@dimen/_12sdp"
+            android:textColor="@color/white"
+
             app:layout_constraintEnd_toEndOf="@+id/ivReverse"
             app:layout_constraintStart_toStartOf="@+id/ivReverse"
             app:layout_constraintTop_toBottomOf="@+id/ivFlash" />

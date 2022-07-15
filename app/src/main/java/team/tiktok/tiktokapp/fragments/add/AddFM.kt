@@ -54,6 +54,11 @@ class AddFM : Fragment() {
                 selectVideo()
             }
         }
+        binding.ivCamera.apply {
+            setOnClickListener {
+                requestPermissionRecord()
+            }
+        }
     }
 
 
