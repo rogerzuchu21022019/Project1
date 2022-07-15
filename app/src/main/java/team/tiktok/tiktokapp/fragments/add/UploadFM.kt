@@ -1,40 +1,51 @@
 package team.tiktok.tiktokapp.fragments.add
 
-import android.Manifest
-import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.FirebaseAuth
+import androidx.navigation.fragment.navArgs
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import kotlinx.coroutines.*
 import team.tiktok.tiktokapp.R
+import team.tiktok.tiktokapp.data.User
+import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.FragmentUploadBinding
 
 
 class UploadFM : Fragment() {
     lateinit var binding: FragmentUploadBinding
     private val IMAGE_REQ = 1
-    lateinit var auth: FirebaseAuth
-    private var imagePath: Uri? = null
+    lateinit var storageReference: StorageReference
+    lateinit var databaseUser: DatabaseReference
+    var videoPath: Uri? = null
+    val fetchUuid = Firebase.database.getReference("users")
+    val navArgs: UploadFMArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentUploadBinding.inflate(layoutInflater)
+        storageReference = FirebaseStorage.getInstance().reference.child("UsersFoler")
+        loadVideoFromArgs()
+
+
         clickButton()
         return binding.root
     }
@@ -51,64 +62,145 @@ class UploadFM : Fragment() {
                 Toast.makeText(requireContext(), "clicked", Toast.LENGTH_SHORT).show()
             }
         }
-        binding.videoView.apply {
-            setOnClickListener {
-
-            }
-        }
     }
 
 
-    private fun requestPermissionVideo() {
-        if (ContextCompat.checkSelfPermission(
-                requireActivity(),
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            )
-            == PackageManager.PERMISSION_GRANTED
-        ) {
-            selectVideo()
+    fun loadVideoFromArgs(): String {
 
-        } else {
-            ActivityCompat.requestPermissions(
-                requireActivity(), arrayOf(
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ), IMAGE_REQ
-            )
-        }
+        videoPath = Uri.parse(navArgs.videoPath)
+        Log.d("UploadFM", "get videoPath success: ${videoPath!!.lastPathSegment}")
+
+        binding.videoView.setVideoURI(videoPath)
+        binding.videoView.start()
+        binding.videoView.fitsSystemWindows = true
+        val handler = Handler(Looper.myLooper()!!)
+        handler.postDelayed({
+            binding.videoView.pause()
+        }, 2000)
+        return videoPath!!.lastPathSegment!!
     }
-
-    private fun selectVideo() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "video/*" // if you want to you can use pdf/gif/video
-        intent.action = Intent.ACTION_GET_CONTENT
-        someActivityResultLauncher.launch(intent)
-    }
-
-
-    private var someActivityResultLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == AppCompatActivity.RESULT_OK) {
-                val data = result.data
-                imagePath = data!!.data
-
-                binding.videoView.setVideoURI(imagePath)
-                binding.videoView.start()
-                binding.videoView.fitsSystemWindows = true
-//            Picasso.get().load(imagePath).into(binding.civAvatar)
-            }
-
-        }
 
     private fun isLogIn() {
-        auth = Firebase.auth
+
+        val auth = Firebase.auth
         if (auth.currentUser != null) {
-            navSignUp()
+            CoroutineScope(SupervisorJob()).launch(Dispatchers.IO) {
+                getDataOK()
+                withContext(Dispatchers.Main) {
+                    val handle = Handler(Looper.myLooper()!!)
+                    handle.postDelayed({
+                        navSignUp()
+                        handleShowProgressBar()
+                    }, 1000)
+                    handleHideProgressBar()
+                }
+            }
+
         } else {
-            findNavController().popBackStack(R.id.signUpBottomSheetFM, false, true)
+//            findNavController().popBackStack(R.id.signUpBottomSheetFM, false, true)
             val action = UploadFMDirections.actionUploadFMToSignUpBottomSheetFM()
             findNavController().navigate(action)
 
         }
+    }
+
+    private fun getDataOK() {
+        val auth = Firebase.auth
+        var isCheck: Boolean? = null
+        val description = binding.edtDescription.text.toString().trim()
+        val fetchVideos = Firebase.database.getReference("videos")
+
+        val listener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (element in snapshot.children) {
+                    ///get uuid of user after loop cross user
+                    var uuid = element.child("uuid").getValue(String::class.java)
+                    if (auth.currentUser!!.uid == uuid) {
+                        /// create keyVideo
+                        val keyVideo = description
+
+                        /// call variable reference to StorageReference and create path
+                        val videoStorage =
+                            storageReference.child("videos/" + loadVideoFromArgs())
+
+                        /// putFile to storage into path which created
+                        videoStorage.putFile(videoPath!!)
+                            .addOnCompleteListener {
+                                /// handle complete
+                                Log.d(
+                                    "UploadFM",
+                                    "use upload task to put url into storageRef success: ${
+                                        Uri.parse(loadVideoFromArgs())
+                                    }"
+                                )
+                                if (it.isSuccessful) {
+                                    /// when upload success. Use downloadUrl download url from StorageReference to fetchUuid
+                                    videoStorage.downloadUrl
+                                        .addOnCompleteListener { urlDownLoadFromStorage ->
+                                            /// convert it to urlDownLoadFromStorage and get result of video.downloadUrl is variable result
+                                            val url = urlDownLoadFromStorage.result.toString()
+
+                                            fetchUuid.child(element.key!!)
+                                                .addValueEventListener(object :
+                                                    ValueEventListener {
+                                                    override fun onDataChange(snapshotUser: DataSnapshot) {
+                                                        val user = snapshotUser.getValue<User>()
+                                                        val video = Video(
+                                                            uidVideo = description,
+                                                            description = description,
+                                                            title = description,
+                                                            url = url,
+                                                            createAt = "",
+                                                            updateAt = "",
+                                                            user = user
+                                                        )
+                                                        Log.d(
+                                                            "UploadFM",
+                                                            "user load success: $user"
+                                                        )
+
+                                                        /// upload video to user information in fetchUuid
+                                                        fetchUuid.child(element.key!!)
+                                                            .child("videos")
+                                                            .child(keyVideo).setValue(video)
+                                                        /// set identifier for video in fetchVideos
+                                                        fetchVideos.child(keyVideo).push().key
+                                                        /// set video for fetchVideos
+                                                        fetchVideos.child(keyVideo)
+                                                            .setValue(video)
+                                                    }
+
+                                                    override fun onCancelled(error: DatabaseError) {
+                                                    }
+
+                                                })
+                                            isCheck = true
+
+                                        }
+                                    isCheck = true
+                                }
+                                isCheck = true
+                            }
+                            .addOnFailureListener {
+                                /// handle fail
+                                Log.d("UploadFM", "put fail: ${it.message}")
+
+                            }
+                        /// set isCheck to out loop
+
+                    }
+                    if (isCheck == true) {
+                        Log.d("UploadFM", "break: $isCheck")
+                        break
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+
+        }
+        fetchUuid.addValueEventListener(listener)
     }
 
     fun navSignUp() {
@@ -134,7 +226,7 @@ class UploadFM : Fragment() {
         }, 3000)
     }
 
-    fun handleHideProgressBar(){
+    fun handleHideProgressBar() {
         binding.progressbar.visibility = View.GONE
     }
 
@@ -142,5 +234,9 @@ class UploadFM : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding == null
+    }
+
+    override fun onStart() {
+        super.onStart()
     }
 }

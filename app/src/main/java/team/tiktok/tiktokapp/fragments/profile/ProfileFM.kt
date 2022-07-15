@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
@@ -34,7 +36,6 @@ import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.adapter.detail.DetailUserViewpagerAdapter
 import team.tiktok.tiktokapp.data.User
-import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.FragmentProfileBinding
 
 
@@ -52,8 +53,6 @@ class ProfileFM : Fragment() {
         binding = FragmentProfileBinding.inflate(layoutInflater)
         checkComeIn(true)
         clickImage()
-        initViewPager()
-        setBackStackStartDestinationID()
         clickButton()
         isLogIn()
         return binding.root
@@ -69,7 +68,8 @@ class ProfileFM : Fragment() {
     private fun isLogIn() {
         auth = Firebase.auth
         if (auth.currentUser != null) {
-//            checkExist(auth.currentUser!!.uid)
+            loadUser()
+            initViewPager()
             binding.layoutSecond.visibility = View.GONE
             binding.layoutMain.visibility = View.VISIBLE
         } else {
@@ -97,65 +97,44 @@ class ProfileFM : Fragment() {
         }
     }
 
-    private fun checkExist(uid: String) {
+     fun loadUser() {
         database = Firebase.database.getReference("users")
+        var isCheck: Boolean? = null
 
-        database.addValueEventListener(object : ValueEventListener {
+        val listener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    snapshot.children.forEach {
-                        var user: User = it.getValue(User::class.java)!!
-                        if (uid == user.uuid) {
-                            updateUI(user)
-                            Toast.makeText(
-                                requireContext(),
-                                "ok ${user.topTopID}",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-
-
+                for (element in snapshot.children) {
+                    var uuid = element.child("uuid").getValue(String::class.java)
+                    if (auth.currentUser!!.uid == uuid) {
+                        database.child(element.key!!)
+                            .addValueEventListener(object : ValueEventListener {
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    val user = snapshot.getValue<User>()!!
+                                    Log.d("ProfileFM", "user : $user")
+                                    updateUI(user)
+                                    isCheck = true
+                                }
+                                override fun onCancelled(error: DatabaseError) {
+                                }
+                            })
                     }
-
+                    if (isCheck == true) {
+                        break
+                    }
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
             }
 
-        })
-        database.child("videos")
-            .addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.exists()) {
-                        for (element in snapshot.children) {
-                            var video = element.getValue(Video::class.java)
-
-                            Toast.makeText(
-                                requireContext(),
-                                "ok ${video!!.url}",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                }
-
-
-                override fun onCancelled(error: DatabaseError) {
-
-                }
-
-            })
-
+        }
+        database.addValueEventListener(listener)
     }
 
     private fun updateUI(user: User) {
         binding.user = user
     }
 
-    private fun setBackStackStartDestinationID() {
-        findNavController().graph.setStartDestination(R.id.inboxFM)
-    }
 
 
     private fun clickButton() {

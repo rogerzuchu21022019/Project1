@@ -2,6 +2,9 @@ package team.tiktok.tiktokapp.fragments.user
 
 //import me.ibrahimsn.lib.SmoothBottomBar
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,24 +13,35 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.*
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.adapter.detail.DetailAdapter
 import team.tiktok.tiktokapp.adapter.detail.UserDetailVideosViewpagerAdapter
+import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.databinding.FragmentDetailUserBinding
 
 
 class DetailUserFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
     lateinit var binding: FragmentDetailUserBinding
     lateinit var adapter: UserDetailVideosViewpagerAdapter
-    val navArgs:DetailUserFMArgs by navArgs()
+    val navArgs : DetailUserFMArgs by navArgs()
+    lateinit var mDataBase: DatabaseReference
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDetailUserBinding.inflate(layoutInflater)
         checkComeIn(true)
-        getData()
+        loadDataFromHome()
+        retrieveUser()
         clickButton()
         initViewPager()
         return binding.root
@@ -39,29 +53,122 @@ class DetailUserFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
                 findNavController().navigate(R.id.action_detailUserFM_to_homeFM)
             }
         }
+        binding.btnEditProfile.apply {
+            setOnClickListener {
+            }
+        }
     }
+    fun loadDataFromHome():User{
+        val user = navArgs.user
+        binding.user = user
+        binding.following = user.following
+        binding.follower = user.follower
+        return  user
+    }
+
     private fun initTabLayout() {
         TabLayoutMediator(
             binding.tab,
             binding.vpDetail
         ) { tab, position ->
-            when (position){
-                0->{
+            when (position) {
+                0 -> {
                     tab.setIcon(R.drawable.list_16px)
                 }
-                1->{
+                1 -> {
                     tab.setIcon(R.drawable.private_16px)
-
                 }
-                2->{
+                2 -> {
                     tab.setIcon(R.drawable.heart_16px)
-
                 }
             }
         }.attach()
     }
-    fun getData(){
-        binding.user = navArgs.user
+
+    fun retrieveUser() {
+        var auth = Firebase.auth
+        CoroutineScope(SupervisorJob()).launch(Dispatchers.IO) {
+            withContext(Dispatchers.Main) {
+                mDataBase = Firebase.database.getReference("videos")
+
+                val handle = Handler(Looper.myLooper()!!)
+                handle.postDelayed({
+                    mDataBase.addValueEventListener(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            if (snapshot.exists()) {
+                                snapshot.children.forEach {
+                                    val user1 = it.child("user").getValue(User::class.java)!!
+                                    if (user1.topTopID!! == loadDataFromHome().topTopID) {
+                                        binding.user = user1
+                                        binding.follower = user1.follower
+                                        binding.following = user1.following
+                                    }
+                                    Log.d("DetailUserFM ", "user : ${user1}")
+                                }
+
+                            }
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                        }
+                    })
+                }, 500)
+            }
+        }
+
+
+
+//        var isCheck: Boolean? = null
+//        CoroutineScope(SupervisorJob()).launch(Dispatchers.IO) {
+//            val fetchVideos = Firebase.database.getReference("videos")
+//
+//            val listener = object : ValueEventListener {
+//                override fun onDataChange(snapshot: DataSnapshot) {
+//                    for (element in snapshot.children) {
+//                        var uuid = element.child("user").getValue(String::class.java)
+//                        if (auth.currentUser!!.uid == uuid) {
+//                            Toast.makeText(requireContext(),"equal ",Toast.LENGTH_SHORT).show()
+//                            Log.d("DetailUser","equal ")
+//                            /// set identifier for video in fetchUser
+//
+//                            /// get data with element
+//                            fetchVideos.child(element.key!!)
+//                                .addValueEventListener(object : ValueEventListener {
+//                                    override fun onDataChange(snapshotUser: DataSnapshot) {
+//                                        val user = snapshotUser.getValue<User>()
+//                                        Log.d("DetailUser", "get user success: $user")
+//                                        binding.user = user
+//                                        binding.follower = user!!.follower
+//                                        binding.following = user.following
+//                                        /// upload video to user information in fetchUuid
+//
+//
+//                                        /// set identifier for video in fetchVideos
+//
+//                                        /// set video for fetchVideos
+//                                        isCheck = true
+//                                    }
+//
+//                                    override fun onCancelled(error: DatabaseError) {
+//                                    }
+//
+//                                })
+//                        }
+//                        if (isCheck == true) {
+//                            Toast.makeText(requireContext(), "break: $isCheck", Toast.LENGTH_SHORT)
+//                                .show()
+//                            Log.d("UploadFM", "break: $isCheck")
+//                            break
+//                        }
+//                    }
+//                }
+//
+//                override fun onCancelled(error: DatabaseError) {
+//                }
+//
+//            }
+//            fetchVideos.addValueEventListener(listener)
+//        }
     }
 
     private fun initViewPager() {
@@ -70,11 +177,11 @@ class DetailUserFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
         initTabLayout()
     }
 
-    private fun checkComeIn(isComeIn:Boolean){
-        if (isComeIn){
+    private fun checkComeIn(isComeIn: Boolean) {
+        if (isComeIn) {
             val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
             navBot.visibility = View.GONE
-        }else{
+        } else {
             val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
             navBot.visibility = View.VISIBLE
         }
@@ -83,7 +190,6 @@ class DetailUserFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
 
     override fun onDestroyView() {
         super.onDestroyView()
-
         binding == null
         checkComeIn(false)
     }
