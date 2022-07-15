@@ -1,8 +1,5 @@
 package team.tiktok.tiktokapp.adapter.detail
 
-import android.os.Handler
-import android.os.Looper
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

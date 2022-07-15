@@ -13,7 +13,6 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import kotlinx.coroutines.*
 import pl.droidsonroids.gif.GifImageButton
-import team.tiktok.tiktokapp.BR
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.ItemVideoHomeBinding
@@ -137,12 +136,15 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
                     itemVideoBinding.gif.setImageDrawable(drawable)
                     (drawable as? AnimatedImageDrawable)?.start()
                 }
+                itemVideoBinding.video = video
+                itemVideoBinding.user = video.user
+                itemVideoBinding.comment = video.comments
+                itemVideoBinding.follower = video.user!!.follower
+                itemVideoBinding.following = video.user!!.following
 
-                itemVideoBinding.setVariable(BR.video,video)
-                itemVideoBinding.setVariable(BR.user,video.user)
 
                 itemVideoBinding.videoView.apply {
-                    withContext(Dispatchers.Main){
+                    withContext(Dispatchers.Main) {
                         setVideoPath(video.url)
                         setOnPreparedListener { mediaplayer ->
                             mediaplayer.start()
@@ -187,7 +189,10 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
         val layoutInflater = LayoutInflater.from(parent.context)
         itemVideoBinding = ItemVideoHomeBinding.inflate(layoutInflater, parent, false)
 
-        return VideoViewHolder(itemVideoBinding = itemVideoBinding,onClickItemInRecyclerView= onClickItemInRecyclerView)
+        return VideoViewHolder(
+            itemVideoBinding = itemVideoBinding,
+            onClickItemInRecyclerView = onClickItemInRecyclerView
+        )
     }
 
     @RequiresApi(Build.VERSION_CODES.P)

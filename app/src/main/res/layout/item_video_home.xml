@@ -11,6 +11,15 @@
         <variable
             name="user"
             type="team.tiktok.tiktokapp.data.User" />
+        <variable
+            name="follower"
+            type="team.tiktok.tiktokapp.data.Follower" />
+        <variable
+            name="following"
+            type="team.tiktok.tiktokapp.data.Following" />
+        <variable
+            name="comment"
+            type="team.tiktok.tiktokapp.data.Comment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -241,7 +250,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_8sdp"
             android:textStyle="bold"
-            android:text="3456"
+            android:text="@{String.valueOf(comment.countComments)}"
             tools:ignore="MissingConstraints" />
 
         <ImageView
@@ -270,7 +279,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_8sdp"
             android:textStyle="bold"
-            android:text="@{String.valueOf(user.password)}"
+            android:text="@{String.valueOf(video.countSaved)}"
             tools:ignore="MissingConstraints" />
 
         <ImageView
@@ -289,6 +298,7 @@
 
         <TextView
             android:id="@+id/tvShare"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_5sdp"
@@ -298,7 +308,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_8sdp"
             android:textStyle="bold"
-            android:text="3456"
+            android:text="@{String.valueOf(video.countShare)}"
             tools:ignore="MissingConstraints" />
 
 

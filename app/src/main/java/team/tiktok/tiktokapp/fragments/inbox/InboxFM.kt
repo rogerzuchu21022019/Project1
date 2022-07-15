@@ -34,10 +34,25 @@ class InboxFM : Fragment() {
     ): View? {
         binding = FragmentInboxBinding.inflate(layoutInflater)
 //        setBackStackStartDestinationID()
+//        clickButotn()
         isLogIn()
         checkComeIn(true)
         return binding.root
     }
+
+    private fun clickButotn() {
+        binding.layoutBot.apply {
+            setOnClickListener {
+                isLogIn()
+            }
+        }
+        binding.layoutMid.apply {
+            setOnClickListener {
+                isLogIn()
+            }
+        }
+    }
+
     private fun navSignUp() {
         val action = InboxFMDirections.actionInboxFMToSignUpBottomSheetFM()
         findNavController().navigate(action)
@@ -54,7 +69,12 @@ class InboxFM : Fragment() {
             binding.constraintMain.visibility = View.GONE
             binding.constraintSecond.visibility = View.VISIBLE
             navSignUp()
-            binding.constraintSecond.apply {
+            binding.layoutBot.apply {
+                setOnClickListener{
+                    navSignUp()
+                }
+            }
+            binding.layoutMid.apply {
                 setOnClickListener{
                     navSignUp()
                 }

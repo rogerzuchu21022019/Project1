@@ -16,7 +16,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.databinding.FragmentAddBinding
 
 
@@ -24,7 +23,7 @@ class AddFM : Fragment() {
     lateinit var binding: FragmentAddBinding
     private val IMAGE_REQ = 1
     private val RECORD_REQ = 2
-    private var imagePath: Uri? = null
+    private var videoPath: Uri? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,8 +44,9 @@ class AddFM : Fragment() {
         }
         binding.btnNext.apply {
             setOnClickListener {
-                findNavController().navigate(R.id.action_addFM_to_uploadFM)
-                Toast.makeText(requireContext(), "Next", Toast.LENGTH_SHORT).show()
+                val action = AddFMDirections.actionAddFMToUploadFM(videoPath = videoPath.toString())
+                findNavController().navigate(action)
+                Toast.makeText(requireContext(), "Next ${videoPath.toString()}", Toast.LENGTH_SHORT).show()
             }
         }
         binding.ivGallery.apply {
@@ -114,6 +114,7 @@ class AddFM : Fragment() {
         val intent = Intent()
         intent.type = "video/*" // if you want to you can use pdf/gif/video
         intent.action = Intent.ACTION_GET_CONTENT
+
         someActivityResultLauncher.launch(intent)
     }
 
@@ -123,9 +124,9 @@ class AddFM : Fragment() {
             if (result.resultCode == AppCompatActivity.RESULT_OK) {
                 val data = result.data
 
-                imagePath = data!!.data
-                binding.videoView.setVideoURI(imagePath)
-                Log.d("AddFM","imagePath $imagePath")
+                videoPath = data!!.data
+                binding.videoView.setVideoURI(videoPath)
+                Log.d("AddFM","imagePath $videoPath")
                 binding.videoView.start()
 //            Picasso.get().load(imagePath).into(binding.civAvatar)
             }

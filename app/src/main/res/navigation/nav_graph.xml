@@ -26,7 +26,8 @@
         <action
             android:id="@+id/action_homeFM_to_detailUserFM"
             app:destination="@id/detailUserFM"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/detailUserFM"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_homeFM_to_searchFM"
             app:destination="@id/searchFM" />
@@ -57,7 +58,8 @@
             app:destination="@id/settingAndPrivacyFM" />
         <argument
             android:name="user"
-            app:argType="team.tiktok.tiktokapp.data.User" />
+            app:argType="team.tiktok.tiktokapp.data.User"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/inboxFM"
@@ -73,7 +75,11 @@
         android:id="@+id/friendFM"
         android:name="team.tiktok.tiktokapp.fragments.friend.FriendFM"
         android:label="fragment_explore"
-        tools:layout="@layout/fragment_friend" />
+        tools:layout="@layout/fragment_friend" >
+        <action
+            android:id="@+id/action_friendFM_to_signUpBottomSheetFM"
+            app:destination="@id/signUpBottomSheetFM" />
+    </fragment>
     <fragment
         android:id="@+id/editProfileFM"
         tools:layout="@layout/fragment_edit_profile"
@@ -151,7 +157,7 @@
             android:id="@+id/action_followingFM_to_detailUserFM"
             app:destination="@id/detailUserFM"
             app:popUpTo="@id/detailUserFM"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_followingFM_to_searchFM"
             app:destination="@id/searchFM" />
@@ -257,6 +263,9 @@
         <action
             android:id="@+id/action_uploadFM_to_emptyFM"
             app:destination="@id/emptyFM" />
+        <argument
+            android:name="videoPath"
+            app:argType="string" />
     </fragment>
     <dialog
         android:id="@+id/chooseEmailOrPhoneBottomSheetFM"
@@ -338,14 +347,14 @@
             android:id="@+id/action_signInContainerFM_to_profileFM"
             app:destination="@id/profileFM" />
         <action
-            android:id="@+id/action_signInContainerFM_to_profileFM2"
-            app:destination="@id/profileFM" />
-        <action
             android:id="@+id/action_signInContainerFM_to_inboxFM"
             app:destination="@id/inboxFM" />
         <action
             android:id="@+id/action_signInContainerFM_to_uploadFM"
             app:destination="@id/uploadFM" />
+        <action
+            android:id="@+id/action_signInContainerFM_to_emptyFM"
+            app:destination="@id/emptyFM" />
     </fragment>
     <fragment
         android:id="@+id/signInEmailFM"
@@ -402,13 +411,21 @@
             app:argType="string[]" />
         <action
             android:id="@+id/action_signUpCreateTopTopIDFM_to_signInContainerFM"
-            app:destination="@id/signInContainerFM" />
+            app:destination="@id/signInContainerFM"
+            app:popUpTo="@id/signInContainerFM"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_signUpCreateTopTopIDFM_to_profileFM"
             app:destination="@id/profileFM" />
         <action
             android:id="@+id/action_signUpCreateTopTopIDFM_to_inboxFM"
             app:destination="@id/inboxFM" />
+        <action
+            android:id="@+id/action_signUpCreateTopTopIDFM_to_homeFM"
+            app:destination="@id/homeFM" />
+        <action
+            android:id="@+id/action_signUpCreateTopTopIDFM_to_uploadFM"
+            app:destination="@id/uploadFM" />
     </fragment>
     <fragment
         android:id="@+id/signUpCreatePassFM"

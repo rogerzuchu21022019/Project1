@@ -31,6 +31,13 @@
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
             tools:ignore="MissingConstraints" />
+        <TextView
+            app:layout_constraintTop_toBottomOf="@id/ivGallery"
+            app:layout_constraintStart_toStartOf="@id/ivGallery"
+            app:layout_constraintEnd_toEndOf="@id/ivGallery"
+            android:text="Tải lên"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSound"
             android:layout_width="wrap_content"
@@ -186,7 +193,8 @@
         <androidx.appcompat.widget.AppCompatButton
             android:layout_marginBottom="?attr/actionBarSize"
             android:id="@+id/btnUpTo"
-            android:layout_width="@dimen/_145sdp"
+            android:layout_width="0dp"
+            app:layout_constraintEnd_toStartOf="@id/btnNext"
             android:layout_height="wrap_content"
             android:text="Đăng lên nhật ký"
             android:layout_marginStart="@dimen/_10sdp"
@@ -199,8 +207,10 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnNext"
             android:layout_marginBottom="?attr/actionBarSize"
-            android:layout_width="@dimen/_145sdp"
+            android:layout_width="0dp"
+            app:layout_constraintStart_toEndOf="@id/btnUpTo"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
             android:text="Tiếp"
             android:background="@color/red"
             android:textColor="@color/white"

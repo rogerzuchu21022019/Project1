@@ -7,6 +7,12 @@
         <variable
             name="user"
             type="team.tiktok.tiktokapp.data.User" />
+        <variable
+            name="follower"
+            type="team.tiktok.tiktokapp.data.Follower" />
+        <variable
+            name="following"
+            type="team.tiktok.tiktokapp.data.Following" />
     </data>
 
    <LinearLayout
@@ -18,7 +24,7 @@
            android:id="@+id/layoutMain"
            android:layout_width="match_parent"
            android:layout_height="match_parent"
-           android:visibility="gone">
+           android:visibility="visible">
 
            <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -152,7 +158,7 @@
                            android:layout_marginTop="@dimen/_10sdp"
                            android:layout_weight="1"
                            android:gravity="center"
-                           android:text="@{String.valueOf(user.follower),default =0}"
+                           android:text="@{String.valueOf(follower.countFollowers),default = 0}"
                            android:textSize="@dimen/_12sdp"
                            android:textStyle="bold"
                            app:layout_constraintEnd_toEndOf="@+id/civAvatar"
@@ -165,7 +171,7 @@
                            android:layout_height="wrap_content"
                            android:gravity="center"
                            android:layout_marginEnd="@dimen/_1sdp"
-                           android:text="@{String.valueOf(user.following),default =0}"
+                           android:text="@{String.valueOf(following.countFollowings),default = 0}"
                            android:textSize="@dimen/_12sdp"
                            android:textStyle="bold"
                            app:layout_constraintBottom_toBottomOf="@+id/tvFollower"

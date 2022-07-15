@@ -48,35 +48,6 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
         checkComeIn(true)
         return binding.root
     }
-    private fun transferData(){
-
-        val listener = object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()){
-                    snapshot.children.forEach {
-                        val video = it.getValue(Video::class.java)
-                        if (video == null){
-                            return
-                        }else{
-                            val user = it.child("user").getValue(User::class.java)
-                            if (user==null){
-                                Log.d("UserLog","$")
-                                return
-                            }else{
-                                navDicretion(user=user)
-                                Log.d("UserLog","${user}")
-                            }
-                        }
-                    }
-
-                }
-            }
-            override fun onCancelled(error: DatabaseError) {
-            }
-        }
-        mDataBase.addValueEventListener(listener)
-
-    }
 
 
 
@@ -137,6 +108,38 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
 
         }
     }
+
+    private fun transferData(){
+
+        val listener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()){
+                    snapshot.children.forEach {
+                        val video = it.getValue(Video::class.java)
+                        if (video == null){
+                            return
+                        }else{
+                            val user = it.child("user").getValue(User::class.java)
+                            if (user==null){
+                                Log.d("UserLog","$")
+                                return
+                            }else{
+                                navDicretion(user)
+                                Log.d("UserLog","${user}")
+                            }
+                        }
+                    }
+
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        }
+        mDataBase.addValueEventListener(listener)
+
+    }
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         checkComeIn(false)
@@ -150,8 +153,8 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
 
         }
     }
-    fun navDicretion(user:User) {
-        if (findNavController().currentDestination?.id == R.id.followingFM) {
+    fun navDicretion(user: User) {
+        if (findNavController().currentDestination!!.id == R.id.followingFM) {
             val action = FollowingFMDirections.actionFollowingFMToDetailUserFM(user)
             findNavController().navigate(action)
         }
