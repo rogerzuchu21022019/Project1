@@ -10,6 +10,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
+import androidx.navigation.NavDirections
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
@@ -154,11 +159,17 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
         }
     }
     fun navDicretion(user: User) {
-        if (findNavController().currentDestination!!.id == R.id.followingFM) {
+        if(activity?.findNavController(R.id.fmNavHostGraph)!!.currentDestination!!.id == R.id.followingFM ){
             val action = FollowingFMDirections.actionFollowingFMToDetailUserFM(user)
-            findNavController().navigate(action)
+            activity?.findNavController(R.id.fmNavHostGraph)!!.lifeCycleNavigate(lifecycleScope,action)
+//            findNavController().navigate(action)
+//            findNavController().popBackStack(R.id.detailUserFM,false,true)
         }
     }
+    fun NavController.lifeCycleNavigate(lifecycle : LifecycleCoroutineScope, navDirections: NavDirections) =
+        lifecycle.launchWhenResumed {
+            navigate(navDirections)
+        }
 
     private fun isLogIn() {
         auth = Firebase.auth

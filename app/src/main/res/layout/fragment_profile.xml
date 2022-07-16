@@ -129,6 +129,7 @@
 
                        <de.hdodenhof.circleimageview.CircleImageView
                            android:id="@+id/civAvatar"
+                           app:loadImage="@{user.imgUrl}"
                            android:layout_width="@dimen/_70sdp"
                            android:layout_height="@dimen/_70sdp"
                            android:layout_gravity="center"

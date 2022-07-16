@@ -149,7 +149,6 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
                         setOnPreparedListener { mediaplayer ->
                             mediaplayer.start()
                             mediaplayer.isLooping = true
-//
                             itemVideoBinding.root.apply {
                                 setOnClickListener {
                                     if (mediaplayer.isPlaying) {

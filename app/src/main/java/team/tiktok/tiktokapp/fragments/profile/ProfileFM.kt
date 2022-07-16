@@ -27,6 +27,8 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -45,6 +47,7 @@ class ProfileFM : Fragment() {
     lateinit var binding: FragmentProfileBinding
     lateinit var auth: FirebaseAuth
     lateinit var database: DatabaseReference
+    lateinit var storageReference : StorageReference
     lateinit var adapter: DetailUserViewpagerAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +56,8 @@ class ProfileFM : Fragment() {
         binding = FragmentProfileBinding.inflate(layoutInflater)
         checkComeIn(true)
         clickImage()
+        storageReference = Firebase.storage.reference.child("UsersFoler")
+        initViewPager()
         clickButton()
         isLogIn()
         return binding.root
@@ -69,7 +74,6 @@ class ProfileFM : Fragment() {
         auth = Firebase.auth
         if (auth.currentUser != null) {
             loadUser()
-            initViewPager()
             binding.layoutSecond.visibility = View.GONE
             binding.layoutMain.visibility = View.VISIBLE
         } else {
@@ -133,6 +137,8 @@ class ProfileFM : Fragment() {
 
     private fun updateUI(user: User) {
         binding.user = user
+        binding.follower = user.follower
+        binding.following = user.following
     }
 
 
@@ -186,6 +192,7 @@ class ProfileFM : Fragment() {
                 Toast.makeText(requireActivity(), "OK", Toast.LENGTH_SHORT).show()
             }
         }
+
     }
 
     private fun requestPermission() {
@@ -218,6 +225,20 @@ class ProfileFM : Fragment() {
             if (result.resultCode == AppCompatActivity.RESULT_OK) {
                 val data = result.data
                 imagePath = data!!.data
+                val imageStorage = storageReference.child("image/"+imagePath!!.lastPathSegment)
+                imageStorage.putFile(imagePath!!)
+                    .addOnCompleteListener {
+                        Toast.makeText(requireContext(),"upload ok",Toast.LENGTH_SHORT).show()
+//                imageStorage.downloadUrl
+//                    .addOnSuccessListener {
+//                        val database = Firebase.database.getReference("users").child(user.topTopID!!)
+//                        user.imgUrl = it.toString()
+//                        database.setValue(user)
+//                    }
+                    }
+                    .addOnFailureListener{
+                        Toast.makeText(requireContext(),"upload Fail",Toast.LENGTH_SHORT).show()
+                    }
                 Picasso.get().load(imagePath).into(binding.civAvatar)
 
             }

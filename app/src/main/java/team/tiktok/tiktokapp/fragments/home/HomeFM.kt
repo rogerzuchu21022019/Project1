@@ -45,6 +45,9 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         checkComeIn(true)
         auth = Firebase.auth
+        val dataOffline = Firebase.database
+        dataOffline.setPersistenceEnabled(true)
+        dataOffline.setPersistenceCacheSizeBytes(10000)
         loadData()
         return binding.root
     }
@@ -103,7 +106,7 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
     }
 
     fun navDirection(user: User) {
-        if(activity?.findNavController(R.id.fmNavHostGraph)!!.currentDestination!!.id == R.id.homeFM ||activity?.findNavController(R.id.fmNavHostGraph)!!.previousBackStackEntry!!.destination.id  ==R.id.detailUserFM ){
+        if(activity?.findNavController(R.id.fmNavHostGraph)!!.currentDestination!!.id == R.id.homeFM ){
             val action = HomeFMDirections.actionHomeFMToDetailUserFM(user)
             activity?.findNavController(R.id.fmNavHostGraph)!!.lifeCycleNavigate(lifecycleScope,action)
 //            findNavController().navigate(action)
