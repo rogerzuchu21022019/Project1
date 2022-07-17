@@ -11,25 +11,21 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import pl.droidsonroids.gif.GifImageButton
-import team.tiktok.tiktokapp.BR
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.data.Video
-import team.tiktok.tiktokapp.databinding.ItemVideoFollowingBinding
+import team.tiktok.tiktokapp.databinding.ItemVideoHomeBinding
 
-class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
+open class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
     FirebaseRecyclerAdapter<Video, FollowingVideoAdapter.VideoViewHolder>(options) {
-    lateinit var itemVideoBinding: ItemVideoFollowingBinding
+    lateinit var itemVideoBinding: ItemVideoHomeBinding
     lateinit var onClickItemInRecyclerView: OnClickItemInRecyclerView
 
 
     @RequiresApi(Build.VERSION_CODES.P)
     class VideoViewHolder(
-        val itemVideoBinding: ItemVideoFollowingBinding,
+        val itemVideoBinding: ItemVideoHomeBinding,
         onClickItemInRecyclerView: OnClickItemInRecyclerView
     ) : RecyclerView.ViewHolder(itemVideoBinding.root) {
         var isFav = false
@@ -79,7 +75,7 @@ class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
             /// Click Icon Favorite
             itemVideoBinding.ivFavorite.apply {
                 setOnClickListener {
-                    if (!isFav) {
+                    if (isFav) {
                         itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_white)
                         isFav = false
                     } else {
@@ -93,6 +89,7 @@ class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
             itemVideoBinding.ivComment.apply {
                 setOnClickListener {
                     onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
+
                 }
             }
 
@@ -100,10 +97,11 @@ class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
             itemVideoBinding.ivSave.apply {
                 setOnClickListener {
                     if (isSave) {
-                        itemVideoBinding.ivSave.setImageResource(R.drawable.favorite)
-                        isSave = true
-                    } else {
+                        itemVideoBinding.ivSave.setImageResource(R.drawable.save32)
                         isSave = false
+                    } else {
+                        itemVideoBinding.ivSave.setImageResource(R.drawable.save_yellow)
+                        isSave = true
                     }
                     onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
                 }
@@ -118,7 +116,6 @@ class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
                         isShare = true
                     } else {
                         itemVideoBinding.ivShare.setImageResource(R.drawable.share32)
-
                         isShare = false
                     }
                     onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
@@ -141,42 +138,49 @@ class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
                     itemVideoBinding.gif.setImageDrawable(drawable)
                     (drawable as? AnimatedImageDrawable)?.start()
                 }
+                itemVideoBinding.video = video
+                itemVideoBinding.user = video.user
+                itemVideoBinding.comment = video.comments
+                itemVideoBinding.follower = video.user!!.follower
+                itemVideoBinding.following = video.user!!.following
 
-                itemVideoBinding.setVariable(BR.video,video)
-                itemVideoBinding.setVariable(BR.user,video.user)
 
                 itemVideoBinding.videoView.apply {
-                    setVideoPath(video.url)
-                    setOnPreparedListener { mediaplayer ->
-                        mediaplayer.start()
-                        mediaplayer.isLooping = true
-//
-                        itemVideoBinding.root.apply {
-                            setOnClickListener {
-                                if (mediaplayer.isPlaying) {
-                                    mediaplayer.pause()
-                                    if ((drawable as? AnimatedImageDrawable)?.isRunning() == true) {
-                                        itemVideoBinding.gif.setImageDrawable(drawable)
-                                        (drawable as? AnimatedImageDrawable)?.stop()
-                                    }
-                                    itemVideoBinding.ivPlay.visibility = View.VISIBLE
+                    withContext(Dispatchers.Main) {
+                        setVideoPath(video.url)
+                        setOnPreparedListener { mediaplayer ->
+                            mediaplayer.start()
+                            mediaplayer.isLooping = true
+                            itemVideoBinding.root.apply {
+                                setOnClickListener {
+                                    if (mediaplayer.isPlaying) {
+                                        mediaplayer.pause()
+                                        if ((drawable as? AnimatedImageDrawable)?.isRunning() == true) {
+                                            itemVideoBinding.gif.setImageDrawable(drawable)
+                                            (drawable as? AnimatedImageDrawable)?.stop()
+                                        }
+                                        itemVideoBinding.ivPlay.visibility = View.VISIBLE
 
-                                } else {
-                                    mediaplayer.start()
-                                    if ((drawable as? AnimatedImageDrawable)?.isRunning() == false) {
-                                        itemVideoBinding.gif.setImageDrawable(drawable)
-                                        (drawable as? AnimatedImageDrawable)?.start()
+                                    } else {
+                                        mediaplayer.start()
+                                        if ((drawable as? AnimatedImageDrawable)?.isRunning() == false) {
+                                            itemVideoBinding.gif.setImageDrawable(drawable)
+                                            (drawable as? AnimatedImageDrawable)?.start()
+                                        }
+                                        itemVideoBinding.ivPlay.visibility = View.GONE
                                     }
-                                    itemVideoBinding.ivPlay.visibility = View.GONE
                                 }
                             }
                         }
+
                     }
                 }
             }
         }
 
     }
+
+
 
     fun setOnClickItem(onClickItemInRecyclerView: OnClickItemInRecyclerView) {
         this.onClickItemInRecyclerView = onClickItemInRecyclerView
@@ -186,9 +190,12 @@ class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        itemVideoBinding = ItemVideoFollowingBinding.inflate(layoutInflater, parent, false)
+        itemVideoBinding = ItemVideoHomeBinding.inflate(layoutInflater, parent, false)
 
-        return VideoViewHolder(itemVideoBinding = itemVideoBinding,onClickItemInRecyclerView= onClickItemInRecyclerView)
+        return VideoViewHolder(
+            itemVideoBinding = itemVideoBinding,
+            onClickItemInRecyclerView = onClickItemInRecyclerView
+        )
     }
 
     @RequiresApi(Build.VERSION_CODES.P)

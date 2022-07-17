@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -17,6 +18,7 @@ import com.google.firebase.ktx.Firebase
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.adapter.comment.CommentsAdapter
 import team.tiktok.tiktokapp.data.Comment
+import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.FragmentCommentBottomSheetBinding
 
@@ -27,6 +29,7 @@ class CommentBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListener {
     val navArgs: CommentBottomSheetFMArgs by navArgs()
     lateinit var dbComment: DatabaseReference
     lateinit var dbVideos: DatabaseReference
+    val auth = Firebase.auth
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -85,13 +88,17 @@ class CommentBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListener {
                         val result = listComment.size
                         binding.idCountComments.text = result.toString()
                         updateDataVideo(result)
+//                                        updateComment(user, comment)
                     }
+
+
+
+
                     adapter.notifyDataSetChanged()
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-
             }
 
         })
@@ -99,9 +106,19 @@ class CommentBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListener {
 
     }
 
+    private fun updateComment(user: User, comment: Comment) {
+        var hashMap: MutableMap<String, Any> = HashMap()
+        hashMap.put("users", user)
+
+        dbVideos =
+            Firebase.database.getReference("videos").child(getVideo().uidVideo!!).child("comments")
+                .child(comment.message.toString())
+        dbVideos.updateChildren(hashMap as Map<String, Any>)
+    }
+
     private fun updateDataVideo(countComments: Int) {
         var hashMap: MutableMap<String, Int> = HashMap()
-        hashMap.put("countComments",countComments)
+        hashMap.put("countComments", countComments)
 
         dbVideos = Firebase.database.getReference("videos").child(getVideo().uidVideo!!)
         dbVideos.updateChildren(hashMap as Map<String, Any>)
@@ -125,24 +142,52 @@ class CommentBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListener {
             R.id.imgSend -> {
                 val message = binding.edtMessage.text.toString().trim()
                 binding.edtMessage.text.clear()
-                val user = navArgs.video.user
-                val video = navArgs.video
-                val uuidVideo = navArgs.video.uidVideo!!
-                val comment = Comment(
-                    message = message,
-                    uidComment = message,
-                    countComments = 300,
-                    users = user,
-                    videos = video
-                )
-                dbComment = Firebase.database.getReference("comments")
-                dbComment.child(message).setValue(comment)
+                val dbUser = Firebase.database.getReference("users")
 
 
-                val dbVideo = Firebase.database.getReference("videos")
-                dbVideo.child(uuidVideo).child("comments").child(message).push().key
-                dbVideo.child(uuidVideo).child("comments").child(message)
-                    .setValue(comment)
+                /// TODO: Before comment, check current user is logging
+                dbUser.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                      for (element in snapshot.children){
+                          /// TODO: snapshot.children and ref uuid of child to get uuid
+                          val uuid = element.child("uuid").getValue(String::class.java)!!
+                          /// TODO: equal with currentUser of auth
+                          if (auth.currentUser!!.uid == uuid) {
+                              dbUser.child(element.key!!).addValueEventListener(object :ValueEventListener{
+                                  override fun onDataChange(snapshotUser: DataSnapshot) {
+                                      val user = snapshotUser.getValue(User::class.java)!!
+                                      val video = navArgs.video
+                                      val uuidVideo = navArgs.video.uidVideo!!
+                                      val comment = Comment(
+                                          message = message,
+                                          uidComment = message,
+                                          countComments = 300,
+                                          users = user,
+                                          videos = video
+                                      )
+                                      dbComment = Firebase.database.getReference("comments")
+                                      dbComment.child(message).setValue(comment)
+
+
+                                      val dbVideo = Firebase.database.getReference("videos")
+                                      dbVideo.child(uuidVideo).child("comments").child(message).push().key
+                                      dbVideo.child(uuidVideo).child("comments").child(message)
+                                          .setValue(comment)
+                                  }
+
+                                  override fun onCancelled(error: DatabaseError) {
+                                  }
+                              })
+
+                          }
+                      }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+                })
+
 //
 
 //                dbComment = Firebase.database.getReference("videos").child(navArgs.video.uidVideo!!)

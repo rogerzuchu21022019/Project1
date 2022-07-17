@@ -90,28 +90,34 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
 
 
     override fun onItemClick(position: Int, view: View) {
+
         val id = view.id
-        if (id==R.id.ivSearch){
-            findNavController().navigate(R.id.action_followingFM_to_searchFM)
-        }
-        if (id==R.id.civUser){
-            transferData()
-        }
-        if (id==R.id.tvForU){
-            findNavController().navigate(R.id.action_followingFM_to_homeFM)
+        when (id) {
+            R.id.ivFavorite -> {
 
-        }
-        if (id==R.id.ivComment){
-            isLogIn()
-        }
-        if (id==R.id.ivSave){
-            Toast.makeText(requireContext(),"save",Toast.LENGTH_SHORT).show()
-        }
-        if (id==R.id.ivShare){
-            Toast.makeText(requireContext(),"share",Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_followingFM_to_shareBottomSheetFM)
+            }
+            R.id.ivSearch -> {
+                findNavController().navigate(R.id.action_followingFM_to_searchFM)
+            }
+            R.id.civUser -> {
+                transferData()
+            }
+            R.id.tvForU -> {
+                findNavController().navigate(R.id.action_followingFM_to_homeFM)
 
+            }
+            R.id.ivComment -> {
+                isLogIn(position)
+            }
+            R.id.ivSave -> {
+                Toast.makeText(requireContext(), "save", Toast.LENGTH_SHORT).show()
+            }
+            R.id.ivShare -> {
+                findNavController().navigate(R.id.action_followingFM_to_shareBottomSheetFM)
+
+            }
         }
+
     }
 
     private fun transferData(){
@@ -171,16 +177,19 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
             navigate(navDirections)
         }
 
-    private fun isLogIn() {
+    private fun isLogIn(position: Int) {
         auth = Firebase.auth
         if (auth.currentUser != null) {
-//            val action = FollowingFMDirections.actionFollowingFMToCommentBottomSheetFM()
-//            findNavController().navigate(action)
+            loadComments(position = position)
         } else {
             val action = FollowingFMDirections.actionFollowingFMToSignUpBottomSheetFM()
             findNavController().navigate(action)
-
         }
     }
 
+    fun loadComments(position: Int) {
+        val video = adapter.getItem(position)
+        val action = FollowingFMDirections.actionFollowingFMToCommentBottomSheetFM(video)
+        findNavController().navigate(action)
+    }
 }

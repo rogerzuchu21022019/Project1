@@ -8,11 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import team.tiktok.tiktokapp.adapter.detail.DetailAdapter
+import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.FragmentUserDetailVideosBinding
 
@@ -30,16 +32,16 @@ class UserDetailVideosFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
         return binding.root
     }
 
-//    fun getData(): User {
-//        val getDataFromDetailUserFM = requireParentFragment().navArgs<DetailUserFMArgs>().value
-//        val user = getDataFromDetailUserFM.user
-//        return user
-//    }
+    fun getData(): User {
+        val getDataFromDetailUserFM = requireParentFragment().navArgs<DetailUserFMArgs>().value
+        val user = getDataFromDetailUserFM.user
+        return user
+    }
 
 
     fun initRecyclerView() {
             val mainDB =
-                Firebase.database.getReference("users").child("namios").child("videos")
+                Firebase.database.getReference("users").child(getData().topTopID!!).child("videos")
             val options = FirebaseRecyclerOptions.Builder<Video>()
                 .setQuery(mainDB, Video::class.java)
                 .build()

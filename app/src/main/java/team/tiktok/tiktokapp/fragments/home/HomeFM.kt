@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleCoroutineScope
@@ -38,6 +37,9 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
     private lateinit var adapter: HomeVideoAdapter
     lateinit var auth: FirebaseAuth
     lateinit var mDataBase: DatabaseReference
+    lateinit var dbVideos: DatabaseReference
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -80,28 +82,78 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
     }
 
 
+
+
     override fun onItemClick(position: Int, view: View) {
+        var isFav = false
+        var isSave = false
+        /// TODO:Click item Use position
         val id = view.id
-        if (id == R.id.ivSearch) {
-            findNavController().navigate(R.id.action_homeFM_to_searchFM)
-        }
-        if (id == R.id.civUser) {
-            transferData()
+        when(id){
+            R.id.ivComment->{
+                isLogIn(position)
+            }
 
         }
-        if (id == R.id.tvFollowing) {
-            findNavController().navigate(R.id.action_homeFM_to_followingFM)
+
+        /// TODO:Click item Not use position
+        adapter.itemVideoBinding.ivSave.apply {
+            setOnClickListener {
+                if (isSave) {
+                    isSave = false
+                    adapter.itemVideoBinding.ivSave.setImageResource(R.drawable.save32)
+                } else {
+                    isSave = true
+                    adapter.itemVideoBinding.ivSave.setImageResource(R.drawable.save_yellow)
+                }
+            }
         }
-        if (id == R.id.ivComment) {
-            isLogIn(position)
+
+
+
+        adapter.itemVideoBinding.ivFavorite.apply {
+            setOnClickListener {
+
+                if (isFav) {
+                    adapter.itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_white)
+                    isFav = false
+                } else {
+                    adapter.itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_red)
+                    isFav = true
+                }
+            }
         }
-        if (id == R.id.ivSave) {
-            Toast.makeText(requireContext(), "save", Toast.LENGTH_SHORT).show()
+        adapter.itemVideoBinding.civUser.apply {
+            setOnClickListener {
+                transferData()
+            }
         }
-        if (id == R.id.ivShare) {
-            Toast.makeText(requireContext(), "share", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_homeFM_to_shareBottomSheetFM)
+        adapter.itemVideoBinding.ivSearch.apply {
+            setOnClickListener {
+                findNavController().navigate(R.id.action_homeFM_to_searchFM)
+            }
         }
+        adapter.itemVideoBinding.tvFollowing.apply {
+            setOnClickListener {
+                findNavController().navigate(R.id.action_homeFM_to_followingFM)
+            }
+        }
+
+        adapter.itemVideoBinding.ivShare.apply {
+            setOnClickListener {
+                findNavController().navigate(R.id.action_homeFM_to_shareBottomSheetFM)
+
+            }
+        }
+
+    }
+
+    private fun updateDataVideo(countSaved: Any) {
+        var hashMap: MutableMap<String, Any> = HashMap()
+        hashMap.put("countSaved", countSaved)
+
+        dbVideos = Firebase.database.getReference("videos")
+        dbVideos.updateChildren(hashMap as Map<String, Any>)
     }
 
     fun navDirection(user: User) {
@@ -129,7 +181,6 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
     }
 
 
-
     private fun transferData() {
         mDataBase = Firebase.database.getReference("videos")
 
@@ -147,7 +198,7 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
                                 return
                             } else {
                                 navDirection(user)
-                                Log.d("UserLog", "${user}")
+                                Log.d("UserLog1", "${user}")
                             }
                         }
                     }
