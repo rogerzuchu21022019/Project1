@@ -174,8 +174,8 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
     private fun isLogIn() {
         auth = Firebase.auth
         if (auth.currentUser != null) {
-            val action = FollowingFMDirections.actionFollowingFMToCommentBottomSheetFM()
-            findNavController().navigate(action)
+//            val action = FollowingFMDirections.actionFollowingFMToCommentBottomSheetFM()
+//            findNavController().navigate(action)
         } else {
             val action = FollowingFMDirections.actionFollowingFMToSignUpBottomSheetFM()
             findNavController().navigate(action)

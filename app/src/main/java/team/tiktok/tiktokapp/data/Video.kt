@@ -21,7 +21,6 @@ data class User(
     ///update
     var phone: String? = null,
     var profileUrl: String? = null,
-    var comments: Comment? = null,
     var videos: Video? = null,
     var urlFollower: String? = null,
     var urlFollowing: String? = null,
@@ -38,6 +37,7 @@ data class Comment(
     var updateAt: String? = "",
     var countComments: Int? = 0,
     var hearts: Int? = 0,
+    var videos: Video? = null
 ) : Parcelable
 
 @Parcelize
@@ -52,7 +52,8 @@ data class Video(
     var countShare:Int? = 0,
     var countSaved:Int? = 0,
     var countHearts:Int? = 0,
-    var comments:Comment? = null
+    var comments:Comment? = null,
+    var countComments: Int? = 0
 ) : Parcelable{
     constructor() : this(uidVideo = "", title = "", description = "", url = "", createAt = "", updateAt = "", user = null)
     constructor(uidVideo: String?,title: String?,description: String?,url: String?,createAt: String?,updateAt: String?) : this(uidVideo = uidVideo, title = title, description = description, url = url, createAt = createAt, updateAt = updateAt, user = null)

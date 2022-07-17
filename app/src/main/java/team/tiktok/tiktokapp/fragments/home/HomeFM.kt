@@ -45,9 +45,6 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         checkComeIn(true)
         auth = Firebase.auth
-        val dataOffline = Firebase.database
-        dataOffline.setPersistenceEnabled(true)
-        dataOffline.setPersistenceCacheSizeBytes(10000)
         loadData()
         return binding.root
     }
@@ -61,6 +58,7 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
             val options = FirebaseRecyclerOptions.Builder<Video>()
                 .setQuery(mDataBase, Video::class.java)
                 .build()
+
             adapter = HomeVideoAdapter(options)
             binding.vpHome.adapter = adapter
             adapter.setOnClickItem(this@HomeFM)
@@ -89,12 +87,13 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
         }
         if (id == R.id.civUser) {
             transferData()
+
         }
         if (id == R.id.tvFollowing) {
             findNavController().navigate(R.id.action_homeFM_to_followingFM)
         }
         if (id == R.id.ivComment) {
-            isLogIn()
+            isLogIn(position)
         }
         if (id == R.id.ivSave) {
             Toast.makeText(requireContext(), "save", Toast.LENGTH_SHORT).show()
@@ -106,25 +105,30 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
     }
 
     fun navDirection(user: User) {
-        if(activity?.findNavController(R.id.fmNavHostGraph)!!.currentDestination!!.id == R.id.homeFM ){
+        if (activity?.findNavController(R.id.fmNavHostGraph)!!.currentDestination!!.id == R.id.homeFM) {
             val action = HomeFMDirections.actionHomeFMToDetailUserFM(user)
-            activity?.findNavController(R.id.fmNavHostGraph)!!.lifeCycleNavigate(lifecycleScope,action)
-//            findNavController().navigate(action)
-//            findNavController().popBackStack(R.id.detailUserFM,false,true)
+            activity?.findNavController(R.id.fmNavHostGraph)!!
+                .lifeCycleNavigate(lifecycleScope, action)
         }
     }
 
-    private fun isLogIn() {
+    private fun isLogIn(position: Int) {
         auth = Firebase.auth
         if (auth.currentUser != null) {
-            val action = HomeFMDirections.actionHomeFMToCommentBottomSheetFM()
-            findNavController().navigate(action)
-
+            loadComments(position = position)
         } else {
             val action = HomeFMDirections.actionHomeFMToSignUpBottomSheetFM()
             findNavController().navigate(action)
         }
     }
+
+    fun loadComments(position: Int) {
+        val video = adapter.getItem(position)
+        val action = HomeFMDirections.actionHomeFMToCommentBottomSheetFM(video)
+        findNavController().navigate(action)
+    }
+
+
 
     private fun transferData() {
         mDataBase = Firebase.database.getReference("videos")
@@ -147,7 +151,6 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
                             }
                         }
                     }
-
                 }
             }
 
@@ -157,7 +160,11 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
         mDataBase.addValueEventListener(listener)
 
     }
-    fun NavController.lifeCycleNavigate(lifecycle : LifecycleCoroutineScope, navDirections: NavDirections) =
+
+    fun NavController.lifeCycleNavigate(
+        lifecycle: LifecycleCoroutineScope,
+        navDirections: NavDirections
+    ) =
         lifecycle.launchWhenResumed {
             navigate(navDirections)
         }
@@ -174,7 +181,6 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
             navBot.setBackgroundResource(R.color.black)
             navBot.tabColorSelected = ContextCompat.getColor(requireContext(), R.color.white)
             navBot.badgeTextColor = ContextCompat.getColor(requireContext(), R.color.white)
-
         }
     }
 

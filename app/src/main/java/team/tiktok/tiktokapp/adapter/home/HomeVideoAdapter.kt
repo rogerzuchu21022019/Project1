@@ -75,12 +75,12 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
             /// Click Icon Favorite
             itemVideoBinding.ivFavorite.apply {
                 setOnClickListener {
-                    if (!isFav) {
+                    if (isFav) {
                         itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_white)
-                        isFav = true
+                        isFav = false
                     } else {
                         itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_red)
-                        isFav = false
+                        isFav = true
                     }
                 }
             }
@@ -89,6 +89,7 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
             itemVideoBinding.ivComment.apply {
                 setOnClickListener {
                     onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
+
                 }
             }
 
@@ -96,10 +97,11 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
             itemVideoBinding.ivSave.apply {
                 setOnClickListener {
                     if (isSave) {
-                        itemVideoBinding.ivSave.setImageResource(R.drawable.fill_favorite)
-                        isSave = true
-                    } else {
+                        itemVideoBinding.ivSave.setImageResource(R.drawable.save32)
                         isSave = false
+                    } else {
+                        itemVideoBinding.ivSave.setImageResource(R.drawable.save_yellow)
+                        isSave = true
                     }
                     onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
                 }
@@ -177,6 +179,8 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
         }
 
     }
+
+
 
     fun setOnClickItem(onClickItemInRecyclerView: OnClickItemInRecyclerView) {
         this.onClickItemInRecyclerView = onClickItemInRecyclerView
