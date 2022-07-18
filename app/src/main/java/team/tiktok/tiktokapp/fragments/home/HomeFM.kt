@@ -3,7 +3,6 @@ package team.tiktok.tiktokapp.fragments.home
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,10 +17,7 @@ import androidx.navigation.fragment.findNavController
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import nl.joery.animatedbottombar.AnimatedBottomBar
@@ -82,18 +78,18 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
     }
 
 
-
-
     override fun onItemClick(position: Int, view: View) {
         var isFav = false
         var isSave = false
         /// TODO:Click item Use position
         val id = view.id
-        when(id){
-            R.id.ivComment->{
+        when (id) {
+            R.id.ivComment -> {
                 isLogIn(position)
             }
-
+            R.id.civUser->{
+                transferData(position)
+            }
         }
 
         /// TODO:Click item Not use position
@@ -121,11 +117,6 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
                     adapter.itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_red)
                     isFav = true
                 }
-            }
-        }
-        adapter.itemVideoBinding.civUser.apply {
-            setOnClickListener {
-                transferData()
             }
         }
         adapter.itemVideoBinding.ivSearch.apply {
@@ -181,35 +172,9 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
     }
 
 
-    private fun transferData() {
-        mDataBase = Firebase.database.getReference("videos")
-
-        val listener = object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    snapshot.children.forEach {
-                        val video = it.getValue(Video::class.java)
-                        if (video == null) {
-                            return
-                        } else {
-                            val user = it.child("user").getValue(User::class.java)
-                            if (user == null) {
-                                Log.d("UserLog", "$")
-                                return
-                            } else {
-                                navDirection(user)
-                                Log.d("UserLog1", "${user}")
-                            }
-                        }
-                    }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-        }
-        mDataBase.addValueEventListener(listener)
-
+    private fun transferData(position: Int) {
+        val video = adapter.getItem(position)
+        navDirection(video.user!!)
     }
 
     fun NavController.lifeCycleNavigate(

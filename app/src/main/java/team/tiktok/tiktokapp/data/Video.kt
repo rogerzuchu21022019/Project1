@@ -39,6 +39,12 @@ data class Comment(
     var hearts: Int? = 0,
     var videos: Video? = null
 ) : Parcelable
+@Parcelize
+data class Favorite(
+    var heart: Boolean? = false,
+    var users: User?= null,
+    var videos: Video? = null
+) : Parcelable
 
 @Parcelize
 data class Video(

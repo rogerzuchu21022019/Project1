@@ -1,6 +1,7 @@
 package team.tiktok.tiktokapp.fragments.user
 
 //import me.ibrahimsn.lib.SmoothBottomBar
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -99,6 +100,7 @@ class DetailUserFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
                                 snapshot.children.forEach {
                                     val user1 = it.child("user").getValue(User::class.java)!!
                                     if (user1.topTopID!! == loadDataFromHome().topTopID) {
+                                        Toast.makeText(requireContext(),"toptopid user1 ${user1.topTopID} loaddata ${loadDataFromHome().topTopID}",Toast.LENGTH_SHORT).show()
                                         binding.user = user1
                                         binding.follower = user1.follower
                                         binding.following = user1.following
@@ -117,6 +119,10 @@ class DetailUserFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
         }
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        retrieveUser()
+    }
     private fun initViewPager() {
         adapter = UserDetailVideosViewpagerAdapter(this)
         binding.vpDetail.adapter = adapter

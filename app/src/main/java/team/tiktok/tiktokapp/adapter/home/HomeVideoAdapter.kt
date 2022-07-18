@@ -44,79 +44,51 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
             /// Click Icon Search
             itemVideoBinding.ivSearch.apply {
                 setOnClickListener {
-                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
                 }
             }
 
             /// Click on Screen
             itemVideoBinding.root.apply {
                 setOnClickListener {
-                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
                 }
             }
             itemVideoBinding.civUser.apply {
                 setOnClickListener {
-                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
+                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition,it)
                 }
             }
 
             /// Click Following | For you
             itemVideoBinding.tvForU.apply {
                 setOnClickListener {
-                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
                 }
             }
             itemVideoBinding.tvFollowing.apply {
                 setOnClickListener {
-                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
                 }
             }
 
             /// Click Icon Favorite
             itemVideoBinding.ivFavorite.apply {
                 setOnClickListener {
-//                    if (isFav) {
-//                        itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_white)
-//                        isFav = false
-//                    } else {
-//                        itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_red)
-//                        isFav = true
-//                    }
                 }
             }
             itemVideoBinding.ivSave.apply {
                 setOnClickListener {
-//                    if (isSave) {
-//                        itemVideoBinding.ivSave.setImageResource(R.drawable.save32)
-//                        isSave = false
-//                        Toast.makeText(
-//                            this@VideoViewHolder.itemVideoBinding.root.context,
-//                            "saved",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//
-//                    } else {
-//                        itemVideoBinding.ivSave.setImageResource(R.drawable.save_yellow)
-//                        isSave = true
-//                    }
-//                        onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
                 }
             }
 
-
+            itemVideoBinding.ivShare.apply {
+                setOnClickListener {
+                }
+            }
             /// Click Icon Comment
             itemVideoBinding.ivComment.apply {
                 setOnClickListener {
-                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
-
+                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition,it)
                 }
             }
 
-            /// Click Icon Save Clip
-
-
-
-            /// Click Icon Share
 
             val btnGif = GifImageButton(this.itemVideoBinding.root.context)
             btnGif.setImageResource(R.drawable.disc)
@@ -138,23 +110,11 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
                 itemVideoBinding.video = video
                 itemVideoBinding.user = video.user
                 itemVideoBinding.comment = video.comments
-                itemVideoBinding.follower = video.user!!.follower
-                itemVideoBinding.following = video.user!!.following
 
 
-                itemVideoBinding.ivShare.apply {
-                    setOnClickListener {
-                        if (isShare) {
-                            itemVideoBinding.ivShare.setImageResource(R.drawable.share32)
-                            isShare = true
-                        } else {
-                            itemVideoBinding.ivShare.setImageResource(R.drawable.share32)
-                            isShare = false
 
-                        }
-//                        onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
-                    }
-                }
+
+
 
                 itemVideoBinding.videoView.apply {
                     withContext(Dispatchers.Main) {

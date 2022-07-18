@@ -42,85 +42,34 @@ open class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
             )
 
             /// Click Icon Search
-            itemVideoBinding.ivSearch.apply {
+            itemVideoBinding.ivComment.apply {
                 setOnClickListener {
                     onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
                 }
             }
 
             /// Click on Screen
-            itemVideoBinding.root.apply {
+            itemVideoBinding.civUser.apply {
                 setOnClickListener {
                     onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
                 }
             }
-            itemVideoBinding.civUser.apply {
+            itemVideoBinding.ivFavorite.apply {
                 setOnClickListener {
                     onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
                 }
             }
 
             /// Click Following | For you
-            itemVideoBinding.tvForU.apply {
-                setOnClickListener {
-                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
-                }
-            }
-            itemVideoBinding.tvFollowing.apply {
-                setOnClickListener {
-                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
-                }
-            }
 
             /// Click Icon Favorite
-            itemVideoBinding.ivFavorite.apply {
-                setOnClickListener {
-                    if (isFav) {
-                        itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_white)
-                        isFav = false
-                    } else {
-                        itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_red)
-                        isFav = true
-                    }
-                }
-            }
 
             /// Click Icon Comment
-            itemVideoBinding.ivComment.apply {
-                setOnClickListener {
-                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
-
-                }
-            }
 
             /// Click Icon Save Clip
-            itemVideoBinding.ivSave.apply {
-                setOnClickListener {
-                    if (isSave) {
-                        itemVideoBinding.ivSave.setImageResource(R.drawable.save32)
-                        isSave = false
-                    } else {
-                        itemVideoBinding.ivSave.setImageResource(R.drawable.save_yellow)
-                        isSave = true
-                    }
-                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
-                }
-            }
 
 
             /// Click Icon Share
-            itemVideoBinding.ivShare.apply {
-                setOnClickListener {
-                    if (isShare) {
-                        itemVideoBinding.ivShare.setImageResource(R.drawable.share32)
-                        isShare = true
-                    } else {
-                        itemVideoBinding.ivShare.setImageResource(R.drawable.share32)
-                        isShare = false
-                    }
-                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
-                }
-            }
             val btnGif = GifImageButton(this.itemVideoBinding.root.context)
             btnGif.setImageResource(R.drawable.disc)
             onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, itemVideoBinding.root)
@@ -141,8 +90,6 @@ open class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
                 itemVideoBinding.video = video
                 itemVideoBinding.user = video.user
                 itemVideoBinding.comment = video.comments
-                itemVideoBinding.follower = video.user!!.follower
-                itemVideoBinding.following = video.user!!.following
 
 
                 itemVideoBinding.videoView.apply {

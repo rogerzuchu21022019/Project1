@@ -50,7 +50,7 @@ class CommentBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListener {
 
     private fun initRecyclerView() {
         val listComment = mutableListOf<Comment>()
-        /// TODO() get video with dbVideos
+        /// TODO: Get video with dbVideos
         dbVideos = Firebase.database.getReference("videos").child(getVideo().uidVideo!!)
         dbVideos.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -61,7 +61,7 @@ class CommentBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListener {
             }
         })
 
-        /// TODO() create recyclerview
+        /// TODO: Create recyclerview
         adapter = CommentsAdapter()
         binding.rvComment.adapter = adapter
         adapter.setAdapter(listComment)
@@ -72,7 +72,7 @@ class CommentBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListener {
                 DividerItemDecoration.VERTICAL
             )
         )
-        /// get comment with dbComment
+        /// TODO: Get comment with dbComment
         dbComment =
             Firebase.database.getReference("videos").child(getVideo().uidVideo!!).child("comments")
         dbComment.addValueEventListener(object : ValueEventListener {
@@ -88,12 +88,7 @@ class CommentBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListener {
                         val result = listComment.size
                         binding.idCountComments.text = result.toString()
                         updateDataVideo(result)
-//                                        updateComment(user, comment)
                     }
-
-
-
-
                     adapter.notifyDataSetChanged()
                 }
             }
@@ -149,12 +144,14 @@ class CommentBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListener {
                 dbUser.addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                       for (element in snapshot.children){
-                          /// TODO: snapshot.children and ref uuid of child to get uuid
+                          /// TODO: Use snapshot.children and ref uuid of child to get uuid
                           val uuid = element.child("uuid").getValue(String::class.java)!!
-                          /// TODO: equal with currentUser of auth
+                          /// TODO: Compare equal with currentUser of auth
                           if (auth.currentUser!!.uid == uuid) {
+                              /// TODO: Ref dbUser use ValueEvent
                               dbUser.child(element.key!!).addValueEventListener(object :ValueEventListener{
                                   override fun onDataChange(snapshotUser: DataSnapshot) {
+                                      /// TODO: Get user from element.key and compare with uuid
                                       val user = snapshotUser.getValue(User::class.java)!!
                                       val video = navArgs.video
                                       val uuidVideo = navArgs.video.uidVideo!!
@@ -165,10 +162,11 @@ class CommentBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListener {
                                           users = user,
                                           videos = video
                                       )
+                                      /// TODO: Set value for dbComment
                                       dbComment = Firebase.database.getReference("comments")
                                       dbComment.child(message).setValue(comment)
 
-
+                                      /// TODO: Set value for dbVideo
                                       val dbVideo = Firebase.database.getReference("videos")
                                       dbVideo.child(uuidVideo).child("comments").child(message).push().key
                                       dbVideo.child(uuidVideo).child("comments").child(message)
@@ -188,25 +186,6 @@ class CommentBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListener {
                     }
                 })
 
-//
-
-//                dbComment = Firebase.database.getReference("videos").child(navArgs.video.uidVideo!!)
-//                    .child("comments")
-//                dbComment.addValueEventListener(object : ValueEventListener {
-//                    override fun onDataChange(snapshot: DataSnapshot) {
-//                        val comment =
-//                            snapshot.child(comment.uidComment!!).getValue(Comment::class.java)
-//                        Toast.makeText(
-//                            requireContext(),
-//                            "$ comment ${comment!!.countComments}+  ${comment.uidComment}}",
-//                            Toast.LENGTH_SHORT
-//                        ).show()
-//                        initRecyclerView()
-//                    }
-//
-//                    override fun onCancelled(error: DatabaseError) {
-//                    }
-//                })
             }
         }
     }
