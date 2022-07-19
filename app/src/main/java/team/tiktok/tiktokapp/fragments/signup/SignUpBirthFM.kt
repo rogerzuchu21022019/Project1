@@ -3,7 +3,10 @@ package team.tiktok.tiktokapp.fragments.signup
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
+import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.databinding.FragmentSignupBirthBinding
 import java.util.*
 
@@ -34,7 +38,8 @@ class SignUpBirthFM : Fragment() {
     private fun clickButton() {
         binding.ivBack.apply {
             setOnClickListener {
-                findNavController().popBackStack()
+//                val action = SignUpBirthFMDirections.actionSignUpBirthFMToAddFM()
+//                findNavController().navigate(action)
             }
         }
 

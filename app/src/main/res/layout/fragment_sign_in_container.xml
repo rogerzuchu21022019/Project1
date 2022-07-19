@@ -12,10 +12,8 @@
         android:layout_height="match_parent">
         <ImageView
             android:id="@+id/ivBack"
-            android:layout_width="@dimen/_10sdp"
-            app:layout_constraintTop_toTopOf="@id/tvSignIn"
-            app:layout_constraintBottom_toBottomOf="@id/tvSignIn"
-            android:layout_height="@dimen/_10sdp"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
             android:src="@drawable/back"
             tools:ignore="MissingConstraints" />
 
@@ -25,7 +23,6 @@
             android:layout_height="wrap_content"
             android:text="Đăng nhập"
             android:textSize="@dimen/_14sdp"
-            android:layout_marginTop="@dimen/_10sdp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

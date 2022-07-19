@@ -16,8 +16,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/tvSignUp"
             android:id="@+id/ivBack"
-            android:layout_width="@dimen/_10sdp"
-            android:layout_height="@dimen/_10sdp"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
             android:src="@drawable/back"
             tools:ignore="MissingConstraints" />
         <TextView
