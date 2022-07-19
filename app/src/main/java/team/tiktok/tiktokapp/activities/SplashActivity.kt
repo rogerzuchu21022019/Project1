@@ -13,9 +13,7 @@ class SplashActivity : AppCompatActivity() {
             super.onCreate(savedInstanceState)
             binding = FragmentSplashScreenBinding.inflate(layoutInflater)
             setContentView(binding.root)
-
             navDirection()
-
         }
 
     private fun navDirection() {
