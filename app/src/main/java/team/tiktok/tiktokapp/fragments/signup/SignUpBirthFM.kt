@@ -42,10 +42,17 @@ class SignUpBirthFM : Fragment() {
 //                findNavController().navigate(action)
             }
         }
+
+        binding.ivDatePikerBirth.apply {
+            setOnClickListener{
+                initDatePicker()
+            }
+        }
+
         binding.btnNext.apply {
             setOnClickListener {
                 if(TextUtils.isEmpty(binding.edtBirth.text.toString())){
-                    Toast.makeText(requireContext(),"Please Fill Information",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),"Please fill Information",Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
                 val birth = binding.edtBirth.text.toString().trim()
