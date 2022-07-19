@@ -99,7 +99,6 @@ class SignUpCreateTopTopIDFM : Fragment() {
                     videos = null,
                     follower = follower,
                     following = following,
-                    comments = comment,
                 )
                 ///upload user from local to firebase realtimedatabase
                 database.child(user.topTopID!!).setValue(user)

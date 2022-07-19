@@ -188,6 +188,9 @@
         <action
             android:id="@+id/action_commentBottomSheetFM_to_followingFM"
             app:destination="@id/followingFM" />
+        <argument
+            android:name="video"
+            app:argType="team.tiktok.tiktokapp.data.Video" />
     </dialog>
     <dialog
         android:id="@+id/shareBottomSheetFM"

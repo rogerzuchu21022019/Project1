@@ -120,7 +120,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{video.title}"
+            android:text="@{user.fullName}"
             android:textColor="@color/white"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginStart="@dimen/_8sdp"

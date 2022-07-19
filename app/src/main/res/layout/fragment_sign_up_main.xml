@@ -7,9 +7,12 @@
 
     </data>
 
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="@dimen/_540sdp">
 
         <ImageView
             android:id="@+id/ivClose"
@@ -342,4 +345,5 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+</androidx.core.widget.NestedScrollView>
 </layout>

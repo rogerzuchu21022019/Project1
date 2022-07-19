@@ -9,7 +9,3 @@ import team.tiktok.tiktokapp.R
 fun loadImage(iv: ImageView, imgUrl: String?) {
     Glide.with(iv).load(imgUrl).placeholder(R.drawable.girl).error(R.drawable.girl).into(iv)
 }
-
-fun loadList() {
-
-}

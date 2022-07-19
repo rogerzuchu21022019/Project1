@@ -1,6 +1,7 @@
 package team.tiktok.tiktokapp.fragments.user
 
 //import me.ibrahimsn.lib.SmoothBottomBar
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -115,62 +116,12 @@ class DetailUserFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
                 }, 500)
             }
         }
-
-
-
-//        var isCheck: Boolean? = null
-//        CoroutineScope(SupervisorJob()).launch(Dispatchers.IO) {
-//            val fetchVideos = Firebase.database.getReference("videos")
-//
-//            val listener = object : ValueEventListener {
-//                override fun onDataChange(snapshot: DataSnapshot) {
-//                    for (element in snapshot.children) {
-//                        var uuid = element.child("user").getValue(String::class.java)
-//                        if (auth.currentUser!!.uid == uuid) {
-//                            Toast.makeText(requireContext(),"equal ",Toast.LENGTH_SHORT).show()
-//                            Log.d("DetailUser","equal ")
-//                            /// set identifier for video in fetchUser
-//
-//                            /// get data with element
-//                            fetchVideos.child(element.key!!)
-//                                .addValueEventListener(object : ValueEventListener {
-//                                    override fun onDataChange(snapshotUser: DataSnapshot) {
-//                                        val user = snapshotUser.getValue<User>()
-//                                        Log.d("DetailUser", "get user success: $user")
-//                                        binding.user = user
-//                                        binding.follower = user!!.follower
-//                                        binding.following = user.following
-//                                        /// upload video to user information in fetchUuid
-//
-//
-//                                        /// set identifier for video in fetchVideos
-//
-//                                        /// set video for fetchVideos
-//                                        isCheck = true
-//                                    }
-//
-//                                    override fun onCancelled(error: DatabaseError) {
-//                                    }
-//
-//                                })
-//                        }
-//                        if (isCheck == true) {
-//                            Toast.makeText(requireContext(), "break: $isCheck", Toast.LENGTH_SHORT)
-//                                .show()
-//                            Log.d("UploadFM", "break: $isCheck")
-//                            break
-//                        }
-//                    }
-//                }
-//
-//                override fun onCancelled(error: DatabaseError) {
-//                }
-//
-//            }
-//            fetchVideos.addValueEventListener(listener)
-//        }
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        retrieveUser()
+    }
     private fun initViewPager() {
         adapter = UserDetailVideosViewpagerAdapter(this)
         binding.vpDetail.adapter = adapter

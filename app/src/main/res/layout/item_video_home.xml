@@ -221,7 +221,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_8sdp"
             android:textStyle="bold"
-            android:text="@{String.valueOf(user.hearts)}"
+            android:text="@{String.valueOf(video.countHearts)}"
             tools:ignore="MissingConstraints" />
 
         <ImageView
@@ -250,7 +250,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_8sdp"
             android:textStyle="bold"
-            android:text="@{String.valueOf(comment.countComments)}"
+            android:text="@{String.valueOf(video.countComments)}"
             tools:ignore="MissingConstraints" />
 
         <ImageView
