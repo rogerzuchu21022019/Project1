@@ -55,7 +55,6 @@ class ProfileFM : Fragment() {
     ): View? {
         binding = FragmentProfileBinding.inflate(layoutInflater)
         checkComeIn(true)
-        clickImage()
         storageReference = Firebase.storage.reference.child("UsersFoler")
         initViewPager()
         clickButton()
@@ -63,20 +62,22 @@ class ProfileFM : Fragment() {
         return binding.root
     }
 
-
+    /// TODO: Direction to BottomSheetFM
     private fun navSignUp() {
         val action = ProfileFMDirections.actionProfileFMToSignUpBottomSheetFM()
         findNavController().navigate(action)
     }
 
-    ///check loged in or not yet
+    /// TODO: Check signed in or not yet
     private fun isLogIn() {
         auth = Firebase.auth
+        /// TODO: Check signed in
         if (auth.currentUser != null) {
             loadUser()
             binding.layoutSecond.visibility = View.GONE
             binding.layoutMain.visibility = View.VISIBLE
         } else {
+            /// TODO: Check not signed in
             CoroutineScope(SupervisorJob()).launch(Dispatchers.Main) {
                 navSignUp()
                 binding.layoutSecond.visibility = View.VISIBLE
@@ -154,6 +155,12 @@ class ProfileFM : Fragment() {
                 findNavController().navigate(R.id.action_profileFM_to_profileBottomSheetFM)
             }
         }
+        binding.civAvatar.apply {
+            setOnClickListener {
+                requestPermission()
+                Toast.makeText(requireActivity(), "OK", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun initTabLayout() {
@@ -185,15 +192,7 @@ class ProfileFM : Fragment() {
 
     }
 
-    private fun clickImage() {
-        binding.civAvatar.apply {
-            setOnClickListener {
-                requestPermission()
-                Toast.makeText(requireActivity(), "OK", Toast.LENGTH_SHORT).show()
-            }
-        }
 
-    }
 
     private fun requestPermission() {
         if (ContextCompat.checkSelfPermission(

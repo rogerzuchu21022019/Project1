@@ -101,15 +101,6 @@ class CommentBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListener {
 
     }
 
-    private fun updateComment(user: User, comment: Comment) {
-        var hashMap: MutableMap<String, Any> = HashMap()
-        hashMap.put("users", user)
-
-        dbVideos =
-            Firebase.database.getReference("videos").child(getVideo().uidVideo!!).child("comments")
-                .child(comment.message.toString())
-        dbVideos.updateChildren(hashMap as Map<String, Any>)
-    }
 
     private fun updateDataVideo(countComments: Int) {
         var hashMap: MutableMap<String, Int> = HashMap()

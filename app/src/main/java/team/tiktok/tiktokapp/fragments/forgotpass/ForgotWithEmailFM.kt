@@ -19,14 +19,12 @@ import team.tiktok.tiktokapp.databinding.FragmentForgotPaswordEmailBinding
 
 class ForgotWithEmailFM : Fragment() {
    lateinit var binding: FragmentForgotPaswordEmailBinding
-   lateinit var navController: NavController
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentForgotPaswordEmailBinding.inflate(layoutInflater)
         clickButton()
-        navController = findNavController()
         return binding.root
     }
 

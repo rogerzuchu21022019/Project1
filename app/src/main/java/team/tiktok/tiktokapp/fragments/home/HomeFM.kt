@@ -105,8 +105,6 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
             }
         }
 
-
-
         adapter.itemVideoBinding.ivFavorite.apply {
             setOnClickListener {
 

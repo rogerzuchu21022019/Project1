@@ -27,15 +27,18 @@ class FriendFM : Fragment(){
         isLogIn()
         return binding.root
     }
+    /// TODO: Check signed in or not yet
 
     private fun isLogIn() {
         auth = Firebase.auth
+        /// TODO: Check signed in
         if (auth.currentUser!=null){
 //            checkExist(auth.currentUser!!.uid)
             binding.constraintSecond.visibility = View.GONE
             binding.constraintMain.visibility = View.VISIBLE
 
         }else{
+            /// TODO: Check not signed in
             binding.constraintMain.visibility = View.GONE
             binding.constraintSecond.visibility = View.VISIBLE
             navSignUp()
