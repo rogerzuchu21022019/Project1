@@ -33,22 +33,6 @@ class ChooseEmailOrPhoneBottomSheetFM : BottomSheetDialogFragment() ,View.OnClic
         binding.tvPhone.setOnClickListener(this)
         binding.tvEmail.setOnClickListener(this)
         binding.tvCancel.setOnClickListener(this)
-
-//        binding.tvPhone.apply {
-//            setOnClickListener {
-//                val action = ChooseEmailOrPhoneBottomSheetFMDirections.actionChooseEmailOrPhoneBottomSheetFMToForgotWithPhoneFM()
-//                findNavController().navigate(action)
-//            }
-//        }
-//        binding.tvEmail.apply {
-//            setOnClickListener {
-//                val action = ChooseEmailOrPhoneBottomSheetFMDirections.actionChooseEmailOrPhoneBottomSheetFMToForgotWithEmailFM()
-//                findNavController().navigate(action)
-//            }
-//        }
-//        binding.tvCancel.setOnClickListener {
-//            this.dismiss()
-//        }
     }
 
     override fun getTheme(): Int {
