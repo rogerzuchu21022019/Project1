@@ -148,7 +148,6 @@ class UploadFM : Fragment() {
                                                         val video = Video(
                                                             uidVideo = description,
                                                             description = description,
-                                                            title = description,
                                                             url = url,
                                                             createAt = "",
                                                             updateAt = "",

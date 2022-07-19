@@ -111,11 +111,6 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
                 itemVideoBinding.user = video.user
                 itemVideoBinding.comment = video.comments
 
-
-
-
-
-
                 itemVideoBinding.videoView.apply {
                     withContext(Dispatchers.Main) {
                         setVideoPath(video.url)
@@ -173,7 +168,7 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
         holder.setData(video)
     }
 
-    open interface OnClickItemInRecyclerView {
+    interface OnClickItemInRecyclerView {
         fun onItemClick(position: Int, view: View)
     }
 
