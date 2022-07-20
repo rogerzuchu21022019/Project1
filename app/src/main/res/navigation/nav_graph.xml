@@ -272,7 +272,9 @@
             app:destination="@id/emptyFM" />
         <argument
             android:name="videoPath"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue='""' />
     </fragment>
     <dialog
         android:id="@+id/chooseEmailOrPhoneBottomSheetFM"

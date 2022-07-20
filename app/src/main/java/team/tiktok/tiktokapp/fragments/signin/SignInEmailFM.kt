@@ -81,12 +81,8 @@ class SignInEmailFM : Fragment() {
                 if (snapshot.exists()) {
                     snapshot.children.forEach {
                         val email1 = it.child("email").getValue(String::class.java)
-                        if (email == email1) {
-                            Toast.makeText(
-                                requireContext(),
-                                "equal email = $email1",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                        val password1 = it.child("password").getValue(String::class.java)
+                        if (email == email1 && password == password1) {
                             val handle = Handler(Looper.myLooper()!!)
                             handle.postDelayed({
                                 binding.progressbar.visibility = View.VISIBLE
@@ -105,7 +101,16 @@ class SignInEmailFM : Fragment() {
     }
 
     private fun navDirection() {
-            findNavController().popBackStack()
+            if(findNavController().currentDestination!!.id == R.id.signInContainerFM
+                && findNavController().previousBackStackEntry!!.destination.id == R.id.uploadFM
+                && findNavController().findDestination(R.id.uploadFM)!!.id == R.id.uploadFM){
+                findNavController().navigate(R.id.uploadFM)
+                Toast.makeText(requireContext(),"1",Toast.LENGTH_SHORT).show()
+            }else{
+                findNavController().popBackStack()
+                Toast.makeText(requireContext(),"2",Toast.LENGTH_SHORT).show()
+
+            }
     }
 
     private fun checkComeIn(isComeIn: Boolean) {
