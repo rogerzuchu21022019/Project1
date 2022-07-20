@@ -58,7 +58,10 @@ class UploadFM : Fragment() {
         }
         binding.btnNext.apply {
             setOnClickListener {
-                isLogIn()
+                val handle = Handler(Looper.myLooper()!!)
+                handle.postDelayed({
+                    isLogIn()
+                },3000)
                 Toast.makeText(requireContext(), "clicked", Toast.LENGTH_SHORT).show()
             }
         }
@@ -84,13 +87,9 @@ class UploadFM : Fragment() {
         val auth = Firebase.auth
         if (auth.currentUser != null) {
             CoroutineScope(SupervisorJob()).launch(Dispatchers.IO) {
-                uploadVideo()
+                    uploadVideo()
                 withContext(Dispatchers.Main) {
-                    val handle = Handler(Looper.myLooper()!!)
-                    handle.postDelayed({
-                        navSignUp()
-                        handleShowProgressBar()
-                    }, 1000)
+                    navSignUp()
                     handleHideProgressBar()
                 }
             }
@@ -219,7 +218,7 @@ class UploadFM : Fragment() {
             binding.progressbar.visibility = View.VISIBLE
             val action = UploadFMDirections.actionUploadFMToEmptyFM()
             findNavController().navigate(action)
-        }, 3000)
+        }, 1000)
     }
 
     fun handleHideProgressBar() {

@@ -106,8 +106,15 @@ class SignInEmailFM : Fragment() {
     }
 
     private fun navDirection() {
-        val action = SignInContainerFMDirections.actionSignInContainerFMToEmptyFM()
-        findNavController().navigate(action)
+        if (findNavController().currentDestination!!.id == R.id.signInEmailFM &&
+                findNavController().previousBackStackEntry!!.destination.id == R.id.signUpCreateTopTopIDFM){
+            val action = SignInContainerFMDirections.actionSignInContainerFMToEmptyFM()
+            findNavController().navigate(action)
+        }
+
+
+
+
 //        if (findNavController().currentDestination?.id == R.id.signInEmailFM || findNavController().currentDestination?.id == R.id.signInContainerFM
 //            || findNavController().previousBackStackEntry!!.destination.id == R.id.profileFM){
 ////            val action = SignInContainerFMDirections.actionSignInContainerFMToProfileFM(null)
