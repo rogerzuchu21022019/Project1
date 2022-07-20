@@ -45,6 +45,7 @@ class SignUpCreateTopTopIDFM : Fragment() {
     private fun clickButton() {
         binding.ivBack.apply {
             setOnClickListener {
+                findNavController().popBackStack()
 
             }
         }

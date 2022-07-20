@@ -52,8 +52,7 @@ class SignUpContainerFM : Fragment() {
     private fun clickButton() {
         binding.ivBack.apply {
             setOnClickListener {
-                val action = SignUpContainerFMDirections.actionSignUpContainerFMToSignUpBirthFM()
-                findNavController().navigate(action)
+                findNavController().popBackStack()
             }
         }
     }

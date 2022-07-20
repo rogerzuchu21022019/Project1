@@ -29,7 +29,6 @@ class AddFM : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAddBinding.inflate(layoutInflater)
-//        requestPermissionCamera()
         requestPermissionRecord()
         clickButton()
 
@@ -119,7 +118,6 @@ class AddFM : Fragment() {
         val intent = Intent()
         intent.type = "video/*" // if you want to you can use pdf/gif/video
         intent.action = Intent.ACTION_GET_CONTENT
-
         someActivityResultLauncher.launch(intent)
     }
 
@@ -128,15 +126,11 @@ class AddFM : Fragment() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == AppCompatActivity.RESULT_OK) {
                 val data = result.data
-
                 videoPath = data!!.data
                 binding.videoView.setVideoURI(videoPath)
                 Log.d("AddFM","imagePath $videoPath")
                 binding.videoView.start()
-//            Picasso.get().load(imagePath).into(binding.civAvatar)
             }
-
-
         }
 
 

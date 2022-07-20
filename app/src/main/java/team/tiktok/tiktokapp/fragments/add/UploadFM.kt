@@ -58,7 +58,10 @@ class UploadFM : Fragment() {
         }
         binding.btnNext.apply {
             setOnClickListener {
-                isLogIn()
+                val handle = Handler(Looper.myLooper()!!)
+                handle.postDelayed({
+                    isLogIn()
+                },3000)
                 Toast.makeText(requireContext(), "clicked", Toast.LENGTH_SHORT).show()
             }
         }
@@ -81,30 +84,24 @@ class UploadFM : Fragment() {
     }
 
     private fun isLogIn() {
-
         val auth = Firebase.auth
         if (auth.currentUser != null) {
             CoroutineScope(SupervisorJob()).launch(Dispatchers.IO) {
-                getDataOK()
+                    uploadVideo()
                 withContext(Dispatchers.Main) {
-                    val handle = Handler(Looper.myLooper()!!)
-                    handle.postDelayed({
-                        navSignUp()
-                        handleShowProgressBar()
-                    }, 1000)
+                    navSignUp()
                     handleHideProgressBar()
                 }
             }
 
         } else {
-//            findNavController().popBackStack(R.id.signUpBottomSheetFM, false, true)
             val action = UploadFMDirections.actionUploadFMToSignUpBottomSheetFM()
             findNavController().navigate(action)
 
         }
     }
 
-    private fun getDataOK() {
+    private fun uploadVideo() {
         val auth = Firebase.auth
         var isCheck: Boolean? = null
         val description = binding.edtDescription.text.toString().trim()
@@ -113,20 +110,20 @@ class UploadFM : Fragment() {
         val listener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (element in snapshot.children) {
-                    ///get uuid of user after loop cross user
+                    /// TODO: Get uuid of user after loop cross user
                     var uuid = element.child("uuid").getValue(String::class.java)
                     if (auth.currentUser!!.uid == uuid) {
-                        /// create keyVideo
+                        /// TODO:create keyVideo
                         val keyVideo = description
 
-                        /// call variable reference to StorageReference and create path
+                        /// TODO: Call variable reference to StorageReference and create path
                         val videoStorage =
                             storageReference.child("videos/" + loadVideoFromArgs())
 
-                        /// putFile to storage into path which created
+                        /// TODO: PutFile to storage into path which created
                         videoStorage.putFile(videoPath!!)
                             .addOnCompleteListener {
-                                /// handle complete
+                                ///TODO: Handle complete
                                 Log.d(
                                     "UploadFM",
                                     "use upload task to put url into storageRef success: ${
@@ -134,10 +131,10 @@ class UploadFM : Fragment() {
                                     }"
                                 )
                                 if (it.isSuccessful) {
-                                    /// when upload success. Use downloadUrl download url from StorageReference to fetchUuid
+                                    ///TODO: When upload success. Use downloadUrl download url from StorageReference to fetchUuid
                                     videoStorage.downloadUrl
                                         .addOnCompleteListener { urlDownLoadFromStorage ->
-                                            /// convert it to urlDownLoadFromStorage and get result of video.downloadUrl is variable result
+                                            ///TODO: Convert it to urlDownLoadFromStorage and get result of video.downloadUrl is variable result
                                             val url = urlDownLoadFromStorage.result.toString()
 
                                             fetchUuid.child(element.key!!)
@@ -158,13 +155,13 @@ class UploadFM : Fragment() {
                                                             "user load success: $user"
                                                         )
 
-                                                        /// upload video to user information in fetchUuid
+                                                        ///TODO: Upload video to user information in fetchUuid
                                                         fetchUuid.child(element.key!!)
                                                             .child("videos")
                                                             .child(keyVideo).setValue(video)
-                                                        /// set identifier for video in fetchVideos
+                                                        ///TODO: Set identifier for video in fetchVideos
                                                         fetchVideos.child(keyVideo).push().key
-                                                        /// set video for fetchVideos
+                                                        ///TODO: Set video for fetchVideos
                                                         fetchVideos.child(keyVideo)
                                                             .setValue(video)
                                                     }
@@ -181,12 +178,11 @@ class UploadFM : Fragment() {
                                 isCheck = true
                             }
                             .addOnFailureListener {
-                                /// handle fail
+                                ///TODO: Handle fail
                                 Log.d("UploadFM", "put fail: ${it.message}")
 
                             }
-                        /// set isCheck to out loop
-
+                        /// TODO: Set isCheck to out loop
                     }
                     if (isCheck == true) {
                         Log.d("UploadFM", "break: $isCheck")
@@ -197,8 +193,8 @@ class UploadFM : Fragment() {
 
             override fun onCancelled(error: DatabaseError) {
             }
-
         }
+        /// TODO: Use fetchUuid add listener
         fetchUuid.addValueEventListener(listener)
     }
 
@@ -212,8 +208,6 @@ class UploadFM : Fragment() {
             && findNavController().previousBackStackEntry!!.destination.id == R.id.signInContainerFM
         ) {
             handleShowProgressBar()
-            val action = UploadFMDirections.actionUploadFMToEmptyFM()
-            findNavController().navigate(action)
             handleHideProgressBar()
         }
     }
@@ -222,7 +216,9 @@ class UploadFM : Fragment() {
         val handle = Handler(Looper.myLooper()!!)
         handle.postDelayed({
             binding.progressbar.visibility = View.VISIBLE
-        }, 3000)
+            val action = UploadFMDirections.actionUploadFMToEmptyFM()
+            findNavController().navigate(action)
+        }, 1000)
     }
 
     fun handleHideProgressBar() {

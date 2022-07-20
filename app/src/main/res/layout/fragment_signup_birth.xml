@@ -95,5 +95,15 @@
             android:background="#99000000"
             android:textColor="@color/gray"
             />
+
+        <ImageView
+            android:id="@+id/ivDatePikerBirth"
+            android:layout_margin="@dimen/_20sdp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:src="@drawable/date_piker_birth"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnNext" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

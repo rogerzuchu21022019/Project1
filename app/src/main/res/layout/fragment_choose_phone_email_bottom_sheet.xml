@@ -34,12 +34,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:gravity="center"
+                android:background="@drawable/border_nav_bot"
+
                 android:text="Số điện thoại"
                 android:textColor="#2196F3"
                 android:textSize="@dimen/_16sdp" />
 
             <TextView
                 android:id="@+id/tvEmail"
+                android:background="@drawable/border_nav_bot"
+
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:gravity="center"
@@ -49,6 +53,7 @@
 
             <TextView
                 android:id="@+id/tvCancel"
+                android:background="@drawable/border_nav_bot"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:gravity="center"
@@ -58,35 +63,8 @@
             />
         </LinearLayout>
 
-        <View
-            app:layout_constraintVertical_bias="0.119"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@color/gray"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            app:layout_constraintVertical_bias="0.19"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@color/gray"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            app:layout_constraintVertical_bias="0.26"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@color/gray"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

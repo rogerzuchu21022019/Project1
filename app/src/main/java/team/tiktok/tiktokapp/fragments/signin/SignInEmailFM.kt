@@ -81,12 +81,8 @@ class SignInEmailFM : Fragment() {
                 if (snapshot.exists()) {
                     snapshot.children.forEach {
                         val email1 = it.child("email").getValue(String::class.java)
-                        if (email == email1) {
-                            Toast.makeText(
-                                requireContext(),
-                                "equal email = $email1",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                        val password1 = it.child("password").getValue(String::class.java)
+                        if (email == email1 && password == password1) {
                             val handle = Handler(Looper.myLooper()!!)
                             handle.postDelayed({
                                 binding.progressbar.visibility = View.VISIBLE
@@ -102,50 +98,19 @@ class SignInEmailFM : Fragment() {
                 Log.d("CHECKUser", "${error.message}")
             }
         })
-
     }
 
     private fun navDirection() {
-        val action = SignInContainerFMDirections.actionSignInContainerFMToEmptyFM()
-        findNavController().navigate(action)
-//        if (findNavController().currentDestination?.id == R.id.signInEmailFM || findNavController().currentDestination?.id == R.id.signInContainerFM
-//            || findNavController().previousBackStackEntry!!.destination.id == R.id.profileFM){
-////            val action = SignInContainerFMDirections.actionSignInContainerFMToProfileFM(null)
-////            findNavController().navigate(R.id.action_signInContainerFM_to_profileFM)
-//            findNavController().popBackStack(R.id.profileFM,true,false)
-//
-//            Toast.makeText(requireContext(), "1", Toast.LENGTH_SHORT).show()
-//
-//        }
-//        else if(findNavController().currentDestination?.id == R.id.signInEmailFM ||findNavController().currentDestination?.id == R.id.signInContainerFM
-//            || findNavController().previousBackStackEntry!!.destination.id == R.id.inboxFM){
-////            findNavController().navigate(R.id.action_signInContainerFM_to_inboxFM)
-//            findNavController().popBackStack(R.id.inboxFM,true,false)
-//
-//            Toast.makeText(requireContext(), "2", Toast.LENGTH_SHORT).show()
-//
-//        }else if(findNavController().currentDestination?.id == R.id.signInEmailFM ||findNavController().currentDestination?.id == R.id.signInContainerFM
-//            && findNavController().previousBackStackEntry!!.destination.id == R.id.settingAndPrivacyFM){
-////            findNavController().navigate(R.id.action_signInContainerFM_to_profileFM)
-//            findNavController().popBackStack(R.id.settingAndPrivacyFM,true,false)
-//
-//            Toast.makeText(requireContext(), "3", Toast.LENGTH_SHORT).show()
-//
-//        }else if(findNavController().currentDestination?.id == R.id.signInEmailFM ||findNavController().currentDestination?.id == R.id.signInContainerFM
-//            && findNavController().previousBackStackEntry!!.destination.id == R.id.homeFM){
-//            val action = SignInContainerFMDirections.actionSignInContainerFMToHomeFM()
-//            findNavController().popBackStack(R.id.homeFM,true,true)
-//
-////            findNavController().navigate(R.id.action_signInContainerFM_to_homeFM)
-//            Toast.makeText(requireContext(), "4", Toast.LENGTH_SHORT).show()
-//
-//        }else if(findNavController().currentDestination?.id == R.id.signInContainerFM
-//            && findNavController().previousBackStackEntry!!.destination.id == R.id.uploadFM){
-//            val action = SignInContainerFMDirections.actionSignInContainerFMToUploadFM("")
-//            findNavController().popBackStack(R.id.uploadFM,false,true)
-//            Toast.makeText(requireContext(), "5", Toast.LENGTH_SHORT).show()
-//
-//        }
+            if(findNavController().currentDestination!!.id == R.id.signInContainerFM
+                && findNavController().previousBackStackEntry!!.destination.id == R.id.uploadFM
+                && findNavController().findDestination(R.id.uploadFM)!!.id == R.id.uploadFM){
+                findNavController().navigate(R.id.uploadFM)
+                Toast.makeText(requireContext(),"1",Toast.LENGTH_SHORT).show()
+            }else{
+                findNavController().popBackStack()
+                Toast.makeText(requireContext(),"2",Toast.LENGTH_SHORT).show()
+
+            }
     }
 
     private fun checkComeIn(isComeIn: Boolean) {
@@ -157,15 +122,12 @@ class SignInEmailFM : Fragment() {
             navBot.visibility = View.VISIBLE
         }
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         binding == null
         checkComeIn(true)
     }
-
     override fun onStart() {
         super.onStart()
     }
-
 }

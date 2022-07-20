@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -101,15 +102,6 @@ class CommentBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListener {
 
     }
 
-    private fun updateComment(user: User, comment: Comment) {
-        var hashMap: MutableMap<String, Any> = HashMap()
-        hashMap.put("users", user)
-
-        dbVideos =
-            Firebase.database.getReference("videos").child(getVideo().uidVideo!!).child("comments")
-                .child(comment.message.toString())
-        dbVideos.updateChildren(hashMap as Map<String, Any>)
-    }
 
     private fun updateDataVideo(countComments: Int) {
         var hashMap: MutableMap<String, Int> = HashMap()
@@ -135,57 +127,62 @@ class CommentBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListener {
                 this.dismiss()
             }
             R.id.imgSend -> {
-                val message = binding.edtMessage.text.toString().trim()
-                binding.edtMessage.text.clear()
-                val dbUser = Firebase.database.getReference("users")
+                if (auth.currentUser != null){
+                    val message = binding.edtMessage.text.toString().trim()
+                    binding.edtMessage.text.clear()
+                    val dbUser = Firebase.database.getReference("users")
 
 
-                /// TODO: Before comment, check current user is logging
-                dbUser.addValueEventListener(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                      for (element in snapshot.children){
-                          /// TODO: Use snapshot.children and ref uuid of child to get uuid
-                          val uuid = element.child("uuid").getValue(String::class.java)!!
-                          /// TODO: Compare equal with currentUser of auth
-                          if (auth.currentUser!!.uid == uuid) {
-                              /// TODO: Ref dbUser use ValueEvent
-                              dbUser.child(element.key!!).addValueEventListener(object :ValueEventListener{
-                                  override fun onDataChange(snapshotUser: DataSnapshot) {
-                                      /// TODO: Get user from element.key and compare with uuid
-                                      val user = snapshotUser.getValue(User::class.java)!!
-                                      val video = navArgs.video
-                                      val uuidVideo = navArgs.video.uidVideo!!
-                                      val comment = Comment(
-                                          message = message,
-                                          uidComment = message,
-                                          countComments = 300,
-                                          users = user,
-                                          videos = video
-                                      )
-                                      /// TODO: Set value for dbComment
-                                      dbComment = Firebase.database.getReference("comments")
-                                      dbComment.child(message).setValue(comment)
+                    /// TODO: Before comment, check current user is logging
+                    dbUser.addValueEventListener(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            for (element in snapshot.children){
+                                /// TODO: Use snapshot.children and ref uuid of child to get uuid
+                                val uuid = element.child("uuid").getValue(String::class.java)!!
+                                /// TODO: Compare equal with currentUser of auth
+                                if (auth.currentUser!!.uid == uuid) {
+                                    /// TODO: Ref dbUser use ValueEvent
+                                    dbUser.child(element.key!!).addValueEventListener(object :ValueEventListener{
+                                        override fun onDataChange(snapshotUser: DataSnapshot) {
+                                            /// TODO: Get user from element.key and compare with uuid
+                                            val user = snapshotUser.getValue(User::class.java)!!
+                                            val video = navArgs.video
+                                            val uuidVideo = navArgs.video.uidVideo!!
+                                            val comment = Comment(
+                                                message = message,
+                                                uidComment = message,
+                                                countComments = 300,
+                                                users = user,
+                                                videos = video
+                                            )
+                                            /// TODO: Set value for dbComment
+                                            dbComment = Firebase.database.getReference("comments")
+                                            dbComment.child(message).setValue(comment)
 
-                                      /// TODO: Set value for dbVideo
-                                      val dbVideo = Firebase.database.getReference("videos")
-                                      dbVideo.child(uuidVideo).child("comments").child(message).push().key
-                                      dbVideo.child(uuidVideo).child("comments").child(message)
-                                          .setValue(comment)
-                                  }
+                                            /// TODO: Set value for dbVideo
+                                            val dbVideo = Firebase.database.getReference("videos")
+                                            dbVideo.child(uuidVideo).child("comments").child(message).push().key
+                                            dbVideo.child(uuidVideo).child("comments").child(message)
+                                                .setValue(comment)
+                                        }
 
-                                  override fun onCancelled(error: DatabaseError) {
-                                  }
-                              })
+                                        override fun onCancelled(error: DatabaseError) {
+                                        }
+                                    })
 
-                          }
-                      }
-                    }
+                                }
+                            }
+                        }
 
-                    override fun onCancelled(error: DatabaseError) {
+                        override fun onCancelled(error: DatabaseError) {
 
-                    }
-                })
+                        }
+                    })
 
+                }else{
+                    val action = CommentBottomSheetFMDirections.actionCommentBottomSheetFMToSignUpBottomSheetFM()
+                    findNavController().navigate(action)
+                }
             }
         }
     }

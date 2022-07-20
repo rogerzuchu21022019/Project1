@@ -85,9 +85,9 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
         val id = view.id
         when (id) {
             R.id.ivComment -> {
-                isLogIn(position)
+                loadComments(position = position)
             }
-            R.id.civUser->{
+            R.id.civUser -> {
                 transferData(position)
             }
         }
@@ -104,8 +104,6 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
                 }
             }
         }
-
-
 
         adapter.itemVideoBinding.ivFavorite.apply {
             setOnClickListener {
@@ -155,15 +153,6 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
         }
     }
 
-    private fun isLogIn(position: Int) {
-        auth = Firebase.auth
-        if (auth.currentUser != null) {
-            loadComments(position = position)
-        } else {
-            val action = HomeFMDirections.actionHomeFMToSignUpBottomSheetFM()
-            findNavController().navigate(action)
-        }
-    }
 
     fun loadComments(position: Int) {
         val video = adapter.getItem(position)
