@@ -18,13 +18,21 @@
             android:text="Sửa hồ sơ"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:textSize="15sp"
+            android:textSize="18sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="@dimen/_12sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <View
+            android:id="@+id/line1"
+            android:background="@color/gray"
+            app:layout_constraintTop_toBottomOf="@id/tvEdit"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"/>
 
         <ImageView
             android:id="@+id/ivBack"
@@ -33,8 +41,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="@dimen/_12sdp"
             android:layout_marginStart="@dimen/_5sdp"
-            android:layout_width="@dimen/_15sdp"
-            android:layout_height="@dimen/_15sdp"/>
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civAvatar"
@@ -45,11 +53,11 @@
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_70sdp" />
-<!--        <androidx.appcompat.widget.AppCompatButton-->
-<!--            android:id="@+id/btnEditProfile"-->
-<!--            android:text="Edit Profile"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"/>-->
+        <!--        <androidx.appcompat.widget.AppCompatButton-->
+        <!--            android:id="@+id/btnEditProfile"-->
+        <!--            android:text="Edit Profile"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"/>-->
 
         <TextView
             android:id="@+id/tvChangeImage"
@@ -72,7 +80,7 @@
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/tvChangeImage"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="@dimen/_2sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -81,24 +89,24 @@
             android:id="@+id/titleName"
             android:text="Tên"
             android:textColor="#757575"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/tvIntroduce"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="@dimen/_2sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_22sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/tvName"
-            android:text="dindin>"
+            android:text="Vũ Thành Nam >"
             android:textColor="#757575"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBaseline_toBaselineOf="@id/titleName"
-            android:layout_marginLeft="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_22sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -107,37 +115,39 @@
             android:id="@+id/titleTikTokID"
             android:text="TikTok ID"
             android:textColor="#757575"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/titleName"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="@dimen/_2sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_21sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/tvTikTokID"
-            android:text="đinin0321689 >"
+            android:text="vuthanhnam00 >"
             android:textColor="#757575"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBaseline_toBaselineOf="@id/titleTikTokID"
-            android:layout_marginLeft="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_22sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/tvTikTokEmail"
-            android:text="tiktok.com@đinin0321689"
+            android:text="tiktok.com/@đinin0321689"
+            android:drawableRight="@drawable/copy"
+            android:drawablePadding="@dimen/_2sdp"
             android:textColor="#757575"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTikTokID"
-            android:layout_marginLeft="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_21sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -146,27 +156,37 @@
             android:id="@+id/titleStory"
             android:text="Tiểu sử"
             android:textColor="#757575"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/tvTikTokEmail"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="@dimen/_2sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_19sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/tvStory"
-            android:text="aladin >"
-            android:textColor="#757575"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:text="Thêm tiểu sử vào hồ sơ của bạn >"
+            android:textColor="#BDBDBD"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBaseline_toBaselineOf="@id/titleStory"
-            android:layout_marginLeft="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_22sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <View
+            android:id="@+id/line2"
+            app:layout_constraintTop_toBottomOf="@id/tvStory"
+            app:layout_constraintBottom_toTopOf="@id/tvSocialAccount"
+            android:background="@color/gray"
+            android:layout_marginHorizontal="@dimen/_6sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"/>
 
         <TextView
             android:id="@+id/tvSocialAccount"
@@ -176,8 +196,8 @@
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/titleStory"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="@dimen/_2sdp"
-            android:layout_marginTop="@dimen/_22sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -189,8 +209,8 @@
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/tvSocialAccount"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="@dimen/_2sdp"
-            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -202,7 +222,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBaseline_toBaselineOf="@id/titleInstagram"
-            android:layout_marginLeft="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_22sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -215,7 +235,7 @@
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/titleInstagram"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="@dimen/_2sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -228,36 +248,36 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBaseline_toBaselineOf="@id/titleYoutube"
-            android:layout_marginLeft="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_22sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/titleTwitter"
-            android:text="Twitter"
-            android:textColor="#757575"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/titleYoutube"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="@dimen/_2sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <!--        <TextView-->
+        <!--            android:id="@+id/titleTwitter"-->
+        <!--            android:text="Twitter"-->
+        <!--            android:textColor="#757575"-->
+        <!--            android:textSize="18sp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/titleYoutube"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            android:layout_marginLeft="@dimen/_5sdp"-->
+        <!--            android:layout_marginTop="@dimen/_15sdp"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"/>-->
 
-        <TextView
-            android:id="@+id/tvTwitter"
-            android:text="Thêm Twitter vào hồ sơ của bạn >"
-            android:textColor="#BDBDBD"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBaseline_toBaselineOf="@id/titleTwitter"
-            android:layout_marginLeft="@dimen/_2sdp"
-            android:layout_marginTop="@dimen/_22sdp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <!--        <TextView-->
+        <!--            android:id="@+id/tvTwitter"-->
+        <!--            android:text="Thêm Twitter vào hồ sơ của bạn >"-->
+        <!--            android:textColor="#BDBDBD"-->
+        <!--            android:textSize="15sp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintBaseline_toBaselineOf="@id/titleTwitter"-->
+        <!--            android:layout_marginEnd="@dimen/_5sdp"-->
+        <!--            android:layout_marginTop="@dimen/_22sdp"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

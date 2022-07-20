@@ -189,7 +189,6 @@ class ProfileFM : Fragment() {
         adapter = DetailUserViewpagerAdapter(this)
         binding.vpDetail.adapter = adapter
         initTabLayout()
-
     }
 
 

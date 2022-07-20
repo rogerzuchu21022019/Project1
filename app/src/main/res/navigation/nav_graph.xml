@@ -191,6 +191,10 @@
         <argument
             android:name="video"
             app:argType="team.tiktok.tiktokapp.data.Video" />
+        <action
+            android:id="@+id/action_commentBottomSheetFM_to_signUpBottomSheetFM"
+            app:destination="@id/signUpBottomSheetFM"
+            app:popUpTo="@id/signUpBottomSheetFM" />
     </dialog>
     <dialog
         android:id="@+id/shareBottomSheetFM"
@@ -357,13 +361,19 @@
             app:destination="@id/uploadFM" />
         <action
             android:id="@+id/action_signInContainerFM_to_emptyFM"
-            app:destination="@id/emptyFM" />
+            app:destination="@id/emptyFM"
+            app:popUpTo="@id/emptyFM" />
     </fragment>
     <fragment
         android:id="@+id/signInEmailFM"
         tools:layout="@layout/fragment_signin_email"
         android:name="team.tiktok.tiktokapp.fragments.signin.SignInEmailFM"
-        android:label="SignInEmailFM" />
+        android:label="SignInEmailFM" >
+        <action
+            android:id="@+id/action_signInEmailFM_to_emptyFM"
+            app:destination="@id/emptyFM"
+            app:popUpTo="@id/emptyFM" />
+    </fragment>
     <fragment
         android:id="@+id/signInPhoneFM"
         tools:layout="@layout/fragment_signin_phone"
