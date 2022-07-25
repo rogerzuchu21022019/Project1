@@ -229,23 +229,6 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
 
     }
 
-    private fun updateHeartAscVideoData(
-        favorite: Favorite,
-        dbVideo: DatabaseReference,
-        video: Video
-    ) {
-
-
-    }
-
-    private fun updateHeartDescVideoData(position: Int, count: Int) {
-        val video = adapter.getItem(position)
-        var hashMap: MutableMap<String, Int> = HashMap()
-        hashMap.put("countHearts", count)
-        val dbVideo = Firebase.database.getReference("videos").child(video.uidVideo!!)
-        dbVideo.updateChildren(hashMap as Map<String, Any>)
-    }
-
     private fun transferData(position: Int) {
         val video = adapter.getItem(position)
         navDicretion(video.user!!)

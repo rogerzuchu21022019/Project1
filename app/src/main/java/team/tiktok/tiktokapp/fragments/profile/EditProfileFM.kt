@@ -10,22 +10,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.contract.ActivityResultContracts.GetContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import com.squareup.picasso.Picasso
 import team.tiktok.tiktokapp.R
+import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.databinding.FragmentEditProfileBinding
-import team.tiktok.tiktokapp.databinding.FragmentProfileBinding
 
 
 class EditProfileFM : Fragment() {
     private val IMAGE_REQ = 1
     private var imagePath: Uri? = null
     lateinit var binding: FragmentEditProfileBinding
+    val navArgs : EditProfileFMArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,7 +34,19 @@ class EditProfileFM : Fragment() {
         binding = FragmentEditProfileBinding.inflate(layoutInflater)
         clickImage()
         clickButton()
+        updateUI()
         return binding.root
+    }
+
+
+    /// TODO: Get User from profile FM
+    fun getUser(): User {
+        return navArgs.user
+    }
+
+    /// TODO: Update Information
+    fun updateUI(){
+        binding.user = getUser()
     }
 
     private fun clickButton() {

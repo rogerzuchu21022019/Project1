@@ -117,6 +117,12 @@ class ProfileFM : Fragment() {
                                     val user = snapshot.getValue<User>()!!
                                     Log.d("ProfileFM", "user : $user")
                                     updateUI(user)
+                                    binding.btnEditProfile.apply {
+                                        setOnClickListener {
+                                            val action = ProfileFMDirections.actionProfileFMToEditProfileFM(user = user)
+                                            findNavController().navigate(action)
+                                        }
+                                    }
                                     isCheck = true
                                 }
                                 override fun onCancelled(error: DatabaseError) {
@@ -145,11 +151,7 @@ class ProfileFM : Fragment() {
 
 
     private fun clickButton() {
-        binding.btnEditProfile.apply {
-            setOnClickListener {
-                findNavController().navigate(R.id.action_profileFM_to_editProfileFM)
-            }
-        }
+
         binding.ivList.apply {
             setOnClickListener {
                 findNavController().navigate(R.id.action_profileFM_to_profileBottomSheetFM)
