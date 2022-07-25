@@ -56,7 +56,6 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
             val options = FirebaseRecyclerOptions.Builder<Video>()
                 .setQuery(mDataBase, Video::class.java)
                 .build()
-
             adapter = HomeVideoAdapter(options)
             binding.vpHome.adapter = adapter
             adapter.setOnClickItem(this@HomeFM)
@@ -90,6 +89,9 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
             R.id.civUser -> {
                 transferData(position)
             }
+            R.id.ivFavorite -> {
+
+            }
         }
 
         /// TODO:Click item Not use position
@@ -108,13 +110,7 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
         adapter.itemVideoBinding.ivFavorite.apply {
             setOnClickListener {
 
-                if (isFav) {
-                    adapter.itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_white)
-                    isFav = false
-                } else {
-                    adapter.itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_red)
-                    isFav = true
-                }
+
             }
         }
         adapter.itemVideoBinding.ivSearch.apply {

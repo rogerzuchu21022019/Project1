@@ -13,6 +13,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.data.Comment
 import team.tiktok.tiktokapp.data.Follower
 import team.tiktok.tiktokapp.data.Following
@@ -66,8 +67,13 @@ class SignUpCreateTopTopIDFM : Fragment() {
     }
 
     private fun navDirection() {
-        val action = SignUpCreateTopTopIDFMDirections.actionSignUpCreateTopTopIDFMToSignInContainerFM()
-        findNavController().navigate(action)
+
+        if (findNavController().previousBackStackEntry!!.destination.id == R.id.addFM){
+            findNavController().popBackStack()
+        }else{
+            val action = SignUpCreateTopTopIDFMDirections.actionSignUpCreateTopTopIDFMToEmptyFM()
+            findNavController().navigate(action)
+        }
     }
 
 

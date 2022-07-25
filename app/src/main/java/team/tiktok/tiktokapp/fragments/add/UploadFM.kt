@@ -4,6 +4,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -105,6 +106,10 @@ class UploadFM : Fragment() {
         val auth = Firebase.auth
         var isCheck: Boolean? = null
         val description = binding.edtDescription.text.toString().trim()
+
+        if (TextUtils.isEmpty(description)){
+            Toast.makeText(requireContext(),"Hãy viết content để mang lại thông điệp cho video của bạn",Toast.LENGTH_SHORT).show()
+        }
         val fetchVideos = Firebase.database.getReference("videos")
 
         val listener = object : ValueEventListener {

@@ -296,8 +296,7 @@
         <action
             android:id="@+id/action_signUpBirthFM_to_signUpContainerFM"
             app:destination="@id/signUpContainerFM"
-            app:popUpTo="@id/signUpContainerFM"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_signUpBirthFM_self"
             app:destination="@id/signUpBirthFM" />
@@ -354,7 +353,8 @@
             app:destination="@id/signUpBottomSheetFM" />
         <action
             android:id="@+id/action_signInContainerFM_to_profileFM"
-            app:destination="@id/profileFM" />
+            app:destination="@id/profileFM"
+            app:popUpTo="@id/profileFM" />
         <action
             android:id="@+id/action_signInContainerFM_to_inboxFM"
             app:destination="@id/inboxFM" />
@@ -392,8 +392,7 @@
         <action
             android:id="@+id/action_signUpContainerFM_to_signUpCreatePassFM"
             app:destination="@id/signUpCreatePassFM"
-            app:popUpTo="@id/signUpCreatePassFM"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
         <argument
             android:name="birth"
             app:argType="string" />
@@ -427,8 +426,7 @@
         <action
             android:id="@+id/action_signUpCreateTopTopIDFM_to_signInContainerFM"
             app:destination="@id/signInContainerFM"
-            app:popUpTo="@id/signInContainerFM"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_signUpCreateTopTopIDFM_to_profileFM"
             app:destination="@id/profileFM" />
@@ -441,6 +439,9 @@
         <action
             android:id="@+id/action_signUpCreateTopTopIDFM_to_uploadFM"
             app:destination="@id/uploadFM" />
+        <action
+            android:id="@+id/action_signUpCreateTopTopIDFM_to_emptyFM"
+            app:destination="@id/emptyFM" />
     </fragment>
     <fragment
         android:id="@+id/signUpCreatePassFM"
@@ -450,8 +451,7 @@
         <action
             android:id="@+id/action_signUpCreatePassFM_to_signUpCreateTopTopIDFM"
             app:destination="@id/signUpCreateTopTopIDFM"
-            app:popUpTo="@id/signUpCreateTopTopIDFM"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
         <argument
             android:name="arrSignUp"
             app:argType="string[]" />

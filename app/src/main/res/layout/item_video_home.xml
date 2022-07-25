@@ -20,6 +20,9 @@
         <variable
             name="comment"
             type="team.tiktok.tiktokapp.data.Comment" />
+        <variable
+            name="favorite"
+            type="team.tiktok.tiktokapp.data.Favorite" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

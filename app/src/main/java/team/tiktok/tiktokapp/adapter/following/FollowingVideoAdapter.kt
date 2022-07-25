@@ -92,6 +92,7 @@ open class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
                 itemVideoBinding.comment = video.comments
 
 
+
                 itemVideoBinding.videoView.apply {
                     withContext(Dispatchers.Main) {
                         setVideoPath(video.url)
