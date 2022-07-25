@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+            <variable
+                name="user"
+                type="team.tiktok.tiktokapp.data.User" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,18 +48,13 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civAvatar"
-            android:src="@drawable/ic_launcher_background"
+            app:loadImage="@{user.imgUrl}"
             app:layout_constraintTop_toBottomOf="@+id/tvEdit"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_70sdp" />
-        <!--        <androidx.appcompat.widget.AppCompatButton-->
-        <!--            android:id="@+id/btnEditProfile"-->
-        <!--            android:text="Edit Profile"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"/>-->
 
         <TextView
             android:id="@+id/tvChangeImage"
@@ -98,22 +95,67 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/tvName"
-            android:text="Vũ Thành Nam >"
-            android:textColor="#757575"
-            android:textSize="16sp"
-            android:textStyle="bold"
+        <LinearLayout
+            android:id="@+id/linearName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBaseline_toBaselineOf="@id/titleName"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_22sdp"
+            app:layout_constraintBottom_toBottomOf="@id/titleName"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/titleName"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tvName"
+                android:text="@{user.fullName}"
+                android:textColor="#757575"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/ivNextTwo"
+                app:layout_constraintStart_toEndOf="@id/tvName"
+                app:layout_constraintTop_toTopOf="@id/tvName"
+                app:layout_constraintBottom_toBottomOf="@id/tvName"
+                android:src="@drawable/next"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_gravity="center"
+                android:layout_width="@dimen/_8sdp"
+                android:layout_height="@dimen/_8sdp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearTopTopID"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/titleTikTokID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/titleTikTokID"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvTikTokID"
+                android:text="@{user.topTopID}"
+                android:textColor="#757575"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/ivNext"
+                android:layout_gravity="center"
+                android:src="@drawable/next"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_width="@dimen/_8sdp"
+                android:layout_height="@dimen/_8sdp"/>
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/titleTikTokID"
-            android:text="TikTok ID"
+            android:text="Toptop ID"
             android:textColor="#757575"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -124,18 +166,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <TextView
-            android:id="@+id/tvTikTokID"
-            android:text="vuthanhnam00 >"
-            android:textColor="#757575"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBaseline_toBaselineOf="@id/titleTikTokID"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_22sdp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
 
         <TextView
             android:id="@+id/tvTikTokEmail"
@@ -146,7 +177,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTikTokID"
+            app:layout_constraintTop_toBottomOf="@id/titleTikTokID"
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_21sdp"
             android:layout_width="wrap_content"
