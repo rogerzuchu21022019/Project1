@@ -146,20 +146,15 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
         val dbVideo = Firebase.database.getReference("videos").child(video.uidVideo!!)
         dbVideoFavorite.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                    for (element in snapshot.children){
-                        val favorite = element.getValue(Favorite::class.java)!!
-                        if (!listFavorite.contains(favorite)) {
-                            listFavorite.add(0, favorite)
-                            val countHearts = listFavorite.size
-                            updateHeartVideoData(countHearts, dbVideo = dbVideo)
-                            adapter.itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_red)
-                        }else{
-                            listFavorite.remove(favorite)
-                            val countHearts = listFavorite.size
-                            updateHeartVideoData(countHearts, dbVideo = dbVideo)
-                            adapter.itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_white)
-                        }
+                for (element in snapshot.children) {
+                    val favorite = element.getValue(Favorite::class.java)!!
+                    if (listFavorite.contains(favorite)) {
+//                        listFavorite.remove(favorite)
+//                        val countHearts = listFavorite.size
+//                        updateHeartVideoData(countHearts, dbVideo = dbVideo)
+//                        adapter.itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_red)
                     }
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -204,18 +199,30 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
                                             /// TODO: Remove favorite in dbFavorite when dislike
                                             dbFavorite.removeValue()
                                             /// TODO: Remove favorite in db when dislike
+                                            dbVideoFavorite.removeValue()
+                                            if (listFavorite.contains(favorite)) {
+                                                listFavorite.remove(favorite)
+                                                val countHearts = listFavorite.size
+                                                updateHeartVideoData(countHearts, dbVideo = dbVideo)
+                                            }
 
                                         } else {
                                             dbVideo.addListenerForSingleValueEvent(object :ValueEventListener{
                                                 override fun onDataChange(snapshot: DataSnapshot) {
-                                                    snapshot.children.forEach {
-                                                        dbVideoFavorite.child(favorite.users!!.uuid!!)
-                                                            .setValue(favorite)
-                                                    }
+                                                   snapshot.children.forEach {
+                                                       dbVideoFavorite.child(favorite.users!!.uuid!!)
+                                                           .setValue(favorite)
+                                                       if (!listFavorite.contains(favorite)) {
+                                                           listFavorite.add(0,favorite)
+                                                           val countHearts = listFavorite.size
+                                                           updateHeartVideoData(countHearts, dbVideo = dbVideo)
+                                                           updateFavorite(video)
+//                        adapter.itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_red)
+                                                       }
+
+                                                   }
                                                 }
-
                                                 override fun onCancelled(error: DatabaseError) {
-
                                                 }
                                             })
                                             val key = dbFavorite.push().key

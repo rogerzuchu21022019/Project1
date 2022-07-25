@@ -57,6 +57,7 @@ open class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
             itemVideoBinding.ivFavorite.apply {
                 setOnClickListener {
                     onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
+
                 }
             }
 
