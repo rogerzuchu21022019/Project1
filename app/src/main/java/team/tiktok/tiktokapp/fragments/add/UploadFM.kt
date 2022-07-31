@@ -94,11 +94,9 @@ class UploadFM : Fragment() {
                     handleHideProgressBar()
                 }
             }
-
         } else {
             val action = UploadFMDirections.actionUploadFMToSignUpBottomSheetFM()
             findNavController().navigate(action)
-
         }
     }
 
@@ -195,7 +193,6 @@ class UploadFM : Fragment() {
                     }
                 }
             }
-
             override fun onCancelled(error: DatabaseError) {
             }
         }
@@ -229,7 +226,6 @@ class UploadFM : Fragment() {
     fun handleHideProgressBar() {
         binding.progressbar.visibility = View.GONE
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

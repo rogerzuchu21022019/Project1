@@ -130,7 +130,6 @@ open class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
     }
 
 
-
     fun setOnClickItem(onClickItemInRecyclerView: OnClickItemInRecyclerView) {
         this.onClickItemInRecyclerView = onClickItemInRecyclerView
     }
