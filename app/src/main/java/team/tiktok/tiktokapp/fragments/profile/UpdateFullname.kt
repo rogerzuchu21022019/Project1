@@ -31,6 +31,9 @@ class UpdateFullname : Fragment(),View.OnClickListener {
         loadFullName()
         return binding.root
     }
+    fun test(){
+        
+    }
 
     fun getUser():User{
         return navArgs.user!!
