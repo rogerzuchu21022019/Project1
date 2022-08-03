@@ -41,7 +41,7 @@ class UserDetailVideosFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
 
     fun initRecyclerView() {
             val mainDB =
-                Firebase.database.getReference("users").child(getData().topTopID!!).child("videos")
+                Firebase.database.getReference("users").child(getData().uuid!!).child("videos")
             val options = FirebaseRecyclerOptions.Builder<Video>()
                 .setQuery(mainDB, Video::class.java)
                 .build()

@@ -160,6 +160,7 @@ class ProfileFM : Fragment() {
         binding.civAvatar.apply {
             setOnClickListener {
                 requestPermission()
+                selectImage()
                 Toast.makeText(requireActivity(), "OK", Toast.LENGTH_SHORT).show()
             }
         }
@@ -227,14 +228,21 @@ class ProfileFM : Fragment() {
                 imagePath = data!!.data
                 val imageStorage = storageReference.child("image/"+imagePath!!.lastPathSegment)
                 imageStorage.putFile(imagePath!!)
-                    .addOnCompleteListener {
+                    .addOnSuccessListener {
                         Toast.makeText(requireContext(),"upload ok",Toast.LENGTH_SHORT).show()
-//                imageStorage.downloadUrl
-//                    .addOnSuccessListener {
-//                        val database = Firebase.database.getReference("users").child(user.topTopID!!)
-//                        user.imgUrl = it.toString()
-//                        database.setValue(user)
-//                    }
+                imageStorage.downloadUrl
+                    .addOnSuccessListener {
+                        val database = Firebase.database.getReference("users").child(auth.currentUser!!.uid)
+                        database.addValueEventListener(object :ValueEventListener{
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                database.child("imgUrl").setValue(it.toString())
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {
+
+                            }
+                        })
+                    }
                     }
                     .addOnFailureListener{
                         Toast.makeText(requireContext(),"upload Fail",Toast.LENGTH_SHORT).show()
@@ -244,6 +252,8 @@ class ProfileFM : Fragment() {
             }
 
         }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -258,13 +268,6 @@ class ProfileFM : Fragment() {
             navBot.badgeTextColor = ContextCompat.getColor(requireContext(), R.color.white)
 
         }
-//        else{
-//            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
-//            navBot.setBackgroundResource(R.drawable.border_nav_bot)
-//            navBot.tabColorSelected = ContextCompat.getColor(requireContext(),R.color.black)
-//
-//
-//        }
     }
 
 

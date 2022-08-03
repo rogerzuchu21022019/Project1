@@ -212,7 +212,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_8sdp"
             android:textStyle="bold"
-            android:text="@{String.valueOf(user.hearts)}"
+            android:text="@{String.valueOf(user.countHearts)}"
             tools:ignore="MissingConstraints" />
 
         <ImageView

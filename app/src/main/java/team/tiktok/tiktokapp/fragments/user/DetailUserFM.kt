@@ -3,9 +3,6 @@ package team.tiktok.tiktokapp.fragments.user
 //import me.ibrahimsn.lib.SmoothBottomBar
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -42,7 +38,7 @@ class DetailUserFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
         binding = FragmentDetailUserBinding.inflate(layoutInflater)
         checkComeIn(true)
         loadDataFromHome()
-        retrieveUser()
+        updateUI()
         clickButton()
         initViewPager()
         return binding.root
@@ -86,41 +82,30 @@ class DetailUserFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
         }.attach()
     }
 
-    fun retrieveUser() {
-        var auth = Firebase.auth
+    fun updateUI() {
         CoroutineScope(SupervisorJob()).launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
-                mDataBase = Firebase.database.getReference("videos")
+                mDataBase = Firebase.database.getReference("users")
+                mDataBase.child(loadDataFromHome().uuid!!).addValueEventListener(object :ValueEventListener{
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val user = snapshot.getValue(User::class.java)!!
+                        binding.user = user
+                        binding.follower = user.follower
+                        binding.following = user.following
+                    }
 
-                val handle = Handler(Looper.myLooper()!!)
-                handle.postDelayed({
-                    mDataBase.addValueEventListener(object : ValueEventListener {
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            if (snapshot.exists()) {
-                                snapshot.children.forEach {
-                                    val user1 = it.child("user").getValue(User::class.java)!!
-                                    if (user1.topTopID!! == loadDataFromHome().topTopID) {
-                                        binding.user = user1
-                                        binding.follower = user1.follower
-                                        binding.following = user1.following
-                                    }
-                                    Log.d("DetailUserFM ", "user : ${user1}")
-                                }
+                    override fun onCancelled(error: DatabaseError) {
 
-                            }
-                        }
+                    }
+                })
 
-                        override fun onCancelled(error: DatabaseError) {
-                        }
-                    })
-                }, 500)
             }
         }
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        retrieveUser()
+        updateUI()
     }
     private fun initViewPager() {
         adapter = UserDetailVideosViewpagerAdapter(this)
@@ -144,7 +129,6 @@ class DetailUserFM : Fragment(), DetailAdapter.OnClickItemInRecyclerView {
         binding == null
         checkComeIn(false)
     }
-//
 
     override fun onItemClick(position: Int, view: View) {
         val id = view.id

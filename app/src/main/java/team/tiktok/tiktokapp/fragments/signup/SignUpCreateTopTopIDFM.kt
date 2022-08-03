@@ -85,8 +85,8 @@ class SignUpCreateTopTopIDFM : Fragment() {
                 var userUID = auth.currentUser!!.uid
 
                 val follower =
-                    Follower(uid = "", subscribe = false, countFollowers = 0, users = null)
-                val following = Following(uid = "", 0, users = null)
+                    Follower(uid = "", subscribe = false, countFollowers = 12000, users = null)
+                val following = Following(uid = "", 30, users = null)
                 val comment = Comment(
                     uidComment = "",
                     message = "",
@@ -94,7 +94,7 @@ class SignUpCreateTopTopIDFM : Fragment() {
                     fullName = "",
                     updateAt = "",
                     countComments = 0,
-                    hearts = 0
+                    hearts = 1299
                 )
                 val user = User(
                     email = email,
@@ -106,9 +106,10 @@ class SignUpCreateTopTopIDFM : Fragment() {
                     videos = null,
                     follower = follower,
                     following = following,
+                    countHearts = 13000
                 )
                 ///upload user from local to firebase realtimedatabase
-                database.child(user.topTopID!!).setValue(user)
+                database.child(user.uuid!!).setValue(user)
                     .addOnCompleteListener {
                         navDirection()
                         Log.d("CreateTopTop", "Create Account Successfully: ${it.isSuccessful}")

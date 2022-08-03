@@ -71,6 +71,15 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
             /// Click Icon Favorite
             itemVideoBinding.ivFavorite.apply {
                 setOnClickListener {
+                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
+                    if (isFav) {
+                        isFav = false
+                        itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_white)
+
+                    } else {
+                        isFav = true
+                        itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_red)
+                    }
                 }
             }
             itemVideoBinding.ivSave.apply {

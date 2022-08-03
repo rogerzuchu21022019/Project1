@@ -58,7 +58,9 @@
         <entry key="app/src/main/res/layout/fragment_signup_email.xml" value="0.16489361702127658" />
         <entry key="app/src/main/res/layout/fragment_signup_phone.xml" value="0.16489361702127658" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.1703125" />
+        <entry key="app/src/main/res/layout/fragment_update_fullname.xml" value="0.30480072463768115" />
         <entry key="app/src/main/res/layout/fragment_update_fullname_bottom_sheet.xml" value="0.225" />
+        <entry key="app/src/main/res/layout/fragment_update_toptop_id.xml" value="0.30480072463768115" />
         <entry key="app/src/main/res/layout/fragment_upload.xml" value="0.35213395270748404" />
         <entry key="app/src/main/res/layout/fragment_user_detail_videos.xml" value="0.13177083333333334" />
         <entry key="app/src/main/res/layout/fragment_user_videos.xml" value="0.23505434782608695" />

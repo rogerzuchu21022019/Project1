@@ -23,7 +23,6 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.coroutines.*
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.data.Video
@@ -62,7 +61,7 @@ class UploadFM : Fragment() {
                 val handle = Handler(Looper.myLooper()!!)
                 handle.postDelayed({
                     isLogIn()
-                },3000)
+                },1000)
                 Toast.makeText(requireContext(), "clicked", Toast.LENGTH_SHORT).show()
             }
         }
@@ -87,13 +86,8 @@ class UploadFM : Fragment() {
     private fun isLogIn() {
         val auth = Firebase.auth
         if (auth.currentUser != null) {
-            CoroutineScope(SupervisorJob()).launch(Dispatchers.IO) {
                     uploadVideo()
-                withContext(Dispatchers.Main) {
-                    navSignUp()
                     handleHideProgressBar()
-                }
-            }
         } else {
             val action = UploadFMDirections.actionUploadFMToSignUpBottomSheetFM()
             findNavController().navigate(action)
@@ -107,6 +101,7 @@ class UploadFM : Fragment() {
 
         if (TextUtils.isEmpty(description)){
             Toast.makeText(requireContext(),"Hãy viết content để mang lại thông điệp cho video của bạn",Toast.LENGTH_SHORT).show()
+            return
         }
         val fetchVideos = Firebase.database.getReference("videos")
 
@@ -167,6 +162,8 @@ class UploadFM : Fragment() {
                                                         ///TODO: Set video for fetchVideos
                                                         fetchVideos.child(keyVideo)
                                                             .setValue(video)
+                                                        navSignUp()
+
                                                     }
 
                                                     override fun onCancelled(error: DatabaseError) {

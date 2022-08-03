@@ -30,7 +30,6 @@ import team.tiktok.tiktokapp.data.Favorite
 import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.FragmentHomeBinding
-import team.tiktok.tiktokapp.fragments.following.FollowingFMDirections
 
 
 class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
@@ -75,7 +74,6 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
             adapter.startListening()
         }, 500)
     }
-
 
 
     override fun onItemClick(position: Int, view: View) {
@@ -130,86 +128,48 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
 
     fun clickIvFavorite(video: Video) {
         val dbUser = Firebase.database.getReference("users")
+        val uuid = auth.currentUser!!.uid
+        dbUser.child(uuid)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshotUser: DataSnapshot) {
+                    /// TODO: Get user from element.key and compare with uuid
+                    val user = snapshotUser.getValue(User::class.java)!!
+                    user.videos = video
 
-        dbUser.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (element in snapshot.children) {
-                    /// TODO: Use snapshot.children and ref uuid of child to get uuid
-                    val uuid = element.child("uuid").getValue(String::class.java)!!
-                    /// TODO: Compare equal with currentUser of auth
-                    if (auth.currentUser!!.uid == uuid) {
-                        /// TODO: Ref dbUser use ValueEvent
-                        dbUser.child(element.key!!).addListenerForSingleValueEvent(object :
-                            ValueEventListener {
-                            override fun onDataChange(snapshotUser: DataSnapshot) {
-                                /// TODO: Get user from element.key and compare with uuid
-                                val user = snapshotUser.getValue(User::class.java)!!
-                                val favorite = Favorite(
-                                    heart = true,
-                                    users = user
-                                )
-                                /// TODO: Ref dbFavorite , dbVideo
-                                val dbFavorite = Firebase.database.getReference("favorites")
-                                val dbVideo =
-                                    Firebase.database.getReference("videos").child(video.uidVideo!!)
-                                val dbVideoFavorite = dbVideo.child("favorites")
+                    val favorite = Favorite(
+                        heart = true,
+                        users = user
+                    )
+                    /// TODO: Ref dbFavorite , dbVideo
+                    val dbVideo = Firebase.database.getReference("videos")
+                        .child(video.uidVideo!!)
+                    val dbVideoFavorite = dbVideo.child("favorites")
 
-
-                                dbFavorite.addListenerForSingleValueEvent(object :
-                                    ValueEventListener {
-                                    override fun onDataChange(snapshot: DataSnapshot) {
-                                        if (snapshot.exists()) {
-                                            /// TODO: Remove favorite in dbFavorite when dislike
-                                            dbFavorite.removeValue()
-                                            /// TODO: Remove favorite in db when dislike
-                                            dbVideoFavorite.removeValue()
-                                            if (listFavorite.contains(favorite)) {
-                                                listFavorite.remove(favorite)
-                                                val countHearts = listFavorite.size
-                                                updateHeartVideoData(countHearts, dbVideo = dbVideo)
-                                            }
-
-                                        } else {
-                                            dbVideo.addListenerForSingleValueEvent(object :
-                                                ValueEventListener {
-                                                override fun onDataChange(snapshot: DataSnapshot) {
-                                                    snapshot.children.forEach {
-                                                        dbVideoFavorite.child(favorite.users!!.uuid!!)
-                                                            .setValue(favorite)
-                                                        if (!listFavorite.contains(favorite)) {
-                                                            listFavorite.add(0,favorite)
-                                                            val countHearts = listFavorite.size
-                                                            updateHeartVideoData(countHearts, dbVideo = dbVideo)
-                                                        }
-
-                                                    }
-                                                }
-                                                override fun onCancelled(error: DatabaseError) {
-                                                }
-                                            })
-                                            val key = dbFavorite.push().key
-                                            dbFavorite.child(key!!).setValue(favorite)
-                                        }
-                                    }
-
-                                    override fun onCancelled(error: DatabaseError) {
-                                    }
-                                })
+                    dbVideoFavorite.addListenerForSingleValueEvent(object :
+                        ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            if (!snapshot.hasChild(uuid)) {
+                                dbVideoFavorite.child(uuid).setValue(favorite)
+                                val countHearts = snapshot.childrenCount.toInt() + 1
+                                updateHeartVideoData(countHearts, dbVideo = dbVideo)
+                            } else {
+                                /// TODO: Remove favorite in db when dislike
+                                dbVideoFavorite.child(user.uuid!!).removeValue()
+                                val countHearts = snapshot.childrenCount.toInt() - 1
+                                updateHeartVideoData(countHearts, dbVideo = dbVideo)
                             }
+                        }
 
-                            override fun onCancelled(error: DatabaseError) {
-                            }
-                        })
-
-                    }
+                        override fun onCancelled(error: DatabaseError) {
+                        }
+                    })
                 }
-            }
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
 
-
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
     }
+
     private fun updateHeartVideoData(countHearts: Int, dbVideo: DatabaseReference) {
 
         var hashMap: MutableMap<String, Int> = HashMap()
@@ -264,10 +224,26 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
     private fun isLogIn(position: Int) {
         auth = Firebase.auth
         if (auth.currentUser != null) {
+
             val video = adapter.getItem(position)
-            clickIvFavorite(video)
+//            clickIvFavorite(video)
+            val dbUser = Firebase.database.getReference("users")
+            dbUser.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    snapshot.children.forEach {
+                        val uuid = it.child("uuid").getValue(String::class.java)!!
+                        if (auth.currentUser!!.uid == uuid) {
+                            clickIvFavorite(video)
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
         } else {
-            val action = FollowingFMDirections.actionFollowingFMToSignUpBottomSheetFM()
+            val action = HomeFMDirections.actionHomeFMToSignUpBottomSheetFM()
             findNavController().navigate(action)
         }
     }

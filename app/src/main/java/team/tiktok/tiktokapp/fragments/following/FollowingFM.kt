@@ -6,7 +6,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleCoroutineScope
@@ -42,7 +42,6 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
     private lateinit var adapter: FollowingVideoAdapter
     lateinit var auth: FirebaseAuth
     lateinit var mDataBase: DatabaseReference
-    val listFavorite = mutableListOf<Favorite>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,6 +58,7 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
     private fun loadData() {
         CoroutineScope(Dispatchers.IO).launch {
             mDataBase = Firebase.database.getReference("videos")
+
             val options = FirebaseRecyclerOptions.Builder<Video>()
                 .setQuery(mDataBase, Video::class.java)
                 .build()
@@ -82,37 +82,26 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
     }
 
 
-
     override fun onItemClick(position: Int, view: View) {
         var isSave = false
         val id = view.id
         when (id) {
             R.id.ivComment -> {
-                loadComments(position)
+                navToComment(position)
             }
             R.id.civUser -> {
-                transferData(position)
+                navToDetailUser(position)
             }
             R.id.ivFavorite -> {
-                isLogIn(position)
-
+                val ivFav = view.findViewById<ImageView>(R.id.ivFavorite)
+                isLogIn(position, ivFav)
+            }
+            R.id.ivSave -> {
+                val ivSave = view.findViewById<ImageView>(R.id.ivSave)
+//                isLogIn(position, ivSave)
             }
         }
         /// TODO:Click item Not use position
-        adapter.itemVideoBinding.ivSave.apply {
-            setOnClickListener {
-                if (isSave) {
-                    isSave = false
-                    adapter.itemVideoBinding.ivSave.setImageResource(R.drawable.save32)
-                    Toast.makeText(requireContext(),"positiion : $position",Toast.LENGTH_SHORT).show()
-                } else {
-                    isSave = true
-                    Toast.makeText(requireContext(),"positiion : $position",Toast.LENGTH_SHORT).show()
-
-                    adapter.itemVideoBinding.ivSave.setImageResource(R.drawable.save_yellow)
-                }
-            }
-        }
 
         adapter.itemVideoBinding.ivSearch.apply {
             setOnClickListener {
@@ -127,108 +116,62 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
 
         adapter.itemVideoBinding.ivShare.apply {
             setOnClickListener {
-                findNavController().navigate(R.id.action_homeFM_to_shareBottomSheetFM)
-
+                findNavController().navigate(R.id.action_followingFM_to_shareBottomSheetFM)
             }
         }
-
-
     }
 
     fun clickIvFavorite(video: Video) {
         val dbUser = Firebase.database.getReference("users")
-        dbUser.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (element in snapshot.children) {
-                    /// TODO: Use snapshot.children and ref uuid of child to get uuid
-                    val uuid = element.child("uuid").getValue(String::class.java)!!
-                    /// TODO: Compare equal with currentUser of auth
-                    if (auth.currentUser!!.uid == uuid) {
-                        /// TODO: Ref dbUser use ValueEvent
-                        dbUser.child(element.key!!).addListenerForSingleValueEvent(object :
-                            ValueEventListener {
-                            override fun onDataChange(snapshotUser: DataSnapshot) {
-                                /// TODO: Get user from element.key and compare with uuid
-                                val user = snapshotUser.getValue(User::class.java)!!
-                                val favorite = Favorite(
-                                    heart = true,
-                                    users = user
-                                )
-                                /// TODO: Ref dbFavorite , dbVideo
-                                val dbFavorite = Firebase.database.getReference("favorites")
-                                val dbVideo =
-                                    Firebase.database.getReference("videos").child(video.uidVideo!!)
-                                val dbVideoFavorite = dbVideo.child("favorites")
+        val uuid = auth.currentUser!!.uid
+        dbUser.child(uuid)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshotUser: DataSnapshot) {
+                    /// TODO: Get user from element.key and compare with uuid
+                    val user = snapshotUser.getValue(User::class.java)!!
+                    user.videos = video
 
+                    val favorite = Favorite(
+                        heart = true,
+                        users = user
+                    )
+                    /// TODO: Ref dbFavorite , dbVideo
+                    val dbVideo = Firebase.database.getReference("videos")
+                        .child(video.uidVideo!!)
+                    val dbVideoFavorite = dbVideo.child("favorites")
 
-                                dbFavorite.addListenerForSingleValueEvent(object :
-                                    ValueEventListener {
-                                    override fun onDataChange(snapshot: DataSnapshot) {
-                                        if (snapshot.exists()) {
-                                            /// TODO: Remove favorite in dbFavorite when dislike
-                                            dbFavorite.removeValue()
-                                            /// TODO: Remove favorite in db when dislike
-                                            dbVideoFavorite.removeValue()
-
-                                            if (listFavorite.contains(favorite)) {
-                                                listFavorite.remove(favorite)
-                                                val countHearts = listFavorite.size
-                                                updateHeartVideoData(countHearts, dbVideo = dbVideo)
-                                                adapter.itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_white)
-
-                                            }
-
-                                        } else {
-                                            dbVideo.addListenerForSingleValueEvent(object :ValueEventListener{
-                                                override fun onDataChange(snapshot: DataSnapshot) {
-                                                   snapshot.children.forEach {
-                                                       dbVideoFavorite.child(favorite.users!!.uuid!!)
-                                                           .setValue(favorite)
-
-                                                       if (!listFavorite.contains(favorite)) {
-                                                           listFavorite.add(favorite)
-                                                           val countHearts = listFavorite.size
-                                                           updateHeartVideoData(countHearts, dbVideo = dbVideo)
-                                                           adapter.itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_red)
-                                                       }
-
-                                                   }
-                                                }
-                                                override fun onCancelled(error: DatabaseError) {
-                                                }
-                                            })
-                                            val key = dbFavorite.push().key
-                                            dbFavorite.child(key!!).setValue(favorite)
-                                        }
-                                    }
-
-                                    override fun onCancelled(error: DatabaseError) {
-                                    }
-                                })
+                    dbVideoFavorite.addListenerForSingleValueEvent(object :
+                        ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            if (!snapshot.hasChild(uuid)) {
+                                dbVideoFavorite.child(uuid).setValue(favorite)
+                                val countHearts = snapshot.childrenCount.toInt()+1
+                                updateHeartVideoData(countHearts, dbVideo = dbVideo)
+                            } else {
+                                /// TODO: Remove favorite in db when dislike
+                                dbVideoFavorite.child(user.uuid!!).removeValue()
+                                val countHearts = snapshot.childrenCount.toInt()-1
+                                updateHeartVideoData(countHearts, dbVideo = dbVideo)
                             }
-
-                            override fun onCancelled(error: DatabaseError) {
-                            }
-                        })
-
-                    }
+                        }
+                        override fun onCancelled(error: DatabaseError) {
+                        }
+                    })
                 }
-            }
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
 
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
     }
 
-    private fun updateHeartVideoData(countHearts: Int, dbVideo: DatabaseReference) {
 
+    private fun updateHeartVideoData(countHearts: Int, dbVideo: DatabaseReference) {
         var hashMap: MutableMap<String, Int> = HashMap()
         hashMap.put("countHearts", countHearts)
         dbVideo.updateChildren(hashMap as Map<String, Int>)
-
     }
 
-    private fun transferData(position: Int) {
+    private fun navToDetailUser(position: Int) {
         val video = adapter.getItem(position)
         navDicretion(video.user!!)
     }
@@ -265,7 +208,7 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
             navigate(navDirections)
         }
 
-    private fun isLogIn(position: Int) {
+    private fun isLogIn(position: Int, ivFav: ImageView) {
         auth = Firebase.auth
         if (auth.currentUser != null) {
             val video = adapter.getItem(position)
@@ -277,7 +220,7 @@ class FollowingFM : Fragment(), FollowingVideoAdapter.OnClickItemInRecyclerView 
         }
     }
 
-    fun loadComments(position: Int) {
+    fun navToComment(position: Int) {
         val video = adapter.getItem(position)
         val action = FollowingFMDirections.actionFollowingFMToCommentBottomSheetFM(video)
         findNavController().navigate(action)

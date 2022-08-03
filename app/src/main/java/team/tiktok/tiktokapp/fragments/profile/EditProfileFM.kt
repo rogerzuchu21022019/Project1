@@ -16,7 +16,14 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.*
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.databinding.FragmentEditProfileBinding
@@ -26,6 +33,7 @@ class EditProfileFM : Fragment() {
     private val IMAGE_REQ = 1
     private var imagePath: Uri? = null
     lateinit var binding: FragmentEditProfileBinding
+    lateinit var mDataBase:DatabaseReference
     val navArgs : EditProfileFMArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,13 +48,29 @@ class EditProfileFM : Fragment() {
 
 
     /// TODO: Get User from profile FM
-    fun getUser(): User {
-        return navArgs.user
+    fun getUser(): User? {
+        return navArgs.user!!
     }
 
     /// TODO: Update Information
     fun updateUI(){
-        binding.user = getUser()
+        CoroutineScope(SupervisorJob()).launch(Dispatchers.IO) {
+            withContext(Dispatchers.Main) {
+                mDataBase = Firebase.database.getReference("users")
+                mDataBase.child(getUser()!!.uuid!!).addValueEventListener(object :
+                    ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val user = snapshot.getValue(User::class.java)!!
+                        binding.user = user
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+                })
+
+            }
+        }
     }
 
     private fun clickButton() {
@@ -62,6 +86,18 @@ class EditProfileFM : Fragment() {
             setOnClickListener {
                 requestPermission()
                 Toast.makeText(requireActivity(), "OK", Toast.LENGTH_SHORT).show()
+            }
+        }
+        binding.tvName.apply {
+            setOnClickListener {
+                val action = EditProfileFMDirections.actionEditProfileFMToUpdateFullname(binding.user)
+                findNavController().navigate(action)
+            }
+        }
+        binding.tvTikTokID.apply {
+            setOnClickListener {
+                val action = EditProfileFMDirections.actionEditProfileFMToUpdateTopTopID(binding.user)
+                findNavController().navigate(action)
             }
         }
     }
