@@ -3,6 +3,63 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/drawable-v24/boder_background_aqu.xml" value="0.176" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/drawable-v24/boder_background_brown.xml" value="0.204" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/drawable-v24/boder_background_white.xml" value="0.204" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/drawable/boder_background_red.xml" value="0.204" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/drawable/boder_signup.xml" value="0.204" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/drawable/border_nav_bot.xml" value="0.204" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/drawable/bottom_sheet_custom.xml" value="0.204" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/activity_profile.xml" value="0.23007246376811594" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_add.xml" value="0.23007246376811594" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_choose_phone_email_bottom_sheet.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_comment_bottom_sheet.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_detail_user.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_edit_profile.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_empty.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_following.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_forgot_pasword_email.xml" value="0.264" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_forgot_pasword_phone.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_friend.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_home.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_inbox.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_inbox_not_sign_up.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_liked_videos.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_manage_account.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_private_videos.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_profile.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_profile_bottom_sheet.xml" value="0.2" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_profile_not_sign_up.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_recommend.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_saved_videos.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_search.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_setting_and_privacy.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_share_bottom_sheet.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_sign_in_container.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_sign_up_container.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_sign_up_create_pass.xml" value="0.2" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_sign_up_create_toptop_id.xml" value="0.264" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_sign_up_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_signin_email.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_signin_phone.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_signup_birth.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_signup_email.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_signup_phone.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_splash_screen.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_test1.xml" value="0.23007246376811594" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_update_fullname.xml" value="0.2318840579710145" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_update_toptop_id.xml" value="0.2" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_upload.xml" value="0.2" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_user_detail_videos.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/fragment_user_profile_videos.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/item_detail_video_user.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/item_explore.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/item_profile_video_user.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/item_rv_comment.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/item_video_following.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/layout/item_video_home.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/MSI GF/Documents/GitHub/Project1/app/src/main/res/menu/bot_menu.xml" value="0.25" />
         <entry key="app/src/main/res/drawable-v24/boder_background_white.xml" value="0.2685" />
         <entry key="app/src/main/res/drawable/boder_signup.xml" value="0.2585" />
         <entry key="app/src/main/res/drawable/border_nav_bot.xml" value="0.2585" />
@@ -21,8 +78,6 @@
         <entry key="app/src/main/res/layout/fragment_detail_user.xml" value="0.18125" />
         <entry key="app/src/main/res/layout/fragment_edit_profile.xml" value="0.26893920898437496" />
         <entry key="app/src/main/res/layout/fragment_empty.xml" value="0.23385416666666667" />
-        <entry key="app/src/main/res/layout/fragment_example.xml" value="0.30480072463768115" />
-        <entry key="app/src/main/res/layout/fragment_example2.xml" value="0.30480072463768115" />
         <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.2776268115942029" />
         <entry key="app/src/main/res/layout/fragment_following.xml" value="0.18125" />
         <entry key="app/src/main/res/layout/fragment_for_u.xml" value="0.1703125" />
@@ -58,9 +113,6 @@
         <entry key="app/src/main/res/layout/fragment_signup_email.xml" value="0.16489361702127658" />
         <entry key="app/src/main/res/layout/fragment_signup_phone.xml" value="0.16489361702127658" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.1703125" />
-        <entry key="app/src/main/res/layout/fragment_update_fullname.xml" value="0.30480072463768115" />
-        <entry key="app/src/main/res/layout/fragment_update_fullname_bottom_sheet.xml" value="0.225" />
-        <entry key="app/src/main/res/layout/fragment_update_toptop_id.xml" value="0.30480072463768115" />
         <entry key="app/src/main/res/layout/fragment_upload.xml" value="0.35213395270748404" />
         <entry key="app/src/main/res/layout/fragment_user_detail_videos.xml" value="0.13177083333333334" />
         <entry key="app/src/main/res/layout/fragment_user_videos.xml" value="0.23505434782608695" />
