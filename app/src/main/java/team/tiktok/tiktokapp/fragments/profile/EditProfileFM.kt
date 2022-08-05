@@ -22,6 +22,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.*
 import team.tiktok.tiktokapp.R
@@ -34,12 +36,16 @@ class EditProfileFM : Fragment() {
     private var imagePath: Uri? = null
     lateinit var binding: FragmentEditProfileBinding
     lateinit var mDataBase:DatabaseReference
+    lateinit var storageReference : StorageReference
+
     val navArgs : EditProfileFMArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentEditProfileBinding.inflate(layoutInflater)
+        storageReference = Firebase.storage.reference.child("UsersFoler")
+
         clickImage()
         clickButton()
         updateUI()
@@ -131,6 +137,27 @@ class EditProfileFM : Fragment() {
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             val data = result.data
             imagePath = data!!.data
+            val imageStorage = storageReference.child("image/"+imagePath!!.lastPathSegment)
+            imageStorage.putFile(imagePath!!)
+                .addOnSuccessListener {
+                    Toast.makeText(requireContext(),"upload ok",Toast.LENGTH_SHORT).show()
+                    imageStorage.downloadUrl
+                        .addOnSuccessListener {
+                            val database = Firebase.database.getReference("users").child(getUser()!!.uuid!!)
+                            database.addValueEventListener(object :ValueEventListener{
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    database.child("imgUrl").setValue(it.toString())
+                                }
+
+                                override fun onCancelled(error: DatabaseError) {
+
+                                }
+                            })
+                        }
+                }
+                .addOnFailureListener{
+                    Toast.makeText(requireContext(),"upload Fail",Toast.LENGTH_SHORT).show()
+                }
             Picasso.get().load(imagePath).into(binding.civAvatar)
         }
 

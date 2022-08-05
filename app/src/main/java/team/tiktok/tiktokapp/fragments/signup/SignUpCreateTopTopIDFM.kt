@@ -63,11 +63,9 @@ class SignUpCreateTopTopIDFM : Fragment() {
 
             }
         }
-
     }
 
     private fun navDirection() {
-
         if (findNavController().previousBackStackEntry!!.destination.id == R.id.addFM){
             findNavController().popBackStack()
         }else{

@@ -182,6 +182,3 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
     }
 
 }
-//class ClickItemListener(private var clickItem:(video: Video)->Unit){
-//    fun  onClick(video: Video) = clickItem(video)
-//}

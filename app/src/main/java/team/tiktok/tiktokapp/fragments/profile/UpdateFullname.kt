@@ -32,7 +32,7 @@ class UpdateFullname : Fragment(),View.OnClickListener {
         return binding.root
     }
     fun test(){
-        
+
     }
 
     fun getUser():User{
@@ -44,6 +44,7 @@ class UpdateFullname : Fragment(),View.OnClickListener {
 
     private fun clickButton() {
         binding.btnUpdate.setOnClickListener(this)
+        binding.ivBack.setOnClickListener(this)
     }
 
     private fun updateFullname() {
@@ -52,8 +53,6 @@ class UpdateFullname : Fragment(),View.OnClickListener {
         dbUser.child(getUser().uuid!!).addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 updateFullName(fullName,dbUser.child(getUser().uuid!!))
-
-
             }
             override fun onCancelled(error: DatabaseError) {
             }
@@ -76,6 +75,11 @@ class UpdateFullname : Fragment(),View.OnClickListener {
         val id = view?.id
         when (id){
             R.id.btnUpdate ->{
+                updateFullname()
+                val action = UpdateFullnameDirections.actionUpdateFullnameToEditProfileFM(getUser())
+                findNavController().navigate(action)
+            }
+            R.id.ivBack ->{
                 updateFullname()
                 val action = UpdateFullnameDirections.actionUpdateFullnameToEditProfileFM(getUser())
                 findNavController().navigate(action)

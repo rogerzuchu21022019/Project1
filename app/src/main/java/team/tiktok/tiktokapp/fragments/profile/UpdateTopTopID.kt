@@ -48,6 +48,12 @@ class UpdateTopTopID : Fragment() {
                 findNavController().navigate(action)
             }
         }
+        binding.ivBack.apply {
+            setOnClickListener {
+                val action = UpdateTopTopIDDirections.actionUpdateTopTopIDToEditProfileFM(getUser())
+                findNavController().navigate(action)
+            }
+        }
     }
 
     private fun renameTopTopID() {

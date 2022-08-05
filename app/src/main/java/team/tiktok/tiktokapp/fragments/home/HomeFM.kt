@@ -77,13 +77,12 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
 
 
     override fun onItemClick(position: Int, view: View) {
-        var isFav = false
         var isSave = false
         /// TODO:Click item Use position
         val id = view.id
         when (id) {
             R.id.ivComment -> {
-                loadComments(position = position)
+                navToComment(position = position)
             }
             R.id.civUser -> {
                 transferData(position)
@@ -171,19 +170,9 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
     }
 
     private fun updateHeartVideoData(countHearts: Int, dbVideo: DatabaseReference) {
-
         var hashMap: MutableMap<String, Int> = HashMap()
         hashMap.put("countHearts", countHearts)
         dbVideo.updateChildren(hashMap as Map<String, Int>)
-    }
-
-
-    private fun updateDataVideo(countSaved: Any) {
-        var hashMap: MutableMap<String, Any> = HashMap()
-        hashMap.put("countSaved", countSaved)
-
-        dbVideos = Firebase.database.getReference("videos")
-        dbVideos.updateChildren(hashMap as Map<String, Any>)
     }
 
     fun navDirection(user: User) {
@@ -195,7 +184,7 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
     }
 
 
-    fun loadComments(position: Int) {
+    fun navToComment(position: Int) {
         val video = adapter.getItem(position)
         val action = HomeFMDirections.actionHomeFMToCommentBottomSheetFM(video)
         findNavController().navigate(action)
@@ -222,11 +211,11 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
     }
 
     private fun isLogIn(position: Int) {
+        var isFav = false
         auth = Firebase.auth
         if (auth.currentUser != null) {
 
             val video = adapter.getItem(position)
-//            clickIvFavorite(video)
             val dbUser = Firebase.database.getReference("users")
             dbUser.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
