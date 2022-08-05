@@ -1,5 +1,6 @@
 package team.tiktok.tiktokapp.fragments.setting
 
+//import me.ibrahimsn.lib.SmoothBottomBar
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,11 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-//import me.ibrahimsn.lib.SmoothBottomBar
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.databinding.FragmentSettingAndPrivacyBinding
@@ -36,11 +35,6 @@ class SettingAndPrivacyFM : Fragment() {
         if (auth.currentUser!=null){
             binding.tvSignOut.visibility = View.VISIBLE
             binding.btnSignUp.visibility = View.GONE
-            Toast.makeText(
-                requireContext(),
-                "ai do login",
-                Toast.LENGTH_SHORT
-            ).show()
         }else{
             binding.tvSignOut.visibility = View.GONE
             binding.btnSignUp.visibility = View.VISIBLE

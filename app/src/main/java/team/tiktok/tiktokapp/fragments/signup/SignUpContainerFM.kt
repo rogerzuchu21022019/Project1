@@ -5,6 +5,7 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -88,22 +89,47 @@ class SignUpContainerFM : Fragment() {
                         ///assign btn and edt from email
                         var btnSignUp: View = view!!.findViewById(R.id.btnSignUp)
                         var edtEmail: EditText = view!!.findViewById(R.id.edtEmail)
+                        var checkBox: CheckBox = view!!.findViewById(R.id.chkSignUp)
 
                         btnSignUp.setOnClickListener {
-                            if(TextUtils.isEmpty(edtEmail.text.toString())){
-                                Toast.makeText(requireContext(),"Please Fill Information",Toast.LENGTH_SHORT).show()
+                            if (TextUtils.isEmpty(edtEmail.text.toString())) {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Vui lòng điền đầy đủ thông tin",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                return@setOnClickListener
+                            }
+                            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(edtEmail.text.toString())
+                                    .matches()
+                            ) {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Vui lòng điền đúng định dạng! Ví dụ abcyxz@gmail.com",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                                 return@setOnClickListener
                             }
                             val email = edtEmail.text.toString().trim()
-                            val arrSignUp = mutableListOf(getBirth())
-                            arrSignUp.add(1,email)
-                            var action =
-                                SignUpContainerFMDirections.actionSignUpContainerFMToSignUpCreatePassFM(
-                                    arrSignUp.toTypedArray()
-                                )
-                            findNavController().navigate(action)
-                            Toast.makeText(requireContext(), "$arrSignUp", Toast.LENGTH_SHORT)
-                                .show()
+                            if (checkBox.isChecked && !TextUtils.isEmpty(email)) {
+                                val arrSignUp = mutableListOf(getBirth())
+                                arrSignUp.add(1, email)
+                                var action =
+                                    SignUpContainerFMDirections.actionSignUpContainerFMToSignUpCreatePassFM(
+                                        arrSignUp.toTypedArray()
+                                    )
+                                findNavController().navigate(action)
+                                Toast.makeText(requireContext(), "$arrSignUp", Toast.LENGTH_SHORT)
+                                    .show()
+                            } else {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Vui lòng đồng ý với các điều khoản của chúng tôi",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                            }
+
                         }
                     }
                 }
@@ -113,10 +139,10 @@ class SignUpContainerFM : Fragment() {
 
     private fun checkComeIn(isComeIn: Boolean) {
         if (isComeIn) {
-            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
+            val navBot = requireActivity().findViewById<AnimatedBottomBar>(R.id.navBot)
             navBot.visibility = View.GONE
         } else {
-            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
+            val navBot = requireActivity().findViewById<AnimatedBottomBar>(R.id.navBot)
             navBot.visibility = View.VISIBLE
         }
     }
@@ -124,7 +150,7 @@ class SignUpContainerFM : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding == null
         checkComeIn(false)
+        binding == null
     }
 }

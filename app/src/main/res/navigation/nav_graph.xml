@@ -52,7 +52,8 @@
         <action
             android:id="@+id/action_profileFM_to_signUpBottomSheetFM"
             app:destination="@id/signUpBottomSheetFM"
-            app:popUpTo="@id/signUpBottomSheetFM" />
+            app:popUpTo="@id/signUpBottomSheetFM"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_profileFM_to_settingAndPrivacyFM"
             app:destination="@id/settingAndPrivacyFM" />
@@ -69,7 +70,8 @@
         <action
             android:id="@+id/action_inboxFM_to_signUpBottomSheetFM"
             app:destination="@id/signUpBottomSheetFM"
-            app:popUpTo="@id/signUpBottomSheetFM" />
+            app:popUpTo="@id/signUpBottomSheetFM"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/friendFM"
@@ -78,7 +80,9 @@
         tools:layout="@layout/fragment_friend" >
         <action
             android:id="@+id/action_friendFM_to_signUpBottomSheetFM"
-            app:destination="@id/signUpBottomSheetFM" />
+            app:destination="@id/signUpBottomSheetFM"
+            app:popUpTo="@id/signUpBottomSheetFM"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFM"
@@ -135,7 +139,9 @@
             app:destination="@id/profileFM" />
         <action
             android:id="@+id/action_settingAndPrivacyFM_to_signUpBottomSheetFM"
-            app:destination="@id/signUpBottomSheetFM" />
+            app:destination="@id/signUpBottomSheetFM"
+            app:popUpTo="@id/chooseEmailOrPhoneBottomSheetFM"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_manage_account"
@@ -174,7 +180,9 @@
             app:destination="@id/searchFM" />
         <action
             android:id="@+id/action_followingFM_to_signUpBottomSheetFM"
-            app:destination="@id/signUpBottomSheetFM" />
+            app:destination="@id/signUpBottomSheetFM"
+            app:popUpTo="@id/signUpBottomSheetFM"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/emptyFM"
@@ -272,9 +280,10 @@
             app:destination="@id/signUpBottomSheetFM"
             app:enterAnim="@animator/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
-            app:popUpTo="@id/signUpBottomSheetFM"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/signUpBottomSheetFM"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_uploadFM_to_homeFM"
             app:destination="@id/homeFM" />
@@ -294,7 +303,9 @@
         android:label="ChooseEmailOrPhoneBottomSheetFM" >
         <action
             android:id="@+id/action_chooseEmailOrPhoneBottomSheetFM_to_forgotWithEmailFM"
-            app:destination="@id/forgotWithEmailFM" />
+            app:destination="@id/forgotWithEmailFM"
+            app:popUpTo="@id/forgotWithEmailFM"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_chooseEmailOrPhoneBottomSheetFM_to_forgotWithPhoneFM"
             app:destination="@id/forgotWithPhoneFM" />
@@ -324,7 +335,9 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/signInContainerFM"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_signUpBottomSheetFM_to_signUpBirthFM"
             app:destination="@id/signUpBirthFM"
@@ -415,7 +428,9 @@
         android:label="ForgotWithEmailFM" >
         <action
             android:id="@+id/action_forgotWithEmailFM_to_signInContainerFM2"
-            app:destination="@id/signInContainerFM" />
+            app:destination="@id/signInContainerFM"
+            app:popUpTo="@id/signInContainerFM"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/forgotWithPhoneFM"
@@ -424,7 +439,9 @@
         android:label="ForgotWithPhoneFM" >
         <action
             android:id="@+id/action_forgotWithPhoneFM_to_signInContainerFM2"
-            app:destination="@id/signInContainerFM" />
+            app:destination="@id/signInContainerFM"
+            app:popUpTo="@id/signInContainerFM"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/signUpCreateTopTopIDFM"

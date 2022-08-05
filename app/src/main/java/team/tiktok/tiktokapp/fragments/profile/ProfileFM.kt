@@ -111,6 +111,7 @@ class ProfileFM : Fragment() {
                 for (element in snapshot.children) {
                     var uuid = element.child("uuid").getValue(String::class.java)
                     if (auth.currentUser!!.uid == uuid) {
+
                         database.child(element.key!!)
                             .addValueEventListener(object : ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -258,6 +259,22 @@ class ProfileFM : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding == null
+    }
+
+    override fun onPause() {
+        super.onPause()
+        findNavController().clearBackStack(R.id.signUpContainerFM)
+        findNavController().clearBackStack(R.id.signUpBirthFM)
+        findNavController().clearBackStack(R.id.signUpCreateTopTopIDFM)
+        findNavController().clearBackStack(R.id.signUpCreatePassFM)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        findNavController().clearBackStack(R.id.signUpContainerFM)
+        findNavController().clearBackStack(R.id.signUpBirthFM)
+        findNavController().clearBackStack(R.id.signUpCreateTopTopIDFM)
+        findNavController().clearBackStack(R.id.signUpCreatePassFM)
     }
 
     private fun checkComeIn(isComeIn: Boolean) {
