@@ -18,20 +18,15 @@ class LikedUserVideosFM : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLikedVideosBinding.inflate(layoutInflater)
-        clickButton()
-
         return binding.root
     }
 
-    private fun clickButton() {
-
-    }
     private fun checkComeIn(isComeIn:Boolean){
         if (isComeIn){
-            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
+            val navBot = requireActivity().findViewById<AnimatedBottomBar>(R.id.navBot)
             navBot.visibility = View.GONE
         }else{
-            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
+            val navBot = requireActivity().findViewById<AnimatedBottomBar>(R.id.navBot)
             navBot.visibility = View.VISIBLE
         }
     }

@@ -101,16 +101,22 @@ class SignInEmailFM : Fragment() {
     }
 
     private fun navDirection() {
-            if(findNavController().currentDestination!!.id == R.id.signInContainerFM
-                && findNavController().previousBackStackEntry!!.destination.id == R.id.uploadFM
-                && findNavController().findDestination(R.id.uploadFM)!!.id == R.id.uploadFM){
-                findNavController().navigate(R.id.uploadFM)
-                Toast.makeText(requireContext(),"1",Toast.LENGTH_SHORT).show()
-            }else{
-                findNavController().popBackStack()
-                Toast.makeText(requireContext(),"2",Toast.LENGTH_SHORT).show()
+        if (findNavController().currentDestination!!.id == R.id.signInContainerFM
+            && findNavController().previousBackStackEntry!!.destination.id == R.id.uploadFM
+            && findNavController().findDestination(R.id.uploadFM)!!.id == R.id.uploadFM
+        ) {
+            findNavController().navigate(R.id.uploadFM)
+            Toast.makeText(requireContext(), "1", Toast.LENGTH_SHORT).show()
+        }
+        if (findNavController().previousBackStackEntry!!.destination.id==R.id.signUpCreateTopTopIDFM){
+            findNavController().clearBackStack(R.id.signUpCreateTopTopIDFM)
+            findNavController().popBackStack()
+            Toast.makeText(requireContext(), "3", Toast.LENGTH_SHORT).show()
 
-            }
+        }
+        findNavController().popBackStack()
+        Toast.makeText(requireContext(), "2", Toast.LENGTH_SHORT).show()
+
     }
 
     private fun checkComeIn(isComeIn: Boolean) {
@@ -122,11 +128,13 @@ class SignInEmailFM : Fragment() {
             navBot.visibility = View.VISIBLE
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         binding == null
         checkComeIn(true)
     }
+
     override fun onStart() {
         super.onStart()
     }

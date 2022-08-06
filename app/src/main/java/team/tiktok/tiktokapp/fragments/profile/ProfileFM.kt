@@ -111,12 +111,19 @@ class ProfileFM : Fragment() {
                 for (element in snapshot.children) {
                     var uuid = element.child("uuid").getValue(String::class.java)
                     if (auth.currentUser!!.uid == uuid) {
+
                         database.child(element.key!!)
                             .addValueEventListener(object : ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     val user = snapshot.getValue<User>()!!
                                     Log.d("ProfileFM", "user : $user")
                                     updateUI(user)
+                                    binding.btnEditProfile.apply {
+                                        setOnClickListener {
+                                            val action = ProfileFMDirections.actionProfileFMToEditProfileFM(user = user)
+                                            findNavController().navigate(action)
+                                        }
+                                    }
                                     isCheck = true
                                 }
                                 override fun onCancelled(error: DatabaseError) {
@@ -145,11 +152,7 @@ class ProfileFM : Fragment() {
 
 
     private fun clickButton() {
-        binding.btnEditProfile.apply {
-            setOnClickListener {
-                findNavController().navigate(R.id.action_profileFM_to_editProfileFM)
-            }
-        }
+
         binding.ivList.apply {
             setOnClickListener {
                 findNavController().navigate(R.id.action_profileFM_to_profileBottomSheetFM)
@@ -158,6 +161,7 @@ class ProfileFM : Fragment() {
         binding.civAvatar.apply {
             setOnClickListener {
                 requestPermission()
+                selectImage()
                 Toast.makeText(requireActivity(), "OK", Toast.LENGTH_SHORT).show()
             }
         }
@@ -225,14 +229,21 @@ class ProfileFM : Fragment() {
                 imagePath = data!!.data
                 val imageStorage = storageReference.child("image/"+imagePath!!.lastPathSegment)
                 imageStorage.putFile(imagePath!!)
-                    .addOnCompleteListener {
+                    .addOnSuccessListener {
                         Toast.makeText(requireContext(),"upload ok",Toast.LENGTH_SHORT).show()
-//                imageStorage.downloadUrl
-//                    .addOnSuccessListener {
-//                        val database = Firebase.database.getReference("users").child(user.topTopID!!)
-//                        user.imgUrl = it.toString()
-//                        database.setValue(user)
-//                    }
+                imageStorage.downloadUrl
+                    .addOnSuccessListener {
+                        val database = Firebase.database.getReference("users").child(auth.currentUser!!.uid)
+                        database.addValueEventListener(object :ValueEventListener{
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                database.child("imgUrl").setValue(it.toString())
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {
+
+                            }
+                        })
+                    }
                     }
                     .addOnFailureListener{
                         Toast.makeText(requireContext(),"upload Fail",Toast.LENGTH_SHORT).show()
@@ -243,9 +254,27 @@ class ProfileFM : Fragment() {
 
         }
 
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         binding == null
+    }
+
+    override fun onPause() {
+        super.onPause()
+        findNavController().clearBackStack(R.id.signUpContainerFM)
+        findNavController().clearBackStack(R.id.signUpBirthFM)
+        findNavController().clearBackStack(R.id.signUpCreateTopTopIDFM)
+        findNavController().clearBackStack(R.id.signUpCreatePassFM)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        findNavController().clearBackStack(R.id.signUpContainerFM)
+        findNavController().clearBackStack(R.id.signUpBirthFM)
+        findNavController().clearBackStack(R.id.signUpCreateTopTopIDFM)
+        findNavController().clearBackStack(R.id.signUpCreatePassFM)
     }
 
     private fun checkComeIn(isComeIn: Boolean) {
@@ -256,13 +285,6 @@ class ProfileFM : Fragment() {
             navBot.badgeTextColor = ContextCompat.getColor(requireContext(), R.color.white)
 
         }
-//        else{
-//            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
-//            navBot.setBackgroundResource(R.drawable.border_nav_bot)
-//            navBot.tabColorSelected = ContextCompat.getColor(requireContext(),R.color.black)
-//
-//
-//        }
     }
 
 

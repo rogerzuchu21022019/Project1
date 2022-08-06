@@ -46,11 +46,17 @@ class SignUpBirthFM : Fragment() {
 
         binding.btnNext.apply {
             setOnClickListener {
-                if(TextUtils.isEmpty(binding.edtBirth.text.toString())){
-                    Toast.makeText(requireContext(),"Please fill Information",Toast.LENGTH_SHORT).show()
+                val regexBirth = "^[0-3]?[0-9].[0-3]?[0-9].(?:[0-9]{2})?[0-9]{2}\$".toRegex()
+
+                val birth = binding.edtBirth.text.toString()
+                if(TextUtils.isEmpty(binding.edtBirth.text.toString()) ){
+                    Toast.makeText(requireContext(),"Vui lòng điền đầy đủ thông tin",Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
-                val birth = binding.edtBirth.text.toString().trim()
+                if(!binding.edtBirth.text.toString().matches(regexBirth)){
+                    Toast.makeText(requireContext(),"Vui lòng điền đúng định dạng day/month/year",Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
                 val action = SignUpBirthFMDirections.actionSignUpBirthFMToSignUpContainerFM(birth = birth)
                 findNavController().navigate(action)
             }
@@ -64,7 +70,7 @@ class SignUpBirthFM : Fragment() {
             requireActivity()!!, style,
             OnDateSetListener { view, year, month, dayOfMonth ->
                 binding.edtBirth.setText("" + dayOfMonth + "/" + (month + 1) + "/" + year)
-                if (TextUtils.isEmpty(binding.edtBirth.text)) {
+                if (TextUtils.isEmpty(binding.edtBirth.text) ) {
                     Toast.makeText(
                         requireContext(),
                         "Please pick date and click ok to finish",
@@ -87,10 +93,10 @@ class SignUpBirthFM : Fragment() {
     }
     private fun checkComeIn(isComeIn:Boolean){
         if (isComeIn){
-            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
+            val navBot = requireActivity().findViewById<AnimatedBottomBar>(R.id.navBot)
             navBot.visibility = View.GONE
         }else{
-            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
+            val navBot = requireActivity().findViewById<AnimatedBottomBar>(R.id.navBot)
             navBot.visibility = View.VISIBLE
 
 

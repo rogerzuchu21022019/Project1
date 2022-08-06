@@ -185,7 +185,7 @@
                            android:layout_height="wrap_content"
                            android:layout_marginStart="@dimen/_1sdp"
                            android:gravity="center"
-                           android:text="@{String.valueOf(user.hearts),default =0}"
+                           android:text="@{String.valueOf(user.countHearts),default =0}"
                            android:textSize="@dimen/_12sdp"
                            android:textStyle="bold"
                            app:layout_constraintBottom_toBottomOf="@+id/tvFollower"

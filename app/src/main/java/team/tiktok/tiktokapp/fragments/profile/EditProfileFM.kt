@@ -10,30 +10,73 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.contract.ActivityResultContracts.GetContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.*
 import team.tiktok.tiktokapp.R
+import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.databinding.FragmentEditProfileBinding
-import team.tiktok.tiktokapp.databinding.FragmentProfileBinding
 
 
 class EditProfileFM : Fragment() {
     private val IMAGE_REQ = 1
     private var imagePath: Uri? = null
     lateinit var binding: FragmentEditProfileBinding
+    lateinit var mDataBase:DatabaseReference
+    lateinit var storageReference : StorageReference
+
+    val navArgs : EditProfileFMArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentEditProfileBinding.inflate(layoutInflater)
+        storageReference = Firebase.storage.reference.child("UsersFoler")
+
         clickImage()
         clickButton()
+        updateUI()
         return binding.root
+    }
+
+
+    /// TODO: Get User from profile FM
+    fun getUser(): User? {
+        return navArgs.user!!
+    }
+
+    /// TODO: Update Information
+    fun updateUI(){
+        CoroutineScope(SupervisorJob()).launch(Dispatchers.IO) {
+            withContext(Dispatchers.Main) {
+                mDataBase = Firebase.database.getReference("users")
+                mDataBase.child(getUser()!!.uuid!!).addValueEventListener(object :
+                    ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val user = snapshot.getValue(User::class.java)!!
+                        binding.user = user
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+
+                    }
+                })
+
+            }
+        }
     }
 
     private fun clickButton() {
@@ -49,6 +92,18 @@ class EditProfileFM : Fragment() {
             setOnClickListener {
                 requestPermission()
                 Toast.makeText(requireActivity(), "OK", Toast.LENGTH_SHORT).show()
+            }
+        }
+        binding.tvName.apply {
+            setOnClickListener {
+                val action = EditProfileFMDirections.actionEditProfileFMToUpdateFullname(binding.user)
+                findNavController().navigate(action)
+            }
+        }
+        binding.tvTikTokID.apply {
+            setOnClickListener {
+                val action = EditProfileFMDirections.actionEditProfileFMToUpdateTopTopID(binding.user)
+                findNavController().navigate(action)
             }
         }
     }
@@ -82,6 +137,27 @@ class EditProfileFM : Fragment() {
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             val data = result.data
             imagePath = data!!.data
+            val imageStorage = storageReference.child("image/"+imagePath!!.lastPathSegment)
+            imageStorage.putFile(imagePath!!)
+                .addOnSuccessListener {
+                    Toast.makeText(requireContext(),"upload ok",Toast.LENGTH_SHORT).show()
+                    imageStorage.downloadUrl
+                        .addOnSuccessListener {
+                            val database = Firebase.database.getReference("users").child(getUser()!!.uuid!!)
+                            database.addValueEventListener(object :ValueEventListener{
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    database.child("imgUrl").setValue(it.toString())
+                                }
+
+                                override fun onCancelled(error: DatabaseError) {
+
+                                }
+                            })
+                        }
+                }
+                .addOnFailureListener{
+                    Toast.makeText(requireContext(),"upload Fail",Toast.LENGTH_SHORT).show()
+                }
             Picasso.get().load(imagePath).into(binding.civAvatar)
         }
 

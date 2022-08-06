@@ -1,23 +1,13 @@
 package team.tiktok.tiktokapp.fragments.signup
 
-import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
-import team.tiktok.tiktokapp.databinding.FragmentSignupBirthBinding
-import team.tiktok.tiktokapp.databinding.FragmentSignupEmailBinding
 import team.tiktok.tiktokapp.databinding.FragmentSignupPhoneBinding
-import java.util.*
 
 
 class SignUpPhoneFM : Fragment() {
@@ -28,20 +18,23 @@ class SignUpPhoneFM : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSignupPhoneBinding.inflate(layoutInflater)
-        clickButton()
+        checkComeIn(true)
         return binding.root
     }
-
-    private fun clickButton() {
-        binding.btnSendCode.apply {
-            setOnClickListener {
-
-            }
+    private fun checkComeIn(isComeIn: Boolean) {
+        if (isComeIn) {
+            val navBot = requireActivity().findViewById<AnimatedBottomBar>(R.id.navBot)
+            navBot.visibility = View.GONE
+        } else {
+            val navBot = requireActivity().findViewById<AnimatedBottomBar>(R.id.navBot)
+            navBot.visibility = View.VISIBLE
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        checkComeIn(false)
         binding == null
+
     }
 }

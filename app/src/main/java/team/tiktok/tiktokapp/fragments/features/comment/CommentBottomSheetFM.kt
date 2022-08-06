@@ -106,7 +106,6 @@ class CommentBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListener {
     private fun updateDataVideo(countComments: Int) {
         var hashMap: MutableMap<String, Int> = HashMap()
         hashMap.put("countComments", countComments)
-
         dbVideos = Firebase.database.getReference("videos").child(getVideo().uidVideo!!)
         dbVideos.updateChildren(hashMap as Map<String, Any>)
     }
@@ -162,8 +161,7 @@ class CommentBottomSheetFM : BottomSheetDialogFragment(), View.OnClickListener {
                                             /// TODO: Set value for dbVideo
                                             val dbVideo = Firebase.database.getReference("videos")
                                             dbVideo.child(uuidVideo).child("comments").child(message).push().key
-                                            dbVideo.child(uuidVideo).child("comments").child(message)
-                                                .setValue(comment)
+                                            dbVideo.child(uuidVideo).child("comments").child(message).setValue(comment)
                                         }
 
                                         override fun onCancelled(error: DatabaseError) {

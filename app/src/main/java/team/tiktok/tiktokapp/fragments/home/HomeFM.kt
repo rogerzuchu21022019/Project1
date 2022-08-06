@@ -17,12 +17,16 @@ import androidx.navigation.fragment.findNavController
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.adapter.home.HomeVideoAdapter
+import team.tiktok.tiktokapp.data.Favorite
 import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.data.Video
 import team.tiktok.tiktokapp.databinding.FragmentHomeBinding
@@ -34,7 +38,7 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
     lateinit var auth: FirebaseAuth
     lateinit var mDataBase: DatabaseReference
     lateinit var dbVideos: DatabaseReference
-
+    val listFavorite = mutableListOf<Favorite>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,7 +60,6 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
             val options = FirebaseRecyclerOptions.Builder<Video>()
                 .setQuery(mDataBase, Video::class.java)
                 .build()
-
             adapter = HomeVideoAdapter(options)
             binding.vpHome.adapter = adapter
             adapter.setOnClickItem(this@HomeFM)
@@ -72,23 +75,20 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
         }, 500)
     }
 
-    override fun onStop() {
-        super.onStop()
-        adapter.stopListening()
-    }
-
 
     override fun onItemClick(position: Int, view: View) {
-        var isFav = false
         var isSave = false
         /// TODO:Click item Use position
         val id = view.id
         when (id) {
             R.id.ivComment -> {
-                loadComments(position = position)
+                navToComment(position = position)
             }
             R.id.civUser -> {
                 transferData(position)
+            }
+            R.id.ivFavorite -> {
+                isLogIn(position)
             }
         }
 
@@ -105,18 +105,6 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
             }
         }
 
-        adapter.itemVideoBinding.ivFavorite.apply {
-            setOnClickListener {
-
-                if (isFav) {
-                    adapter.itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_white)
-                    isFav = false
-                } else {
-                    adapter.itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_red)
-                    isFav = true
-                }
-            }
-        }
         adapter.itemVideoBinding.ivSearch.apply {
             setOnClickListener {
                 findNavController().navigate(R.id.action_homeFM_to_searchFM)
@@ -137,12 +125,54 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
 
     }
 
-    private fun updateDataVideo(countSaved: Any) {
-        var hashMap: MutableMap<String, Any> = HashMap()
-        hashMap.put("countSaved", countSaved)
+    fun clickIvFavorite(video: Video) {
+        val dbUser = Firebase.database.getReference("users")
+        val uuid = auth.currentUser!!.uid
+        dbUser.child(uuid)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshotUser: DataSnapshot) {
+                    /// TODO: Get user from element.key and compare with uuid
+                    val user = snapshotUser.getValue(User::class.java)!!
+                    user.videos = video
 
-        dbVideos = Firebase.database.getReference("videos")
-        dbVideos.updateChildren(hashMap as Map<String, Any>)
+                    val favorite = Favorite(
+                        heart = true,
+                        users = user
+                    )
+                    /// TODO: Ref dbFavorite , dbVideo
+                    val dbVideo = Firebase.database.getReference("videos")
+                        .child(video.uidVideo!!)
+                    val dbVideoFavorite = dbVideo.child("favorites")
+
+                    dbVideoFavorite.addListenerForSingleValueEvent(object :
+                        ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            if (!snapshot.hasChild(uuid)) {
+                                dbVideoFavorite.child(uuid).setValue(favorite)
+                                val countHearts = snapshot.childrenCount.toInt() + 1
+                                updateHeartVideoData(countHearts, dbVideo = dbVideo)
+                            } else {
+                                /// TODO: Remove favorite in db when dislike
+                                dbVideoFavorite.child(user.uuid!!).removeValue()
+                                val countHearts = snapshot.childrenCount.toInt() - 1
+                                updateHeartVideoData(countHearts, dbVideo = dbVideo)
+                            }
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                        }
+                    })
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
+    }
+
+    private fun updateHeartVideoData(countHearts: Int, dbVideo: DatabaseReference) {
+        var hashMap: MutableMap<String, Int> = HashMap()
+        hashMap.put("countHearts", countHearts)
+        dbVideo.updateChildren(hashMap as Map<String, Int>)
     }
 
     fun navDirection(user: User) {
@@ -154,7 +184,7 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
     }
 
 
-    fun loadComments(position: Int) {
+    fun navToComment(position: Int) {
         val video = adapter.getItem(position)
         val action = HomeFMDirections.actionHomeFMToCommentBottomSheetFM(video)
         findNavController().navigate(action)
@@ -178,6 +208,33 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
         super.onDestroyView()
         checkComeIn(false)
         binding == null
+    }
+
+    private fun isLogIn(position: Int) {
+        var isFav = false
+        auth = Firebase.auth
+        if (auth.currentUser != null) {
+
+            val video = adapter.getItem(position)
+            val dbUser = Firebase.database.getReference("users")
+            dbUser.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    snapshot.children.forEach {
+                        val uuid = it.child("uuid").getValue(String::class.java)!!
+                        if (auth.currentUser!!.uid == uuid) {
+                            clickIvFavorite(video)
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+            })
+        } else {
+            val action = HomeFMDirections.actionHomeFMToSignUpBottomSheetFM()
+            findNavController().navigate(action)
+        }
     }
 
     private fun checkComeIn(isComeIn: Boolean) {

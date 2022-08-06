@@ -57,8 +57,30 @@ open class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
             itemVideoBinding.ivFavorite.apply {
                 setOnClickListener {
                     onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
+                    if (isFav) {
+                        isFav = false
+                        itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_white)
+
+                    } else {
+                        isFav = true
+                        itemVideoBinding.ivFavorite.setImageResource(R.drawable.heart_red)
+                    }
                 }
             }
+            itemVideoBinding.ivSave.apply {
+                setOnClickListener {
+                    onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)
+                    if (isSave) {
+                        isSave = false
+                        itemVideoBinding.ivSave.setImageResource(R.drawable.save32)
+
+                    } else {
+                        isSave = true
+                        itemVideoBinding.ivSave.setImageResource(R.drawable.save_yellow)
+                    }
+                }
+            }
+
 
             /// Click Following | For you
 
@@ -75,6 +97,7 @@ open class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
             onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, itemVideoBinding.root)
         }
 
+
         fun setData(video: Video) {
             CoroutineScope(SupervisorJob()).launch(Dispatchers.IO) {
 
@@ -90,6 +113,7 @@ open class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
                 itemVideoBinding.video = video
                 itemVideoBinding.user = video.user
                 itemVideoBinding.comment = video.comments
+
 
 
                 itemVideoBinding.videoView.apply {
@@ -128,7 +152,6 @@ open class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
     }
 
 
-
     fun setOnClickItem(onClickItemInRecyclerView: OnClickItemInRecyclerView) {
         this.onClickItemInRecyclerView = onClickItemInRecyclerView
     }
@@ -148,6 +171,7 @@ open class FollowingVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
     @RequiresApi(Build.VERSION_CODES.P)
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int, video: Video) {
         holder.setData(video)
+
     }
 
     open interface OnClickItemInRecyclerView {

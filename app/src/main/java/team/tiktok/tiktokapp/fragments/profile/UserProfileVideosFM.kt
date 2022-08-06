@@ -21,8 +21,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import nl.joery.animatedbottombar.AnimatedBottomBar
-import team.tiktok.tiktokapp.R
 import team.tiktok.tiktokapp.adapter.detail.ProfileAdapter
 import team.tiktok.tiktokapp.data.User
 import team.tiktok.tiktokapp.data.Video
@@ -37,46 +35,10 @@ class UserProfileVideosFM : Fragment(), ProfileAdapter.OnClickItemInRecyclerView
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentUserProfileVideosBinding.inflate(layoutInflater)
-//        loadUser()
         initRecyclerView()
         return binding.root
     }
 
-    fun loadUser() {
-        CoroutineScope(SupervisorJob()).launch(Dispatchers.IO){
-            val auth = Firebase.auth
-            val database = Firebase.database.getReference("users")
-            var isCheck: Boolean? = null
-
-            val listener = object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for (element in snapshot.children) {
-                        var uuid = element.child("uuid").getValue(String::class.java)
-                        if (auth.currentUser!!.uid == uuid) {
-                            database.child(element.key!!)
-                                .addValueEventListener(object : ValueEventListener {
-                                    override fun onDataChange(snapshot: DataSnapshot) {
-                                        val user = snapshot.getValue<User>()!!
-                                        Log.d("ProfileFM", "user : $user")
-                                        isCheck = true
-                                    }
-
-                                    override fun onCancelled(error: DatabaseError) {
-                                    }
-                                })
-                        }
-                        if (isCheck == true) {
-                            break
-                        }
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                }
-            }
-            database.addValueEventListener(listener)
-        }
-    }
 
 
     fun initRecyclerView() {
@@ -107,17 +69,6 @@ class UserProfileVideosFM : Fragment(), ProfileAdapter.OnClickItemInRecyclerView
         }, 500)
 
     }
-
-    private fun checkComeIn(isComeIn: Boolean) {
-        if (isComeIn) {
-            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
-            navBot.visibility = View.GONE
-        } else {
-            val navBot = requireActivity()!!.findViewById<AnimatedBottomBar>(R.id.navBot)
-            navBot.visibility = View.VISIBLE
-        }
-    }
-
 
     override fun onStart() {
         super.onStart()
