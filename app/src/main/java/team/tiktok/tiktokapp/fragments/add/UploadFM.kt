@@ -207,7 +207,6 @@ class UploadFM : Fragment() {
             && findNavController().previousBackStackEntry!!.destination.id == R.id.signInContainerFM
         ) {
             handleShowProgressBar()
-            handleHideProgressBar()
         }
     }
 
@@ -217,7 +216,8 @@ class UploadFM : Fragment() {
             binding.progressbar.visibility = View.VISIBLE
             val action = UploadFMDirections.actionUploadFMToEmptyFM()
             findNavController().navigate(action)
-        }, 1000)
+            handleHideProgressBar()
+        }, 2000)
     }
 
     fun handleHideProgressBar() {

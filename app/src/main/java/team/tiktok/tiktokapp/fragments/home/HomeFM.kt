@@ -1,8 +1,6 @@
 package team.tiktok.tiktokapp.fragments.home
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,26 +51,25 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
 
 
     private fun loadData() {
-        var handler = Handler(Looper.myLooper()!!)
-        handler.postDelayed(Runnable {
-            binding.wait.visibility = View.GONE
-            mDataBase = Firebase.database.getReference("videos")
-            val options = FirebaseRecyclerOptions.Builder<Video>()
-                .setQuery(mDataBase, Video::class.java)
-                .build()
-            adapter = HomeVideoAdapter(options)
-            binding.vpHome.adapter = adapter
-            adapter.setOnClickItem(this@HomeFM)
-        }, 500)
+        binding.wait.visibility = View.GONE
+        mDataBase = Firebase.database.getReference("videos")
+        val options = FirebaseRecyclerOptions.Builder<Video>()
+            .setQuery(mDataBase, Video::class.java)
+            .build()
+        adapter = HomeVideoAdapter(options)
+        binding.vpHome.adapter = adapter
+        adapter.setOnClickItem(this@HomeFM)
 
     }
 
     override fun onStart() {
         super.onStart()
-        var handler = Handler(Looper.myLooper()!!)
-        handler.postDelayed(Runnable {
-            adapter.startListening()
-        }, 500)
+        adapter.startListening()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        adapter.stopListening()
     }
 
 
