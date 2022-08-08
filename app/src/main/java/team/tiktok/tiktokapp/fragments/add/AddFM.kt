@@ -44,8 +44,12 @@ class AddFM : Fragment() {
         binding.btnNext.apply {
             setOnClickListener {
                 val action = AddFMDirections.actionAddFMToUploadFM(videoPath = videoPath.toString())
-                findNavController().navigate(action)
-                Toast.makeText(requireContext(), "Next ${videoPath.toString()}", Toast.LENGTH_SHORT).show()
+                if (videoPath==null){
+                    Toast.makeText(requireContext(), "Vui lòng quay hoặc chọn video trước khi đăng ", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }else{
+                    findNavController().navigate(action)
+                }
             }
         }
         binding.ivGallery.apply {
