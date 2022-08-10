@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="user"
+            type="team.tiktok.tiktokapp.data.User" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -152,10 +154,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_5sdp"
-                android:text="ngày 10 thg 5, 1971"
+                android:text="@{user.birthDay}"
                 app:layout_constraintBottom_toBottomOf="@+id/ivBack2"
                 app:layout_constraintEnd_toStartOf="@+id/ivBack2"
                 app:layout_constraintTop_toTopOf="@+id/ivBack2" />
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:text="@{user.email}"
+                app:layout_constraintBottom_toBottomOf="@+id/ivBack1Email"
+                app:layout_constraintEnd_toStartOf="@+id/ivBack1Email"
+                app:layout_constraintTop_toTopOf="@+id/ivBack1Email" />
+            <TextView
+                android:id="@+id/tvPassword1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:text="@{user.password}"
+                android:inputType="textPassword"
+                app:layout_constraintBottom_toBottomOf="@+id/ivBack3"
+                app:layout_constraintEnd_toStartOf="@+id/ivBack3"
+                app:layout_constraintTop_toTopOf="@+id/ivBack3" />
 
             <ImageView
                 android:id="@+id/ivBack2"
