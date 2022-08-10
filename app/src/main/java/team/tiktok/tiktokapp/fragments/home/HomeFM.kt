@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import nl.joery.animatedbottombar.AnimatedBottomBar
 import team.tiktok.tiktokapp.R
@@ -35,8 +36,6 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
     private lateinit var adapter: HomeVideoAdapter
     lateinit var auth: FirebaseAuth
     lateinit var mDataBase: DatabaseReference
-    lateinit var dbVideos: DatabaseReference
-    val listFavorite = mutableListOf<Favorite>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +44,8 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         checkComeIn(true)
         auth = Firebase.auth
+
+
         loadData()
         return binding.root
     }
@@ -56,6 +57,7 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
         val options = FirebaseRecyclerOptions.Builder<Video>()
             .setQuery(mDataBase, Video::class.java)
             .build()
+
         adapter = HomeVideoAdapter(options)
         binding.vpHome.adapter = adapter
         adapter.setOnClickItem(this@HomeFM)
@@ -149,10 +151,12 @@ class HomeFM : Fragment(), HomeVideoAdapter.OnClickItemInRecyclerView {
                                 val countHearts = snapshot.childrenCount.toInt() + 1
                                 updateHeartVideoData(countHearts, dbVideo = dbVideo)
                             } else {
+
                                 /// TODO: Remove favorite in db when dislike
                                 dbVideoFavorite.child(user.uuid!!).removeValue()
                                 val countHearts = snapshot.childrenCount.toInt() - 1
                                 updateHeartVideoData(countHearts, dbVideo = dbVideo)
+
                             }
                         }
 

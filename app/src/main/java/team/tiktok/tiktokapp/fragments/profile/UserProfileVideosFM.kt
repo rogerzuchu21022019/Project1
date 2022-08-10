@@ -65,7 +65,6 @@ class UserProfileVideosFM : Fragment(), ProfileAdapter.OnClickItemInRecyclerView
         if (auth.currentUser != null) {
             adapter.startListening()
         }
-
     }
 
     override fun onStop() {
