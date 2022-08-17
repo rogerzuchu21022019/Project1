@@ -84,11 +84,13 @@ class HomeVideoAdapter(options: FirebaseRecyclerOptions<Video?>) :
             }
             itemVideoBinding.ivSave.apply {
                 setOnClickListener {
+
                 }
             }
 
             itemVideoBinding.ivShare.apply {
                 setOnClickListener {
+
                 }
             }
             /// Click Icon Comment

@@ -46,7 +46,7 @@ class SignUpContainerFM : Fragment() {
 
 
     private fun getBirth(): String {
-        Toast.makeText(requireContext(), "${navArg.birth}", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(), "${navArg.birth}", Toast.LENGTH_SHORT).show()
         return navArg.birth
     }
 
@@ -119,8 +119,8 @@ class SignUpContainerFM : Fragment() {
                                         arrSignUp.toTypedArray()
                                     )
                                 findNavController().navigate(action)
-                                Toast.makeText(requireContext(), "$arrSignUp", Toast.LENGTH_SHORT)
-                                    .show()
+//                                Toast.makeText(requireContext(), "$arrSignUp", Toast.LENGTH_SHORT)
+//                                    .show()
                             } else {
                                 Toast.makeText(
                                     requireContext(),
