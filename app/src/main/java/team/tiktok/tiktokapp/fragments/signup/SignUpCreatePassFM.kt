@@ -59,7 +59,7 @@ class SignUpCreatePassFM : Fragment() {
     fun handleEditText(){
         binding.edtPassword.doAfterTextChanged {
             /// TODO: Regex 1 uppercase,1 special,
-            val regex = "(?=[A-Za-z0-9@#\$%^&+!=]+\$)^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#\$%^&+!=])(?=.{6,}).*\$".toRegex()
+            val regex = "(?=[A-Za-z0-9@#\$%^&+!=]+\$)^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#\$%^&+!=])(?=.{6,20}).*\$".toRegex()
             if(TextUtils.isEmpty(binding.edtPassword.text.toString())){
                 return@doAfterTextChanged
             }

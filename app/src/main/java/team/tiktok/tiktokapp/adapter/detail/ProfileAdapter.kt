@@ -18,9 +18,9 @@ class ProfileAdapter(options: FirebaseRecyclerOptions<Video>) :
         val itemDetailVideoUserBinding: ItemProfileVideoUserBinding,
         onClickItemInRecyclerView: OnClickItemInRecyclerView
     ) : RecyclerView.ViewHolder(itemDetailVideoUserBinding.root) {
-        ///init Click
+        // TODO:init Click
         init {
-            /// Click on Screen
+            //  TODO: Click on Screen
             itemDetailVideoUserBinding.root.apply {
                 setOnClickListener {
                     onClickItemInRecyclerView.onItemClick(absoluteAdapterPosition, it)

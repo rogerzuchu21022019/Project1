@@ -54,7 +54,6 @@ class SignInEmailFM : Fragment() {
                 }
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnSuccessListener {
-                        Toast.makeText(requireContext(), "SignIn OK", Toast.LENGTH_SHORT).show()
                         callOnFirebaseAndFetchUser(email = email, password = password)
                     }
                     .addOnFailureListener {
@@ -105,17 +104,50 @@ class SignInEmailFM : Fragment() {
             && findNavController().previousBackStackEntry!!.destination.id == R.id.uploadFM
             && findNavController().findDestination(R.id.uploadFM)!!.id == R.id.uploadFM
         ) {
-            findNavController().navigate(R.id.uploadFM)
+            findNavController().clearBackStack(R.id.signInContainerFM)
+            findNavController().popBackStack()
             Toast.makeText(requireContext(), "1", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "SignIn OK", Toast.LENGTH_SHORT).show()
+
         }
         if (findNavController().previousBackStackEntry!!.destination.id==R.id.signUpCreateTopTopIDFM){
             findNavController().clearBackStack(R.id.signUpCreateTopTopIDFM)
             findNavController().popBackStack()
-            Toast.makeText(requireContext(), "3", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "SignIn OK", Toast.LENGTH_SHORT).show()
+
+            Toast.makeText(requireContext(), "2", Toast.LENGTH_SHORT).show()
 
         }
-        findNavController().popBackStack()
-        Toast.makeText(requireContext(), "2", Toast.LENGTH_SHORT).show()
+
+        if (findNavController().previousBackStackEntry!!.destination.id==R.id.profileFM){
+            findNavController().clearBackStack(R.id.signUpCreateTopTopIDFM)
+            findNavController().popBackStack()
+            Toast.makeText(requireContext(), "SignIn OK", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "3", Toast.LENGTH_SHORT).show()
+        }
+        if (findNavController().previousBackStackEntry!!.destination.id==R.id.inboxFM){
+            findNavController().clearBackStack(R.id.signUpCreateTopTopIDFM)
+            findNavController().popBackStack()
+            Toast.makeText(requireContext(), "SignIn OK", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "4", Toast.LENGTH_SHORT).show()
+        }
+
+        if (findNavController().previousBackStackEntry!!.destination.id==R.id.friendFM){
+            findNavController().clearBackStack(R.id.signUpCreateTopTopIDFM)
+            findNavController().popBackStack()
+            Toast.makeText(requireContext(), "SignIn OK", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "5", Toast.LENGTH_SHORT).show()
+        }
+
+        if (findNavController().previousBackStackEntry!!.destination.id==R.id.homeFM){
+            findNavController().clearBackStack(R.id.signUpCreateTopTopIDFM)
+            findNavController().popBackStack()
+            Toast.makeText(requireContext(), "SignIn OK", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "6", Toast.LENGTH_SHORT).show()
+        }
+//        findNavController().popBackStack()
+//        Toast.makeText(requireContext(), "2", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(), "SignIn OK", Toast.LENGTH_SHORT).show()
 
     }
 

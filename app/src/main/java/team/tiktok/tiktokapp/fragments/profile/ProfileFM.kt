@@ -47,8 +47,18 @@ class ProfileFM : Fragment() {
     lateinit var binding: FragmentProfileBinding
     lateinit var auth: FirebaseAuth
     lateinit var database: DatabaseReference
-    lateinit var storageReference : StorageReference
+    lateinit var storageReference: StorageReference
     lateinit var adapter: DetailUserViewpagerAdapter
+
+    companion object {
+        val FRAGMENT_USER_PROFILE_VIDEOS: Int = 0
+        val FRAGMENT_PRIVATE_USER_VIDEO: Int = 1
+        val FRAGMENT_SAVE_USER_VIDEO: Int = 2
+        val FRAGMENT_LIKE_USER_VIDEO: Int = 3
+
+        var mFragmentCurrent = FRAGMENT_USER_PROFILE_VIDEOS
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,9 +66,9 @@ class ProfileFM : Fragment() {
         binding = FragmentProfileBinding.inflate(layoutInflater)
         checkComeIn(true)
         storageReference = Firebase.storage.reference.child("UsersFoler")
-        initViewPager()
         clickButton()
         isLogIn()
+        initViewPager()
         return binding.root
     }
 
@@ -102,7 +112,7 @@ class ProfileFM : Fragment() {
         }
     }
 
-     fun loadUser() {
+    fun loadUser() {
         database = Firebase.database.getReference("users")
         var isCheck: Boolean? = null
 
@@ -120,12 +130,16 @@ class ProfileFM : Fragment() {
                                     updateUI(user)
                                     binding.btnEditProfile.apply {
                                         setOnClickListener {
-                                            val action = ProfileFMDirections.actionProfileFMToEditProfileFM(user = user)
+                                            val action =
+                                                ProfileFMDirections.actionProfileFMToEditProfileFM(
+                                                    user = user
+                                                )
                                             findNavController().navigate(action)
                                         }
                                     }
                                     isCheck = true
                                 }
+
                                 override fun onCancelled(error: DatabaseError) {
                                 }
                             })
@@ -148,7 +162,6 @@ class ProfileFM : Fragment() {
         binding.follower = user.follower
         binding.following = user.following
     }
-
 
 
     private fun clickButton() {
@@ -190,11 +203,10 @@ class ProfileFM : Fragment() {
     }
 
     private fun initViewPager() {
-        adapter = DetailUserViewpagerAdapter(this)
+        adapter = DetailUserViewpagerAdapter(this@ProfileFM)
         binding.vpDetail.adapter = adapter
-        initTabLayout()
+         initTabLayout()
     }
-
 
 
     private fun requestPermission() {
@@ -227,33 +239,33 @@ class ProfileFM : Fragment() {
             if (result.resultCode == AppCompatActivity.RESULT_OK) {
                 val data = result.data
                 imagePath = data!!.data
-                val imageStorage = storageReference.child("image/"+imagePath!!.lastPathSegment)
+                val imageStorage = storageReference.child("image/" + imagePath!!.lastPathSegment)
                 imageStorage.putFile(imagePath!!)
                     .addOnSuccessListener {
-                        Toast.makeText(requireContext(),"upload ok",Toast.LENGTH_SHORT).show()
-                imageStorage.downloadUrl
-                    .addOnSuccessListener {
-                        val database = Firebase.database.getReference("users").child(auth.currentUser!!.uid)
-                        database.addValueEventListener(object :ValueEventListener{
-                            override fun onDataChange(snapshot: DataSnapshot) {
-                                database.child("imgUrl").setValue(it.toString())
-                            }
+                        Toast.makeText(requireContext(), "upload ok", Toast.LENGTH_SHORT).show()
+                        imageStorage.downloadUrl
+                            .addOnSuccessListener {
+                                val database = Firebase.database.getReference("users")
+                                    .child(auth.currentUser!!.uid)
+                                database.addValueEventListener(object : ValueEventListener {
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        database.child("imgUrl").setValue(it.toString())
+                                    }
 
-                            override fun onCancelled(error: DatabaseError) {
+                                    override fun onCancelled(error: DatabaseError) {
 
+                                    }
+                                })
                             }
-                        })
                     }
-                    }
-                    .addOnFailureListener{
-                        Toast.makeText(requireContext(),"upload Fail",Toast.LENGTH_SHORT).show()
+                    .addOnFailureListener {
+                        Toast.makeText(requireContext(), "upload Fail", Toast.LENGTH_SHORT).show()
                     }
                 Picasso.get().load(imagePath).into(binding.civAvatar)
 
             }
 
         }
-
 
 
     override fun onDestroyView() {
